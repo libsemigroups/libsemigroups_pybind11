@@ -167,7 +167,12 @@ def check_add_rules(W):
         W([4, 1]),
         W([0, 1, 1, 1, 1, 1, 1, 1, 1, 1]),
     ]
-    assert q.rules == [W([4, 1]), W([0, 5]), W([4, 1]), W([0, 1, 1, 1, 1, 1, 1, 1, 1, 1])]
+    assert q.rules == [
+        W([4, 1]),
+        W([0, 5]),
+        W([4, 1]),
+        W([0, 1, 1, 1, 1, 1, 1, 1, 1, 1]),
+    ]
     assert presentation.contains_rule(p, W([4, 1]), W([0, 5]))
     assert not presentation.contains_rule(p, W([0, 0]), W([4, 1]))
     p.throw_if_bad_alphabet_or_rules()
@@ -291,25 +296,39 @@ def check_commutator(W):
 
     assert presentation.commutator(W([0]), W([]), W([0]), W([1])) == W([1, 0])
     assert presentation.commutator(W([]), W([0]), W([0]), W([1])) == W([1, 0])
-    assert presentation.commutator(W([0, 1]), W([]), W([0, 1]), W([2, 3])) == W([3, 2, 0, 1])
-    assert presentation.commutator(W([]), W([0, 1]), W([0, 1]), W([2, 3])) == W([3, 2, 0, 1])
-    assert presentation.commutator(W([]), W([0, 1]), W([0, 1]), W([1, 0])) == W([0, 1, 0, 1])
-    assert presentation.commutator(W([0, 1]), W([]), W([0, 1]), W([1, 0])) == W([0, 1, 0, 1])
+    assert presentation.commutator(W([0, 1]), W([]), W([0, 1]), W([2, 3])) == W(
+        [3, 2, 0, 1]
+    )
+    assert presentation.commutator(W([]), W([0, 1]), W([0, 1]), W([2, 3])) == W(
+        [3, 2, 0, 1]
+    )
+    assert presentation.commutator(W([]), W([0, 1]), W([0, 1]), W([1, 0])) == W(
+        [0, 1, 0, 1]
+    )
+    assert presentation.commutator(W([0, 1]), W([]), W([0, 1]), W([1, 0])) == W(
+        [0, 1, 0, 1]
+    )
 
-    assert presentation.commutator(W([0, 1, 2]), W([1, 0, 1]), W([0, 1, 2]), W([3, 4, 5])) == W(
-        [5, 4, 3, 4, 3, 4, 0, 1, 2, 1, 0, 1]
-    )
-    assert presentation.commutator(W([0, 1, 2]), W([1, 0, 1]), W([0, 1, 2]), W([2, 1, 0])) == W(
-        [0, 1, 2, 1, 2, 1, 0, 1, 2, 1, 0, 1]
-    )
+    assert presentation.commutator(
+        W([0, 1, 2]), W([1, 0, 1]), W([0, 1, 2]), W([3, 4, 5])
+    ) == W([5, 4, 3, 4, 3, 4, 0, 1, 2, 1, 0, 1])
+    assert presentation.commutator(
+        W([0, 1, 2]), W([1, 0, 1]), W([0, 1, 2]), W([2, 1, 0])
+    ) == W([0, 1, 2, 1, 2, 1, 0, 1, 2, 1, 0, 1])
 
     # alphabet inferred, inverses specified
     assert presentation.commutator(p, W([]), W([]), W([])) == W([])
 
     p.alphabet(W([0, 1, 2]))
-    assert presentation.commutator(p, W([0, 1]), W([1]), W([1, 0, 2])) == W([0, 1, 0, 0, 1, 1])
-    assert presentation.commutator(p, W([0, 1]), W([1]), W([0, 1, 2])) == W([1, 0, 1, 0, 1, 1])
-    assert presentation.commutator(p, W([0, 1]), W([1]), W([0, 2, 1])) == W([2, 0, 2, 0, 1, 1])
+    assert presentation.commutator(p, W([0, 1]), W([1]), W([1, 0, 2])) == W(
+        [0, 1, 0, 0, 1, 1]
+    )
+    assert presentation.commutator(p, W([0, 1]), W([1]), W([0, 1, 2])) == W(
+        [1, 0, 1, 0, 1, 1]
+    )
+    assert presentation.commutator(p, W([0, 1]), W([1]), W([0, 2, 1])) == W(
+        [2, 0, 2, 0, 1, 1]
+    )
 
     # alphabet inferred, inverses inferred
     assert presentation.commutator(p, W([]), W([])) == W([])
@@ -365,7 +384,9 @@ def check_add_commutator_rule_errors(W):  # pylint: disable=too-many-statements
 
     # The id is not in the presentation's alphabet
     with pytest.raises(LibsemigroupsError):
-        presentation.add_commutator_rule(p, W([]), W([]), W([0, 1, 2]), W([2, 1, 0]), id=W([4])[0])
+        presentation.add_commutator_rule(
+            p, W([]), W([]), W([0, 1, 2]), W([2, 1, 0]), id=W([4])[0]
+        )
 
     p.init()
     p.contains_empty_word(True)
@@ -437,7 +458,9 @@ def check_add_commutator_rule(W):
     p = Presentation(W([0, 1, 2, 3]))
     p.contains_empty_word(True)
     presentation.add_commutator_rule(p, W([0]), W([1]), W([0, 1]), W([2, 3]))
-    presentation.add_commutator_rule(p, W([2, 0]), W([1]), W([2, 1, 0]), W([0, 3, 2]), id=W([0])[0])
+    presentation.add_commutator_rule(
+        p, W([2, 0]), W([1]), W([2, 1, 0]), W([0, 3, 2]), id=W([0])[0]
+    )
 
     assert p.rules == [W([2, 3, 0, 1]), W([]), W([2, 0, 3, 2, 0, 1]), W([0])]
 
@@ -445,7 +468,9 @@ def check_add_commutator_rule(W):
     p.contains_empty_word(True)
     p.alphabet(W([0, 1, 2, 3]))
     presentation.add_commutator_rule(p, W([0]), W([1]), W([2, 3, 0, 1]))
-    presentation.add_commutator_rule(p, W([2, 0]), W([1]), W([2, 3, 0, 1]), id=W([0])[0])
+    presentation.add_commutator_rule(
+        p, W([2, 0]), W([1]), W([2, 3, 0, 1]), id=W([0])[0]
+    )
 
     assert p.rules == [W([2, 3, 0, 1]), W([]), W([2, 0, 3, 2, 0, 1]), W([0])]
 
@@ -809,14 +834,37 @@ def check_to_ace_string(W):
     presentation.add_rule(p, W([0, 0]), W([]))
     presentation.add_rule(p, W([1, 1, 1]), W([]))
     presentation.add_rule(p, W([0, 1, 0, 1]), W([]))
-    assert (
-        presentation.to_ace_string(p)
-        == """Group: a, b;
+    assert presentation.to_ace_string(p) == """Group: a, b;
 wo: 4g; # workspace size, adjust as necessary
 Rel: aa, bbb, abab;
 Mess: 100000; # message frequency, adjust as necessary
 End;"""
-    )
+
+
+def check_to_gap_string(W):
+    p = Presentation(W([0, 1]))
+    presentation.add_rule(p, W([0, 1]), W([1, 0]))
+
+    a, b = ("s0", "s1") if W is to_word else ("a", "b")
+    assert presentation.to_gap_string(p) == f"""F := FreeSemigroup("{a}", "{b}");
+AssignGeneratorVariables(F);;
+R := [
+       [{a} * {b}, {b} * {a}]
+     ];
+S := F / R;
+"""
+
+    a, b = ("m0", "m1") if W is to_word else ("a", "b")
+    p.contains_empty_word(True)
+    presentation.add_rule(p, W([0, 0]), W([]))
+    assert presentation.to_gap_string(p, "M") == f"""F := FreeMonoid("{a}", "{b}");
+AssignGeneratorVariables(F);;
+R := [
+       [{a} * {b}, {b} * {a}],
+       [{a} * {a}, One(F)]
+     ];
+M := F / R;
+"""
 
 
 ###############################################################################
@@ -944,7 +992,20 @@ def test_helpers_add_identity_rules_std_string_012():
     p = Presentation("abc")
     presentation.add_rule(p, "abcb", "aa")
     presentation.add_identity_rules(p, "a")
-    assert p.rules == ["abcb", "aa", "aa", "a", "ba", "b", "ab", "b", "ca", "c", "ac", "c"]
+    assert p.rules == [
+        "abcb",
+        "aa",
+        "aa",
+        "a",
+        "ba",
+        "b",
+        "ab",
+        "b",
+        "ca",
+        "c",
+        "ac",
+        "c",
+    ]
 
 
 def test_helpers_add_inverse_rules_013():
@@ -1042,7 +1103,16 @@ def test_helpers_reduce_complements_017():
     presentation.reduce_complements(p)
     presentation.sort_each_rule(p)
     presentation.sort_rules(p)
-    assert p.rules == [[1, 1], [0], [1, 2, 1], [0], [0, 1, 2, 1], [0], [1, 1, 2, 1], [0]]
+    assert p.rules == [
+        [1, 1],
+        [0],
+        [1, 2, 1],
+        [0],
+        [0, 1, 2, 1],
+        [0],
+        [1, 1, 2, 1],
+        [0],
+    ]
 
     p = Presentation("abc")
     presentation.add_rule(p, "abcb", "bcb")
@@ -1780,3 +1850,8 @@ def test_add_idempotent_rules():
 def test_to_ace_string():
     check_to_ace_string(to_word)
     check_to_ace_string(to_string)
+
+
+def test_to_gap_string():
+    check_to_gap_string(to_word)
+    check_to_gap_string(to_string)

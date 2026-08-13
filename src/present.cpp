@@ -1581,16 +1581,18 @@ modified version.
       * :any:`is_strongly_compressible`
 
 )pbdoc");
+
       m.def(
           "presentation_to_gap_string",
           [](Presentation_ const& p, std::string const& var_name) {
             return presentation::to_gap_string(p, var_name);
           },
           py::arg("p"),
-          py::arg("var_name"),
+          py::arg("var_name") = "S",
           R"pbdoc(
 :sig=(p: Presentation, var_name: str) -> str:
 :only-document-once:
+
 Return the code that would create *p* in GAP.
 
 This function returns the string of GAP code that could be used to create an
@@ -1600,12 +1602,13 @@ are created by taking quotients of free semigroups or monoids.
 :param p: the presentation.
 :type p: Presentation
 
-:param var_name: the name of the variable to be used in GAP.
+:param var_name: the name of the variable to be used in GAP (defaults to ``"S"`` .
 :type var_name: str
 
 :returns: The GAP string.
 :rtype: str
 )pbdoc");
+
       m.def(
           "presentation_to_ace_string",
           [](Presentation_ const& p) { return presentation::to_ace_string(p); },
@@ -2087,7 +2090,7 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
       * :any:`presentation.throw_if_bad_inverses`
 )pbdoc");
     }  // bind_inverse_present
-  }    // namespace
+  }  // namespace
 
   void init_present(py::module& m) {
     bind_present<word_type>(m, "PresentationWord");
