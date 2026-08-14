@@ -118,6 +118,7 @@ namespace libsemigroups {
     init_bipart(m);
     init_blocks(m);
     init_cong(m);
+    init_du_narendran_rusinowitch(m);
     init_error(m);
     init_freeband(m);
     init_froidure_pin_base(m);  // Must be before init_froidure_pin
