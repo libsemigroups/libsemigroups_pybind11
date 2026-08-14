@@ -20,6 +20,8 @@ from libsemigroups_pybind11 import (
     rpo_cmp,
     shortlex_compare,
     wr_cmp,
+    wt_lenlex_cmp,
+    wt_lex_cmp,
 )
 
 
@@ -102,3 +104,41 @@ def test_wr_cmp_with_alphabet():
 
     with pytest.raises(LibsemigroupsError):
         wr_cmp(alphabet, levels, "d", "b")
+
+
+@pytest.mark.parametrize("compare", [wt_lenlex_cmp, wt_lex_cmp])
+def test_weighted_comparisons_for_integer_words(compare):
+    """Check weighted comparisons and validation for integer words."""
+    weights = [2, 1, 6]
+
+    assert compare(weights, [0, 1], [2])
+    assert not compare(weights, [2], [0, 1])
+
+    with pytest.raises(LibsemigroupsError):
+        compare(weights, [0], [3])
+
+
+def test_weighted_comparisons_use_different_tie_breakers():
+    """Check the length and lexicographic tie breakers differ."""
+    weights = [1, 2]
+
+    assert wt_lenlex_cmp(weights, [1], [0, 0])
+    assert not wt_lex_cmp(weights, [1], [0, 0])
+
+
+@pytest.mark.parametrize("compare", [wt_lenlex_cmp, wt_lex_cmp])
+def test_weighted_comparisons_with_alphabet(compare):
+    """Check weighted comparisons over an explicitly ordered alphabet."""
+    alphabet = Alphabet("ba")
+
+    assert compare(alphabet, [10, 1], "a", "b")
+    assert compare(alphabet, [1, 1], "b", "a")
+
+    word_alphabet = Alphabet([1, 0])
+    assert compare(word_alphabet, [1, 1], [1], [0])
+
+    with pytest.raises(LibsemigroupsError):
+        compare(alphabet, [1, 1], "c", "a")
+
+    with pytest.raises(LibsemigroupsError):
+        compare(alphabet, [1], "a", "b")

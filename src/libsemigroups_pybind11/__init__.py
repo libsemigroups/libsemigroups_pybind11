@@ -56,7 +56,14 @@ from .matrix import Matrix, MatrixKind
 from .order import wr_cmp
 from .presentation import InversePresentation, Presentation
 from .schreier_sims import SchreierSims
-from .sims import MinimalRepOrc, RepOrc, Sims1, Sims2, SimsRefinerFaithful, SimsRefinerIdeals
+from .sims import (
+    MinimalRepOrc,
+    RepOrc,
+    Sims1,
+    Sims2,
+    SimsRefinerFaithful,
+    SimsRefinerIdeals,
+)
 from .stephen import Stephen
 from .to import to
 from .todd_coxeter import ToddCoxeter
@@ -120,6 +127,8 @@ try:
         shortlex_compare,
         side,
         tril,
+        wt_lenlex_cmp as _wt_lenlex_cmp,
+        wt_lex_cmp as _wt_lex_cmp,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
@@ -132,6 +141,8 @@ lenlex_cmp = _wrap_cxx_free_fn(_lenlex_cmp)
 lex_cmp = _wrap_cxx_free_fn(_lex_cmp)
 rev_rpo_cmp = _wrap_cxx_free_fn(_rev_rpo_cmp)
 rpo_cmp = _wrap_cxx_free_fn(_rpo_cmp)
+wt_lenlex_cmp = _wrap_cxx_free_fn(_wt_lenlex_cmp)
+wt_lex_cmp = _wrap_cxx_free_fn(_wt_lex_cmp)
 
 
 __all__ = [
@@ -186,6 +197,8 @@ __all__ = [
     "side",
     "tril",
     "wr_cmp",
+    "wt_lenlex_cmp",
+    "wt_lex_cmp",
     # Submodules
     "action",
     "adapters",

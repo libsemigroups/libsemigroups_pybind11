@@ -37,6 +37,8 @@ Contents
     rev_rpo_cmp
     rpo_cmp
     wr_cmp
+    wt_lenlex_cmp
+    wt_lex_cmp
 
 Full API
 --------
@@ -50,3 +52,7 @@ Full API
 .. autofunction:: rpo_cmp
 
 .. autofunction:: wr_cmp
+
+.. autofunction:: wt_lenlex_cmp
+
+.. autofunction:: wt_lex_cmp
