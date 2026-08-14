@@ -43,6 +43,7 @@ from .blocks import Blocks
 from .congruence import Congruence
 from .detail.cxx_wrapper import wrap_cxx_free_fn as _wrap_cxx_free_fn
 from .detail.dot import Dot
+from .du_narendran_rusinowitch import du_narendran_rusinowitch
 from .forest import PathsFromRoots, PathsToRoots
 from .froidure_pin import FroidurePin
 from .hpcombi import LIBSEMIGROUPS_HPCOMBI_ENABLED
@@ -244,6 +245,7 @@ __all__ = [
     "ToddCoxeter",
     "Transf",
     # Free functions from submodules
+    "du_narendran_rusinowitch",
     "is_obviously_infinite",
     "to",
     "validate",

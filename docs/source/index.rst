@@ -156,6 +156,7 @@ We would like to thank the authors and contributors of these projects!
     main-algorithms/action/index
     main-algorithms/congruence/index
     main-algorithms/core-classes/index
+    main-algorithms/du-narendran-rusinowitch/index
     main-algorithms/froidure-pin/index
     main-algorithms/kambites/index
     main-algorithms/knuth-bendix/index
@@ -165,4 +166,3 @@ We would like to thank the authors and contributors of these projects!
     main-algorithms/schreier-sims/index
     main-algorithms/stephen/index
     main-algorithms/todd-coxeter/index
-
