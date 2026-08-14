@@ -19,6 +19,7 @@ from libsemigroups_pybind11 import (
     rev_rpo_cmp,
     rpo_cmp,
     shortlex_compare,
+    wr_cmp,
 )
 
 
@@ -73,3 +74,31 @@ def test_deprecated_comparisons(old_compare, new_compare):
     with pytest.deprecated_call():
         result = old_compare("ab", "ba")
     assert result == new_compare("ab", "ba")
+
+
+def test_wr_cmp_for_integer_words():
+    """Check wreath-product comparison, validation, and its unchecked form."""
+    levels = [0, 0, 1]
+    x = [0, 2]
+    y = [1, 2]
+
+    assert wr_cmp(levels, x, y)
+    assert not wr_cmp(levels, y, x)
+
+    with pytest.raises(LibsemigroupsError):
+        wr_cmp([0, 1], [0, 2], [0, 1])
+
+
+def test_wr_cmp_with_alphabet():
+    """Check wreath-product comparison over an explicitly ordered alphabet."""
+    alphabet = Alphabet("bac")
+    levels = [1, 1, 0]
+
+    assert wr_cmp(alphabet, levels, "cbcc", "ccbc")
+    assert wr_cmp(alphabet, levels, "ac", "ca")
+
+    word_alphabet = Alphabet([1, 0])
+    assert wr_cmp(word_alphabet, [0, 0], [1], [0])
+
+    with pytest.raises(LibsemigroupsError):
+        wr_cmp(alphabet, levels, "d", "b")

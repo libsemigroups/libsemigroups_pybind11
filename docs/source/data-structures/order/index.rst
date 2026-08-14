@@ -30,6 +30,7 @@ Contents
     rev_rpo_cmp
     rpo_cmp
     shortlex_compare
+    wr_cmp
 
 Full API
 --------
@@ -47,3 +48,5 @@ Full API
 .. autofunction:: rpo_cmp
 
 .. autofunction:: shortlex_compare
+
+.. autofunction:: wr_cmp
