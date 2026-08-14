@@ -78,11 +78,14 @@ the list *gens*.
       for this class, or the number of generators exceeds the maximum capacity.
 )pbdoc");
 
-      thing.def("__copy__",
-                [](SchreierSims_ const& self) { return SchreierSims_(self); });
+      thing.def("__copy__", [](SchreierSims_ const& self) {
+        return std::make_unique<SchreierSims_>(self);
+      });
       thing.def(
           "copy",
-          [](SchreierSims_ const& self) { return SchreierSims_(self); },
+          [](SchreierSims_ const& self) {
+            return std::make_unique<SchreierSims_>(self);
+          },
           R"pbdoc(
 :sig=(self: SchreierSims) -> SchreierSims:
 
