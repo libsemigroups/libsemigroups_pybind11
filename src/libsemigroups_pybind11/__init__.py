@@ -22,6 +22,7 @@ from . import (
     knuth_bendix,
     konieczny,
     matrix,
+    order,
     paths,
     pbr,
     presentation,
@@ -52,6 +53,7 @@ from .kambites import Kambites
 from .knuth_bendix import KnuthBendix
 from .konieczny import Konieczny
 from .matrix import Matrix, MatrixKind
+from .order import wr_cmp
 from .presentation import InversePresentation, Presentation
 from .schreier_sims import SchreierSims
 from .sims import MinimalRepOrc, RepOrc, Sims1, Sims2, SimsRefinerFaithful, SimsRefinerIdeals
@@ -183,6 +185,7 @@ __all__ = [
     "shortlex_compare",
     "side",
     "tril",
+    "wr_cmp",
     # Submodules
     "action",
     "adapters",
@@ -199,6 +202,7 @@ __all__ = [
     "knuth_bendix",
     "konieczny",
     "matrix",
+    "order",
     "paths",
     "pbr",
     "presentation",

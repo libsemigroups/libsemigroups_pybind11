@@ -18,6 +18,7 @@
 
 // C++ stl headers....
 #include <string>  // for string
+#include <vector>  // for vector
 
 // libsemigroups....
 #include <libsemigroups/order.hpp>  // for *_cmp, Order
@@ -260,6 +261,85 @@ Compare two words using reversed recursive-path ordering.
    This will be removed from ``libsemigroups_pybind11`` in v2. Instead, use
    :any:`rev_rpo_cmp`.
 )pbdoc");
+
+      m.def(
+          "wr_cmp",
+          [](std::vector<size_t> const& levels, Word const& x, Word const& y) {
+            return wr_cmp(levels, x, y);
+          },
+          py::arg("levels"),
+          py::arg("x"),
+          py::arg("y"),
+          R"pbdoc(
+:sig=(levels: list[int], x: str | list[int], y: str | list[int]) -> bool:
+:only-document-once:
+Compare two words using wreath-product ordering.
+
+The *i*-th entry of *levels* is the level assigned to generator *i*.
+Differences at higher levels dominate differences at lower levels, and
+differences within one level are compared using len-lex ordering.
+
+:param levels: the level assigned to each generator.
+:type levels: list[int]
+:param x: the first word.
+:type x: str | list[int]
+:param y: the second word.
+:type y: str | list[int]
+:returns: Whether *x* is less than *y*.
+:rtype: bool
+
+:raises LibsemigroupsError: if a letter is not a valid index into *levels*.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import wr_cmp
+  >>> levels = [1, 1, 0]
+  >>> wr_cmp(levels, [2, 1, 2, 2], [2, 2, 1, 2])
+  True
+)pbdoc");
+
+      m.def(
+          "wr_cmp",
+          [](Alphabet<Word> const&      alphabet,
+             std::vector<size_t> const& levels,
+             Word const&                x,
+             Word const& y) { return wr_cmp(alphabet, levels, x, y); },
+          py::arg("alphabet"),
+          py::arg("levels"),
+          py::arg("x"),
+          py::arg("y"),
+          R"pbdoc(
+:sig=(alphabet: Alphabet, levels: list[int], x: str | list[int], y: str | list[int]) -> bool:
+:only-document-once:
+Compare two words using alphabet-aware wreath-product ordering.
+
+Letters are mapped to their positions in *alphabet*, and the *i*-th entry of
+*levels* is the level assigned to the *i*-th letter of *alphabet*.
+Differences at higher levels dominate differences at lower levels, and
+differences within one level are compared using len-lex ordering.
+
+:param alphabet: the ordered alphabet containing the letters of both words.
+:type alphabet: Alphabet
+:param levels: the level assigned to each letter of *alphabet*.
+:type levels: list[int]
+:param x: the first word.
+:type x: str | list[int]
+:param y: the second word.
+:type y: str | list[int]
+:returns: Whether *x* is less than *y*.
+:rtype: bool
+
+:raises LibsemigroupsError: if a letter does not belong to *alphabet*, or its
+  position in *alphabet* is not a valid index into *levels*.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, wr_cmp
+  >>> alphabet = Alphabet("bac")
+  >>> levels = [1, 1, 0]
+  >>> wr_cmp(alphabet, levels, "cbcc", "ccbc")
+  True
+)pbdoc");
     }
   }  // namespace
 
@@ -322,7 +402,7 @@ respectively, in new code.
 
     The recursive-path ordering, as described in :cite:`Jantzen2012aa`
     (Definition 1.2.14, page 24).
-  
+
     This is deprecated; use :any:`Order.rpo` instead.
 )pbdoc")
         .value("none", Order::none)
