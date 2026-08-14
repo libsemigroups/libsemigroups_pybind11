@@ -15,7 +15,16 @@ or strings with respect to certain reduction orderings.
 
 .. seealso::
     
-    :any:`Order`.
+    - :any:`Order`
+    - :any:`Alphabet`
+
+.. important:: 
+
+   The following functions are deprecated in v1.5.0 and will be removed v2.0.0:
+
+    * ``lexicographical_compare``, please use :any:`lex_cmp` instead.
+    * ``recursive_path_compare`` please use :any:`rev_rpo_cmp` instead.
+    * ``shortlex_compare`` please use :any:`lenlex_cmp` instead.
 
 Contents
 --------
@@ -25,11 +34,8 @@ Contents
 
     lenlex_cmp
     lex_cmp
-    lexicographical_compare
-    recursive_path_compare
     rev_rpo_cmp
     rpo_cmp
-    shortlex_compare
     wr_cmp
 
 Full API
@@ -39,14 +45,8 @@ Full API
 
 .. autofunction:: lex_cmp
 
-.. autofunction:: lexicographical_compare
-
-.. autofunction:: recursive_path_compare
-
 .. autofunction:: rev_rpo_cmp
 
 .. autofunction:: rpo_cmp
-
-.. autofunction:: shortlex_compare
 
 .. autofunction:: wr_cmp
