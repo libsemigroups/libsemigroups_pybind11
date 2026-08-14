@@ -107,6 +107,7 @@ try:
         delta,
         error_message_with_prefix,
         freeband_equal_to,
+        len_wt_lex_cmp as _len_wt_lex_cmp,
         lenlex_cmp as _lenlex_cmp,
         lex_cmp as _lex_cmp,
         lexicographical_compare,
@@ -115,7 +116,13 @@ try:
         random_strings,
         random_word,
         recursive_path_compare,
+        rev_len_wt_lex_cmp as _rev_len_wt_lex_cmp,
+        rev_lenlex_cmp as _rev_lenlex_cmp,
+        rev_lex_cmp as _rev_lex_cmp,
         rev_rpo_cmp as _rev_rpo_cmp,
+        rev_wr_cmp as _rev_wr_cmp,
+        rev_wt_lenlex_cmp as _rev_wt_lenlex_cmp,
+        rev_wt_lex_cmp as _rev_wt_lex_cmp,
         rpo_cmp as _rpo_cmp,
         shortlex_compare,
         side,
@@ -130,9 +137,16 @@ except ModuleNotFoundError as e:
     ) from e
 
 
+len_wt_lex_cmp = _wrap_cxx_free_fn(_len_wt_lex_cmp)
 lenlex_cmp = _wrap_cxx_free_fn(_lenlex_cmp)
 lex_cmp = _wrap_cxx_free_fn(_lex_cmp)
+rev_len_wt_lex_cmp = _wrap_cxx_free_fn(_rev_len_wt_lex_cmp)
+rev_lenlex_cmp = _wrap_cxx_free_fn(_rev_lenlex_cmp)
+rev_lex_cmp = _wrap_cxx_free_fn(_rev_lex_cmp)
 rev_rpo_cmp = _wrap_cxx_free_fn(_rev_rpo_cmp)
+rev_wr_cmp = _wrap_cxx_free_fn(_rev_wr_cmp)
+rev_wt_lenlex_cmp = _wrap_cxx_free_fn(_rev_wt_lenlex_cmp)
+rev_wt_lex_cmp = _wrap_cxx_free_fn(_rev_wt_lex_cmp)
 rpo_cmp = _wrap_cxx_free_fn(_rpo_cmp)
 wt_lenlex_cmp = _wrap_cxx_free_fn(_wt_lenlex_cmp)
 wt_lex_cmp = _wrap_cxx_free_fn(_wt_lex_cmp)
@@ -176,6 +190,7 @@ __all__ = [
     "delta",
     "error_message_with_prefix",
     "freeband_equal_to",
+    "len_wt_lex_cmp",
     "lenlex_cmp",
     "lex_cmp",
     "lexicographical_compare",
@@ -184,7 +199,13 @@ __all__ = [
     "random_strings",
     "random_word",
     "recursive_path_compare",
+    "rev_len_wt_lex_cmp",
+    "rev_lenlex_cmp",
+    "rev_lex_cmp",
     "rev_rpo_cmp",
+    "rev_wr_cmp",
+    "rev_wt_lenlex_cmp",
+    "rev_wt_lex_cmp",
     "rpo_cmp",
     "shortlex_compare",
     "side",

@@ -12,11 +12,18 @@ from libsemigroups_pybind11 import (
     Alphabet,
     LibsemigroupsError,
     Order,
+    len_wt_lex_cmp,
     lenlex_cmp,
     lex_cmp,
     lexicographical_compare,
     recursive_path_compare,
+    rev_len_wt_lex_cmp,
+    rev_lenlex_cmp,
+    rev_lex_cmp,
     rev_rpo_cmp,
+    rev_wr_cmp,
+    rev_wt_lenlex_cmp,
+    rev_wt_lex_cmp,
     rpo_cmp,
     shortlex_compare,
     wr_cmp,
@@ -32,6 +39,10 @@ from libsemigroups_pybind11 import (
         (lex_cmp, [0, 1], [1, 0]),
         (lenlex_cmp, "ba", "aaa"),
         (lenlex_cmp, [1, 0], [0, 0, 0]),
+        (rev_lex_cmp, "ab", "ba"),
+        (rev_lex_cmp, [0, 1], [1, 0]),
+        (rev_lenlex_cmp, "ba", "aaa"),
+        (rev_lenlex_cmp, [1, 0], [0, 0, 0]),
         (rpo_cmp, "ab", "ba"),
         (rpo_cmp, [0, 1], [1, 0]),
         (rev_rpo_cmp, "ab", "ba"),
@@ -43,7 +54,9 @@ def test_compare_without_alphabet(compare, x, y):
     assert isinstance(compare(x, y), bool)
 
 
-@pytest.mark.parametrize("compare", [lex_cmp, lenlex_cmp, rpo_cmp, rev_rpo_cmp])
+@pytest.mark.parametrize(
+    "compare", [lex_cmp, lenlex_cmp, rev_lex_cmp, rev_lenlex_cmp, rpo_cmp, rev_rpo_cmp]
+)
 @pytest.mark.parametrize(
     ("alphabet", "x", "y", "missing"),
     [(Alphabet("ba"), "ba", "ab", "c"), (Alphabet([1, 0]), [1, 0], [0, 1], [2])],
@@ -148,3 +161,53 @@ def test_weighted_comparisons_with_alphabet(compare):
 
     with pytest.raises(LibsemigroupsError):
         compare(alphabet, [1], "a", "b")
+
+
+@pytest.mark.parametrize(
+    ("compare", "parameters"),
+    [
+        (rev_wr_cmp, [0, 0]),
+        (rev_wt_lenlex_cmp, [1, 1]),
+        (rev_wt_lex_cmp, [1, 1]),
+        (rev_len_wt_lex_cmp, [1, 1]),
+    ],
+)
+def test_parameterized_reverse_comparisons(compare, parameters):
+    """Check parameterized reverse orders for both supported word types."""
+    assert compare(parameters, [1, 0], [0, 1])
+    assert compare(Alphabet("ab"), parameters, "ba", "ab")
+
+    with pytest.raises(LibsemigroupsError):
+        compare(parameters, [2], [0, 1])
+
+    with pytest.raises(LibsemigroupsError):
+        compare(Alphabet("ab"), parameters, "c", "ab")
+
+
+def test_reverse_weighted_comparisons_use_the_expected_priorities():
+    """Check the weight and length priorities of the reverse weighted orders."""
+    weights = [1, 2]
+
+    assert rev_wt_lenlex_cmp(weights, [1], [0, 0])
+    assert not rev_wt_lex_cmp(weights, [1], [0, 0])
+
+    weights = [100, 1]
+    assert rev_len_wt_lex_cmp(weights, [0], [1, 1])
+    assert not rev_wt_lex_cmp(weights, [0], [1, 1])
+
+
+def test_len_wt_lex_cmp():
+    """Check length-before-weighted-lex ordering and validation."""
+    weights = [1, 1]
+
+    assert len_wt_lex_cmp(weights, [0, 1], [1, 0])
+    assert len_wt_lex_cmp(Alphabet("ab"), weights, "ab", "ba")
+
+    with pytest.raises(LibsemigroupsError):
+        len_wt_lex_cmp(weights, [2], [0, 1])
+
+    with pytest.raises(LibsemigroupsError):
+        len_wt_lex_cmp(Alphabet("ab"), weights, "c", "ab")
+
+    weights = [100, 1]
+    assert len_wt_lex_cmp(weights, [0], [1, 1])
