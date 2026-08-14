@@ -50,8 +50,7 @@ namespace libsemigroups {
     void bind_deprecated_compare(py::module& m,
                                  char const* old_name,
                                  char const* new_name,
-                                 Compare     compare,
-                                 char const* doc) {
+                                 Compare     compare) {
       m.def(
           old_name,
           [old_name, new_name, compare](Word const& x, Word const& y) {
@@ -59,8 +58,7 @@ namespace libsemigroups {
             return compare(x, y);
           },
           py::arg("x"),
-          py::arg("y"),
-          doc);
+          py::arg("y"));
     }
 
     template <typename Word>
@@ -332,67 +330,19 @@ left, with letters compared by their positions in *alphabet*.
           m,
           "lexicographical_compare",
           "lex_cmp",
-          [](Word const& x, Word const& y) { return lex_cmp(x, y); },
-          R"pbdoc(
-:sig=(x: str | list[int], y: str | list[int]) -> bool:
-:only-document-once:
-Compare two words lexicographically.
-
-:param x: the first word.
-:type x: str | list[int]
-:param y: the second word.
-:type y: str | list[int]
-:returns: Whether *x* is less than *y*.
-:rtype: bool
-
-.. deprecated:: 1.5
-   This will be removed from ``libsemigroups_pybind11`` in v2. Instead, use
-   :any:`lex_cmp`.
-)pbdoc");
+          [](Word const& x, Word const& y) { return lex_cmp(x, y); });
 
       bind_deprecated_compare<Word>(
           m,
           "shortlex_compare",
           "lenlex_cmp",
-          [](Word const& x, Word const& y) { return lenlex_cmp(x, y); },
-          R"pbdoc(
-:sig=(x: str | list[int], y: str | list[int]) -> bool:
-:only-document-once:
-Compare two words using len-lex ordering.
-
-:param x: the first word.
-:type x: str | list[int]
-:param y: the second word.
-:type y: str | list[int]
-:returns: Whether *x* is less than *y*.
-:rtype: bool
-
-.. deprecated:: 1.5
-   This will be removed from ``libsemigroups_pybind11`` in v2. Instead, use
-   :any:`lenlex_cmp`.
-)pbdoc");
+          [](Word const& x, Word const& y) { return lenlex_cmp(x, y); });
 
       bind_deprecated_compare<Word>(
           m,
           "recursive_path_compare",
           "rev_rpo_cmp",
-          [](Word const& x, Word const& y) { return rev_rpo_cmp(x, y); },
-          R"pbdoc(
-:sig=(x: str | list[int], y: str | list[int]) -> bool:
-:only-document-once:
-Compare two words using reversed recursive-path ordering.
-
-:param x: the first word.
-:type x: str | list[int]
-:param y: the second word.
-:type y: str | list[int]
-:returns: Whether *x* is less than *y*.
-:rtype: bool
-
-.. deprecated:: 1.5
-   This will be removed from ``libsemigroups_pybind11`` in v2. Instead, use
-   :any:`rev_rpo_cmp`.
-)pbdoc");
+          [](Word const& x, Word const& y) { return rev_rpo_cmp(x, y); });
 
       m.def(
           "wr_cmp",
