@@ -46,30 +46,6 @@ namespace libsemigroups {
       }
     }
 
-    template <typename Word, typename Compare, typename AlphabetCompare>
-    void bind_compare(py::module&     m,
-                      char const*     name,
-                      Compare         compare,
-                      AlphabetCompare alphabet_compare,
-                      char const*     doc) {
-      m.def(
-          name,
-          [compare](Word const& x, Word const& y) { return compare(x, y); },
-          py::arg("x"),
-          py::arg("y"),
-          doc);
-      m.def(
-          name,
-          [alphabet_compare](
-              Alphabet<Word> const& alphabet, Word const& x, Word const& y) {
-            return alphabet_compare(alphabet, x, y);
-          },
-          py::arg("alphabet"),
-          py::arg("x"),
-          py::arg("y"),
-          doc);
-    }
-
     template <typename Word, typename Compare>
     void bind_deprecated_compare(py::module& m,
                                  char const* old_name,
@@ -89,46 +65,77 @@ namespace libsemigroups {
 
     template <typename Word>
     void bind_order_comparisons(py::module& m) {
-      bind_compare<Word>(
-          m,
+      m.def(
           "lex_cmp",
           [](Word const& x, Word const& y) { return lex_cmp(x, y); },
-          [](Alphabet<Word> const& alphabet, Word const& x, Word const& y) {
-            return lex_cmp(alphabet, x, y);
-          },
+          py::arg("x"),
+          py::arg("y"),
           R"pbdoc(
 :sig=(x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
 Compare two words lexicographically.
 
-The three-argument overload ``lex_cmp(alphabet, x, y)`` compares letters by
-their positions in *alphabet*. It raises :any:`LibsemigroupsError` if either
-word contains a letter that does not belong to *alphabet*.
-
 :param x: the first word.
 :type x: str | list[int]
 :param y: the second word.
 :type y: str | list[int]
 :returns: Whether *x* is less than *y*.
 :rtype: bool
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import lex_cmp
+  >>> lex_cmp("ab", "ba")
+  True
+  >>> lex_cmp([0, 1], [1, 0])
+  True
 )pbdoc");
 
-      bind_compare<Word>(
-          m,
+      m.def(
+          "lex_cmp",
+          [](Alphabet<Word> const& alphabet, Word const& x, Word const& y) {
+            return lex_cmp(alphabet, x, y);
+          },
+          py::arg("alphabet"),
+          py::arg("x"),
+          py::arg("y"),
+          R"pbdoc(
+:sig=(alphabet: Alphabet, x: str | list[int], y: str | list[int]) -> bool:
+:only-document-once:
+Compare two words lexicographically using an alphabet.
+
+Letters are compared by their positions in *alphabet*.
+
+:param alphabet: the alphabet that determines the ordering of letters.
+:type alphabet: Alphabet
+:param x: the first word.
+:type x: str | list[int]
+:param y: the second word.
+:type y: str | list[int]
+:returns: Whether *x* is less than *y*.
+:rtype: bool
+:raises LibsemigroupsError: if either word contains a letter that does not
+  belong to *alphabet*.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, lex_cmp
+  >>> alphabet = Alphabet("ba")
+  >>> lex_cmp(alphabet, "b", "a")
+  True
+)pbdoc");
+
+      m.def(
           "lenlex_cmp",
           [](Word const& x, Word const& y) { return lenlex_cmp(x, y); },
-          [](Alphabet<Word> const& alphabet, Word const& x, Word const& y) {
-            return lenlex_cmp(alphabet, x, y);
-          },
+          py::arg("x"),
+          py::arg("y"),
           R"pbdoc(
 :sig=(x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
 Compare two words using len-lex ordering.
 
-Words are first ordered by length and then lexicographically. The
-three-argument overload ``lenlex_cmp(alphabet, x, y)`` compares letters by
-their positions in *alphabet*. It raises :any:`LibsemigroupsError` if either
-word contains a letter that does not belong to *alphabet*.
+Words are first ordered by length and then lexicographically.
 
 :param x: the first word.
 :type x: str | list[int]
@@ -136,23 +143,60 @@ word contains a letter that does not belong to *alphabet*.
 :type y: str | list[int]
 :returns: Whether *x* is less than *y*.
 :rtype: bool
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import lenlex_cmp
+  >>> lenlex_cmp("bb", "aaa")
+  True
+  >>> lenlex_cmp([1, 1], [0, 0, 0])
+  True
 )pbdoc");
 
-      bind_compare<Word>(
-          m,
+      m.def(
+          "lenlex_cmp",
+          [](Alphabet<Word> const& alphabet, Word const& x, Word const& y) {
+            return lenlex_cmp(alphabet, x, y);
+          },
+          py::arg("alphabet"),
+          py::arg("x"),
+          py::arg("y"),
+          R"pbdoc(
+:sig=(alphabet: Alphabet, x: str | list[int], y: str | list[int]) -> bool:
+:only-document-once:
+Compare two words using len-lex ordering and an alphabet.
+
+Words are first ordered by length and then lexicographically, with letters
+compared by their positions in *alphabet*.
+
+:param alphabet: the alphabet that determines the ordering of letters.
+:type alphabet: Alphabet
+:param x: the first word.
+:type x: str | list[int]
+:param y: the second word.
+:type y: str | list[int]
+:returns: Whether *x* is less than *y*.
+:rtype: bool
+:raises LibsemigroupsError: if either word contains a letter that does not
+  belong to *alphabet*.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, lenlex_cmp
+  >>> alphabet = Alphabet("ba")
+  >>> lenlex_cmp(alphabet, "b", "a")
+  True
+)pbdoc");
+
+      m.def(
           "rpo_cmp",
           [](Word const& x, Word const& y) { return rpo_cmp(x, y); },
-          [](Alphabet<Word> const& alphabet, Word const& x, Word const& y) {
-            return rpo_cmp(alphabet, x, y);
-          },
+          py::arg("x"),
+          py::arg("y"),
           R"pbdoc(
 :sig=(x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
 Compare two words using recursive-path ordering.
-
-The three-argument overload ``rpo_cmp(alphabet, x, y)`` compares letters by
-their positions in *alphabet*. It raises :any:`LibsemigroupsError` if either
-word contains a letter that does not belong to *alphabet*.
 
 :param x: the first word.
 :type x: str | list[int]
@@ -164,25 +208,66 @@ word contains a letter that does not belong to *alphabet*.
 .. warning::
    This function has significantly worse performance than :any:`lenlex_cmp`
    and :any:`lex_cmp`.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import rpo_cmp
+  >>> rpo_cmp("a", "b")
+  True
+  >>> rpo_cmp([0], [1])
+  True
 )pbdoc");
 
-      bind_compare<Word>(
-          m,
+      m.def(
+          "rpo_cmp",
+          [](Alphabet<Word> const& alphabet, Word const& x, Word const& y) {
+            return rpo_cmp(alphabet, x, y);
+          },
+          py::arg("alphabet"),
+          py::arg("x"),
+          py::arg("y"),
+          R"pbdoc(
+:sig=(alphabet: Alphabet, x: str | list[int], y: str | list[int]) -> bool:
+:only-document-once:
+Compare two words using recursive-path ordering and an alphabet.
+
+Letters are compared by their positions in *alphabet*.
+
+:param alphabet: the alphabet that determines the ordering of letters.
+:type alphabet: Alphabet
+:param x: the first word.
+:type x: str | list[int]
+:param y: the second word.
+:type y: str | list[int]
+:returns: Whether *x* is less than *y*.
+:rtype: bool
+:raises LibsemigroupsError: if either word contains a letter that does not
+  belong to *alphabet*.
+
+.. warning::
+   This function has significantly worse performance than :any:`lenlex_cmp`
+   and :any:`lex_cmp`.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, rpo_cmp
+  >>> alphabet = Alphabet("ba")
+  >>> rpo_cmp(alphabet, "b", "a")
+  True
+)pbdoc");
+
+      m.def(
           "rev_rpo_cmp",
           [](Word const& x, Word const& y) { return rev_rpo_cmp(x, y); },
-          [](Alphabet<Word> const& alphabet, Word const& x, Word const& y) {
-            return rev_rpo_cmp(alphabet, x, y);
-          },
+          py::arg("x"),
+          py::arg("y"),
           R"pbdoc(
 :sig=(x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
 Compare two words using reversed recursive-path ordering.
 
 This is recursive-path ordering applied after reading both words from right to
-left. The three-argument overload ``rev_rpo_cmp(alphabet, x, y)`` compares
-letters by their positions in *alphabet*. It raises
-:any:`LibsemigroupsError` if either word contains a letter that does not belong
-to *alphabet*.
+left.
 
 :param x: the first word.
 :type x: str | list[int]
@@ -194,6 +279,53 @@ to *alphabet*.
 .. warning::
    This function has significantly worse performance than :any:`lenlex_cmp`
    and :any:`lex_cmp`.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import rev_rpo_cmp
+  >>> rev_rpo_cmp("a", "b")
+  True
+  >>> rev_rpo_cmp([0], [1])
+  True
+)pbdoc");
+
+      m.def(
+          "rev_rpo_cmp",
+          [](Alphabet<Word> const& alphabet, Word const& x, Word const& y) {
+            return rev_rpo_cmp(alphabet, x, y);
+          },
+          py::arg("alphabet"),
+          py::arg("x"),
+          py::arg("y"),
+          R"pbdoc(
+:sig=(alphabet: Alphabet, x: str | list[int], y: str | list[int]) -> bool:
+:only-document-once:
+Compare two words using reversed recursive-path ordering and an alphabet.
+
+This is recursive-path ordering applied after reading both words from right to
+left, with letters compared by their positions in *alphabet*.
+
+:param alphabet: the alphabet that determines the ordering of letters.
+:type alphabet: Alphabet
+:param x: the first word.
+:type x: str | list[int]
+:param y: the second word.
+:type y: str | list[int]
+:returns: Whether *x* is less than *y*.
+:rtype: bool
+:raises LibsemigroupsError: if either word contains a letter that does not
+  belong to *alphabet*.
+
+.. warning::
+   This function has significantly worse performance than :any:`lenlex_cmp`
+   and :any:`lex_cmp`.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, rev_rpo_cmp
+  >>> alphabet = Alphabet("ba")
+  >>> rev_rpo_cmp(alphabet, "b", "a")
+  True
 )pbdoc");
 
       bind_deprecated_compare<Word>(
@@ -404,6 +536,14 @@ respectively, in new code.
     (Definition 1.2.14, page 24).
 
     This is deprecated; use :any:`Order.rpo` instead.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Order
+  >>> Order.lenlex
+  <Order.lenlex: 1>
+  >>> Order.shortlex == Order.lenlex
+  True
 )pbdoc")
         .value("none", Order::none)
         .value("lenlex", Order::lenlex)
