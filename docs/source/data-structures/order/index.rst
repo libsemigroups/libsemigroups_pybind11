@@ -33,4 +33,5 @@ strings are described on the following pages:
     wr-cmp
     rev-wr-cmp
     wt-lenlex-cmp
+    rev-wt-lenlex-cmp
     functions
