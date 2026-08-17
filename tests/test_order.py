@@ -21,6 +21,7 @@ from libsemigroups_pybind11 import (
     RevRPOCmp,
     RevWrCmp,
     RevWtLenLexCmp,
+    RevWtLexCmp,
     RPOCmp,
     WrCmp,
     WtLenLexCmp,
@@ -474,6 +475,55 @@ def test_wt_lex_cmp_object_rejects_bad_constructors():
         WtLexCmp(Alphabet("ab"))
     with pytest.raises(LibsemigroupsError):
         WtLexCmp(Alphabet("ab"), [1])
+
+
+def test_rev_wt_lex_cmp_object_without_alphabet():
+    """Check reversed weighted lexicographic comparison of index words."""
+    compare = RevWtLexCmp([1, 2])
+    assert compare.weights() == [1, 2]
+    assert compare([0], [1])
+    assert compare.init([2, 1]) is compare
+    assert compare.weights() == [2, 1]
+
+
+@pytest.mark.parametrize(
+    ("alphabet", "x", "y", "missing"),
+    [(Alphabet("ab"), "a", "b", "c"), (Alphabet([0, 1]), [0], [1], [2])],
+)
+def test_rev_wt_lex_cmp_object_with_alphabet(alphabet, x, y, missing):
+    """Check alphabet-aware reversed weighted lexicographic comparison."""
+    compare = RevWtLexCmp(alphabet, [1, 2])
+    assert compare(x, y)
+    assert compare.alphabet() == alphabet
+    assert compare.weights() == [1, 2]
+    assert compare.init(alphabet, [1, 2]) is compare
+
+    with pytest.raises(LibsemigroupsError):
+        compare(x, missing)
+
+
+def test_rev_wt_lex_cmp_object_copy_and_repr():
+    """Check copies and human-readable representations."""
+    original = RevWtLexCmp(Alphabet("ab"), [1, 2])
+    copies = (
+        original.copy(),
+        original.__copy__(),  # pylint: disable=unnecessary-dunder-call
+        copy(original),
+    )
+    original.init(Alphabet("ab"), [2, 1])
+    assert all(copied.weights() == [1, 2] for copied in copies)
+    assert repr(RevWtLexCmp([1, 2])) == "<RevWtLexCmp object with weights [1, 2]>"
+    assert repr(RevWtLexCmp(Alphabet("ab"), [1, 2])) == (
+        '<RevWtLexCmp object over <alphabet "ab"> with weights [1, 2]>'
+    )
+
+
+def test_rev_wt_lex_cmp_object_rejects_bad_constructors():
+    """Check constructor validation."""
+    with pytest.raises(TypeError):
+        RevWtLexCmp(Alphabet("ab"))
+    with pytest.raises(LibsemigroupsError):
+        RevWtLexCmp(Alphabet("ab"), [1])
 
 
 @pytest.mark.parametrize(
