@@ -183,6 +183,7 @@ compared by their positions in *alphabet*.
   belong to *alphabet*.
 
 .. doctest:: python
+
   >>> from libsemigroups_pybind11 import Alphabet, lenlex_cmp
   >>> alphabet = Alphabet("ba")
   >>> lenlex_cmp(alphabet, "b", "a")
@@ -865,6 +866,8 @@ Compare two words using recursive-path ordering.
 .. warning::
    This function has significantly worse performance than :any:`lenlex_cmp`
    and :any:`lex_cmp`.
+
+.. seealso:: :any:`RPOCmp` for a reusable recursive-path comparison object.
 
 .. doctest:: python
 
@@ -1684,6 +1687,210 @@ Return the alphabet used to compare letters.
                 py::return_value_policy::reference_internal);
     }  // bind_lenlex_cmp_with_alphabet
 
+    template <typename Word>
+    void bind_rpo_cmp_with_alphabet(py::module& m, char const* name) {
+      using RPOCmp_ = RPOCmp<Word>;
+
+      // The Python wrapper copies all documentation from this specialization,
+      // except those given above.
+      py::class_<RPOCmp_> thing(m, name, R"pbdoc(
+Compare words using recursive-path ordering.
+
+Use ``RPOCmp()`` to compare either ``str`` or ``list[int]`` words using the
+natural order of their letters. Use ``RPOCmp(alphabet)`` to compare words by
+the positions of their letters in *alphabet*. The latter form copies
+*alphabet* and only accepts words with the same type as *alphabet*.
+
+.. note::
+  The constructor fixes whether this object is alphabet-aware (i.e. constructed
+  from an :any:`Alphabet` object). It also fixes the word type of an
+  alphabet-aware object. In particular, ``RPOCmp()`` only accepts ``init()``
+  (which does nothing); it cannot be changed into an alphabet-aware object by
+  calling ``init(alphabet)``. Similarly,
+  ``RPOCmp(alphabet).init(new_alphabet)`` requires *new_alphabet* to have the
+  same word type as *alphabet*.
+
+.. warning::
+  This comparison has significantly worse performance than :any:`LenLexCmp`
+  and :any:`LexCmp`.
+
+.. seealso::
+
+  :any:`Alphabet`
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, RPOCmp
+  >>> RPOCmp()("a", "b")
+  True
+  >>> RPOCmp()([0], [1])
+  True
+  >>> RPOCmp(Alphabet("ba"))("b", "a")
+  True
+)pbdoc");
+
+      thing.def(py::init<Alphabet<Word> const&>(),
+                py::arg("alphabet"),
+                R"pbdoc(
+:sig=(self: RPOCmp, alphabet: Alphabet) -> None:
+Construct a recursive-path comparison object from an alphabet.
+
+Constructs an object whose call operator compares words using recursive-path
+ordering and orders letters by their positions in *alphabet*. The type of
+letters in *alphabet* also fixes the accepted word type for the call operator.
+
+:param alphabet: the optional alphabet defining the order of letters.
+:type alphabet: Alphabet
+
+:raises TypeError:
+  if more than one argument is given or the argument is not an :any:`Alphabet`.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, RPOCmp
+  >>> RPOCmp(Alphabet("ba"))("b", "a")
+  True
+)pbdoc");
+
+      thing.def("__repr__", [](RPOCmp_ const& self) {
+        return to_human_readable_repr(self);
+      });
+
+      thing.def("__copy__", [](RPOCmp_ const& self) { return RPOCmp_(self); });
+
+      thing.def(
+          "copy",
+          [](RPOCmp_ const& self) { return RPOCmp_(self); },
+          R"pbdoc(
+:sig=(self: RPOCmp) -> RPOCmp:
+Copy a comparison object.
+
+The copy has the same mode and word type as *self*. For an alphabet-aware
+object, the stored alphabet is also copied, so subsequently reinitializing one
+comparison object does not affect the other.
+
+:returns: A copy of *self*.
+:rtype: RPOCmp
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, RPOCmp
+  >>> RPOCmp(Alphabet("ba")).copy()("b", "a")
+  True
+)pbdoc");
+
+      thing.def(
+          "init",
+          [](RPOCmp_& self, Alphabet<Word> const& alphabet) -> RPOCmp_& {
+            return self.init(alphabet);
+          },
+          py::arg("alphabet"),
+          R"pbdoc(
+:sig=(self: RPOCmp, alphabet: Alphabet) -> RPOCmp:
+Reinitialize the comparison object.
+
+If *self* was constructed using an :any:`Alphabet`, then
+``init(new_alphabet)`` puts *self* back into the same state it would have been
+had it been newly constructed from *alphabet*.
+
+:param alphabet: the replacement alphabet.
+:type alphabet: Alphabet
+
+:returns: The first argument *self*.
+:rtype: RPOCmp
+
+:raises TypeError:
+  if the type of the words in the new alphabet is not the same as the existing
+  alphabet.
+:raises AttributeError:
+  if *self* was constructed without an alphabet.
+
+.. warning::
+  This method only works if *self* was constructed as
+  ``RPOCmp(alphabet)``. An object constructed as ``RPOCmp()`` does not have a
+  stored alphabet.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, RPOCmp
+  >>> compare = RPOCmp(Alphabet("ab"))
+  >>> compare.init(Alphabet("ba")) is compare
+  True
+  >>> compare("b", "a")
+  True
+)pbdoc");
+
+      thing.def(
+          "__call__",
+          [](RPOCmp_ const& self, Word const& x, Word const& y) {
+            return self(x, y);
+          },
+          py::arg("x"),
+          py::arg("y"),
+          R"pbdoc(
+:sig=(self: RPOCmp, x: str | list[int], y: str | list[int]) -> bool:
+Compare two words using recursive-path ordering.
+
+If *self* was constructed as ``RPOCmp()``, then *x* and *y* must either both
+be strings or both be lists of integers, and letters are compared using their
+natural order. If *self* was constructed using an :any:`Alphabet`, then *x* and
+*y* must have the same type of words as *alphabet*, and letters are compared by
+their positions in the alphabet.
+
+:param x: the first word.
+:type x: str | list[int]
+:param y: the second word.
+:type y: str | list[int]
+:returns: Whether *x* is less than *y*.
+:rtype: bool
+
+:raises TypeError:
+  if *x* and *y* are not both strings or both lists of integers, or if their
+  type does not match the alphabet used to construct *self*.
+:raises LibsemigroupsError:
+  if *self* is alphabet-aware and either word contains a letter that does not
+  belong to its alphabet.
+
+.. warning::
+  This comparison has significantly worse performance than :any:`LenLexCmp`
+  and :any:`LexCmp`.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import RPOCmp
+  >>> RPOCmp()("a", "b")
+  True
+  >>> RPOCmp()([0], [1])
+  True
+)pbdoc");
+
+      thing.def("alphabet",
+                &RPOCmp_::alphabet,
+                R"pbdoc(
+:sig=(self: RPOCmp) -> Alphabet:
+Return the alphabet used to compare letters.
+
+:returns: The stored alphabet.
+:rtype: Alphabet
+
+:raises AttributeError:
+  if *self* was constructed without an alphabet.
+
+.. warning::
+  This method only works if *self* was constructed as
+  ``RPOCmp(alphabet)``. An object constructed as ``RPOCmp()`` does not have a
+  stored alphabet.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, RPOCmp
+  >>> alphabet = Alphabet("ba")
+  >>> RPOCmp(alphabet).alphabet() == alphabet
+  True
+)pbdoc",
+                py::return_value_policy::reference_internal);
+    }  // bind_rpo_cmp_with_alphabet
+
   }  // namespace
 
   void init_order(py::module& m) {
@@ -1769,11 +1976,15 @@ respectively, in new code.
 
     bind_cmp_default<LexCmp<>>(m, "Lex");
     bind_cmp_default<LenLexCmp<>>(m, "LenLex");
+    bind_cmp_default<RPOCmp<>>(m, "RPO");
 
     bind_lex_cmp_with_alphabet<std::string>(m, "LexCmpString");
     bind_lex_cmp_with_alphabet<word_type>(m, "LexCmpWord");
 
     bind_lenlex_cmp_with_alphabet<std::string>(m, "LenLexCmpString");
     bind_lenlex_cmp_with_alphabet<word_type>(m, "LenLexCmpWord");
+
+    bind_rpo_cmp_with_alphabet<std::string>(m, "RPOCmpString");
+    bind_rpo_cmp_with_alphabet<word_type>(m, "RPOCmpWord");
   }
 }  // namespace libsemigroups

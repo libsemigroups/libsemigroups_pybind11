@@ -18,7 +18,7 @@ comparing words or strings with respect to certain reduction orderings.
     - :any:`Order`
     - :any:`Alphabet`
 
-The class and functions in ``libsemigroups_pybind11`` for ordering words and
+The classes and functions in ``libsemigroups_pybind11`` for ordering words and
 strings are described on the following pages:
 
 .. toctree::
@@ -26,4 +26,5 @@ strings are described on the following pages:
 
     lex-cmp
     lenlex-cmp
+    rpo-cmp
     functions

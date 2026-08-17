@@ -53,17 +53,10 @@ from .kambites import Kambites
 from .knuth_bendix import KnuthBendix
 from .konieczny import Konieczny
 from .matrix import Matrix, MatrixKind
-from .order import LenLexCmp, LexCmp, wr_cmp
+from .order import LenLexCmp, LexCmp, RPOCmp
 from .presentation import InversePresentation, Presentation
 from .schreier_sims import SchreierSims
-from .sims import (
-    MinimalRepOrc,
-    RepOrc,
-    Sims1,
-    Sims2,
-    SimsRefinerFaithful,
-    SimsRefinerIdeals,
-)
+from .sims import MinimalRepOrc, RepOrc, Sims1, Sims2, SimsRefinerFaithful, SimsRefinerIdeals
 from .stephen import Stephen
 from .to import to
 from .todd_coxeter import ToddCoxeter
@@ -134,6 +127,7 @@ try:
         shortlex_compare,
         side,
         tril,
+        wr_cmp as _wr_cmp,
         wt_lenlex_cmp as _wt_lenlex_cmp,
         wt_lex_cmp as _wt_lex_cmp,
     )
@@ -155,6 +149,7 @@ rev_wr_cmp = _wrap_cxx_free_fn(_rev_wr_cmp)
 rev_wt_lenlex_cmp = _wrap_cxx_free_fn(_rev_wt_lenlex_cmp)
 rev_wt_lex_cmp = _wrap_cxx_free_fn(_rev_wt_lex_cmp)
 rpo_cmp = _wrap_cxx_free_fn(_rpo_cmp)
+wr_cmp = _wrap_cxx_free_fn(_wr_cmp)
 wt_lenlex_cmp = _wrap_cxx_free_fn(_wt_lenlex_cmp)
 wt_lex_cmp = _wrap_cxx_free_fn(_wt_lex_cmp)
 
@@ -177,6 +172,7 @@ __all__ = [
     "LimitMax",
     "LenLexCmp",
     "LexCmp",
+    "RPOCmp",
     "Meeter",
     "NegativeInfinity",
     "Order",
