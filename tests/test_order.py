@@ -16,6 +16,7 @@ from libsemigroups_pybind11 import (
     LexCmp,
     LibsemigroupsError,
     Order,
+    RevRPOCmp,
     RPOCmp,
     len_wt_lex_cmp,
     lenlex_cmp,
@@ -130,7 +131,38 @@ def test_rpo_cmp_object_rejects_bad_constructors():
         RPOCmp(Alphabet("abc"), Alphabet("abc"))
 
 
-@pytest.mark.parametrize("comparison_type", [LexCmp, LenLexCmp, RPOCmp])
+def test_rev_rpo_cmp_object_without_alphabet():
+    """Check the stateless comparison object with both word types."""
+    compare = RevRPOCmp()
+    assert compare("a", "b")
+    assert compare([0], [1])
+    assert not compare("ba", "ab")
+
+
+@pytest.mark.parametrize(
+    ("alphabet", "x", "y", "missing"),
+    [(Alphabet("ba"), "b", "a", "c"), (Alphabet([1, 0]), [1], [0], [2])],
+)
+def test_rev_rpo_cmp_object_with_alphabet(alphabet, x, y, missing):
+    """Check that the comparison object stores and uses its alphabet."""
+    compare = RevRPOCmp(alphabet=alphabet)
+    assert compare(x, y)
+    assert compare.alphabet() == alphabet
+    assert compare.init(alphabet) is compare
+
+    with pytest.raises(LibsemigroupsError):
+        compare(x, missing)
+
+
+def test_rev_rpo_cmp_object_rejects_bad_constructors():
+    """Check that only zero arguments or one Alphabet are accepted."""
+    with pytest.raises(TypeError):
+        RevRPOCmp("abc")
+    with pytest.raises(TypeError):
+        RevRPOCmp(Alphabet("abc"), Alphabet("abc"))
+
+
+@pytest.mark.parametrize("comparison_type", [LexCmp, LenLexCmp, RPOCmp, RevRPOCmp])
 @pytest.mark.parametrize(
     ("alphabet", "replacement", "x", "y"),
     [
@@ -163,7 +195,8 @@ def test_comparison_object_copy(comparison_type, alphabet, replacement, x, y):
 
 
 @pytest.mark.parametrize(
-    ("comparison_type", "name"), [(LexCmp, "LexCmp"), (LenLexCmp, "LenLexCmp"), (RPOCmp, "RPOCmp")]
+    ("comparison_type", "name"),
+    [(LexCmp, "LexCmp"), (LenLexCmp, "LenLexCmp"), (RPOCmp, "RPOCmp"), (RevRPOCmp, "RevRPOCmp")],
 )
 def test_comparison_object_repr(comparison_type, name):
     """Check human-readable representations with and without alphabets."""
