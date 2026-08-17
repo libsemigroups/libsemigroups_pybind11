@@ -15,6 +15,9 @@ from _libsemigroups_pybind11 import (
     LexCmpDefault as _LexCmpDefault,
     LexCmpString as _LexCmpString,
     LexCmpWord as _LexCmpWord,
+    RevLenLexCmpDefault as _RevLenLexCmpDefault,
+    RevLenLexCmpString as _RevLenLexCmpString,
+    RevLenLexCmpWord as _RevLenLexCmpWord,
     RevLexCmpDefault as _RevLexCmpDefault,
     RevLexCmpString as _RevLexCmpString,
     RevLexCmpWord as _RevLexCmpWord,
@@ -62,9 +65,7 @@ class LexCmp(_CxxWrapper):
             return
 
         if len(args) > 1:
-            raise TypeError(
-                f"expected at most 1 positional argument, found {len(args)}"
-            )
+            raise TypeError(f"expected at most 1 positional argument, found {len(args)}")
 
         if len(args) == 1 and kwargs:
             raise TypeError(
@@ -84,19 +85,11 @@ class LexCmp(_CxxWrapper):
             self.py_template_params = alphabet.py_template_params
             self.init_cxx_obj(alphabet)
         else:
-            raise TypeError(
-                f"expected the argument to be an Alphabet, but found {type(alphabet)}"
-            )
+            raise TypeError(f"expected the argument to be an Alphabet, but found {type(alphabet)}")
 
     @_copydoc(_LexCmpString.__call__)
     def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
         return super().__call__(x, y)
-
-
-_copy_cxx_mem_fns(_LexCmpString, LexCmp)
-_register_cxx_wrapped_type(_LexCmpDefault, LexCmp)
-_register_cxx_wrapped_type(_LexCmpString, LexCmp)
-_register_cxx_wrapped_type(_LexCmpWord, LexCmp)
 
 
 class RevLexCmp(_CxxWrapper):
@@ -152,12 +145,6 @@ class RevLexCmp(_CxxWrapper):
         return super().__call__(x, y)
 
 
-_copy_cxx_mem_fns(_RevLexCmpString, RevLexCmp)
-_register_cxx_wrapped_type(_RevLexCmpDefault, RevLexCmp)
-_register_cxx_wrapped_type(_RevLexCmpString, RevLexCmp)
-_register_cxx_wrapped_type(_RevLexCmpWord, RevLexCmp)
-
-
 class LenLexCmp(_CxxWrapper):
     __doc__ = _LenLexCmpString.__doc__
 
@@ -184,9 +171,7 @@ class LenLexCmp(_CxxWrapper):
             return
 
         if len(args) > 1:
-            raise TypeError(
-                f"expected at most 1 positional argument, found {len(args)}"
-            )
+            raise TypeError(f"expected at most 1 positional argument, found {len(args)}")
 
         if len(args) == 1 and kwargs:
             raise TypeError(
@@ -206,11 +191,62 @@ class LenLexCmp(_CxxWrapper):
             self.py_template_params = alphabet.py_template_params
             self.init_cxx_obj(alphabet)
         else:
-            raise TypeError(
-                f"expected the argument to be an Alphabet, but found {type(alphabet)}"
-            )
+            raise TypeError(f"expected the argument to be an Alphabet, but found {type(alphabet)}")
 
     @_copydoc(_LenLexCmpString.__call__)
+    def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
+        return super().__call__(x, y)
+
+
+class RevLenLexCmp(_CxxWrapper):
+    __doc__ = _RevLenLexCmpString.__doc__
+
+    _py_template_params_to_cxx_type = {
+        (): _RevLenLexCmpDefault,
+        (str,): _RevLenLexCmpString,
+        (list[int],): _RevLenLexCmpWord,
+    }
+
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+            strict=True,
+        )
+    )
+
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_RevLenLexCmpString.__init__, _RevLenLexCmpDefault.__init__)
+    def __init__(self: _Self, *args, **kwargs) -> None:
+        super().__init__(*args, optional_kwargs=("alphabet",), **kwargs)
+        if _to_cxx(self) is not None:
+            return
+
+        if len(args) > 1:
+            raise TypeError(f"expected at most 1 positional argument, found {len(args)}")
+
+        if len(args) == 1 and kwargs:
+            raise TypeError(
+                'expected either 1 positional argument or the keyword argument "alphabet", '
+                "but found both"
+            )
+
+        if len(args) == 1:
+            alphabet = args[0]
+        else:
+            alphabet = kwargs.get("alphabet")
+
+        if len(args) == 0 and "alphabet" not in kwargs:
+            self.py_template_params = ()
+            self.init_cxx_obj()
+        elif isinstance(alphabet, _Alphabet):
+            self.py_template_params = alphabet.py_template_params
+            self.init_cxx_obj(alphabet)
+        else:
+            raise TypeError(f"expected the argument to be an Alphabet, but found {type(alphabet)}")
+
+    @_copydoc(_RevLenLexCmpString.__call__)
     def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
         return super().__call__(x, y)
 
@@ -241,9 +277,7 @@ class RPOCmp(_CxxWrapper):
             return
 
         if len(args) > 1:
-            raise TypeError(
-                f"expected at most 1 positional argument, found {len(args)}"
-            )
+            raise TypeError(f"expected at most 1 positional argument, found {len(args)}")
 
         if len(args) == 1 and kwargs:
             raise TypeError(
@@ -263,24 +297,11 @@ class RPOCmp(_CxxWrapper):
             self.py_template_params = alphabet.py_template_params
             self.init_cxx_obj(alphabet)
         else:
-            raise TypeError(
-                f"expected the argument to be an Alphabet, but found {type(alphabet)}"
-            )
+            raise TypeError(f"expected the argument to be an Alphabet, but found {type(alphabet)}")
 
     @_copydoc(_RPOCmpString.__call__)
     def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
         return super().__call__(x, y)
-
-
-_copy_cxx_mem_fns(_LenLexCmpString, LenLexCmp)
-_register_cxx_wrapped_type(_LenLexCmpDefault, LenLexCmp)
-_register_cxx_wrapped_type(_LenLexCmpString, LenLexCmp)
-_register_cxx_wrapped_type(_LenLexCmpWord, LenLexCmp)
-
-_copy_cxx_mem_fns(_RPOCmpString, RPOCmp)
-_register_cxx_wrapped_type(_RPOCmpDefault, RPOCmp)
-_register_cxx_wrapped_type(_RPOCmpString, RPOCmp)
-_register_cxx_wrapped_type(_RPOCmpWord, RPOCmp)
 
 
 class RevRPOCmp(_CxxWrapper):
@@ -336,9 +357,34 @@ class RevRPOCmp(_CxxWrapper):
         return super().__call__(x, y)
 
 
+_copy_cxx_mem_fns(_LenLexCmpString, LenLexCmp)
+_register_cxx_wrapped_type(_LenLexCmpDefault, LenLexCmp)
+_register_cxx_wrapped_type(_LenLexCmpString, LenLexCmp)
+_register_cxx_wrapped_type(_LenLexCmpWord, LenLexCmp)
+
+_copy_cxx_mem_fns(_RevLenLexCmpString, RevLenLexCmp)
+_register_cxx_wrapped_type(_RevLenLexCmpDefault, RevLenLexCmp)
+_register_cxx_wrapped_type(_RevLenLexCmpString, RevLenLexCmp)
+_register_cxx_wrapped_type(_RevLenLexCmpWord, RevLenLexCmp)
+
+_copy_cxx_mem_fns(_LexCmpString, LexCmp)
+_register_cxx_wrapped_type(_LexCmpDefault, LexCmp)
+_register_cxx_wrapped_type(_LexCmpString, LexCmp)
+_register_cxx_wrapped_type(_LexCmpWord, LexCmp)
+
+_copy_cxx_mem_fns(_RevLexCmpString, RevLexCmp)
+_register_cxx_wrapped_type(_RevLexCmpDefault, RevLexCmp)
+_register_cxx_wrapped_type(_RevLexCmpString, RevLexCmp)
+_register_cxx_wrapped_type(_RevLexCmpWord, RevLexCmp)
+
+_copy_cxx_mem_fns(_RPOCmpString, RPOCmp)
+_register_cxx_wrapped_type(_RPOCmpDefault, RPOCmp)
+_register_cxx_wrapped_type(_RPOCmpString, RPOCmp)
+_register_cxx_wrapped_type(_RPOCmpWord, RPOCmp)
+
 _copy_cxx_mem_fns(_RevRPOCmpString, RevRPOCmp)
 _register_cxx_wrapped_type(_RevRPOCmpDefault, RevRPOCmp)
 _register_cxx_wrapped_type(_RevRPOCmpString, RevRPOCmp)
 _register_cxx_wrapped_type(_RevRPOCmpWord, RevRPOCmp)
 
-__all__ = ["LenLexCmp", "LexCmp", "RPOCmp", "RevLexCmp", "RevRPOCmp"]
+__all__ = ["LenLexCmp", "LexCmp", "RPOCmp", "RevLenLexCmp", "RevLexCmp", "RevRPOCmp"]

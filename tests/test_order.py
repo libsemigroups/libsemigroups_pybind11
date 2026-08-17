@@ -16,6 +16,7 @@ from libsemigroups_pybind11 import (
     LexCmp,
     LibsemigroupsError,
     Order,
+    RevLenLexCmp,
     RevLexCmp,
     RevRPOCmp,
     RPOCmp,
@@ -132,6 +133,37 @@ def test_lenlex_cmp_object_rejects_bad_constructors():
         LenLexCmp(Alphabet("abc"), Alphabet("abc"))
 
 
+def test_rev_lenlex_cmp_object_without_alphabet():
+    """Check the stateless comparison object with both word types."""
+    compare = RevLenLexCmp()
+    assert compare("a", "b")
+    assert compare([0], [1])
+    assert compare("ba", "ab")
+
+
+@pytest.mark.parametrize(
+    ("alphabet", "x", "y", "missing"),
+    [(Alphabet("ba"), "b", "a", "c"), (Alphabet([1, 0]), [1], [0], [2])],
+)
+def test_rev_lenlex_cmp_object_with_alphabet(alphabet, x, y, missing):
+    """Check that the comparison object stores and uses its alphabet."""
+    compare = RevLenLexCmp(alphabet=alphabet)
+    assert compare(x, y)
+    assert compare.alphabet() == alphabet
+    assert compare.init(alphabet) is compare
+
+    with pytest.raises(LibsemigroupsError):
+        compare(x, missing)
+
+
+def test_rev_lenlex_cmp_object_rejects_bad_constructors():
+    """Check that only zero arguments or one Alphabet are accepted."""
+    with pytest.raises(TypeError):
+        RevLenLexCmp("abc")
+    with pytest.raises(TypeError):
+        RevLenLexCmp(Alphabet("abc"), Alphabet("abc"))
+
+
 def test_rpo_cmp_object_without_alphabet():
     """Check the stateless comparison object with both word types."""
     compare = RPOCmp()
@@ -194,7 +226,9 @@ def test_rev_rpo_cmp_object_rejects_bad_constructors():
         RevRPOCmp(Alphabet("abc"), Alphabet("abc"))
 
 
-@pytest.mark.parametrize("comparison_type", [LexCmp, RevLexCmp, LenLexCmp, RPOCmp, RevRPOCmp])
+@pytest.mark.parametrize(
+    "comparison_type", [LexCmp, RevLexCmp, LenLexCmp, RevLenLexCmp, RPOCmp, RevRPOCmp]
+)
 @pytest.mark.parametrize(
     ("alphabet", "replacement", "x", "y"),
     [
@@ -232,6 +266,7 @@ def test_comparison_object_copy(comparison_type, alphabet, replacement, x, y):
         (LexCmp, "LexCmp"),
         (RevLexCmp, "RevLexCmp"),
         (LenLexCmp, "LenLexCmp"),
+        (RevLenLexCmp, "RevLenLexCmp"),
         (RPOCmp, "RPOCmp"),
         (RevRPOCmp, "RevRPOCmp"),
     ],

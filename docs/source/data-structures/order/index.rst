@@ -27,6 +27,7 @@ strings are described on the following pages:
     lex-cmp
     rev-lex-cmp
     lenlex-cmp
+    rev-lenlex-cmp
     rpo-cmp
     rev-rpo-cmp
     functions
