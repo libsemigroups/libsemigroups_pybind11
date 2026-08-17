@@ -6,10 +6,14 @@
 
 """Tests for order.cpp."""
 
+from copy import copy
+
 import pytest
 
 from libsemigroups_pybind11 import (
     Alphabet,
+    LenLexCmp,
+    LexCmp,
     LibsemigroupsError,
     Order,
     len_wt_lex_cmp,
@@ -30,6 +34,110 @@ from libsemigroups_pybind11 import (
     wt_lenlex_cmp,
     wt_lex_cmp,
 )
+
+
+def test_lex_cmp_object_without_alphabet():
+    """Check the stateless comparison object with both word types."""
+    compare = LexCmp()
+    assert compare("a", "b")
+    assert compare([0], [1])
+    assert not compare("b", "aa")
+
+
+@pytest.mark.parametrize(
+    ("alphabet", "x", "y", "missing"),
+    [(Alphabet("ba"), "b", "a", "c"), (Alphabet([1, 0]), [1], [0], [2])],
+)
+def test_lex_cmp_object_with_alphabet(alphabet, x, y, missing):
+    """Check that the comparison object stores and uses its alphabet."""
+    compare = LexCmp(alphabet=alphabet)
+    assert compare(x, y)
+    assert compare.alphabet() == alphabet
+    assert compare.init(alphabet) is compare
+
+    with pytest.raises(LibsemigroupsError):
+        compare(x, missing)
+
+
+def test_lex_cmp_object_rejects_bad_constructors():
+    """Check that only zero arguments or one Alphabet are accepted."""
+    with pytest.raises(TypeError):
+        LexCmp("abc")
+    with pytest.raises(TypeError):
+        LexCmp(Alphabet("abc"), Alphabet("abc"))
+
+
+def test_lenlex_cmp_object_without_alphabet():
+    """Check the stateless comparison object with both word types."""
+    compare = LenLexCmp()
+    assert compare("a", "b")
+    assert compare([0], [1])
+    assert not compare("bb", "a")
+
+
+@pytest.mark.parametrize(
+    ("alphabet", "x", "y", "missing"),
+    [(Alphabet("ba"), "b", "a", "c"), (Alphabet([1, 0]), [1], [0], [2])],
+)
+def test_lenlex_cmp_object_with_alphabet(alphabet, x, y, missing):
+    """Check that the comparison object stores and uses its alphabet."""
+    compare = LenLexCmp(alphabet=alphabet)
+    assert compare(x, y)
+    assert compare.alphabet() == alphabet
+    assert compare.init(alphabet) is compare
+
+    with pytest.raises(LibsemigroupsError):
+        compare(x, missing)
+
+
+def test_lenlex_cmp_object_rejects_bad_constructors():
+    """Check that only zero arguments or one Alphabet are accepted."""
+    with pytest.raises(TypeError):
+        LenLexCmp("abc")
+    with pytest.raises(TypeError):
+        LenLexCmp(Alphabet("abc"), Alphabet("abc"))
+
+
+@pytest.mark.parametrize("comparison_type", [LexCmp, LenLexCmp])
+@pytest.mark.parametrize(
+    ("alphabet", "replacement", "x", "y"),
+    [
+        (None, None, "a", "b"),
+        (Alphabet("ba"), Alphabet("ab"), "b", "a"),
+        (Alphabet([1, 0]), Alphabet([0, 1]), [1], [0]),
+    ],
+)
+def test_comparison_object_copy(comparison_type, alphabet, replacement, x, y):
+    """Check that both copy APIs make independent copies of the C++ object."""
+    original = comparison_type() if alphabet is None else comparison_type(alphabet)
+    copies = (
+        original.copy(),
+        original.__copy__(),  # pylint: disable=unnecessary-dunder-call
+        copy(original),
+    )
+
+    for copied in copies:
+        assert isinstance(copied, comparison_type)
+        assert copied is not original
+        assert copied.py_template_params == original.py_template_params
+        assert copied(x, y)
+        if alphabet is not None:
+            assert copied.alphabet() == alphabet
+
+    if replacement is not None:
+        original.init(replacement)
+        assert not original(x, y)
+        assert all(copied(x, y) for copied in copies)
+
+
+@pytest.mark.parametrize(
+    ("comparison_type", "name"), [(LexCmp, "LexCmp"), (LenLexCmp, "LenLexCmp")]
+)
+def test_comparison_object_repr(comparison_type, name):
+    """Check human-readable representations with and without alphabets."""
+    assert repr(comparison_type()) == f"<{name} object>"
+    assert repr(comparison_type(Alphabet("ba"))) == f'<{name} object over <alphabet "ba">>'
+    assert repr(comparison_type(Alphabet([1, 0]))) == f"<{name} object over <alphabet [1, 0]>>"
 
 
 @pytest.mark.parametrize(

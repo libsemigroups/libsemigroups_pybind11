@@ -17,8 +17,9 @@
 //
 
 // C++ stl headers....
-#include <string>  // for string
-#include <vector>  // for vector
+#include <string>       // for string
+#include <type_traits>  // for is_same_v
+#include <vector>       // for vector
 
 // libsemigroups....
 #include <libsemigroups/order.hpp>  // for *_cmp, Order
@@ -141,6 +142,8 @@ Words are first ordered by length and then lexicographically.
 :type y: str | list[int]
 :returns: Whether *x* is less than *y*.
 :rtype: bool
+
+.. seealso:: :any:`LenLexCmp` for a reusable len-lex comparison object.
 
 .. doctest:: python
 
@@ -1230,6 +1233,457 @@ differences within one level are compared using lenlex ordering.
   True
 )pbdoc");
     }
+
+    ////////////////////////////////////////////////////////////////////////
+    // Functions for binding the various Cmp structs such as WtLenLexCmp,
+    // RPOCmp, and so on
+    ////////////////////////////////////////////////////////////////////////
+
+    // The remaining documentation is included in the corresponding
+    // alphabet-aware binding function below.
+    template <typename Cmp>
+    void bind_cmp_default(py::module& m, std::string name) {
+      std::string arg_type(name);
+      name += "CmpDefault";
+      arg_type += "Cmp";
+      py::class_<Cmp> thing(m, name.c_str());
+
+      thing.def(py::init<>(),
+                fmt::format(R"pbdoc(
+:sig=(self: {0}) -> None:
+Construct a comparison object.
+
+Constructs an object whose call operator compares either ``str`` or
+``list[int]`` words using the natural order of their letters.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import {0}
+  >>> {0}()("a", "b")
+  True
+)pbdoc",
+                            arg_type)
+                    .c_str());
+
+      thing.def("__repr__",
+                [](Cmp const& self) { return to_human_readable_repr(self); });
+
+      thing.def("__copy__", [](Cmp const& self) { return Cmp(self); });
+
+      thing.def("copy", [](Cmp const& self) { return Cmp(self); });
+
+      thing.def(
+          "__call__",
+          [](Cmp const& self, std::string const& x, std::string const& y) {
+            return self(x, y);
+          },
+          py::arg("x"),
+          py::arg("y"));
+
+      thing.def(
+          "__call__",
+          [](Cmp const& self, word_type const& x, word_type const& y) {
+            return self(x, y);
+          },
+          py::arg("x"),
+          py::arg("y"));
+    }
+
+    template <typename Word>
+    void bind_lex_cmp_with_alphabet(py::module& m, char const* name) {
+      using LexCmp_ = LexCmp<Word>;
+
+      // The Python wrapper copies all documentation from this
+      // specialization, except those given above.
+      py::class_<LexCmp_> thing(m, name, R"pbdoc(
+Compare words lexicographically.
+
+Use ``LexCmp()`` to compare either ``str`` or ``list[int]`` words using the
+natural order of their letters. Use ``LexCmp(alphabet)`` to compare words by
+the positions of their letters in *alphabet*. The latter form copies
+*alphabet* and only accepts words with the same type as *alphabet*.
+
+.. note::
+  The constructor fixes whether this object is alphabet-aware (i.e. constructed
+  from an :any:`Alphabet` object). It also fixes the word type of an
+  alphabet-aware object. In particular, ``LexCmp()`` only accepts ``init()``
+  (which does nothing); it cannot be changed into an alphabet-aware object by
+  calling ``init(alphabet)``. Similarly,
+  ``LexCmp(alphabet).init(new_alphabet)`` requires *new_alphabet* to have the
+  same word type as *alphabet*.
+
+.. seealso::
+
+  :any:`Alphabet`
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, LexCmp
+  >>> LexCmp()("a", "b")
+  True
+  >>> LexCmp()([0], [1])
+  True
+  >>> LexCmp(Alphabet("ba"))("b", "a")
+  True
+)pbdoc");
+
+      thing.def(py::init<Alphabet<Word> const&>(),
+                py::arg("alphabet"),
+                R"pbdoc(
+:sig=(self: LexCmp, alphabet: Alphabet) -> None:
+Construct a lexicographic comparison object from an alphabet.
+
+Constructs an object whose call operator compares words by their positions in
+*alphabet*. The type of letters in *alphabet* also fixes the accepted word type
+for the call operator.
+
+:param alphabet: the optional alphabet defining the order of letters.
+:type alphabet: Alphabet
+
+:raises TypeError:
+  if more than one argument is given or the argument is not an :any:`Alphabet`.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, LexCmp
+  >>> LexCmp(Alphabet("ba"))("b", "a")
+  True
+)pbdoc");
+
+      thing.def("__repr__", [](LexCmp_ const& self) {
+        return to_human_readable_repr(self);
+      });
+
+      thing.def("__copy__", [](LexCmp_ const& self) { return LexCmp_(self); });
+
+      thing.def(
+          "copy",
+          [](LexCmp_ const& self) { return LexCmp_(self); },
+          R"pbdoc(
+:sig=(self: LexCmp) -> LexCmp:
+Copy a comparison object.
+
+The copy has the same mode and word type as *self*. For an alphabet-aware
+object, the stored alphabet is also copied, so subsequently reinitializing one
+comparison object does not affect the other.
+
+:returns: A copy of *self*.
+:rtype: LexCmp
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, LexCmp
+  >>> LexCmp(Alphabet("ba")).copy()("b", "a")
+  True
+)pbdoc");
+
+      thing.def(
+          "init",
+          [](LexCmp_& self, Alphabet<Word> const& alphabet) -> LexCmp_& {
+            return self.init(alphabet);
+          },
+          py::arg("alphabet"),
+          R"pbdoc(
+:sig=(self: LexCmp, alphabet: Alphabet) -> LexCmp:
+Reinitialize the comparison object.
+
+If *self* was constructed using an :any:`Alphabet`, then ``init(new_alphabet)``
+puts *self* back into the same state it would have been had it been newly
+constructed from *alphabet*.
+
+:param alphabet: the replacement alphabet.
+:type alphabet: Alphabet
+
+:returns: The first argument *self*.
+:rtype: LexCmp
+
+:raises TypeError:
+  if the type of the words in the new alphabet is not the same as the existing alphabet.
+:raises AttributeError:
+  if *self* was constructed without an alphabet.
+
+.. warning::
+  This method only works if *self* was constructed as
+  ``LexCmp(alphabet)``. An object constructed as ``LexCmp()`` does not have a
+  stored alphabet.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, LexCmp
+  >>> compare = LexCmp(Alphabet("ab"))
+  >>> compare.init(Alphabet("ba")) is compare
+  True
+  >>> compare("b", "a")
+  True
+)pbdoc");
+
+      thing.def(
+          "__call__",
+          [](LexCmp_ const& self, Word const& x, Word const& y) {
+            return self(x, y);
+          },
+          py::arg("x"),
+          py::arg("y"),
+          R"pbdoc(
+:sig=(self: LexCmp, x: str | list[int], y: str | list[int]) -> bool:
+Compare two words lexicographically.
+
+If *self* was constructed as ``LexCmp()``, then *x* and *y* must either both
+be strings or both be lists of integers, and letters are compared using their
+natural order. If *self* was constructed using an :any:`Alphabet`, then *x* and
+*y* must have the same type of words as *alphabet*, and letters are compared by
+their positions in the alphabet.
+
+:param x: the first word.
+:type x: str | list[int]
+:param y: the second word.
+:type y: str | list[int]
+:returns: Whether *x* is less than *y*.
+:rtype: bool
+
+:raises TypeError:
+  if *x* and *y* are not both strings or both lists of integers, or if their
+  type does not match the alphabet used to construct *self*.
+:raises LibsemigroupsError:
+  if *self* is alphabet-aware and either word contains a letter that does not
+  belong to its alphabet.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import LexCmp
+  >>> LexCmp()("ab", "ba")
+  True
+  >>> LexCmp()([0, 1], [1, 0])
+  True
+)pbdoc");
+
+      thing.def("alphabet",
+                &LexCmp_::alphabet,
+                R"pbdoc(
+:sig=(self: LexCmp) -> Alphabet:
+Return the alphabet used to compare letters.
+
+:returns: The stored alphabet.
+:rtype: Alphabet
+
+:raises AttributeError:
+  if *self* was constructed without an alphabet.
+
+.. warning::
+  This method only works if *self* was constructed as
+  ``LexCmp(alphabet)``. An object constructed as ``LexCmp()`` does not have a
+  stored alphabet.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, LexCmp
+  >>> alphabet = Alphabet("ba")
+  >>> LexCmp(alphabet).alphabet() == alphabet
+  True
+)pbdoc",
+                py::return_value_policy::reference_internal);
+    }  // bind_lex_cmp_with_alphabet
+
+    template <typename Word>
+    void bind_lenlex_cmp_with_alphabet(py::module& m, char const* name) {
+      using LenLexCmp_ = LenLexCmp<Word>;
+
+      // The Python wrapper copies all documentation from this
+      // specialization, except those given above.
+      py::class_<LenLexCmp_> thing(m, name, R"pbdoc(
+Compare words using len-lex ordering.
+
+Words are first compared by length and then lexicographically. Use
+``LenLexCmp()`` to compare either ``str`` or ``list[int]`` words using the
+natural order of their letters. Use ``LenLexCmp(alphabet)`` to compare words
+of equal length by the positions of their letters in *alphabet*. The latter
+form copies *alphabet* and only accepts words with the same type as *alphabet*.
+
+.. note::
+  The constructor fixes whether this object is alphabet-aware (i.e. constructed
+  from an :any:`Alphabet` object). It also fixes the word type of an
+  alphabet-aware object. In particular, ``LenLexCmp()`` only accepts
+  ``init()`` (which does nothing); it cannot be changed into an alphabet-aware
+  object by calling ``init(alphabet)``. Similarly,
+  ``LenLexCmp(alphabet).init(new_alphabet)`` requires *new_alphabet* to have
+  the same word type as *alphabet*.
+
+.. seealso::
+
+  :any:`Alphabet`
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, LenLexCmp
+  >>> LenLexCmp()("a", "b")
+  True
+  >>> LenLexCmp()([0], [1])
+  True
+  >>> LenLexCmp(Alphabet("ba"))("b", "a")
+  True
+)pbdoc");
+
+      thing.def(py::init<Alphabet<Word> const&>(),
+                py::arg("alphabet"),
+                R"pbdoc(
+:sig=(self: LenLexCmp, alphabet: Alphabet) -> None:
+Construct a len-lex comparison object from an alphabet.
+
+Constructs an object whose call operator first compares words by length and
+then compares words of equal length by the positions of their letters in
+*alphabet*. The type of letters in *alphabet* also fixes the accepted word
+type for the call operator.
+
+:param alphabet: the optional alphabet defining the order of letters.
+:type alphabet: Alphabet
+
+:raises TypeError:
+  if more than one argument is given or the argument is not an :any:`Alphabet`.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, LenLexCmp
+  >>> LenLexCmp(Alphabet("ba"))("b", "a")
+  True
+)pbdoc");
+
+      thing.def("__repr__", [](LenLexCmp_ const& self) {
+        return to_human_readable_repr(self);
+      });
+
+      thing.def("__copy__",
+                [](LenLexCmp_ const& self) { return LenLexCmp_(self); });
+
+      thing.def(
+          "copy",
+          [](LenLexCmp_ const& self) { return LenLexCmp_(self); },
+          R"pbdoc(
+:sig=(self: LenLexCmp) -> LenLexCmp:
+Copy a comparison object.
+
+The copy has the same mode and word type as *self*. For an alphabet-aware
+object, the stored alphabet is also copied, so subsequently reinitializing one
+comparison object does not affect the other.
+
+:returns: A copy of *self*.
+:rtype: LenLexCmp
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, LenLexCmp
+  >>> LenLexCmp(Alphabet("ba")).copy()("b", "a")
+  True
+)pbdoc");
+
+      thing.def(
+          "init",
+          [](LenLexCmp_& self, Alphabet<Word> const& alphabet) -> LenLexCmp_& {
+            return self.init(alphabet);
+          },
+          py::arg("alphabet"),
+          R"pbdoc(
+:sig=(self: LenLexCmp, alphabet: Alphabet) -> LenLexCmp:
+Reinitialize the comparison object.
+
+If *self* was constructed using an :any:`Alphabet`, then
+``init(new_alphabet)`` puts *self* back into the same state it would have been
+had it been newly constructed from *alphabet*.
+
+:param alphabet: the replacement alphabet.
+:type alphabet: Alphabet
+
+:returns: The first argument *self*.
+:rtype: LenLexCmp
+
+:raises TypeError:
+  if the type of the words in the new alphabet is not the same as the existing
+  alphabet.
+:raises AttributeError:
+  if *self* was constructed without an alphabet.
+
+.. warning::
+  This method only works if *self* was constructed as
+  ``LenLexCmp(alphabet)``. An object constructed as ``LenLexCmp()`` does not have a
+  stored alphabet.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, LenLexCmp
+  >>> compare = LenLexCmp(Alphabet("ab"))
+  >>> compare.init(Alphabet("ba")) is compare
+  True
+  >>> compare("b", "a")
+  True
+)pbdoc");
+
+      thing.def(
+          "__call__",
+          [](LenLexCmp_ const& self, Word const& x, Word const& y) {
+            return self(x, y);
+          },
+          py::arg("x"),
+          py::arg("y"),
+          R"pbdoc(
+:sig=(self: LenLexCmp, x: str | list[int], y: str | list[int]) -> bool:
+Compare two words using len-lex ordering.
+
+Words are first compared by length and then lexicographically. If *self* was
+constructed as ``LenLexCmp()``, then *x* and *y* must either both be strings or
+both be lists of integers, and letters are compared using their natural order.
+If *self* was constructed using an :any:`Alphabet`, then *x* and *y* must have
+the same type of words as *alphabet*, and letters are compared by their
+positions in the alphabet.
+
+:param x: the first word.
+:type x: str | list[int]
+:param y: the second word.
+:type y: str | list[int]
+:returns: Whether *x* is less than *y*.
+:rtype: bool
+
+:raises TypeError:
+  if *x* and *y* are not both strings or both lists of integers, or if their
+  type does not match the alphabet used to construct *self*.
+:raises LibsemigroupsError:
+  if *self* is alphabet-aware and either word contains a letter that does not
+  belong to its alphabet.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import LenLexCmp
+  >>> LenLexCmp()("z", "aa")
+  True
+  >>> LenLexCmp()([9], [0, 0])
+  True
+)pbdoc");
+
+      thing.def("alphabet",
+                &LenLexCmp_::alphabet,
+                R"pbdoc(
+:sig=(self: LenLexCmp) -> Alphabet:
+Return the alphabet used to compare letters.
+
+:returns: The stored alphabet.
+:rtype: Alphabet
+
+:raises AttributeError:
+  if *self* was constructed without an alphabet.
+
+.. warning::
+  This method only works if *self* was constructed as
+  ``LenLexCmp(alphabet)``. An object constructed as ``LenLexCmp()`` does not
+  have a stored alphabet.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, LenLexCmp
+  >>> alphabet = Alphabet("ba")
+  >>> LenLexCmp(alphabet).alphabet() == alphabet
+  True
+)pbdoc",
+                py::return_value_policy::reference_internal);
+    }  // bind_lenlex_cmp_with_alphabet
+
   }  // namespace
 
   void init_order(py::module& m) {
@@ -1312,5 +1766,14 @@ respectively, in new code.
 
     bind_order_comparisons<std::string>(m);
     bind_order_comparisons<word_type>(m);
+
+    bind_cmp_default<LexCmp<>>(m, "Lex");
+    bind_cmp_default<LenLexCmp<>>(m, "LenLex");
+
+    bind_lex_cmp_with_alphabet<std::string>(m, "LexCmpString");
+    bind_lex_cmp_with_alphabet<word_type>(m, "LexCmpWord");
+
+    bind_lenlex_cmp_with_alphabet<std::string>(m, "LenLexCmpString");
+    bind_lenlex_cmp_with_alphabet<word_type>(m, "LenLexCmpWord");
   }
 }  // namespace libsemigroups
