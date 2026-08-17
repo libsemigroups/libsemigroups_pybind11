@@ -2943,5 +2943,22 @@ respectively, in new code.
         "weights",
         "reversed weighted len-lex ordering",
         &RevWtLenLexCmp<word_type>::weights);
+
+    bind_configured_cmp_default<WtLexCmp<>>(
+        m, "WtLexCmp", "weights", &WtLexCmp<>::weights);
+    bind_configured_cmp_with_alphabet<WtLexCmp<std::string>, std::string>(
+        m,
+        "WtLexCmpString",
+        "WtLexCmp",
+        "weights",
+        "weighted lexicographic ordering",
+        &WtLexCmp<std::string>::weights);
+    bind_configured_cmp_with_alphabet<WtLexCmp<word_type>, word_type>(
+        m,
+        "WtLexCmpWord",
+        "WtLexCmp",
+        "weights",
+        "weighted lexicographic ordering",
+        &WtLexCmp<word_type>::weights);
   }
 }  // namespace libsemigroups

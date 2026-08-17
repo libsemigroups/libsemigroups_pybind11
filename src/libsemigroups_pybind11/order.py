@@ -39,6 +39,9 @@ from _libsemigroups_pybind11 import (
     WtLenLexCmpDefault as _WtLenLexCmpDefault,
     WtLenLexCmpString as _WtLenLexCmpString,
     WtLenLexCmpWord as _WtLenLexCmpWord,
+    WtLexCmpDefault as _WtLexCmpDefault,
+    WtLexCmpString as _WtLexCmpString,
+    WtLexCmpWord as _WtLexCmpWord,
 )
 
 from .alphabet import Alphabet as _Alphabet
@@ -495,6 +498,60 @@ class WtLenLexCmp(_ConfiguredCmp):
         return super().__call__(x, y)
 
 
+class RevWtLenLexCmp(_ConfiguredCmp):
+    __doc__ = _RevWtLenLexCmpString.__doc__
+    _configuration_name = "weights"
+
+    _py_template_params_to_cxx_type = {
+        (): _RevWtLenLexCmpDefault,
+        (str,): _RevWtLenLexCmpString,
+        (list[int],): _RevWtLenLexCmpWord,
+    }
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+            strict=True,
+        )
+    )
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_RevWtLenLexCmpString.__init__, _RevWtLenLexCmpDefault.__init__)
+    def __init__(self: _Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
+    @_copydoc(_RevWtLenLexCmpString.__call__)
+    def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
+        return super().__call__(x, y)
+
+
+class WtLexCmp(_ConfiguredCmp):
+    __doc__ = _WtLexCmpString.__doc__
+    _configuration_name = "weights"
+
+    _py_template_params_to_cxx_type = {
+        (): _WtLexCmpDefault,
+        (str,): _WtLexCmpString,
+        (list[int],): _WtLexCmpWord,
+    }
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+            strict=True,
+        )
+    )
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_WtLexCmpString.__init__, _WtLexCmpDefault.__init__)
+    def __init__(self: _Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
+    @_copydoc(_WtLexCmpString.__call__)
+    def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
+        return super().__call__(x, y)
+
+
 _copy_cxx_mem_fns(_LenLexCmpString, LenLexCmp)
 _register_cxx_wrapped_type(_LenLexCmpDefault, LenLexCmp)
 _register_cxx_wrapped_type(_LenLexCmpString, LenLexCmp)
@@ -542,37 +599,16 @@ _register_cxx_wrapped_type(_WtLenLexCmpString, WtLenLexCmp)
 _register_cxx_wrapped_type(_WtLenLexCmpWord, WtLenLexCmp)
 
 
-class RevWtLenLexCmp(_ConfiguredCmp):
-    __doc__ = _RevWtLenLexCmpString.__doc__
-    _configuration_name = "weights"
-
-    _py_template_params_to_cxx_type = {
-        (): _RevWtLenLexCmpDefault,
-        (str,): _RevWtLenLexCmpString,
-        (list[int],): _RevWtLenLexCmpWord,
-    }
-    _cxx_type_to_py_template_params = dict(
-        zip(
-            _py_template_params_to_cxx_type.values(),
-            _py_template_params_to_cxx_type.keys(),
-            strict=True,
-        )
-    )
-    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
-
-    @_copydoc(_RevWtLenLexCmpString.__init__, _RevWtLenLexCmpDefault.__init__)
-    def __init__(self: _Self, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-
-    @_copydoc(_RevWtLenLexCmpString.__call__)
-    def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
-        return super().__call__(x, y)
-
-
 _copy_cxx_mem_fns(_RevWtLenLexCmpString, RevWtLenLexCmp)
 _register_cxx_wrapped_type(_RevWtLenLexCmpDefault, RevWtLenLexCmp)
 _register_cxx_wrapped_type(_RevWtLenLexCmpString, RevWtLenLexCmp)
 _register_cxx_wrapped_type(_RevWtLenLexCmpWord, RevWtLenLexCmp)
+
+
+_copy_cxx_mem_fns(_WtLexCmpString, WtLexCmp)
+_register_cxx_wrapped_type(_WtLexCmpDefault, WtLexCmp)
+_register_cxx_wrapped_type(_WtLexCmpString, WtLexCmp)
+_register_cxx_wrapped_type(_WtLexCmpWord, WtLexCmp)
 
 
 __all__ = [
@@ -586,4 +622,5 @@ __all__ = [
     "RevWtLenLexCmp",
     "WrCmp",
     "WtLenLexCmp",
+    "WtLexCmp",
 ]

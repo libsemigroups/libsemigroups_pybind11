@@ -64,6 +64,7 @@ from .order import (
     RPOCmp,
     WrCmp,
     WtLenLexCmp,
+    WtLexCmp,
 )
 from .presentation import InversePresentation, Presentation
 from .schreier_sims import SchreierSims
@@ -191,6 +192,7 @@ __all__ = [
     "RevWtLenLexCmp",
     "WrCmp",
     "WtLenLexCmp",
+    "WtLexCmp",
     "Meeter",
     "NegativeInfinity",
     "Order",
