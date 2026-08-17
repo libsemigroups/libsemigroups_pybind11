@@ -21,6 +21,9 @@ from _libsemigroups_pybind11 import (
     RevLenLexCmpDefault as _RevLenLexCmpDefault,
     RevLenLexCmpString as _RevLenLexCmpString,
     RevLenLexCmpWord as _RevLenLexCmpWord,
+    RevLenWtLexCmpDefault as _RevLenWtLexCmpDefault,
+    RevLenWtLexCmpString as _RevLenWtLexCmpString,
+    RevLenWtLexCmpWord as _RevLenWtLexCmpWord,
     RevLexCmpDefault as _RevLexCmpDefault,
     RevLexCmpString as _RevLexCmpString,
     RevLexCmpWord as _RevLexCmpWord,
@@ -683,12 +686,46 @@ _register_cxx_wrapped_type(_LenWtLexCmpString, LenWtLexCmp)
 _register_cxx_wrapped_type(_LenWtLexCmpWord, LenWtLexCmp)
 
 
+class RevLenWtLexCmp(_ConfiguredCmp):
+    __doc__ = _RevLenWtLexCmpString.__doc__
+    _configuration_name = "weights"
+
+    _py_template_params_to_cxx_type = {
+        (): _RevLenWtLexCmpDefault,
+        (str,): _RevLenWtLexCmpString,
+        (list[int],): _RevLenWtLexCmpWord,
+    }
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+            strict=True,
+        )
+    )
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_RevLenWtLexCmpString.__init__, _RevLenWtLexCmpDefault.__init__)
+    def __init__(self: _Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
+    @_copydoc(_RevLenWtLexCmpString.__call__)
+    def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
+        return super().__call__(x, y)
+
+
+_copy_cxx_mem_fns(_RevLenWtLexCmpString, RevLenWtLexCmp)
+_register_cxx_wrapped_type(_RevLenWtLexCmpDefault, RevLenWtLexCmp)
+_register_cxx_wrapped_type(_RevLenWtLexCmpString, RevLenWtLexCmp)
+_register_cxx_wrapped_type(_RevLenWtLexCmpWord, RevLenWtLexCmp)
+
+
 __all__ = [
     "LenLexCmp",
     "LenWtLexCmp",
     "LexCmp",
     "RPOCmp",
     "RevLenLexCmp",
+    "RevLenWtLexCmp",
     "RevLexCmp",
     "RevRPOCmp",
     "RevWrCmp",

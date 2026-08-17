@@ -18,6 +18,7 @@ from libsemigroups_pybind11 import (
     LibsemigroupsError,
     Order,
     RevLenLexCmp,
+    RevLenWtLexCmp,
     RevLexCmp,
     RevRPOCmp,
     RevWrCmp,
@@ -525,6 +526,55 @@ def test_len_wt_lex_cmp_object_rejects_bad_constructors():
         LenWtLexCmp(Alphabet("ab"))
     with pytest.raises(LibsemigroupsError):
         LenWtLexCmp(Alphabet("ab"), [1])
+
+
+def test_rev_len_wt_lex_cmp_object_without_alphabet():
+    """Check length then reversed weighted lexicographic comparison of index words."""
+    compare = RevLenWtLexCmp([1, 2])
+    assert compare.weights() == [1, 2]
+    assert compare([0], [1])
+    assert compare.init([2, 1]) is compare
+    assert compare.weights() == [2, 1]
+
+
+@pytest.mark.parametrize(
+    ("alphabet", "x", "y", "missing"),
+    [(Alphabet("ab"), "a", "b", "c"), (Alphabet([0, 1]), [0], [1], [2])],
+)
+def test_rev_len_wt_lex_cmp_object_with_alphabet(alphabet, x, y, missing):
+    """Check alphabet-aware length then reversed weighted lexicographic comparison."""
+    compare = RevLenWtLexCmp(alphabet, [1, 2])
+    assert compare(x, y)
+    assert compare.alphabet() == alphabet
+    assert compare.weights() == [1, 2]
+    assert compare.init(alphabet, [1, 2]) is compare
+
+    with pytest.raises(LibsemigroupsError):
+        compare(x, missing)
+
+
+def test_rev_len_wt_lex_cmp_object_copy_and_repr():
+    """Check copies and human-readable representations."""
+    original = RevLenWtLexCmp(Alphabet("ab"), [1, 2])
+    copies = (
+        original.copy(),
+        original.__copy__(),  # pylint: disable=unnecessary-dunder-call
+        copy(original),
+    )
+    original.init(Alphabet("ab"), [2, 1])
+    assert all(copied.weights() == [1, 2] for copied in copies)
+    assert repr(RevLenWtLexCmp([1, 2])) == "<RevLenWtLexCmp object with weights [1, 2]>"
+    assert repr(RevLenWtLexCmp(Alphabet("ab"), [1, 2])) == (
+        '<RevLenWtLexCmp object over <alphabet "ab"> with weights [1, 2]>'
+    )
+
+
+def test_rev_len_wt_lex_cmp_object_rejects_bad_constructors():
+    """Check constructor validation."""
+    with pytest.raises(TypeError):
+        RevLenWtLexCmp(Alphabet("ab"))
+    with pytest.raises(LibsemigroupsError):
+        RevLenWtLexCmp(Alphabet("ab"), [1])
 
 
 def test_rev_wt_lex_cmp_object_without_alphabet():
