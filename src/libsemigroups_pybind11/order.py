@@ -33,6 +33,9 @@ from _libsemigroups_pybind11 import (
     WrCmpDefault as _WrCmpDefault,
     WrCmpString as _WrCmpString,
     WrCmpWord as _WrCmpWord,
+    WtLenLexCmpDefault as _WtLenLexCmpDefault,
+    WtLenLexCmpString as _WtLenLexCmpString,
+    WtLenLexCmpWord as _WtLenLexCmpWord,
 )
 
 from .alphabet import Alphabet as _Alphabet
@@ -435,6 +438,60 @@ class WrCmp(_ConfiguredCmp):
         return super().__call__(x, y)
 
 
+class RevWrCmp(_ConfiguredCmp):
+    __doc__ = _RevWrCmpString.__doc__
+    _configuration_name = "levels"
+
+    _py_template_params_to_cxx_type = {
+        (): _RevWrCmpDefault,
+        (str,): _RevWrCmpString,
+        (list[int],): _RevWrCmpWord,
+    }
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+            strict=True,
+        )
+    )
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_RevWrCmpString.__init__, _RevWrCmpDefault.__init__)
+    def __init__(self: _Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
+    @_copydoc(_RevWrCmpString.__call__)
+    def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
+        return super().__call__(x, y)
+
+
+class WtLenLexCmp(_ConfiguredCmp):
+    __doc__ = _WtLenLexCmpString.__doc__
+    _configuration_name = "weights"
+
+    _py_template_params_to_cxx_type = {
+        (): _WtLenLexCmpDefault,
+        (str,): _WtLenLexCmpString,
+        (list[int],): _WtLenLexCmpWord,
+    }
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+            strict=True,
+        )
+    )
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_WtLenLexCmpString.__init__, _WtLenLexCmpDefault.__init__)
+    def __init__(self: _Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
+    @_copydoc(_WtLenLexCmpString.__call__)
+    def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
+        return super().__call__(x, y)
+
+
 _copy_cxx_mem_fns(_LenLexCmpString, LenLexCmp)
 _register_cxx_wrapped_type(_LenLexCmpDefault, LenLexCmp)
 _register_cxx_wrapped_type(_LenLexCmpString, LenLexCmp)
@@ -471,37 +528,15 @@ _register_cxx_wrapped_type(_WrCmpString, WrCmp)
 _register_cxx_wrapped_type(_WrCmpWord, WrCmp)
 
 
-class RevWrCmp(_ConfiguredCmp):
-    __doc__ = _RevWrCmpString.__doc__
-    _configuration_name = "levels"
-
-    _py_template_params_to_cxx_type = {
-        (): _RevWrCmpDefault,
-        (str,): _RevWrCmpString,
-        (list[int],): _RevWrCmpWord,
-    }
-    _cxx_type_to_py_template_params = dict(
-        zip(
-            _py_template_params_to_cxx_type.values(),
-            _py_template_params_to_cxx_type.keys(),
-            strict=True,
-        )
-    )
-    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
-
-    @_copydoc(_RevWrCmpString.__init__, _RevWrCmpDefault.__init__)
-    def __init__(self: _Self, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-
-    @_copydoc(_RevWrCmpString.__call__)
-    def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
-        return super().__call__(x, y)
-
-
 _copy_cxx_mem_fns(_RevWrCmpString, RevWrCmp)
 _register_cxx_wrapped_type(_RevWrCmpDefault, RevWrCmp)
 _register_cxx_wrapped_type(_RevWrCmpString, RevWrCmp)
 _register_cxx_wrapped_type(_RevWrCmpWord, RevWrCmp)
+
+_copy_cxx_mem_fns(_WtLenLexCmpString, WtLenLexCmp)
+_register_cxx_wrapped_type(_WtLenLexCmpDefault, WtLenLexCmp)
+_register_cxx_wrapped_type(_WtLenLexCmpString, WtLenLexCmp)
+_register_cxx_wrapped_type(_WtLenLexCmpWord, WtLenLexCmp)
 
 
 __all__ = [
@@ -513,4 +548,5 @@ __all__ = [
     "RevRPOCmp",
     "RevWrCmp",
     "WrCmp",
+    "WtLenLexCmp",
 ]

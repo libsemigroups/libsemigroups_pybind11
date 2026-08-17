@@ -2909,5 +2909,22 @@ respectively, in new code.
         "levels",
         "reversed wreath-product ordering",
         &RevWrCmp<word_type>::levels);
+
+    bind_configured_cmp_default<WtLenLexCmp<>>(
+        m, "WtLenLexCmp", "weights", &WtLenLexCmp<>::weights);
+    bind_configured_cmp_with_alphabet<WtLenLexCmp<std::string>, std::string>(
+        m,
+        "WtLenLexCmpString",
+        "WtLenLexCmp",
+        "weights",
+        "weighted len-lex ordering",
+        &WtLenLexCmp<std::string>::weights);
+    bind_configured_cmp_with_alphabet<WtLenLexCmp<word_type>, word_type>(
+        m,
+        "WtLenLexCmpWord",
+        "WtLenLexCmp",
+        "weights",
+        "weighted len-lex ordering",
+        &WtLenLexCmp<word_type>::weights);
   }
 }  // namespace libsemigroups
