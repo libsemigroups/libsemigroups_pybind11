@@ -25,6 +25,7 @@ strings are described on the following pages:
     :maxdepth: 1
 
     lex-cmp
+    rev-lex-cmp
     lenlex-cmp
     rpo-cmp
     rev-rpo-cmp
