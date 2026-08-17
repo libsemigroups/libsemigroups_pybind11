@@ -1298,6 +1298,268 @@ Constructs an object whose call operator compares either ``str`` or
           py::arg("y"));
     }
 
+    template <typename Cmp>
+    void bind_configured_cmp_default(
+        py::module&        m,
+        std::string const& name,
+        std::string const& configuration,
+        std::vector<size_t> const& (Cmp::*get_configuration)() const) {
+      std::string const binding_name = name + "Default";
+      py::class_<Cmp>   thing(m, binding_name.c_str());
+
+      thing.def(py::init<>(),
+                fmt::format(R"pbdoc(
+:sig=(self: {0}) -> None:
+Construct a comparison object with an empty {1} vector.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import {0}
+  >>> {0}().{1}()
+  []
+)pbdoc",
+                            name,
+                            configuration)
+                    .c_str());
+      thing.def(py::init<std::vector<size_t> const&>(),
+                py::arg(configuration.c_str()),
+                fmt::format(R"pbdoc(
+:sig=(self: {0}, {1}: list[int]) -> None:
+Construct a comparison object for index words.
+
+:param {1}: the {1} of the generators.
+:type {1}: list[int]
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import {0}
+  >>> {0}([1, 2]).{1}()
+  [1, 2]
+)pbdoc",
+                            name,
+                            configuration)
+                    .c_str());
+      thing.def("__repr__",
+                [](Cmp const& self) { return to_human_readable_repr(self); });
+      thing.def("__copy__", [](Cmp const& self) { return Cmp(self); });
+      thing.def("copy", [](Cmp const& self) { return Cmp(self); });
+      thing.def("init", [](Cmp& self) -> Cmp& { return self.init(); });
+      thing.def(
+          "init",
+          [](Cmp& self, std::vector<size_t> const& values) -> Cmp& {
+            return self.init(values);
+          },
+          py::arg(configuration.c_str()));
+      thing.def(configuration.c_str(), [get_configuration](Cmp const& self) {
+        return (self.*get_configuration)();
+      });
+      thing.def(
+          "__call__",
+          [](Cmp const& self, word_type const& x, word_type const& y) {
+            return self(x, y);
+          },
+          py::arg("x"),
+          py::arg("y"));
+    }
+
+    template <typename Cmp, typename Word>
+    void bind_configured_cmp_with_alphabet(
+        py::module&        m,
+        char const*        binding_name,
+        std::string const& name,
+        std::string const& configuration,
+        std::string const& ordering,
+        std::vector<size_t> const& (Cmp::*get_configuration)() const) {
+      py::class_<Cmp> thing(m,
+                            binding_name,
+                            fmt::format(R"pbdoc(
+Compare words using {2}.
+
+Use ``{0}({1})`` to compare ``list[int]`` index words, where the entries of
+*{1}* correspond to the indices. Use ``{0}(alphabet, {1})`` to compare words
+whose letters belong to *alphabet*. The latter form copies both arguments and
+only accepts words with the same type as *alphabet*.
+
+.. note::
+  The constructor fixes whether this object is alphabet-aware and fixes the
+  word type of an alphabet-aware object. Reinitialization cannot change either.
+
+.. seealso::
+
+  :any:`Alphabet`
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, {0}
+  >>> {0}([1, 2])([0], [1])
+  True
+  >>> {0}(Alphabet("ab"), [1, 2])("a", "b")
+  True
+  >>> {0}(Alphabet([0, 1]), [1, 2])([0], [1])
+  True
+)pbdoc",
+                                        name,
+                                        configuration,
+                                        ordering)
+                                .c_str());
+
+      thing.def(py::init<Alphabet<Word> const&, std::vector<size_t> const&>(),
+                py::arg("alphabet"),
+                py::arg(configuration.c_str()),
+                fmt::format(R"pbdoc(
+:sig=(self: {0}, alphabet: Alphabet, {1}: list[int]) -> None:
+Construct a comparison object from an alphabet and {1}.
+
+The two arguments must have the same size.
+
+:param alphabet: the alphabet defining the letters and their order.
+:type alphabet: Alphabet
+:param {1}: the {1} of the letters in *alphabet*.
+:type {1}: list[int]
+
+:raises LibsemigroupsError:
+  if *alphabet* and *{1}* have different sizes.
+:raises TypeError:
+  if the arguments do not have the required types.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, {0}
+  >>> {0}(Alphabet("ab"), [1, 2])("a", "b")
+  True
+)pbdoc",
+                            name,
+                            configuration)
+                    .c_str());
+      thing.def("__repr__",
+                [](Cmp const& self) { return to_human_readable_repr(self); });
+      thing.def("__copy__", [](Cmp const& self) { return Cmp(self); });
+      thing.def(
+          "copy",
+          [](Cmp const& self) { return Cmp(self); },
+          fmt::format(R"pbdoc(
+:sig=(self: {0}) -> {0}:
+Copy a comparison object.
+
+:returns: An independent copy of *self*.
+:rtype: {0}
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, {0}
+  >>> {0}(Alphabet("ab"), [1, 2]).copy()("a", "b")
+  True
+)pbdoc",
+                      name)
+              .c_str());
+      thing.def(
+          "init",
+          [](Cmp&                       self,
+             Alphabet<Word> const&      alphabet,
+             std::vector<size_t> const& values) -> Cmp& {
+            return self.init(alphabet, values);
+          },
+          py::arg("alphabet"),
+          py::arg(configuration.c_str()),
+          fmt::format(R"pbdoc(
+:sig=(self: {0}, alphabet: Alphabet, {1}: list[int]) -> {0}:
+Reinitialize the comparison object.
+
+For an alphabet-aware object, pass an alphabet of the original word type and a
+same-sized {1} vector. For an index-word object, call ``init({1})`` or
+``init()``; the latter clears the vector.
+
+:returns: The first argument *self*.
+:rtype: {0}
+
+:raises AttributeError:
+  if the arguments do not match the construction mode of *self*.
+:raises LibsemigroupsError:
+  if *alphabet* and *{1}* have different sizes.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, {0}
+  >>> compare = {0}(Alphabet("ab"), [1, 2])
+  >>> compare.init(Alphabet("ba"), [1, 2]) is compare
+  True
+)pbdoc",
+                      name,
+                      configuration)
+              .c_str());
+      thing.def(
+          "__call__",
+          [](Cmp const& self, Word const& x, Word const& y) {
+            return self(x, y);
+          },
+          py::arg("x"),
+          py::arg("y"),
+          fmt::format(R"pbdoc(
+:sig=(self: {0}, x: str | list[int], y: str | list[int]) -> bool:
+Compare two words using {2}.
+
+Index-word objects accept ``list[int]``. Alphabet-aware objects accept words
+of the same type as their alphabet.
+
+:returns: Whether *x* is less than *y*.
+:rtype: bool
+
+:raises TypeError:
+  if the word types do not match the construction mode.
+:raises LibsemigroupsError:
+  if a word contains a letter not represented by the stored configuration.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, {0}
+  >>> {0}([1, 2])([0], [1])
+  True
+  >>> {0}(Alphabet("ab"), [1, 2])("a", "b")
+  True
+)pbdoc",
+                      name,
+                      configuration,
+                      ordering)
+              .c_str());
+      thing.def("alphabet",
+                &Cmp::alphabet,
+                fmt::format(R"pbdoc(
+:sig=(self: {0}) -> Alphabet:
+Return the stored alphabet.
+
+:raises AttributeError:
+  if *self* was constructed without an alphabet.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, {0}
+  >>> alphabet = Alphabet("ab")
+  >>> {0}(alphabet, [1, 2]).alphabet() == alphabet
+  True
+)pbdoc",
+                            name)
+                    .c_str(),
+                py::return_value_policy::reference_internal);
+      thing.def(
+          configuration.c_str(),
+          [get_configuration](Cmp const& self) {
+            return (self.*get_configuration)();
+          },
+          fmt::format(R"pbdoc(
+:sig=(self: {0}) -> list[int]:
+Return the stored {1}.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import {0}
+  >>> {0}([1, 2]).{1}()
+  [1, 2]
+)pbdoc",
+                      name,
+                      configuration)
+              .c_str());
+    }
+
     template <typename Word>
     void bind_lex_cmp_with_alphabet(py::module& m, char const* name) {
       using LexCmp_ = LexCmp<Word>;
@@ -2613,5 +2875,22 @@ respectively, in new code.
 
     bind_rev_rpo_cmp_with_alphabet<std::string>(m, "RevRPOCmpString");
     bind_rev_rpo_cmp_with_alphabet<word_type>(m, "RevRPOCmpWord");
+
+    bind_configured_cmp_default<WrCmp<>>(
+        m, "WrCmp", "levels", &WrCmp<>::levels);
+    bind_configured_cmp_with_alphabet<WrCmp<std::string>, std::string>(
+        m,
+        "WrCmpString",
+        "WrCmp",
+        "levels",
+        "wreath-product ordering",
+        &WrCmp<std::string>::levels);
+    bind_configured_cmp_with_alphabet<WrCmp<word_type>, word_type>(
+        m,
+        "WrCmpWord",
+        "WrCmp",
+        "levels",
+        "wreath-product ordering",
+        &WrCmp<word_type>::levels);
   }
 }  // namespace libsemigroups

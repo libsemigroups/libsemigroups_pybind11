@@ -30,4 +30,5 @@ strings are described on the following pages:
     rev-lenlex-cmp
     rpo-cmp
     rev-rpo-cmp
+    wr-cmp
     functions

@@ -27,6 +27,9 @@ from _libsemigroups_pybind11 import (
     RPOCmpDefault as _RPOCmpDefault,
     RPOCmpString as _RPOCmpString,
     RPOCmpWord as _RPOCmpWord,
+    WrCmpDefault as _WrCmpDefault,
+    WrCmpString as _WrCmpString,
+    WrCmpWord as _WrCmpWord,
 )
 
 from .alphabet import Alphabet as _Alphabet
@@ -37,6 +40,51 @@ from .detail.cxx_wrapper import (
     to_cxx as _to_cxx,
 )
 from .detail.decorators import copydoc as _copydoc
+
+
+class _ConfiguredCmp(_CxxWrapper):
+    _configuration_name: str
+
+    def __init__(self: _Self, *args, **kwargs) -> None:
+        super().__init__(*args, optional_kwargs=("alphabet", self._configuration_name), **kwargs)
+        if _to_cxx(self) is not None:
+            return
+
+        if len(args) > 2:
+            raise TypeError(f"expected at most 2 positional arguments, found {len(args)}")
+        if args and kwargs:
+            raise TypeError("expected positional or keyword arguments, but found both")
+
+        if kwargs:
+            alphabet = kwargs.get("alphabet")
+            configuration = kwargs.get(self._configuration_name)
+            has_alphabet = "alphabet" in kwargs
+            has_configuration = self._configuration_name in kwargs
+        else:
+            alphabet = args[0] if len(args) == 2 else None
+            configuration = args[-1] if args else None
+            has_alphabet = len(args) == 2
+            has_configuration = bool(args)
+
+        if not has_alphabet and not has_configuration:
+            self.py_template_params = ()
+            self.init_cxx_obj()
+        elif not has_alphabet and isinstance(configuration, list):
+            self.py_template_params = ()
+            self.init_cxx_obj(configuration)
+        elif (
+            has_alphabet
+            and has_configuration
+            and isinstance(alphabet, _Alphabet)
+            and isinstance(configuration, list)
+        ):
+            self.py_template_params = alphabet.py_template_params
+            self.init_cxx_obj(alphabet, configuration)
+        else:
+            raise TypeError(
+                f"expected either {self._configuration_name}: list[int], or alphabet: "
+                f"Alphabet and {self._configuration_name}: list[int]"
+            )
 
 
 class LexCmp(_CxxWrapper):
@@ -357,6 +405,33 @@ class RevRPOCmp(_CxxWrapper):
         return super().__call__(x, y)
 
 
+class WrCmp(_ConfiguredCmp):
+    __doc__ = _WrCmpString.__doc__
+    _configuration_name = "levels"
+
+    _py_template_params_to_cxx_type = {
+        (): _WrCmpDefault,
+        (str,): _WrCmpString,
+        (list[int],): _WrCmpWord,
+    }
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+            strict=True,
+        )
+    )
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_WrCmpString.__init__, _WrCmpDefault.__init__)
+    def __init__(self: _Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
+    @_copydoc(_WrCmpString.__call__)
+    def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
+        return super().__call__(x, y)
+
+
 _copy_cxx_mem_fns(_LenLexCmpString, LenLexCmp)
 _register_cxx_wrapped_type(_LenLexCmpDefault, LenLexCmp)
 _register_cxx_wrapped_type(_LenLexCmpString, LenLexCmp)
@@ -387,4 +462,9 @@ _register_cxx_wrapped_type(_RevRPOCmpDefault, RevRPOCmp)
 _register_cxx_wrapped_type(_RevRPOCmpString, RevRPOCmp)
 _register_cxx_wrapped_type(_RevRPOCmpWord, RevRPOCmp)
 
-__all__ = ["LenLexCmp", "LexCmp", "RPOCmp", "RevLenLexCmp", "RevLexCmp", "RevRPOCmp"]
+_copy_cxx_mem_fns(_WrCmpString, WrCmp)
+_register_cxx_wrapped_type(_WrCmpDefault, WrCmp)
+_register_cxx_wrapped_type(_WrCmpString, WrCmp)
+_register_cxx_wrapped_type(_WrCmpWord, WrCmp)
+
+__all__ = ["LenLexCmp", "LexCmp", "RPOCmp", "RevLenLexCmp", "RevLexCmp", "RevRPOCmp", "WrCmp"]
