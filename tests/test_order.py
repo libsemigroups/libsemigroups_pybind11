@@ -19,6 +19,7 @@ from libsemigroups_pybind11 import (
     RevLenLexCmp,
     RevLexCmp,
     RevRPOCmp,
+    RevWrCmp,
     RPOCmp,
     WrCmp,
     len_wt_lex_cmp,
@@ -47,6 +48,55 @@ def test_lex_cmp_object_without_alphabet():
     assert compare("a", "b")
     assert compare([0], [1])
     assert not compare("b", "aa")
+
+
+def test_rev_wr_cmp_object_without_alphabet():
+    """Check reversed wreath-product comparison of index words."""
+    compare = RevWrCmp([1, 2])
+    assert compare.levels() == [1, 2]
+    assert compare([0], [1])
+    assert compare.init([2, 1]) is compare
+    assert compare.levels() == [2, 1]
+
+
+@pytest.mark.parametrize(
+    ("alphabet", "x", "y", "missing"),
+    [(Alphabet("ab"), "a", "b", "c"), (Alphabet([0, 1]), [0], [1], [2])],
+)
+def test_rev_wr_cmp_object_with_alphabet(alphabet, x, y, missing):
+    """Check alphabet-aware reversed wreath-product comparison."""
+    compare = RevWrCmp(alphabet, [1, 2])
+    assert compare(x, y)
+    assert compare.alphabet() == alphabet
+    assert compare.levels() == [1, 2]
+    assert compare.init(alphabet, [1, 2]) is compare
+
+    with pytest.raises(LibsemigroupsError):
+        compare(x, missing)
+
+
+def test_rev_wr_cmp_object_copy_and_repr():
+    """Check copies and human-readable representations."""
+    original = RevWrCmp(Alphabet("ab"), [1, 2])
+    copies = (
+        original.copy(),
+        original.__copy__(),  # pylint: disable=unnecessary-dunder-call
+        copy(original),
+    )
+    original.init(Alphabet("ab"), [2, 1])
+    assert all(copied.levels() == [1, 2] for copied in copies)
+    assert repr(RevWrCmp([1, 2])) == "<RevWrCmp object with levels [1, 2]>"
+    assert repr(RevWrCmp(Alphabet("ab"), [1, 2])) == (
+        '<RevWrCmp object over <alphabet "ab"> with levels [1, 2]>'
+    )
+
+
+def test_rev_wr_cmp_object_rejects_bad_constructors():
+    """Check constructor validation."""
+    with pytest.raises(TypeError):
+        RevWrCmp(Alphabet("ab"))
+    with pytest.raises(LibsemigroupsError):
+        RevWrCmp(Alphabet("ab"), [1])
 
 
 @pytest.mark.parametrize(

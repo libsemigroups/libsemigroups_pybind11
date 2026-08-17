@@ -24,6 +24,9 @@ from _libsemigroups_pybind11 import (
     RevRPOCmpDefault as _RevRPOCmpDefault,
     RevRPOCmpString as _RevRPOCmpString,
     RevRPOCmpWord as _RevRPOCmpWord,
+    RevWrCmpDefault as _RevWrCmpDefault,
+    RevWrCmpString as _RevWrCmpString,
+    RevWrCmpWord as _RevWrCmpWord,
     RPOCmpDefault as _RPOCmpDefault,
     RPOCmpString as _RPOCmpString,
     RPOCmpWord as _RPOCmpWord,
@@ -467,4 +470,47 @@ _register_cxx_wrapped_type(_WrCmpDefault, WrCmp)
 _register_cxx_wrapped_type(_WrCmpString, WrCmp)
 _register_cxx_wrapped_type(_WrCmpWord, WrCmp)
 
-__all__ = ["LenLexCmp", "LexCmp", "RPOCmp", "RevLenLexCmp", "RevLexCmp", "RevRPOCmp", "WrCmp"]
+
+class RevWrCmp(_ConfiguredCmp):
+    __doc__ = _RevWrCmpString.__doc__
+    _configuration_name = "levels"
+
+    _py_template_params_to_cxx_type = {
+        (): _RevWrCmpDefault,
+        (str,): _RevWrCmpString,
+        (list[int],): _RevWrCmpWord,
+    }
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+            strict=True,
+        )
+    )
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_RevWrCmpString.__init__, _RevWrCmpDefault.__init__)
+    def __init__(self: _Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
+    @_copydoc(_RevWrCmpString.__call__)
+    def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
+        return super().__call__(x, y)
+
+
+_copy_cxx_mem_fns(_RevWrCmpString, RevWrCmp)
+_register_cxx_wrapped_type(_RevWrCmpDefault, RevWrCmp)
+_register_cxx_wrapped_type(_RevWrCmpString, RevWrCmp)
+_register_cxx_wrapped_type(_RevWrCmpWord, RevWrCmp)
+
+
+__all__ = [
+    "LenLexCmp",
+    "LexCmp",
+    "RPOCmp",
+    "RevLenLexCmp",
+    "RevLexCmp",
+    "RevRPOCmp",
+    "RevWrCmp",
+    "WrCmp",
+]

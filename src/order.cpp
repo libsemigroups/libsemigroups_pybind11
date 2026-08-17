@@ -2892,5 +2892,22 @@ respectively, in new code.
         "levels",
         "wreath-product ordering",
         &WrCmp<word_type>::levels);
+
+    bind_configured_cmp_default<RevWrCmp<>>(
+        m, "RevWrCmp", "levels", &RevWrCmp<>::levels);
+    bind_configured_cmp_with_alphabet<RevWrCmp<std::string>, std::string>(
+        m,
+        "RevWrCmpString",
+        "RevWrCmp",
+        "levels",
+        "reversed wreath-product ordering",
+        &RevWrCmp<std::string>::levels);
+    bind_configured_cmp_with_alphabet<RevWrCmp<word_type>, word_type>(
+        m,
+        "RevWrCmpWord",
+        "RevWrCmp",
+        "levels",
+        "reversed wreath-product ordering",
+        &RevWrCmp<word_type>::levels);
   }
 }  // namespace libsemigroups

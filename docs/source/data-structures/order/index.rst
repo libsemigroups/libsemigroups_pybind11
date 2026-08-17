@@ -31,4 +31,5 @@ strings are described on the following pages:
     rpo-cmp
     rev-rpo-cmp
     wr-cmp
+    rev-wr-cmp
     functions

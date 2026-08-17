@@ -53,7 +53,7 @@ from .kambites import Kambites
 from .knuth_bendix import KnuthBendix
 from .konieczny import Konieczny
 from .matrix import Matrix, MatrixKind
-from .order import LenLexCmp, LexCmp, RevLenLexCmp, RevLexCmp, RevRPOCmp, RPOCmp, WrCmp
+from .order import LenLexCmp, LexCmp, RevLenLexCmp, RevLexCmp, RevRPOCmp, RevWrCmp, RPOCmp, WrCmp
 from .presentation import InversePresentation, Presentation
 from .schreier_sims import SchreierSims
 from .sims import MinimalRepOrc, RepOrc, Sims1, Sims2, SimsRefinerFaithful, SimsRefinerIdeals
@@ -176,6 +176,7 @@ __all__ = [
     "RevLenLexCmp",
     "RevLexCmp",
     "RevRPOCmp",
+    "RevWrCmp",
     "WrCmp",
     "Meeter",
     "NegativeInfinity",
