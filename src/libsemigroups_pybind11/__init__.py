@@ -55,6 +55,7 @@ from .konieczny import Konieczny
 from .matrix import Matrix, MatrixKind
 from .order import (
     LenLexCmp,
+    LenWtLexCmp,
     LexCmp,
     RevLenLexCmp,
     RevLexCmp,
@@ -184,6 +185,7 @@ __all__ = [
     "LibsemigroupsError",
     "LimitMax",
     "LenLexCmp",
+    "LenWtLexCmp",
     "LexCmp",
     "RPOCmp",
     "RevLenLexCmp",

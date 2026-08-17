@@ -36,4 +36,5 @@ strings are described on the following pages:
     rev-wt-lenlex-cmp
     wt-lex-cmp
     rev-wt-lex-cmp
+    len-wt-lex-cmp
     functions
