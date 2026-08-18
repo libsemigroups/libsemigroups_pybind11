@@ -56,14 +56,7 @@ from .matrix import Matrix, MatrixKind
 from .order import wr_cmp
 from .presentation import InversePresentation, Presentation
 from .schreier_sims import SchreierSims
-from .sims import (
-    MinimalRepOrc,
-    RepOrc,
-    Sims1,
-    Sims2,
-    SimsRefinerFaithful,
-    SimsRefinerIdeals,
-)
+from .sims import MinimalRepOrc, RepOrc, Sims1, Sims2, SimsRefinerFaithful, SimsRefinerIdeals
 from .stephen import Stephen
 from .to import to
 from .todd_coxeter import ToddCoxeter
