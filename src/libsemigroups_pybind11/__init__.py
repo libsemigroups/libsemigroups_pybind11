@@ -120,6 +120,8 @@ try:
         shortlex_compare,
         side,
         tril,
+        wt_lenlex_cmp as _wt_lenlex_cmp,
+        wt_lex_cmp as _wt_lex_cmp,
     )
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
@@ -132,6 +134,8 @@ lenlex_cmp = _wrap_cxx_free_fn(_lenlex_cmp)
 lex_cmp = _wrap_cxx_free_fn(_lex_cmp)
 rev_rpo_cmp = _wrap_cxx_free_fn(_rev_rpo_cmp)
 rpo_cmp = _wrap_cxx_free_fn(_rpo_cmp)
+wt_lenlex_cmp = _wrap_cxx_free_fn(_wt_lenlex_cmp)
+wt_lex_cmp = _wrap_cxx_free_fn(_wt_lex_cmp)
 
 
 __all__ = [
@@ -186,6 +190,8 @@ __all__ = [
     "side",
     "tril",
     "wr_cmp",
+    "wt_lenlex_cmp",
+    "wt_lex_cmp",
     # Submodules
     "action",
     "adapters",

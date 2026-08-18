@@ -175,6 +175,7 @@ compared by their positions in *alphabet*.
 :type y: str | list[int]
 :returns: Whether *x* is less than *y*.
 :rtype: bool
+
 :raises LibsemigroupsError: if either word contains a letter that does not
   belong to *alphabet*.
 
@@ -323,6 +324,157 @@ left, with letters compared by their positions in *alphabet*.
   >>> from libsemigroups_pybind11 import Alphabet, rev_rpo_cmp
   >>> alphabet = Alphabet("ba")
   >>> rev_rpo_cmp(alphabet, "b", "a")
+  True
+)pbdoc");
+
+      m.def(
+          "wt_lenlex_cmp",
+          [](std::vector<size_t> const& weights, Word const& x, Word const& y) {
+            return wt_lenlex_cmp(weights, x, y);
+          },
+          py::arg("weights"),
+          py::arg("x"),
+          py::arg("y"),
+          R"pbdoc(
+:sig=(weights: list[int], x: str | list[int], y: str | list[int]) -> bool:
+:only-document-once:
+Compare two words using weighted len-lex ordering.
+
+The *i*-th entry of *weights* is the weight assigned to generator *i*.
+Words are first ordered by their total weight, then by length, and finally
+lexicographically.
+
+:param weights: the weight assigned to each generator.
+:type weights: list[int]
+:param x: the first word.
+:type x: str | list[int]
+:param y: the second word.
+:type y: str | list[int]
+:returns: Whether *x* is less than *y*.
+:rtype: bool
+
+:raises LibsemigroupsError: if a letter is not a valid index into *weights*.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import wt_lenlex_cmp
+  >>> wt_lenlex_cmp([1, 3], [1], [0, 0])
+  False
+)pbdoc");
+
+      m.def(
+          "wt_lenlex_cmp",
+          [](Alphabet<Word> const&      alphabet,
+             std::vector<size_t> const& weights,
+             Word const&                x,
+             Word const& y) { return wt_lenlex_cmp(alphabet, weights, x, y); },
+          py::arg("alphabet"),
+          py::arg("weights"),
+          py::arg("x"),
+          py::arg("y"),
+          R"pbdoc(
+:sig=(alphabet: Alphabet, weights: list[int], x: str | list[int], y: str | list[int]) -> bool:
+:only-document-once:
+Compare two words using alphabet-aware weighted len-lex ordering.
+
+Letters are mapped to their positions in *alphabet*, and the *i*-th entry of
+*weights* is the weight assigned to the *i*-th letter of *alphabet*. Words are
+first ordered by their total weight, then by length, and finally
+lexicographically according to *alphabet*.
+
+:param alphabet: the ordered alphabet containing the letters of both words.
+:type alphabet: Alphabet
+:param weights: the weight assigned to each letter of *alphabet*.
+:type weights: list[int]
+:param x: the first word.
+:type x: str | list[int]
+:param y: the second word.
+:type y: str | list[int]
+:returns: Whether *x* is less than *y*.
+:rtype: bool
+
+:raises LibsemigroupsError: if a letter does not belong to *alphabet*, or its
+  position in *alphabet* is not a valid index into *weights*.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, wt_lenlex_cmp
+  >>> wt_lenlex_cmp(Alphabet("ba"), [3, 1], "b", "a")
+  False
+)pbdoc");
+
+      m.def(
+          "wt_lex_cmp",
+          [](std::vector<size_t> const& weights, Word const& x, Word const& y) {
+            return wt_lex_cmp(weights, x, y);
+          },
+          py::arg("weights"),
+          py::arg("x"),
+          py::arg("y"),
+          R"pbdoc(
+:sig=(weights: list[int], x: str | list[int], y: str | list[int]) -> bool:
+:only-document-once:
+Compare two words using weighted lexicographic ordering.
+
+The *i*-th entry of *weights* is the weight assigned to generator *i*.
+Words are first ordered by their total weight and then lexicographically.
+
+:param weights: the weight assigned to each generator.
+:type weights: list[int]
+:param x: the first word.
+:type x: str | list[int]
+:param y: the second word.
+:type y: str | list[int]
+:returns: Whether *x* is less than *y*.
+:rtype: bool
+
+:raises LibsemigroupsError: if a letter is not a valid index into *weights*.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import wt_lex_cmp
+  >>> wt_lex_cmp([1, 1], [1], [0, 0])
+  True
+)pbdoc");
+
+      m.def(
+          "wt_lex_cmp",
+          [](Alphabet<Word> const&      alphabet,
+             std::vector<size_t> const& weights,
+             Word const&                x,
+             Word const& y) { return wt_lex_cmp(alphabet, weights, x, y); },
+          py::arg("alphabet"),
+          py::arg("weights"),
+          py::arg("x"),
+          py::arg("y"),
+          R"pbdoc(
+:sig=(alphabet: Alphabet, weights: list[int], x: str | list[int], y: str | list[int]) -> bool:
+:only-document-once:
+Compare two words using alphabet-aware weighted lexicographic ordering.
+
+Letters are mapped to their positions in *alphabet*, and the *i*-th entry of
+*weights* is the weight assigned to the *i*-th letter of *alphabet*. Words are
+first ordered by their total weight and then lexicographically according to
+*alphabet*.
+
+:param alphabet: the ordered alphabet containing the letters of both words.
+:type alphabet: Alphabet
+:param weights: the weight assigned to each letter of *alphabet*.
+:type weights: list[int]
+:param x: the first word.
+:type x: str | list[int]
+:param y: the second word.
+:type y: str | list[int]
+:returns: Whether *x* is less than *y*.
+:rtype: bool
+
+:raises LibsemigroupsError: if a letter does not belong to *alphabet*, or its
+  position in *alphabet* is not a valid index into *weights*.
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import Alphabet, wt_lex_cmp
+  >>> wt_lex_cmp(Alphabet("ba"), [3, 1], "a", "b")
   True
 )pbdoc");
 
