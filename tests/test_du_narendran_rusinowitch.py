@@ -15,7 +15,7 @@ from libsemigroups_pybind11 import (
     LibsemigroupsError,
     Presentation,
     du_narendran_rusinowitch,
-    rpo_cmp,
+    rev_rpo_cmp,
 )
 
 
@@ -36,7 +36,7 @@ def test_du_narendran_rusinowitch(alphabet, rules, expected):
 
     assert du_narendran_rusinowitch(p) == expected
     for lhs, rhs in list(zip(rules[::2], rules[1::2], strict=True)):
-        assert rpo_cmp(Alphabet(alphabet), rhs, lhs)
+        assert rev_rpo_cmp(Alphabet(expected), rhs, lhs)
 
 
 def test_du_narendran_rusinowitch_no_order_exists():

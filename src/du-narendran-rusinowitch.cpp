@@ -46,10 +46,10 @@ namespace libsemigroups {
           R"pbdoc(
 :sig=(p: Presentation) -> str | list[int]:
 :only-document-once:
-Find an alphabet order that orients every rule using recursive-path ordering.
+Find an alphabet order that orients every rule using reverse recursive-path ordering.
 
 This function returns the alphabet of *p*, ordered so that every rule
-:math:`u \to v` satisfies :math:`u > v` with respect to recursive-path
+:math:`u \to v` satisfies :math:`u > v` with respect to reverse recursive-path
 ordering. It returns an empty word if no such order exists, or if the alphabet
 of *p* is empty.
 
@@ -63,7 +63,7 @@ of *p* is empty.
 :raises LibsemigroupsError: if the alphabet or rules of *p* are invalid.
 
 .. seealso::
-   :any:`rpo_cmp`
+   :any:`rev_rpo_cmp`
 
 .. doctest::
 
