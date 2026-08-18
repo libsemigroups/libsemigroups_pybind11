@@ -358,8 +358,8 @@ lexicographically.
 .. doctest:: python
 
   >>> from libsemigroups_pybind11 import wt_lenlex_cmp
-  >>> wt_lenlex_cmp([1, 2], [1], [0, 0])
-  True
+  >>> wt_lenlex_cmp([1, 3], [1], [0, 0])
+  False
 )pbdoc");
 
       m.def(
@@ -399,8 +399,8 @@ lexicographically according to *alphabet*.
 .. doctest:: python
 
   >>> from libsemigroups_pybind11 import Alphabet, wt_lenlex_cmp
-  >>> wt_lenlex_cmp(Alphabet("ba"), [1, 1], "b", "a")
-  True
+  >>> wt_lenlex_cmp(Alphabet("ba"), [3, 1], "b", "a")
+  False
 )pbdoc");
 
       m.def(
@@ -433,8 +433,8 @@ Words are first ordered by their total weight and then lexicographically.
 .. doctest:: python
 
   >>> from libsemigroups_pybind11 import wt_lex_cmp
-  >>> wt_lex_cmp([1, 2], [1], [0, 0])
-  False
+  >>> wt_lex_cmp([1, 1], [1], [0, 0])
+  True
 )pbdoc");
 
       m.def(
@@ -474,7 +474,7 @@ first ordered by their total weight and then lexicographically according to
 .. doctest:: python
 
   >>> from libsemigroups_pybind11 import Alphabet, wt_lex_cmp
-  >>> wt_lex_cmp(Alphabet("ba"), [1, 1], "b", "a")
+  >>> wt_lex_cmp(Alphabet("ba"), [3, 1], "a", "b")
   True
 )pbdoc");
 

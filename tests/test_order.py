@@ -117,6 +117,12 @@ def test_weighted_comparisons_for_integer_words(compare):
     with pytest.raises(LibsemigroupsError):
         compare(weights, [0], [3])
 
+    assert compare(weights, chr(0) + chr(1), chr(2))
+    assert not compare(weights, chr(2), chr(0) + chr(1))
+
+    with pytest.raises(LibsemigroupsError):
+        compare(weights, chr(0), chr(3))
+
 
 def test_weighted_comparisons_use_different_tie_breakers():
     """Check the length and lexicographic tie breakers differ."""
