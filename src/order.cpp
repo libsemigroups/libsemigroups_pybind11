@@ -196,7 +196,7 @@ compared by their positions in *alphabet*.
 :only-document-once:
 Compare two words using reversed lexicographic ordering.
 
-The words are read from right to left before being compared.
+The words are read from right to left when being compared.
 
 :param x: the first word.
 :type x: str | list[int]
@@ -226,7 +226,7 @@ The words are read from right to left before being compared.
 Compare two words using alphabet-aware reversed lexicographic ordering.
 
 Letters are compared by their positions in *alphabet*, and the words are read
-from right to left before being compared.
+from right to left when being compared.
 
 :param alphabet: the ordered alphabet containing the letters of both words.
 :type alphabet: Alphabet
@@ -257,7 +257,7 @@ from right to left before being compared.
 :only-document-once:
 Compare two words using reversed lenlex ordering.
 
-Words are first ordered by length and then lexicographically after being read
+Words are first ordered by length and then lexicographically reading
 from right to left.
 
 :param x: the first word.
@@ -287,7 +287,7 @@ from right to left.
 :only-document-once:
 Compare two words using alphabet-aware reversed lenlex ordering.
 
-Words are first ordered by length and then lexicographically after being read
+Words are first ordered by length and then lexicographically reading
 from right to left. Letters are compared by their positions in *alphabet*.
 
 :param alphabet: the ordered alphabet containing the letters of both words.
@@ -549,7 +549,7 @@ according to *alphabet*.
 :only-document-once:
 Compare two words using reversed wreath-product ordering.
 
-The words are read from right to left before being compared. The *i*-th entry
+The words are read from right to left when being compared. The *i*-th entry
 of *levels* is the wreath-product level assigned to generator *i*.
 
 :param levels: the level assigned to each generator.
@@ -587,7 +587,7 @@ Compare two words using alphabet-aware reversed wreath-product ordering.
 
 Letters are mapped to their positions in *alphabet*, and the *i*-th entry of
 *levels* is the wreath-product level assigned to the *i*-th letter of
-*alphabet*. The words are read from right to left before being compared.
+*alphabet*. The words are read from right to left when being compared.
 
 :param alphabet: the ordered alphabet containing the letters of both words.
 :type alphabet: Alphabet
@@ -624,7 +624,7 @@ Letters are mapped to their positions in *alphabet*, and the *i*-th entry of
 Compare two words using reversed weighted lenlex ordering.
 
 Words are first ordered by total weight, then by length, and finally
-lexicographically after being read from right to left. The *i*-th entry of
+lexicographically read from right to left. The *i*-th entry of
 *weights* is the weight assigned to generator *i*.
 
 :param weights: the weight assigned to each generator.
@@ -665,7 +665,7 @@ Compare two words using alphabet-aware reversed weighted lenlex ordering.
 Letters are mapped to their positions in *alphabet*, and the *i*-th entry of
 *weights* is the weight assigned to the *i*-th letter of *alphabet*. Words are
 first ordered by total weight, then by length, and finally lexicographically
-after being read from right to left.
+read from right to left.
 
 :param alphabet: the ordered alphabet containing the letters of both words.
 :type alphabet: Alphabet
@@ -701,7 +701,7 @@ after being read from right to left.
 :only-document-once:
 Compare two words using reversed weighted lexicographic ordering.
 
-Words are first ordered by total weight and then lexicographically after being
+Words are first ordered by total weight and then lexicographically
 read from right to left. The *i*-th entry of *weights* is the weight assigned
 to generator *i*.
 
@@ -740,7 +740,7 @@ Compare two words using alphabet-aware reversed weighted lexicographic ordering.
 
 Letters are mapped to their positions in *alphabet*, and the *i*-th entry of
 *weights* is the weight assigned to the *i*-th letter of *alphabet*. Words are
-first ordered by total weight and then lexicographically after being read from
+first ordered by total weight and then lexicographically read from
 right to left.
 
 :param alphabet: the ordered alphabet containing the letters of both words.
@@ -778,7 +778,7 @@ right to left.
 Compare two words by length, weight, and reversed lexicographic order.
 
 Words are first ordered by length, then by total weight, and finally
-lexicographically after being read from right to left. The *i*-th entry of
+lexicographically read from right to left. The *i*-th entry of
 *weights* is the weight assigned to generator *i*.
 
 :param weights: the weight assigned to each generator.
@@ -819,7 +819,7 @@ Compare two words by length, weight, and alphabet-aware reversed lexicographic o
 Letters are mapped to their positions in *alphabet*, and the *i*-th entry of
 *weights* is the weight assigned to the *i*-th letter of *alphabet*. Words are
 first ordered by length, then by total weight, and finally lexicographically
-after being read from right to left.
+read from right to left.
 
 :param alphabet: the ordered alphabet containing the letters of both words.
 :type alphabet: Alphabet
