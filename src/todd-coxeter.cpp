@@ -533,7 +533,7 @@ This function performs a lookbehind using the function *collapser* to decide
 whether or not to collapse nodes. For example, it might be the case that
 *collapser* uses a :any:`KnuthBendix` instance to determine whether or
 not nodes in the graph represent the same class of the congruence. More
-specifically, the len-lex least path from the initial node to every node
+specifically, the lenlex least path from the initial node to every node
 ``n`` is rewritten using *collapser*, and if the rewritten word labels a
 path in the graph to a node ``m``, then it is assumed that ``m`` and ``n``
 represent the same class of the congruence, and they are marked for

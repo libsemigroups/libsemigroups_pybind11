@@ -131,7 +131,7 @@ Letters are compared by their positions in *alphabet*.
           R"pbdoc(
 :sig=(x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
-Compare two words using len-lex ordering.
+Compare two words using lenlex ordering.
 
 Words are first ordered by length and then lexicographically.
 
@@ -162,7 +162,7 @@ Words are first ordered by length and then lexicographically.
           R"pbdoc(
 :sig=(alphabet: Alphabet, x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
-Compare two words using len-lex ordering and an alphabet.
+Compare two words using lenlex ordering and an alphabet.
 
 Words are first ordered by length and then lexicographically, with letters
 compared by their positions in *alphabet*.
@@ -255,7 +255,7 @@ from right to left before being compared.
           R"pbdoc(
 :sig=(x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
-Compare two words using reversed len-lex ordering.
+Compare two words using reversed lenlex ordering.
 
 Words are first ordered by length and then lexicographically after being read
 from right to left.
@@ -285,7 +285,7 @@ from right to left.
           R"pbdoc(
 :sig=(alphabet: Alphabet, x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
-Compare two words using alphabet-aware reversed len-lex ordering.
+Compare two words using alphabet-aware reversed lenlex ordering.
 
 Words are first ordered by length and then lexicographically after being read
 from right to left. Letters are compared by their positions in *alphabet*.
@@ -320,7 +320,7 @@ from right to left. Letters are compared by their positions in *alphabet*.
           R"pbdoc(
 :sig=(weights: list[int], x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
-Compare two words using weighted len-lex ordering.
+Compare two words using weighted lenlex ordering.
 
 The *i*-th entry of *weights* is the weight assigned to generator *i*.
 Words are first ordered by their total weight, then by length, and finally
@@ -357,7 +357,7 @@ lexicographically.
           R"pbdoc(
 :sig=(alphabet: Alphabet, weights: list[int], x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
-Compare two words using alphabet-aware weighted len-lex ordering.
+Compare two words using alphabet-aware weighted lenlex ordering.
 
 Letters are mapped to their positions in *alphabet*, and the *i*-th entry of
 *weights* is the weight assigned to the *i*-th letter of *alphabet*. Words are
@@ -621,7 +621,7 @@ Letters are mapped to their positions in *alphabet*, and the *i*-th entry of
           R"pbdoc(
 :sig=(weights: list[int], x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
-Compare two words using reversed weighted len-lex ordering.
+Compare two words using reversed weighted lenlex ordering.
 
 Words are first ordered by total weight, then by length, and finally
 lexicographically after being read from right to left. The *i*-th entry of
@@ -660,7 +660,7 @@ lexicographically after being read from right to left. The *i*-th entry of
           R"pbdoc(
 :sig=(alphabet: Alphabet, weights: list[int], x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
-Compare two words using alphabet-aware reversed weighted len-lex ordering.
+Compare two words using alphabet-aware reversed weighted lenlex ordering.
 
 Letters are mapped to their positions in *alphabet*, and the *i*-th entry of
 *weights* is the weight assigned to the *i*-th letter of *alphabet*. Words are
@@ -993,7 +993,7 @@ left, with letters compared by their positions in *alphabet*.
           R"pbdoc(
 :sig=(weights: list[int], x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
-Compare two words using weighted len-lex ordering.
+Compare two words using weighted lenlex ordering.
 
 The *i*-th entry of *weights* is the weight assigned to generator *i*.
 Words are first ordered by their total weight, then by length, and finally
@@ -1030,7 +1030,7 @@ lexicographically.
           R"pbdoc(
 :sig=(alphabet: Alphabet, weights: list[int], x: str | list[int], y: str | list[int]) -> bool:
 :only-document-once:
-Compare two words using alphabet-aware weighted len-lex ordering.
+Compare two words using alphabet-aware weighted lenlex ordering.
 
 Letters are mapped to their positions in *alphabet*, and the *i*-th entry of
 *weights* is the weight assigned to the *i*-th letter of *alphabet*. Words are
@@ -1166,7 +1166,7 @@ Compare two words using wreath-product ordering.
 
 The *i*-th entry of *levels* is the level assigned to generator *i*.
 Differences at higher levels dominate differences at lower levels, and
-differences within one level are compared using len-lex ordering.
+differences within one level are compared using lenlex ordering.
 
 :param levels: the level assigned to each generator.
 :type levels: list[int]
@@ -1205,7 +1205,7 @@ Compare two words using alphabet-aware wreath-product ordering.
 Letters are mapped to their positions in *alphabet*, and the *i*-th entry of
 *levels* is the level assigned to the *i*-th letter of *alphabet*.
 Differences at higher levels dominate differences at lower levels, and
-differences within one level are compared using len-lex ordering.
+differences within one level are compared using lenlex ordering.
 
 :param alphabet: the ordered alphabet containing the letters of both words.
 :type alphabet: Alphabet
@@ -1255,7 +1255,7 @@ respectively, in new code.
 .. py:attribute:: Order.lenlex
   :value: <Order.right: 1>
 
-    The len-lex ordering. Words are first ordered by length, and then
+    The lenlex ordering. Words are first ordered by length, and then
     lexicographically.
 
 .. py:attribute:: Order.shortlex
