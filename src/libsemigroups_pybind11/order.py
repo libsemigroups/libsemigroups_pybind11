@@ -561,6 +561,87 @@ class WtLexCmp(_ConfiguredCmp):
         return super().__call__(x, y)
 
 
+class RevWtLexCmp(_ConfiguredCmp):
+    __doc__ = _RevWtLexCmpString.__doc__
+    _configuration_name = "weights"
+
+    _py_template_params_to_cxx_type = {
+        (): _RevWtLexCmpDefault,
+        (str,): _RevWtLexCmpString,
+        (list[int],): _RevWtLexCmpWord,
+    }
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+            strict=True,
+        )
+    )
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_RevWtLexCmpString.__init__, _RevWtLexCmpDefault.__init__)
+    def __init__(self: _Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
+    @_copydoc(_RevWtLexCmpString.__call__)
+    def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
+        return super().__call__(x, y)
+
+
+class LenWtLexCmp(_ConfiguredCmp):
+    __doc__ = _LenWtLexCmpString.__doc__
+    _configuration_name = "weights"
+
+    _py_template_params_to_cxx_type = {
+        (): _LenWtLexCmpDefault,
+        (str,): _LenWtLexCmpString,
+        (list[int],): _LenWtLexCmpWord,
+    }
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+            strict=True,
+        )
+    )
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_LenWtLexCmpString.__init__, _LenWtLexCmpDefault.__init__)
+    def __init__(self: _Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
+    @_copydoc(_LenWtLexCmpString.__call__)
+    def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
+        return super().__call__(x, y)
+
+
+class RevLenWtLexCmp(_ConfiguredCmp):
+    __doc__ = _RevLenWtLexCmpString.__doc__
+    _configuration_name = "weights"
+
+    _py_template_params_to_cxx_type = {
+        (): _RevLenWtLexCmpDefault,
+        (str,): _RevLenWtLexCmpString,
+        (list[int],): _RevLenWtLexCmpWord,
+    }
+    _cxx_type_to_py_template_params = dict(
+        zip(
+            _py_template_params_to_cxx_type.values(),
+            _py_template_params_to_cxx_type.keys(),
+            strict=True,
+        )
+    )
+    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
+
+    @_copydoc(_RevLenWtLexCmpString.__init__, _RevLenWtLexCmpDefault.__init__)
+    def __init__(self: _Self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
+    @_copydoc(_RevLenWtLexCmpString.__call__)
+    def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
+        return super().__call__(x, y)
+
+
 _copy_cxx_mem_fns(_LenLexCmpString, LenLexCmp)
 _register_cxx_wrapped_type(_LenLexCmpDefault, LenLexCmp)
 _register_cxx_wrapped_type(_LenLexCmpString, LenLexCmp)
@@ -596,7 +677,6 @@ _register_cxx_wrapped_type(_WrCmpDefault, WrCmp)
 _register_cxx_wrapped_type(_WrCmpString, WrCmp)
 _register_cxx_wrapped_type(_WrCmpWord, WrCmp)
 
-
 _copy_cxx_mem_fns(_RevWrCmpString, RevWrCmp)
 _register_cxx_wrapped_type(_RevWrCmpDefault, RevWrCmp)
 _register_cxx_wrapped_type(_RevWrCmpString, RevWrCmp)
@@ -607,111 +687,25 @@ _register_cxx_wrapped_type(_WtLenLexCmpDefault, WtLenLexCmp)
 _register_cxx_wrapped_type(_WtLenLexCmpString, WtLenLexCmp)
 _register_cxx_wrapped_type(_WtLenLexCmpWord, WtLenLexCmp)
 
-
 _copy_cxx_mem_fns(_RevWtLenLexCmpString, RevWtLenLexCmp)
 _register_cxx_wrapped_type(_RevWtLenLexCmpDefault, RevWtLenLexCmp)
 _register_cxx_wrapped_type(_RevWtLenLexCmpString, RevWtLenLexCmp)
 _register_cxx_wrapped_type(_RevWtLenLexCmpWord, RevWtLenLexCmp)
-
 
 _copy_cxx_mem_fns(_WtLexCmpString, WtLexCmp)
 _register_cxx_wrapped_type(_WtLexCmpDefault, WtLexCmp)
 _register_cxx_wrapped_type(_WtLexCmpString, WtLexCmp)
 _register_cxx_wrapped_type(_WtLexCmpWord, WtLexCmp)
 
-
-class RevWtLexCmp(_ConfiguredCmp):
-    __doc__ = _RevWtLexCmpString.__doc__
-    _configuration_name = "weights"
-
-    _py_template_params_to_cxx_type = {
-        (): _RevWtLexCmpDefault,
-        (str,): _RevWtLexCmpString,
-        (list[int],): _RevWtLexCmpWord,
-    }
-    _cxx_type_to_py_template_params = dict(
-        zip(
-            _py_template_params_to_cxx_type.values(),
-            _py_template_params_to_cxx_type.keys(),
-            strict=True,
-        )
-    )
-    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
-
-    @_copydoc(_RevWtLexCmpString.__init__, _RevWtLexCmpDefault.__init__)
-    def __init__(self: _Self, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-
-    @_copydoc(_RevWtLexCmpString.__call__)
-    def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
-        return super().__call__(x, y)
-
-
 _copy_cxx_mem_fns(_RevWtLexCmpString, RevWtLexCmp)
 _register_cxx_wrapped_type(_RevWtLexCmpDefault, RevWtLexCmp)
 _register_cxx_wrapped_type(_RevWtLexCmpString, RevWtLexCmp)
 _register_cxx_wrapped_type(_RevWtLexCmpWord, RevWtLexCmp)
 
-
-class LenWtLexCmp(_ConfiguredCmp):
-    __doc__ = _LenWtLexCmpString.__doc__
-    _configuration_name = "weights"
-
-    _py_template_params_to_cxx_type = {
-        (): _LenWtLexCmpDefault,
-        (str,): _LenWtLexCmpString,
-        (list[int],): _LenWtLexCmpWord,
-    }
-    _cxx_type_to_py_template_params = dict(
-        zip(
-            _py_template_params_to_cxx_type.values(),
-            _py_template_params_to_cxx_type.keys(),
-            strict=True,
-        )
-    )
-    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
-
-    @_copydoc(_LenWtLexCmpString.__init__, _LenWtLexCmpDefault.__init__)
-    def __init__(self: _Self, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-
-    @_copydoc(_LenWtLexCmpString.__call__)
-    def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
-        return super().__call__(x, y)
-
-
 _copy_cxx_mem_fns(_LenWtLexCmpString, LenWtLexCmp)
 _register_cxx_wrapped_type(_LenWtLexCmpDefault, LenWtLexCmp)
 _register_cxx_wrapped_type(_LenWtLexCmpString, LenWtLexCmp)
 _register_cxx_wrapped_type(_LenWtLexCmpWord, LenWtLexCmp)
-
-
-class RevLenWtLexCmp(_ConfiguredCmp):
-    __doc__ = _RevLenWtLexCmpString.__doc__
-    _configuration_name = "weights"
-
-    _py_template_params_to_cxx_type = {
-        (): _RevLenWtLexCmpDefault,
-        (str,): _RevLenWtLexCmpString,
-        (list[int],): _RevLenWtLexCmpWord,
-    }
-    _cxx_type_to_py_template_params = dict(
-        zip(
-            _py_template_params_to_cxx_type.values(),
-            _py_template_params_to_cxx_type.keys(),
-            strict=True,
-        )
-    )
-    _all_wrapped_cxx_types = {*_py_template_params_to_cxx_type.values()}
-
-    @_copydoc(_RevLenWtLexCmpString.__init__, _RevLenWtLexCmpDefault.__init__)
-    def __init__(self: _Self, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-
-    @_copydoc(_RevLenWtLexCmpString.__call__)
-    def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
-        return super().__call__(x, y)
-
 
 _copy_cxx_mem_fns(_RevLenWtLexCmpString, RevLenWtLexCmp)
 _register_cxx_wrapped_type(_RevLenWtLexCmpDefault, RevLenWtLexCmp)
