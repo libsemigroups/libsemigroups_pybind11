@@ -1343,13 +1343,56 @@ Construct a comparison object for index words.
                 [](Cmp const& self) { return to_human_readable_repr(self); });
       thing.def("__copy__", [](Cmp const& self) { return Cmp(self); });
       thing.def("copy", [](Cmp const& self) { return Cmp(self); });
-      thing.def("init", [](Cmp& self) -> Cmp& { return self.init(); });
+      thing.def(
+          "init",
+          [](Cmp& self) -> Cmp& { return self.init(); },
+          fmt::format(R"pbdoc(
+:sig=(self: {0}) -> {0}:
+Reinitialize an index-word comparison object with an empty {1} vector.
+
+:returns: The first argument *self*.
+:rtype: {0}
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import {0}
+  >>> compare = {0}([1, 2])
+  >>> compare.init() is compare
+  True
+  >>> compare.{1}()
+  []
+)pbdoc",
+                      name,
+                      configuration)
+              .c_str());
       thing.def(
           "init",
           [](Cmp& self, std::vector<size_t> const& values) -> Cmp& {
             return self.init(values);
           },
-          py::arg(configuration.c_str()));
+          py::arg(configuration.c_str()),
+          fmt::format(R"pbdoc(
+:sig=(self: {0}, {1}: list[int]) -> {0}:
+Reinitialize an index-word comparison object from a {1} vector.
+
+:param {1}: the {1} of the generators.
+:type {1}: list[int]
+
+:returns: The first argument *self*.
+:rtype: {0}
+
+.. doctest:: python
+
+  >>> from libsemigroups_pybind11 import {0}
+  >>> compare = {0}()
+  >>> compare.init([2, 1]) is compare
+  True
+  >>> compare.{1}()
+  [2, 1]
+)pbdoc",
+                      name,
+                      configuration)
+              .c_str());
       thing.def(configuration.c_str(), [get_configuration](Cmp const& self) {
         return (self.*get_configuration)();
       });
@@ -1463,19 +1506,23 @@ Copy a comparison object.
           py::arg(configuration.c_str()),
           fmt::format(R"pbdoc(
 :sig=(self: {0}, alphabet: Alphabet, {1}: list[int]) -> {0}:
-Reinitialize the comparison object.
+Reinitialize an alphabet-aware comparison object.
 
-For an alphabet-aware object, pass an alphabet of the original word type and a
-same-sized {1} vector. For an index-word object, call ``init({1})`` or
-``init()``; the latter clears the vector.
+The alphabet must have the original word type, and the alphabet and {1} vector
+must have the same size.
+
+:param alphabet: the alphabet defining the letters and their order.
+:type alphabet: Alphabet
+:param {1}: the {1} of the letters in *alphabet*.
+:type {1}: list[int]
 
 :returns: The first argument *self*.
 :rtype: {0}
 
-:raises AttributeError:
-  if the arguments do not match the construction mode of *self*.
 :raises LibsemigroupsError:
   if *alphabet* and *{1}* have different sizes.
+:raises TypeError:
+  if the arguments do not have the required types.
 
 .. doctest:: python
 
@@ -1487,6 +1534,7 @@ same-sized {1} vector. For an index-word object, call ``init({1})`` or
                       name,
                       configuration)
               .c_str());
+
       thing.def(
           "__call__",
           [](Cmp const& self, Word const& x, Word const& y) {
@@ -1500,6 +1548,11 @@ Compare two words using {2}.
 
 Index-word objects accept ``list[int]``. Alphabet-aware objects accept words
 of the same type as their alphabet.
+
+:param x: the first word.
+:type x: str | list[int]
+:param y: the second word.
+:type y: str | list[int]
 
 :returns: Whether *x* is less than *y*.
 :rtype: bool
@@ -1527,6 +1580,9 @@ of the same type as their alphabet.
 :sig=(self: {0}) -> Alphabet:
 Return the stored alphabet.
 
+:returns: The stored alphabet.
+:rtype: Alphabet
+
 :raises AttributeError:
   if *self* was constructed without an alphabet.
 
@@ -1548,6 +1604,9 @@ Return the stored alphabet.
           fmt::format(R"pbdoc(
 :sig=(self: {0}) -> list[int]:
 Return the stored {1}.
+
+:returns: The stored {1}.
+:rtype: list[int]
 
 .. doctest:: python
 

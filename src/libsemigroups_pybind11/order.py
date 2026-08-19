@@ -614,6 +614,12 @@ class LenWtLexCmp(_ConfiguredCmp):
     def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
         return super().__call__(x, y)
 
+    @_copydoc(_LenWtLexCmpDefault.init, _LenWtLexCmpString.init)
+    def init(self: _Self, *args) -> _Self:
+        cxx_self = _to_cxx(self)
+        result = cxx_self.init(*(_to_cxx(arg) for arg in args))
+        return self if result is cxx_self else result
+
 
 class RevLenWtLexCmp(_ConfiguredCmp):
     __doc__ = _RevLenWtLexCmpString.__doc__
@@ -640,6 +646,12 @@ class RevLenWtLexCmp(_ConfiguredCmp):
     @_copydoc(_RevLenWtLexCmpString.__call__)
     def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
         return super().__call__(x, y)
+
+    @_copydoc(_RevLenWtLexCmpDefault.init, _RevLenWtLexCmpString.init)
+    def init(self: _Self, *args) -> _Self:
+        cxx_self = _to_cxx(self)
+        result = cxx_self.init(*(_to_cxx(arg) for arg in args))
+        return self if result is cxx_self else result
 
 
 _copy_cxx_mem_fns(_LenLexCmpString, LenLexCmp)
