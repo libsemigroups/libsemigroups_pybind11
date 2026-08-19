@@ -1353,6 +1353,12 @@ Reinitialize an index-word comparison object with an empty {1} vector.
 :returns: The first argument *self*.
 :rtype: {0}
 
+.. warning::
+  This overload only works if *self* was constructed without an alphabet, as
+  ``{0}()`` or ``{0}({1})``. An object constructed as
+  ``{0}(alphabet, {1})`` must be reinitialized with
+  ``init(alphabet, {1})``.
+
 .. doctest:: python
 
   >>> from libsemigroups_pybind11 import {0}
@@ -1380,6 +1386,12 @@ Reinitialize an index-word comparison object from a {1} vector.
 
 :returns: The first argument *self*.
 :rtype: {0}
+
+.. warning::
+  This overload only works if *self* was constructed without an alphabet, as
+  ``{0}()`` or ``{0}({1})``. An object constructed as
+  ``{0}(alphabet, {1})`` must be reinitialized with
+  ``init(alphabet, {1})``.
 
 .. doctest:: python
 
@@ -1524,6 +1536,11 @@ must have the same size.
 :raises TypeError:
   if the arguments do not have the required types.
 
+.. warning::
+  This overload only works if *self* was constructed as
+  ``{0}(alphabet, {1})``. An object constructed as ``{0}()`` or
+  ``{0}({1})`` must be reinitialized with ``init()`` or ``init({1})``.
+
 .. doctest:: python
 
   >>> from libsemigroups_pybind11 import Alphabet, {0}
@@ -1586,6 +1603,11 @@ Return the stored alphabet.
 :raises AttributeError:
   if *self* was constructed without an alphabet.
 
+.. warning::
+  This method only works if *self* was constructed as
+  ``{0}(alphabet, {1})``. An object constructed as ``{0}()`` or
+  ``{0}({1})`` does not have a stored alphabet.
+
 .. doctest:: python
 
   >>> from libsemigroups_pybind11 import Alphabet, {0}
@@ -1593,7 +1615,8 @@ Return the stored alphabet.
   >>> {0}(alphabet, [1, 2]).alphabet() == alphabet
   True
 )pbdoc",
-                            name)
+                            name,
+                            configuration)
                     .c_str(),
                 py::return_value_policy::reference_internal);
       thing.def(

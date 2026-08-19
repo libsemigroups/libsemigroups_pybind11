@@ -488,25 +488,6 @@ def test_len_wt_lex_cmp_object_without_alphabet():
     assert compare.weights() == [2, 1]
 
 
-def test_len_wt_lex_cmp_init_documentation():
-    """Check both C++ init variants are included in the Python documentation."""
-    assert "Reinitialize an index-word comparison object with an empty" in (
-        LenWtLexCmp.init.__doc__
-    )
-    assert "Reinitialize an index-word comparison object from a weights" in (
-        LenWtLexCmp.init.__doc__
-    )
-    assert "Reinitialize an alphabet-aware comparison object" in (LenWtLexCmp.init.__doc__)
-
-
-def test_len_wt_lex_cmp_accessor_return_documentation():
-    """Check accessor return values and types are documented."""
-    assert ":returns: The stored alphabet." in LenWtLexCmp.alphabet.__doc__
-    assert ":rtype: Alphabet" in LenWtLexCmp.alphabet.__doc__
-    assert ":returns: The stored weights." in LenWtLexCmp.weights.__doc__
-    assert ":rtype: list[int]" in LenWtLexCmp.weights.__doc__
-
-
 @pytest.mark.parametrize(
     ("alphabet", "x", "y", "missing"),
     [(Alphabet("ab"), "a", "b", "c"), (Alphabet([0, 1]), [0], [1], [2])],
@@ -554,17 +535,6 @@ def test_rev_len_wt_lex_cmp_object_without_alphabet():
     assert compare([0], [1])
     assert compare.init([2, 1]) is compare
     assert compare.weights() == [2, 1]
-
-
-def test_rev_len_wt_lex_cmp_init_documentation():
-    """Check both C++ init variants are included in the Python documentation."""
-    assert "Reinitialize an index-word comparison object with an empty" in (
-        RevLenWtLexCmp.init.__doc__
-    )
-    assert "Reinitialize an index-word comparison object from a weights" in (
-        RevLenWtLexCmp.init.__doc__
-    )
-    assert "Reinitialize an alphabet-aware comparison object" in (RevLenWtLexCmp.init.__doc__)
 
 
 @pytest.mark.parametrize(

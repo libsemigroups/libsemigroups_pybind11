@@ -452,6 +452,12 @@ class WrCmp(_ConfiguredCmp):
     def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
         return super().__call__(x, y)
 
+    @_copydoc(_WrCmpDefault.init, _WrCmpString.init)
+    def init(self: _Self, *args) -> _Self:
+        cxx_self = _to_cxx(self)
+        result = cxx_self.init(*(_to_cxx(arg) for arg in args))
+        return self if result is cxx_self else result
+
 
 class RevWrCmp(_ConfiguredCmp):
     __doc__ = _RevWrCmpString.__doc__
@@ -478,6 +484,12 @@ class RevWrCmp(_ConfiguredCmp):
     @_copydoc(_RevWrCmpString.__call__)
     def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
         return super().__call__(x, y)
+
+    @_copydoc(_RevWrCmpDefault.init, _RevWrCmpString.init)
+    def init(self: _Self, *args) -> _Self:
+        cxx_self = _to_cxx(self)
+        result = cxx_self.init(*(_to_cxx(arg) for arg in args))
+        return self if result is cxx_self else result
 
 
 class WtLenLexCmp(_ConfiguredCmp):
@@ -506,6 +518,12 @@ class WtLenLexCmp(_ConfiguredCmp):
     def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
         return super().__call__(x, y)
 
+    @_copydoc(_WtLenLexCmpDefault.init, _WtLenLexCmpString.init)
+    def init(self: _Self, *args) -> _Self:
+        cxx_self = _to_cxx(self)
+        result = cxx_self.init(*(_to_cxx(arg) for arg in args))
+        return self if result is cxx_self else result
+
 
 class RevWtLenLexCmp(_ConfiguredCmp):
     __doc__ = _RevWtLenLexCmpString.__doc__
@@ -532,6 +550,12 @@ class RevWtLenLexCmp(_ConfiguredCmp):
     @_copydoc(_RevWtLenLexCmpString.__call__)
     def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
         return super().__call__(x, y)
+
+    @_copydoc(_RevWtLenLexCmpDefault.init, _RevWtLenLexCmpString.init)
+    def init(self: _Self, *args) -> _Self:
+        cxx_self = _to_cxx(self)
+        result = cxx_self.init(*(_to_cxx(arg) for arg in args))
+        return self if result is cxx_self else result
 
 
 class WtLexCmp(_ConfiguredCmp):
@@ -560,6 +584,12 @@ class WtLexCmp(_ConfiguredCmp):
     def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
         return super().__call__(x, y)
 
+    @_copydoc(_WtLexCmpDefault.init, _WtLexCmpString.init)
+    def init(self: _Self, *args) -> _Self:
+        cxx_self = _to_cxx(self)
+        result = cxx_self.init(*(_to_cxx(arg) for arg in args))
+        return self if result is cxx_self else result
+
 
 class RevWtLexCmp(_ConfiguredCmp):
     __doc__ = _RevWtLexCmpString.__doc__
@@ -586,6 +616,12 @@ class RevWtLexCmp(_ConfiguredCmp):
     @_copydoc(_RevWtLexCmpString.__call__)
     def __call__(self: _Self, x: str | list[int], y: str | list[int]) -> bool:
         return super().__call__(x, y)
+
+    @_copydoc(_RevWtLexCmpDefault.init, _RevWtLexCmpString.init)
+    def init(self: _Self, *args) -> _Self:
+        cxx_self = _to_cxx(self)
+        result = cxx_self.init(*(_to_cxx(arg) for arg in args))
+        return self if result is cxx_self else result
 
 
 class LenWtLexCmp(_ConfiguredCmp):
