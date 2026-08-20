@@ -2844,7 +2844,7 @@ respectively, in new code.
     lexicographically.
 
 .. py:attribute:: Order.shortlex
-  :value: <Order.lenlex: 2>
+  :value: <Order.lenlex: 1>
 
     The short-lex ordering. Words are first ordered by length, and then
     lexicographically.
@@ -2852,27 +2852,27 @@ respectively, in new code.
     This is deprecated; use :any:`Order.lenlex` instead.
 
 .. py:attribute:: Order.lex
-  :value: <Order.lex: 3>
+  :value: <Order.lex: 2>
 
     The lexicographic ordering. Note that this is not a well-order, so there
     may not be a lexicographically least word in a given congruence class of
     words.
 
 .. py:attribute:: Order.rpo
-  :value: <Order.rpo: 4>
+  :value: <Order.rpo: 3>
 
     The recursive-path ordering, as described in :cite:`Jantzen2012aa`
     (Definition 1.2.14, page 24).
 
 .. py:attribute:: Order.rev_rpo
-  :value: <Order.rev_rpo: 5>
+  :value: <Order.rev_rpo: 4>
 
     The reversed recursive-path ordering, based on the description in
     :cite:`Jantzen2012aa` (Definition 1.2.14, page 24), where words are read
     right-to-left before ordering.
 
 .. py:attribute:: Order.recursive
-  :value: <Order.rev_rpo: 5>
+  :value: <Order.rev_rpo: 4>
 
     The recursive-path ordering, as described in :cite:`Jantzen2012aa`
     (Definition 1.2.14, page 24).
