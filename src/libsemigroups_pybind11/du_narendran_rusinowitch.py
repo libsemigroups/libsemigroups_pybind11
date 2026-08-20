@@ -6,6 +6,7 @@
 
 """Subpackage for importing and wrapping :any:`du_narendran_rusinowitch`."""
 
+# pylint: disable=no-name-in-module
 from _libsemigroups_pybind11 import du_narendran_rusinowitch as _du_narendran_rusinowitch
 
 from .detail.cxx_wrapper import wrap_cxx_free_fn as _wrap_cxx_free_fn
