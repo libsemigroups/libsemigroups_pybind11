@@ -497,11 +497,16 @@ def test_wr_without_alphabet():
 
     cmp = WrCmp(levels)
     assert cmp(x, y)
+    assert cmp("\x00\x02", "\x01\x02")
     assert cmp.levels() == levels
     assert cmp.init([1, 1, 0]) is cmp
     assert cmp.levels() == [1, 1, 0]
     with pytest.raises(LibsemigroupsError):
         cmp([3], [0])
+    with pytest.raises(LibsemigroupsError):
+        cmp("\x03", "\x00")
+    with pytest.raises(TypeError):
+        cmp("\x00", [1])
 
 
 def test_wr_with_alphabet():
@@ -566,6 +571,7 @@ def test_rev_wr_without_alphabet():
 
     cmp = RevWrCmp(levels)
     assert cmp(x, y)
+    assert cmp("\x01\x00", "\x00\x01")
     assert cmp.levels() == levels
     assert cmp.init([2, 1]) is cmp
     assert cmp.levels() == [2, 1]
@@ -574,6 +580,10 @@ def test_rev_wr_without_alphabet():
         rev_wr_cmp(levels, [2], [0])
     with pytest.raises(LibsemigroupsError):
         cmp([2], [0])
+    with pytest.raises(LibsemigroupsError):
+        cmp("\x02", "\x00")
+    with pytest.raises(TypeError):
+        cmp("\x00", [1])
 
 
 def test_rev_wr_with_alphabet():
@@ -640,6 +650,7 @@ def test_wt_lenlex_without_alphabet():
 
     cmp = WtLenLexCmp(weights)
     assert cmp(x, y)
+    assert cmp("\x00\x01", "\x02")
     assert cmp.weights() == weights
     assert cmp.init([1, 2, 6]) is cmp
     assert cmp.weights() == [1, 2, 6]
@@ -650,6 +661,10 @@ def test_wt_lenlex_without_alphabet():
         wt_lenlex_cmp(weights, "\x00", "\x03")
     with pytest.raises(LibsemigroupsError):
         cmp([3], [0])
+    with pytest.raises(LibsemigroupsError):
+        cmp("\x00", "\x03")
+    with pytest.raises(TypeError):
+        cmp("\x00", [1])
 
 
 def test_wt_lenlex_with_alphabet():
@@ -715,6 +730,7 @@ def test_rev_wt_lenlex_without_alphabet():
 
     cmp = RevWtLenLexCmp(weights)
     assert cmp(x, y)
+    assert cmp("\x01\x00", "\x00\x01")
     assert cmp.weights() == weights
     assert cmp.init([2, 1]) is cmp
     assert cmp.weights() == [2, 1]
@@ -724,6 +740,10 @@ def test_rev_wt_lenlex_without_alphabet():
         rev_wt_lenlex_cmp(weights, [2], [0])
     with pytest.raises(LibsemigroupsError):
         cmp([2], [0])
+    with pytest.raises(LibsemigroupsError):
+        cmp("\x02", "\x00")
+    with pytest.raises(TypeError):
+        cmp("\x00", [1])
 
 
 def test_rev_wt_lenlex_with_alphabet():
@@ -790,6 +810,7 @@ def test_wt_lex_without_alphabet():
 
     cmp = WtLexCmp(weights)
     assert cmp(x, y)
+    assert cmp("\x00\x01", "\x02")
     assert cmp.weights() == weights
     assert cmp.init([1, 2, 6]) is cmp
     assert cmp.weights() == [1, 2, 6]
@@ -801,6 +822,10 @@ def test_wt_lex_without_alphabet():
         wt_lex_cmp(weights, "\x00", "\x03")
     with pytest.raises(LibsemigroupsError):
         cmp([3], [0])
+    with pytest.raises(LibsemigroupsError):
+        cmp("\x00", "\x03")
+    with pytest.raises(TypeError):
+        cmp("\x00", [1])
 
 
 def test_wt_lex_with_alphabet():
@@ -866,6 +891,7 @@ def test_rev_wt_lex_without_alphabet():
 
     cmp = RevWtLexCmp(weights)
     assert cmp(x, y)
+    assert cmp("\x01\x00", "\x00\x01")
     assert cmp.weights() == weights
     assert cmp.init([2, 1]) is cmp
     assert cmp.weights() == [2, 1]
@@ -876,6 +902,10 @@ def test_rev_wt_lex_without_alphabet():
         rev_wt_lex_cmp(weights, [2], [0])
     with pytest.raises(LibsemigroupsError):
         cmp([2], [0])
+    with pytest.raises(LibsemigroupsError):
+        cmp("\x02", "\x00")
+    with pytest.raises(TypeError):
+        cmp("\x00", [1])
 
 
 def test_rev_wt_lex_with_alphabet():
@@ -939,6 +969,7 @@ def test_len_wt_lex_without_alphabet():
 
     cmp = LenWtLexCmp(weights)
     assert cmp(x, y)
+    assert cmp("\x00\x01", "\x01\x00")
     assert cmp.weights() == weights
     assert cmp.init([2, 1]) is cmp
     assert cmp.weights() == [2, 1]
@@ -948,6 +979,10 @@ def test_len_wt_lex_without_alphabet():
         len_wt_lex_cmp(weights, [2], [0])
     with pytest.raises(LibsemigroupsError):
         cmp([2], [0])
+    with pytest.raises(LibsemigroupsError):
+        cmp("\x02", "\x00")
+    with pytest.raises(TypeError):
+        cmp("\x00", [1])
 
 
 def test_len_wt_lex_with_alphabet():
@@ -1011,6 +1046,7 @@ def test_rev_len_wt_lex_without_alphabet():
 
     cmp = RevLenWtLexCmp(weights)
     assert cmp(x, y)
+    assert cmp("\x01\x00", "\x00\x01")
     assert cmp.weights() == weights
     assert cmp.init([2, 1]) is cmp
     assert cmp.weights() == [2, 1]
@@ -1020,6 +1056,10 @@ def test_rev_len_wt_lex_without_alphabet():
         rev_len_wt_lex_cmp(weights, [2], [0])
     with pytest.raises(LibsemigroupsError):
         cmp([2], [0])
+    with pytest.raises(LibsemigroupsError):
+        cmp("\x02", "\x00")
+    with pytest.raises(TypeError):
+        cmp("\x00", [1])
 
 
 def test_rev_len_wt_lex_with_alphabet():

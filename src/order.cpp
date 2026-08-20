@@ -1324,7 +1324,7 @@ Construct a comparison object with an empty {1} vector.
                 py::arg(configuration.c_str()),
                 fmt::format(R"pbdoc(
 :sig=(self: {0}, {1}: list[int]) -> None:
-Construct a comparison object for ``list[int]`` words.
+Construct a comparison object for ``str`` or ``list[int]`` words.
 
 :param {1}: the {1} of the generators.
 :type {1}: list[int]
@@ -1381,6 +1381,13 @@ Reinitialize a {0} object from a {1} list.
       });
       thing.def(
           "__call__",
+          [](Cmp const& self, std::string const& x, std::string const& y) {
+            return self(x, y);
+          },
+          py::arg("x"),
+          py::arg("y"));
+      thing.def(
+          "__call__",
           [](Cmp const& self, word_type const& x, word_type const& y) {
             return self(x, y);
           },
@@ -1396,15 +1403,21 @@ Reinitialize a {0} object from a {1} list.
         std::string const& configuration,
         std::string const& ordering,
         std::vector<size_t> const& (Cmp::*get_configuration)() const) {
-      py::class_<Cmp> thing(m,
+      std::string const non_alphabet_string_doctest = fmt::format(R"pbdoc(
+  >>> {0}([1, 2])("\x00", "\x01")
+  True
+)pbdoc",
+                                                                  name);
+      py::class_<Cmp>   thing(m,
                             binding_name,
                             fmt::format(R"pbdoc(
 Compare words using {2}.
 
-Use ``{0}({1})`` to compare ``list[int]`` words, where the entries of
-*{1}* correspond to the indices. Use ``{0}(alphabet, {1})`` to compare words
-whose letters belong to *alphabet*. The latter form copies both arguments and
-only accepts words with the same type as *alphabet*.
+Use ``{0}({1})`` to compare either ``str`` or ``list[int]`` words. In this
+form, every letter is interpreted as an index into *{1}*. Use
+``{0}(alphabet, {1})`` to compare words whose letters belong to *alphabet*.
+The latter form copies both arguments and only accepts words with the same
+type as *alphabet*.
 
 .. note::
   The constructor fixes whether this object is alphabet-aware and fixes the
@@ -1423,10 +1436,12 @@ only accepts words with the same type as *alphabet*.
   True
   >>> {0}(Alphabet([0, 1]), [1, 2])([0], [1])
   True
+{3}
 )pbdoc",
                                         name,
                                         configuration,
-                                        ordering)
+                                        ordering,
+                                        non_alphabet_string_doctest)
                                 .c_str());
 
       thing.def(py::init<Alphabet<Word> const&, std::vector<size_t> const&>(),
@@ -1534,8 +1549,9 @@ and the alphabet and {1} list must have the same size.
 :sig=(self: {0}, x: str | list[int], y: str | list[int]) -> bool:
 Compare two words using {2}.
 
-Non-alphabet aware objects accept ``list[int]``. Alphabet-aware objects accept
-words of the same type as their alphabet.
+Non-alphabet-aware objects accept either ``str`` or ``list[int]`` words, and
+every letter is interpreted as an index into the stored *{1}*. Alphabet-aware
+objects accept words of the same type as their alphabet.
 
 :param x: the first word.
 :type x: str | list[int]
@@ -1546,9 +1562,12 @@ words of the same type as their alphabet.
 :rtype: bool
 
 :raises TypeError:
-  if the word types do not match the type used when the object was constructed.
+  if *x* and *y* do not both have the supported word type, or if their type
+  does not match the alphabet used to construct an alphabet-aware object.
 :raises LibsemigroupsError:
-  if a word contains a letter not represented by the stored weights or levels.
+  if a non-alphabet-aware word contains a letter that is not a valid index into
+  the stored *{1}*, or an alphabet-aware word contains a letter outside its
+  alphabet.
 
 .. doctest:: python
 
@@ -1557,10 +1576,12 @@ words of the same type as their alphabet.
   True
   >>> {0}(Alphabet("ab"), [1, 2])("a", "b")
   True
+{3}
 )pbdoc",
                       name,
                       configuration,
-                      ordering)
+                      ordering,
+                      non_alphabet_string_doctest)
               .c_str());
       thing.def("alphabet",
                 &Cmp::alphabet,
