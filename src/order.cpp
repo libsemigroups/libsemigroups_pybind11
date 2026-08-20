@@ -1547,9 +1547,9 @@ words of the same type as their alphabet.
 :rtype: bool
 
 :raises TypeError:
-  if the word types do not match the construction mode.
+  if the word types do not match the type used when the object was constructed.
 :raises LibsemigroupsError:
-  if a word contains a letter not represented by the stored configuration.
+  if a word contains a letter not represented by the stored weights or levels.
 
 .. doctest:: python
 
@@ -1687,7 +1687,7 @@ for the call operator.
 :sig=(self: LexCmp) -> LexCmp:
 Copy a comparison object.
 
-The copy has the same mode and word type as *self*. For an alphabet-aware
+The copy has the same word type as *self*; and for an alphabet-aware
 object, the stored alphabet is also copied, so subsequently reinitializing one
 comparison object does not affect the other.
 
@@ -1884,7 +1884,7 @@ type for the call operator.
 :sig=(self: LenLexCmp) -> LenLexCmp:
 Copy a comparison object.
 
-The copy has the same mode and word type as *self*. For an alphabet-aware
+The copy has the same word type as *self*; and for an alphabet-aware
 object, the stored alphabet is also copied, so subsequently reinitializing one
 comparison object does not affect the other.
 
@@ -2084,7 +2084,7 @@ letters in *alphabet* also fixes the accepted word type for the call operator.
 :sig=(self: RPOCmp) -> RPOCmp:
 Copy a comparison object.
 
-The copy has the same mode and word type as *self*. For an alphabet-aware
+The copy has the same word type as *self*; and for an alphabet-aware
 object, the stored alphabet is also copied, so subsequently reinitializing one
 comparison object does not affect the other.
 
@@ -2290,7 +2290,7 @@ call operator.
 :sig=(self: RevRPOCmp) -> RevRPOCmp:
 Copy a comparison object.
 
-The copy has the same mode and word type as *self*. For an alphabet-aware
+The copy has the same word type as *self*; and for an alphabet-aware
 object, the stored alphabet is also copied, so subsequently reinitializing one
 comparison object does not affect the other.
 
@@ -2494,7 +2494,7 @@ for the call operator.
 :sig=(self: RevLexCmp) -> RevLexCmp:
 Copy a comparison object.
 
-The copy has the same mode and word type as *self*. For an alphabet-aware
+The copy has the same word type as *self*; and for an alphabet-aware
 object, the stored alphabet is also copied, so subsequently reinitializing one
 comparison object does not affect the other.
 
@@ -2695,7 +2695,7 @@ accepted word type for the call operator.
 :sig=(self: RevLenLexCmp) -> RevLenLexCmp:
 Copy a comparison object.
 
-The copy has the same mode and word type as *self*. For an alphabet-aware
+The copy has the same word type as *self*; and for an alphabet-aware
 object, the stored alphabet is also copied, so subsequently reinitializing one
 comparison object does not affect the other.
 
