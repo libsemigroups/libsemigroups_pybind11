@@ -17,9 +17,8 @@
 //
 
 // C++ stl headers....
-#include <string>       // for string
-#include <type_traits>  // for is_same_v
-#include <vector>       // for vector
+#include <string>  // for string
+#include <vector>  // for vector
 
 // libsemigroups....
 #include <libsemigroups/order.hpp>  // for *_cmp, Order
