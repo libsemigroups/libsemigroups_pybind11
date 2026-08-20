@@ -62,10 +62,7 @@ def _check_simple_copy_and_repr(Cmp, name):
         )
         assert all(type(copied) is Cmp for copied in copies)
         assert all(copied is not original for copied in copies)
-        assert all(
-            copied.py_template_params == original.py_template_params
-            for copied in copies
-        )
+        assert all(copied.py_template_params == original.py_template_params for copied in copies)
         assert all(copied(x, y) for copied in copies)
         if alphabet is not None:
             assert all(copied.alphabet() == alphabet for copied in copies)
@@ -768,9 +765,7 @@ def test_rev_wt_lenlex_with_alphabet():
 
 def test_rev_wt_lenlex_object_copy_and_repr():
     """Check copies and human-readable representations."""
-    _check_configured_copy_and_repr(
-        RevWtLenLexCmp, "RevWtLenLexCmp", "weights", "weights"
-    )
+    _check_configured_copy_and_repr(RevWtLenLexCmp, "RevWtLenLexCmp", "weights", "weights")
 
 
 def test_rev_wt_lenlex_object_rejects_bad_constructor_arguments():
@@ -1066,9 +1061,7 @@ def test_rev_len_wt_lex_with_alphabet():
 
 def test_rev_len_wt_lex_object_copy_and_repr():
     """Check copies and human-readable representations."""
-    _check_configured_copy_and_repr(
-        RevLenWtLexCmp, "RevLenWtLexCmp", "weights", "weights"
-    )
+    _check_configured_copy_and_repr(RevLenWtLexCmp, "RevLenWtLexCmp", "weights", "weights")
 
 
 def test_rev_len_wt_lex_object_rejects_bad_constructor_arguments():

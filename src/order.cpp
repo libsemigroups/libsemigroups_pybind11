@@ -2815,7 +2815,7 @@ Return the alphabet used to compare letters.
 )pbdoc",
                 py::return_value_policy::reference_internal);
     }  // bind_rev_lenlex_cmp_with_alphabet
-  }  // namespace
+  }    // namespace
 
   void init_order(py::module& m) {
     py::options options;
