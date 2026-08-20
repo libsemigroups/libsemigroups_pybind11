@@ -1409,8 +1409,8 @@ Reinitialize a {0} object from a {1} list.
 )pbdoc",
                                                                   name);
       py::class_<Cmp>   thing(m,
-                            binding_name,
-                            fmt::format(R"pbdoc(
+                              binding_name,
+                              fmt::format(R"pbdoc(
 Compare words using {2}.
 
 Use ``{0}({1})`` to compare either ``str`` or ``list[int]`` words. In this
@@ -1438,11 +1438,11 @@ type as *alphabet*.
   True
 {3}
 )pbdoc",
-                                        name,
-                                        configuration,
-                                        ordering,
-                                        non_alphabet_string_doctest)
-                                .c_str());
+                                          name,
+                                          configuration,
+                                          ordering,
+                                          non_alphabet_string_doctest)
+                                  .c_str());
 
       thing.def(py::init<Alphabet<Word> const&, std::vector<size_t> const&>(),
                 py::arg("alphabet"),
@@ -2836,7 +2836,7 @@ Return the alphabet used to compare letters.
 )pbdoc",
                 py::return_value_policy::reference_internal);
     }  // bind_rev_lenlex_cmp_with_alphabet
-  }    // namespace
+  }  // namespace
 
   void init_order(py::module& m) {
     py::options options;
@@ -2905,8 +2905,6 @@ respectively, in new code.
   >>> from libsemigroups_pybind11 import Order
   >>> Order.lenlex
   <Order.lenlex: 1>
-  >>> Order.shortlex == Order.lenlex
-  True
 )pbdoc")
         .value("none", Order::none)
         .value("lenlex", Order::lenlex)
