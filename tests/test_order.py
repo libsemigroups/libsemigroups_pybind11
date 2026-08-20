@@ -4,6 +4,8 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
+# pylint: disable=too-many-lines, invalid-name
+
 """Tests for order.cpp."""
 
 from copy import copy
@@ -60,7 +62,7 @@ def _check_simple_copy_and_repr(Cmp, name):
             original.__copy__(),  # pylint: disable=unnecessary-dunder-call
             copy(original),
         )
-        assert all(type(copied) is Cmp for copied in copies)
+        assert all(isinstance(copied, Cmp) for copied in copies)
         assert all(copied is not original for copied in copies)
         assert all(copied.py_template_params == original.py_template_params for copied in copies)
         assert all(copied(x, y) for copied in copies)
@@ -90,7 +92,7 @@ def _check_configured_copy_and_repr(Cmp, name, configuration_name, accessor_name
             copy(original),
         )
         original.init(*replacement_args)
-        assert all(type(copied) is Cmp for copied in copies)
+        assert all(isinstance(copied, Cmp) for copied in copies)
         assert all(copied is not original for copied in copies)
         assert all(getattr(copied, accessor_name)() == [1, 2] for copied in copies)
         if alphabet is not None:
