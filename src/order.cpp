@@ -143,7 +143,7 @@ Words are first ordered by length and then lexicographically.
 :returns: Whether *x* is less than *y*.
 :rtype: bool
 
-.. seealso:: :any:`LenLexCmp` for a reusable len-lex comparison object.
+.. seealso:: :any:`LenLexCmp` for a reusable lenlex comparison object.
 
 .. doctest:: python
 
@@ -1325,7 +1325,7 @@ Construct a comparison object with an empty {1} vector.
                 py::arg(configuration.c_str()),
                 fmt::format(R"pbdoc(
 :sig=(self: {0}, {1}: list[int]) -> None:
-Construct a comparison object for index words.
+Construct a comparison object for ``list[int]`` words.
 
 :param {1}: the {1} of the generators.
 :type {1}: list[int]
@@ -1345,41 +1345,13 @@ Construct a comparison object for index words.
       thing.def("copy", [](Cmp const& self) { return Cmp(self); });
       thing.def(
           "init",
-          [](Cmp& self) -> Cmp& { return self.init(); },
-          fmt::format(R"pbdoc(
-:sig=(self: {0}) -> {0}:
-Reinitialize an index-word comparison object with an empty {1} vector.
-
-:returns: The first argument *self*.
-:rtype: {0}
-
-.. warning::
-  This overload only works if *self* was constructed without an alphabet, as
-  ``{0}()`` or ``{0}({1})``. An object constructed as
-  ``{0}(alphabet, {1})`` must be reinitialized with
-  ``init(alphabet, {1})``.
-
-.. doctest:: python
-
-  >>> from libsemigroups_pybind11 import {0}
-  >>> compare = {0}([1, 2])
-  >>> compare.init() is compare
-  True
-  >>> compare.{1}()
-  []
-)pbdoc",
-                      name,
-                      configuration)
-              .c_str());
-      thing.def(
-          "init",
           [](Cmp& self, std::vector<size_t> const& values) -> Cmp& {
             return self.init(values);
           },
           py::arg(configuration.c_str()),
           fmt::format(R"pbdoc(
 :sig=(self: {0}, {1}: list[int]) -> {0}:
-Reinitialize an index-word comparison object from a {1} vector.
+Reinitialize a {0} object from a {1} list.
 
 :param {1}: the {1} of the generators.
 :type {1}: list[int]
@@ -1430,7 +1402,7 @@ Reinitialize an index-word comparison object from a {1} vector.
                             fmt::format(R"pbdoc(
 Compare words using {2}.
 
-Use ``{0}({1})`` to compare ``list[int]`` index words, where the entries of
+Use ``{0}({1})`` to compare ``list[int]`` words, where the entries of
 *{1}* correspond to the indices. Use ``{0}(alphabet, {1})`` to compare words
 whose letters belong to *alphabet*. The latter form copies both arguments and
 only accepts words with the same type as *alphabet*.
@@ -1520,8 +1492,8 @@ Copy a comparison object.
 :sig=(self: {0}, alphabet: Alphabet, {1}: list[int]) -> {0}:
 Reinitialize an alphabet-aware comparison object.
 
-The alphabet must have the original word type, and the alphabet and {1} vector
-must have the same size.
+The alphabet must have the original word type (i.e. ``list[int]`` or ``str``),
+and the alphabet and {1} list must have the same size.
 
 :param alphabet: the alphabet defining the letters and their order.
 :type alphabet: Alphabet
@@ -1539,7 +1511,7 @@ must have the same size.
 .. warning::
   This overload only works if *self* was constructed as
   ``{0}(alphabet, {1})``. An object constructed as ``{0}()`` or
-  ``{0}({1})`` must be reinitialized with ``init()`` or ``init({1})``.
+  ``{0}({1})`` must be reinitialized with ``init({1})``.
 
 .. doctest:: python
 
@@ -1563,8 +1535,8 @@ must have the same size.
 :sig=(self: {0}, x: str | list[int], y: str | list[int]) -> bool:
 Compare two words using {2}.
 
-Index-word objects accept ``list[int]``. Alphabet-aware objects accept words
-of the same type as their alphabet.
+Non-alphabet aware objects accept ``list[int]``. Alphabet-aware objects accept
+words of the same type as their alphabet.
 
 :param x: the first word.
 :type x: str | list[int]
@@ -1659,9 +1631,8 @@ the positions of their letters in *alphabet*. The latter form copies
 .. note::
   The constructor fixes whether this object is alphabet-aware (i.e. constructed
   from an :any:`Alphabet` object). It also fixes the word type of an
-  alphabet-aware object. In particular, ``LexCmp()`` only accepts ``init()``
-  (which does nothing); it cannot be changed into an alphabet-aware object by
-  calling ``init(alphabet)``. Similarly,
+  alphabet-aware object. In particular, ``LexCmp()`` cannot be changed into an
+  alphabet-aware object by calling ``init(alphabet)``. Similarly,
   ``LexCmp(alphabet).init(new_alphabet)`` requires *new_alphabet* to have the
   same word type as *alphabet*.
 
@@ -1844,7 +1815,7 @@ Return the alphabet used to compare letters.
       // The Python wrapper copies all documentation from this
       // specialization, except those given above.
       py::class_<LenLexCmp_> thing(m, name, R"pbdoc(
-Compare words using len-lex ordering.
+Compare words using lenlex ordering.
 
 Words are first compared by length and then lexicographically. Use
 ``LenLexCmp()`` to compare either ``str`` or ``list[int]`` words using the
@@ -1855,9 +1826,8 @@ form copies *alphabet* and only accepts words with the same type as *alphabet*.
 .. note::
   The constructor fixes whether this object is alphabet-aware (i.e. constructed
   from an :any:`Alphabet` object). It also fixes the word type of an
-  alphabet-aware object. In particular, ``LenLexCmp()`` only accepts
-  ``init()`` (which does nothing); it cannot be changed into an alphabet-aware
-  object by calling ``init(alphabet)``. Similarly,
+  alphabet-aware object. In particular, ``LenLexCmp()`` cannot be changed into
+  an alphabet-aware object by calling ``init(alphabet)``. Similarly,
   ``LenLexCmp(alphabet).init(new_alphabet)`` requires *new_alphabet* to have
   the same word type as *alphabet*.
 
@@ -1880,7 +1850,7 @@ form copies *alphabet* and only accepts words with the same type as *alphabet*.
                 py::arg("alphabet"),
                 R"pbdoc(
 :sig=(self: LenLexCmp, alphabet: Alphabet) -> None:
-Construct a len-lex comparison object from an alphabet.
+Construct a lenlex comparison object from an alphabet.
 
 Constructs an object whose call operator first compares words by length and
 then compares words of equal length by the positions of their letters in
@@ -1978,7 +1948,7 @@ had it been newly constructed from *alphabet*.
           py::arg("y"),
           R"pbdoc(
 :sig=(self: LenLexCmp, x: str | list[int], y: str | list[int]) -> bool:
-Compare two words using len-lex ordering.
+Compare two words using lenlex ordering.
 
 Words are first compared by length and then lexicographically. If *self* was
 constructed as ``LenLexCmp()``, then *x* and *y* must either both be strings or
@@ -2054,9 +2024,8 @@ the positions of their letters in *alphabet*. The latter form copies
 .. note::
   The constructor fixes whether this object is alphabet-aware (i.e. constructed
   from an :any:`Alphabet` object). It also fixes the word type of an
-  alphabet-aware object. In particular, ``RPOCmp()`` only accepts ``init()``
-  (which does nothing); it cannot be changed into an alphabet-aware object by
-  calling ``init(alphabet)``. Similarly,
+  alphabet-aware object. In particular, ``RPOCmp()`` cannot be changed into an
+  alphabet-aware object by calling ``init(alphabet)``. Similarly,
   ``RPOCmp(alphabet).init(new_alphabet)`` requires *new_alphabet* to have the
   same word type as *alphabet*.
 
@@ -2259,9 +2228,8 @@ copies *alphabet* and only accepts words with the same type as *alphabet*.
 .. note::
   The constructor fixes whether this object is alphabet-aware (i.e. constructed
   from an :any:`Alphabet` object). It also fixes the word type of an
-  alphabet-aware object. In particular, ``RevRPOCmp()`` only accepts
-  ``init()`` (which does nothing); it cannot be changed into an alphabet-aware
-  object by calling ``init(alphabet)``. Similarly,
+  alphabet-aware object. In particular, ``RevRPOCmp()`` cannot be changed into
+  an alphabet-aware object by calling ``init(alphabet)``. Similarly,
   ``RevRPOCmp(alphabet).init(new_alphabet)`` requires *new_alphabet* to have
   the same word type as *alphabet*.
 
@@ -2469,9 +2437,8 @@ the positions of their letters in *alphabet*. The latter form copies
 .. note::
   The constructor fixes whether this object is alphabet-aware (i.e. constructed
   from an :any:`Alphabet` object). It also fixes the word type of an
-  alphabet-aware object. In particular, ``RevLexCmp()`` only accepts ``init()``
-  (which does nothing); it cannot be changed into an alphabet-aware object by
-  calling ``init(alphabet)``. Similarly,
+  alphabet-aware object. In particular, ``RevLexCmp()`` cannot be changed into
+  an alphabet-aware object by calling ``init(alphabet)``. Similarly,
   ``RevLexCmp(alphabet).init(new_alphabet)`` requires *new_alphabet* to have the
   same word type as *alphabet*.
 
@@ -2658,7 +2625,7 @@ Return the alphabet used to compare letters.
       // The Python wrapper copies all documentation from this specialization,
       // except those given above.
       py::class_<RevLenLexCmp_> thing(m, name, R"pbdoc(
-Compare words using reversed len-lex ordering.
+Compare words using reversed lenlex ordering.
 
 Words are first compared by length and then lexicographically after being read
 from right to left. Use ``RevLenLexCmp()`` to compare either ``str`` or
@@ -2670,9 +2637,8 @@ words with the same type as *alphabet*.
 .. note::
   The constructor fixes whether this object is alphabet-aware (i.e. constructed
   from an :any:`Alphabet` object). It also fixes the word type of an
-  alphabet-aware object. In particular, ``RevLenLexCmp()`` only accepts
-  ``init()`` (which does nothing); it cannot be changed into an alphabet-aware
-  object by calling ``init(alphabet)``. Similarly,
+  alphabet-aware object. In particular, ``RevLenLexCmp()`` cannot be changed
+  into an alphabet-aware object by calling ``init(alphabet)``. Similarly,
   ``RevLenLexCmp(alphabet).init(new_alphabet)`` requires *new_alphabet* to have
   the same word type as *alphabet*.
 
@@ -2695,7 +2661,7 @@ words with the same type as *alphabet*.
                 py::arg("alphabet"),
                 R"pbdoc(
 :sig=(self: RevLenLexCmp, alphabet: Alphabet) -> None:
-Construct a reversed len-lex comparison object from an alphabet.
+Construct a reversed lenlex comparison object from an alphabet.
 
 Constructs an object whose call operator first compares words by length and
 then compares words of equal length from right to left by the positions of
@@ -2792,7 +2758,7 @@ had it been newly constructed from *alphabet*.
           py::arg("y"),
           R"pbdoc(
 :sig=(self: RevLenLexCmp, x: str | list[int], y: str | list[int]) -> bool:
-Compare two words using reversed len-lex ordering.
+Compare two words using reversed lenlex ordering.
 
 Words are first compared by length and then lexicographically after being read
 from right to left. If *self* was constructed as ``RevLenLexCmp()``, then *x*
@@ -2850,14 +2816,14 @@ Return the alphabet used to compare letters.
 )pbdoc",
                 py::return_value_policy::reference_internal);
     }  // bind_rev_lenlex_cmp_with_alphabet
-  }    // namespace
+  }  // namespace
 
   void init_order(py::module& m) {
     py::options options;
     options.disable_enum_members_docstring();
 
     py::enum_<Order>(m, "Order", R"pbdoc(
-An enum class for the possible orderings of words and strings.
+An enum class for the possible orderings of lists of integers and strings.
 
 The values in this enum can be used as the arguments for functions such as
 :any:`ToddCoxeter.standardize` or :any:`WordRange.order` to specify which
@@ -2868,18 +2834,18 @@ backwards compatibility; use :any:`Order.lenlex` and :any:`Order.rev_rpo`,
 respectively, in new code.
 
 .. py:attribute:: Order.none
-  :value: <Order.left: 0>
+  :value: <Order.none: 0>
 
    No ordering
 
 .. py:attribute:: Order.lenlex
-  :value: <Order.right: 1>
+  :value: <Order.lenlex: 1>
 
     The lenlex ordering. Words are first ordered by length, and then
     lexicographically.
 
 .. py:attribute:: Order.shortlex
-  :value: <Order.left: 2>
+  :value: <Order.lenlex: 2>
 
     The short-lex ordering. Words are first ordered by length, and then
     lexicographically.
@@ -2887,27 +2853,27 @@ respectively, in new code.
     This is deprecated; use :any:`Order.lenlex` instead.
 
 .. py:attribute:: Order.lex
-  :value: <Order.right: 3>
+  :value: <Order.lex: 3>
 
     The lexicographic ordering. Note that this is not a well-order, so there
     may not be a lexicographically least word in a given congruence class of
     words.
 
 .. py:attribute:: Order.rpo
-  :value: <Order.left: 4>
+  :value: <Order.rpo: 4>
 
     The recursive-path ordering, as described in :cite:`Jantzen2012aa`
     (Definition 1.2.14, page 24).
 
 .. py:attribute:: Order.rev_rpo
-  :value: <Order.right: 5>
+  :value: <Order.rev_rpo: 5>
 
     The reversed recursive-path ordering, based on the description in
     :cite:`Jantzen2012aa` (Definition 1.2.14, page 24), where words are read
     right-to-left before ordering.
 
 .. py:attribute:: Order.recursive
-  :value: <Order.right: 6>
+  :value: <Order.rev_rpo: 5>
 
     The recursive-path ordering, as described in :cite:`Jantzen2012aa`
     (Definition 1.2.14, page 24).
@@ -2999,14 +2965,14 @@ respectively, in new code.
         "WtLenLexCmpString",
         "WtLenLexCmp",
         "weights",
-        "weighted len-lex ordering",
+        "weighted lenlex ordering",
         &WtLenLexCmp<std::string>::weights);
     bind_configured_cmp_with_alphabet<WtLenLexCmp<word_type>, word_type>(
         m,
         "WtLenLexCmpWord",
         "WtLenLexCmp",
         "weights",
-        "weighted len-lex ordering",
+        "weighted lenlex ordering",
         &WtLenLexCmp<word_type>::weights);
 
     bind_configured_cmp_default<RevWtLenLexCmp<>>(
@@ -3016,14 +2982,14 @@ respectively, in new code.
         "RevWtLenLexCmpString",
         "RevWtLenLexCmp",
         "weights",
-        "reversed weighted len-lex ordering",
+        "reversed weighted lenlex ordering",
         &RevWtLenLexCmp<std::string>::weights);
     bind_configured_cmp_with_alphabet<RevWtLenLexCmp<word_type>, word_type>(
         m,
         "RevWtLenLexCmpWord",
         "RevWtLenLexCmp",
         "weights",
-        "reversed weighted len-lex ordering",
+        "reversed weighted lenlex ordering",
         &RevWtLenLexCmp<word_type>::weights);
 
     bind_configured_cmp_default<WtLexCmp<>>(

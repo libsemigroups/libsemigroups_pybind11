@@ -1,5 +1,5 @@
 ..
-    Copyright (c) 2024-2026 Joseph Edwards, J. D. Mitchell
+    Copyright (c) 2026 Joseph Edwards, J. D. Mitchell
 
     Distributed under the terms of the GPL license version 3.
 
@@ -10,8 +10,9 @@
 Functions for orders
 ====================
 
-This page contains the documentation for functions that compare words or
-strings with respect to certain reduction orderings.
+This page contains the documentation for functions that compare lists of
+integers ``list[int]`` or strings ``str`` with respect to certain reduction
+orderings.
 
 .. important:: 
 

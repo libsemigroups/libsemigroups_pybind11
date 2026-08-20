@@ -57,7 +57,7 @@ def test_lex_cmp_object_without_alphabet():
 
 
 def test_rev_wr_cmp_object_without_alphabet():
-    """Check reversed wreath-product comparison of index words."""
+    """Check reversed wreath-product comparison of list[int]."""
     compare = RevWrCmp([1, 2])
     assert compare.levels() == [1, 2]
     assert compare([0], [1])
@@ -284,7 +284,7 @@ def test_rev_rpo_cmp_object_rejects_bad_constructors():
 
 
 def test_wr_cmp_object_without_alphabet():
-    """Check wreath-product comparison of index words."""
+    """Check wreath-product comparison of list[int]."""
     compare = WrCmp([1, 2])
     assert compare.levels() == [1, 2]
     assert compare([0], [1])
@@ -333,7 +333,7 @@ def test_wr_cmp_object_rejects_bad_constructors():
 
 
 def test_wt_lenlex_cmp_object_without_alphabet():
-    """Check weighted len-lex comparison of index words."""
+    """Check weighted lenlex comparison of list[int]."""
     compare = WtLenLexCmp([1, 2])
     assert compare.weights() == [1, 2]
     assert compare([0], [1])
@@ -346,7 +346,7 @@ def test_wt_lenlex_cmp_object_without_alphabet():
     [(Alphabet("ab"), "a", "b", "c"), (Alphabet([0, 1]), [0], [1], [2])],
 )
 def test_wt_lenlex_cmp_object_with_alphabet(alphabet, x, y, missing):
-    """Check alphabet-aware weighted len-lex comparison."""
+    """Check alphabet-aware weighted lenlex comparison."""
     compare = WtLenLexCmp(alphabet, [1, 2])
     assert compare(x, y)
     assert compare.alphabet() == alphabet
@@ -382,7 +382,7 @@ def test_wt_lenlex_cmp_object_rejects_bad_constructors():
 
 
 def test_rev_wt_lenlex_cmp_object_without_alphabet():
-    """Check reversed weighted len-lex comparison of index words."""
+    """Check reversed weighted lenlex comparison of list[int]."""
     compare = RevWtLenLexCmp([1, 2])
     assert compare.weights() == [1, 2]
     assert compare([0], [1])
@@ -395,7 +395,7 @@ def test_rev_wt_lenlex_cmp_object_without_alphabet():
     [(Alphabet("ab"), "a", "b", "c"), (Alphabet([0, 1]), [0], [1], [2])],
 )
 def test_rev_wt_lenlex_cmp_object_with_alphabet(alphabet, x, y, missing):
-    """Check alphabet-aware reversed weighted len-lex comparison."""
+    """Check alphabet-aware reversed weighted lenlex comparison."""
     compare = RevWtLenLexCmp(alphabet, [1, 2])
     assert compare(x, y)
     assert compare.alphabet() == alphabet
@@ -431,7 +431,7 @@ def test_rev_wt_lenlex_cmp_object_rejects_bad_constructors():
 
 
 def test_wt_lex_cmp_object_without_alphabet():
-    """Check weighted lexicographic comparison of index words."""
+    """Check weighted lexicographic comparison of list[int]."""
     compare = WtLexCmp([1, 2])
     assert compare.weights() == [1, 2]
     assert compare([0], [1])
@@ -480,7 +480,7 @@ def test_wt_lex_cmp_object_rejects_bad_constructors():
 
 
 def test_len_wt_lex_cmp_object_without_alphabet():
-    """Check length then weighted lexicographic comparison of index words."""
+    """Check length then weighted lexicographic comparison of list[int]."""
     compare = LenWtLexCmp([1, 2])
     assert compare.weights() == [1, 2]
     assert compare([0], [1])
@@ -529,7 +529,7 @@ def test_len_wt_lex_cmp_object_rejects_bad_constructors():
 
 
 def test_rev_len_wt_lex_cmp_object_without_alphabet():
-    """Check length then reversed weighted lexicographic comparison of index words."""
+    """Check length then reversed weighted lexicographic comparison of list[int]."""
     compare = RevLenWtLexCmp([1, 2])
     assert compare.weights() == [1, 2]
     assert compare([0], [1])
@@ -578,7 +578,7 @@ def test_rev_len_wt_lex_cmp_object_rejects_bad_constructors():
 
 
 def test_rev_wt_lex_cmp_object_without_alphabet():
-    """Check reversed weighted lexicographic comparison of index words."""
+    """Check reversed weighted lexicographic comparison of list[int]."""
     compare = RevWtLexCmp([1, 2])
     assert compare.weights() == [1, 2]
     assert compare([0], [1])
@@ -624,6 +624,31 @@ def test_rev_wt_lex_cmp_object_rejects_bad_constructors():
         RevWtLexCmp(Alphabet("ab"))
     with pytest.raises(LibsemigroupsError):
         RevWtLexCmp(Alphabet("ab"), [1])
+
+
+@pytest.mark.parametrize(
+    "comparison_type",
+    [
+        LexCmp,
+        RevLexCmp,
+        LenLexCmp,
+        RevLenLexCmp,
+        RPOCmp,
+        RevRPOCmp,
+        WrCmp,
+        RevWrCmp,
+        WtLenLexCmp,
+        RevWtLenLexCmp,
+        WtLexCmp,
+        RevWtLexCmp,
+        LenWtLexCmp,
+        RevLenWtLexCmp,
+    ],
+)
+def test_comparison_object_init_requires_an_argument(comparison_type):
+    """Check comparison objects have no zero-argument init overload."""
+    with pytest.raises((AttributeError, TypeError)):
+        comparison_type().init()
 
 
 @pytest.mark.parametrize(

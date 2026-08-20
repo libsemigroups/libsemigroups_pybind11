@@ -11,15 +11,16 @@ Orders
 ======
 
 This page contains the documentation for classes and several functions for
-comparing words or strings with respect to certain reduction orderings.
+comparing words (i.e. lists of integers ``list[int]`` or strings ``str``) with
+respect to certain reduction orderings.
 
 .. seealso::
     
     - :any:`Order`
     - :any:`Alphabet`
 
-The classes and functions in ``libsemigroups_pybind11`` for ordering words and
-strings are described on the following pages:
+The classes and functions in ``libsemigroups_pybind11`` for comparing words
+are described on the following pages:
 
 .. toctree::
     :maxdepth: 1
