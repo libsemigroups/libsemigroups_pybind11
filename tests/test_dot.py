@@ -72,6 +72,20 @@ def test_dot_add_node():
     assert d.to_string() == 'digraph {\n\n  cat\n  dog  [shape="box"]\n}'
 
 
+def test_dot_rm_node():
+    d = Dot()
+    d.add_node("cat")
+    d.add_node("dog")
+
+    assert d.rm_node("cat") is None
+    assert not d.is_node("cat")
+    assert d.is_node("dog")
+    assert d.to_string() == "digraph {\n\n  dog\n}"
+
+    with pytest.raises(LibsemigroupsError, match="there is no node named cat to remove"):
+        d.rm_node("cat")
+
+
 def test_dot_add_edge():
     d = Dot()
     d.add_node("cat")
