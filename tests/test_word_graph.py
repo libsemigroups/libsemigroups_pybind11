@@ -239,6 +239,18 @@ def test_spanning_tree(word_graphs):
     word_graph.spanning_tree(wg1, 0, f)
     assert word_graph.spanning_tree(wg1, 0) == f
 
+    expected = Forest(
+        [UNDEFINED, 0, 1],
+        [UNDEFINED, 0, 0],
+    )
+    assert word_graph.spanning_tree(wg1, 0, max_depth=2) == expected
+
+    word_graph.spanning_tree(wg1, 0, f, max_depth=2)
+    assert f == expected
+
+    with pytest.raises(TypeError):
+        word_graph.spanning_tree(wg1, 0, f, 2)
+
 
 def test_standardize(word_graphs):
     wg1, _ = word_graphs
