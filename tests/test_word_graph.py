@@ -212,9 +212,13 @@ def test_nodes_reachable_from(word_graphs):
     assert word_graph.nodes_reachable_from(wg1, 0) == {0, 1, 2, 3, 4}
     assert word_graph.nodes_reachable_from(wg1, 1) == {1, 2, 3, 4}
     assert word_graph.nodes_reachable_from(wg1, 3) == {3, 4}
+    assert word_graph.nodes_reachable_from(wg1, 0, max_depth=0) == {0}
+    assert word_graph.nodes_reachable_from(wg1, 0, max_depth=2) == {0, 1, 2}
 
     with pytest.raises(LibsemigroupsError):
         word_graph.nodes_reachable_from(wg1, 10)
+    with pytest.raises(TypeError):
+        word_graph.nodes_reachable_from(wg1, 0, 2)
 
 
 def test_number_of_nodes_reachable_from(word_graphs):
@@ -223,9 +227,13 @@ def test_number_of_nodes_reachable_from(word_graphs):
     assert word_graph.number_of_nodes_reachable_from(wg1, 0) == 5
     assert word_graph.number_of_nodes_reachable_from(wg1, 1) == 4
     assert word_graph.number_of_nodes_reachable_from(wg1, 3) == 2
+    assert word_graph.number_of_nodes_reachable_from(wg1, 0, max_depth=0) == 1
+    assert word_graph.number_of_nodes_reachable_from(wg1, 0, max_depth=2) == 3
 
     with pytest.raises(LibsemigroupsError):
         word_graph.number_of_nodes_reachable_from(wg1, 10)
+    with pytest.raises(TypeError):
+        word_graph.number_of_nodes_reachable_from(wg1, 0, 2)
 
 
 def test_spanning_tree(word_graphs):
@@ -238,6 +246,15 @@ def test_spanning_tree(word_graphs):
     f = Forest(0)
     word_graph.spanning_tree(wg1, 0, f)
     assert word_graph.spanning_tree(wg1, 0) == f
+
+    expected = Forest([UNDEFINED, 0, 1], [UNDEFINED, 0, 0])
+    assert word_graph.spanning_tree(wg1, 0, max_depth=2) == expected
+
+    word_graph.spanning_tree(wg1, 0, f, max_depth=2)
+    assert f == expected
+
+    with pytest.raises(TypeError):
+        word_graph.spanning_tree(wg1, 0, f, 2)
 
 
 def test_standardize(word_graphs):

@@ -1595,6 +1595,58 @@ def test_stephen_051():
 
 
 @pytest.mark.quick
+def test_stephen_052_dot_options_are_optional_keyword_only():
+    p = Presentation([0])
+    s = Stephen(p)
+    s.set_word([0]).run()
+
+    expected = """digraph {
+
+  0  [fontname="STIX Two Text Italic", label="ε", shape="box"]
+  1  [fontname="STIX Two Text", label="0", shape="box"]
+  accept  [style="invis"]
+  initial  [style="invis"]
+  initial -> 0
+  1 -> accept
+  0 -> 1  [color="#00ff00", fontname="STIX Two Text", label="0"]
+}"""
+    assert stephen.dot(s).to_string() == expected
+    assert stephen.dot(s, alphabet=[0]).to_string() == expected
+    assert stephen.dot(s, alphabet=None, radius=POSITIVE_INFINITY).to_string() == expected
+
+    unfinished = Stephen(p)
+    unfinished.set_word([0])
+    radius_zero = stephen.dot(unfinished, radius=0)
+    assert [node.name for node in radius_zero.nodes()] == ["0", "accept", "initial"]
+
+    with pytest.raises(TypeError):
+        stephen.dot(s, [0])
+    with pytest.raises(TypeError):
+        stephen.dot(s, None, 0)
+
+
+@pytest.mark.quick
+def test_stephen_053_dot_inverse_options():
+    p = InversePresentation("aA")
+    p.inverses("Aa")
+    s = Stephen(p)
+    s.set_word("A").run()
+
+    with_inverse_literals = stephen.dot(s)
+    without_inverse_literals = stephen.dot(s, use_inverse_literals=False)
+    assert 'label="a⁻¹"' in with_inverse_literals.to_string()
+    assert 'label="A"' in without_inverse_literals.to_string()
+
+    unfinished = Stephen(p)
+    unfinished.set_word("A")
+    radius_zero = stephen.dot(unfinished, alphabet="a", radius=0, use_inverse_literals=False)
+    assert [node.name for node in radius_zero.nodes()] == ["0", "accept", "initial"]
+
+    with pytest.raises(TypeError):
+        stephen.dot(s, "a")
+
+
+@pytest.mark.quick
 def test_stephen_return_policy():
     p = InversePresentation("abcABC")
     p.inverses("ABCabc")
