@@ -1639,9 +1639,7 @@ def test_stephen_053_dot_inverse_options():
 
     unfinished = Stephen(p)
     unfinished.set_word("A")
-    radius_zero = stephen.dot(
-        unfinished, alphabet="a", radius=0, use_inverse_literals=False
-    )
+    radius_zero = stephen.dot(unfinished, alphabet="a", radius=0, use_inverse_literals=False)
     assert [node.name for node in radius_zero.nodes()] == ["0", "accept", "initial"]
 
     with pytest.raises(TypeError):
