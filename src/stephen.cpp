@@ -16,6 +16,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+// C++ stl headers....
+#include <optional>  // for optional, nullopt
+
 // libsemigroups headers
 #include <libsemigroups/constants.hpp>  // for POSITIVE_INFINITY
 #include <libsemigroups/stephen.hpp>    // for Stephen
@@ -120,7 +123,7 @@ already), and then returns the accept state of the produced word graph.
   :py:meth:`~Stephen.set_word`.
 
 .. warning::
-    Termination of the Stephen algorithm is undecidable in general, and
+    Termination of Stephen's procedure is undecidable in general, and
     this function may never terminate.
 )pbdoc");
       // The next one is complicated to use/doc so omitted.
@@ -177,7 +180,7 @@ the last presentation change and ``False`` otherwise.
           },
           py::arg("other"),
           R"pbdoc(
-Append a Stephen object.
+Append a :any:`Stephen` object.
 
 This function appends the :any:`Stephen` object *other* to *self*. This
 modifies the current :any:`Stephen` instance in-place. The result is a
@@ -187,7 +190,7 @@ or *other* has already been (partially) run, then we can reuse the
 underlying word graphs instead of having to recompute them completely from
 scratch.
 
-:param other: the Stephen instance to append.
+:param other: the :any:`Stephen` instance to append.
 :type other: Stephen
 
 :returns: *self*.
@@ -309,7 +312,7 @@ word *w* is accepted if and only if :math:`uu^{-1}w` is equivalent to
 :math:`u` in the semigroup defined by :any:`Stephen.presentation`, where
 :math:`u` is the value of :any:`Stephen.word`.
 
-:param s: the Stephen instance.
+:param s: the :any:`Stephen` instance.
 :type s: Stephen
 
 :param w: the input word.
@@ -323,26 +326,193 @@ word *w* is accepted if and only if :math:`uu^{-1}w` is equivalent to
   :any:`Stephen.init` or if no word was set with :any:`Stephen.set_word`.
 
 .. warning::
-    Termination of the Stephen algorithm is undecidable in general, and
+    Termination of Stephen's procedure is undecidable in general, and
     this function may never terminate.
 )pbdoc");
 
-      m.def("stephen_dot",
-            &stephen::dot<PresentationType>,
+      if constexpr (is_specialization_of_v<PresentationType,
+                                           InversePresentation>) {
+        m.def(
+            "stephen_dot",
+            [](Stephen_&                              s,
+               std::optional<native_word_type> const& alphabet,
+               int_or_constant<size_t>                radius,
+               bool                                   use_inverse_literals) {
+              if (alphabet.has_value()) {
+                return stephen::dot(
+                    s, *alphabet, to_int<size_t>(radius), use_inverse_literals);
+              }
+              return stephen::dot(
+                  s, to_int<size_t>(radius), use_inverse_literals);
+            },
             py::arg("s"),
+            py::kw_only(),
+            py::arg("alphabet")             = std::nullopt,
+            py::arg("radius")               = POSITIVE_INFINITY,
+            py::arg("use_inverse_literals") = true,
             R"pbdoc(
-:sig=(s: Stephen) -> Dot:
+:sig=(s: Stephen, *, alphabet: str | list[int] | None = None, radius: int | PositiveInfinity = POSITIVE_INFINITY, use_inverse_literals: bool = True) -> Dot:
 :only-document-once:
 
-Return a :any:`Dot` object representing the underlying word graph of the
-:any:`Stephen` object *s*.
+Returns a :any:`Dot` object representing an inverse :any:`Stephen` word graph.
 
-:param s: the Stephen object.
+This function returns a :any:`Dot` object representing the word graph of the
+:any:`Stephen` instance *s* in its current state. The returned graph contains
+the nodes reachable from the initial state by a path of length at most
+*radius*. If *alphabet* is ``None``, edges are labelled by the inverse
+semigroup generating set. Otherwise, only edges labelled by letters in
+*alphabet* are included.
+
+If *use_inverse_literals* is ``True``, a letter outside the selected alphabet
+in a node label is rendered as its inverse followed by a superscript ``-1``.
+Otherwise, every letter in a node label is rendered directly.
+
+:param s: the :any:`Stephen` instance.
 :type s: Stephen
 
-:returns: A :any:`Dot` object.
+:param alphabet:
+  the letters labelling edges in the returned graph, or ``None`` to use the
+  inverse semigroup generating set. This is a keyword-only argument.
+:type alphabet: str | list[int] | None
+
+:param radius:
+  the maximum distance from the initial state of a node in the returned graph
+  (default: :any:`POSITIVE_INFINITY`). This is a keyword-only argument.
+:type radius: int | PositiveInfinity
+
+:param use_inverse_literals:
+  whether to use inverse literals in node labels (default: ``True``). This is a
+  keyword-only argument.
+:type use_inverse_literals: bool
+
+:returns: A :any:`Dot` object representing the word graph of *s*.
 :rtype: Dot
+
+:raises LibsemigroupsError:
+  if no presentation or word has been set in *s*; if *alphabet* contains
+  duplicate or invalid letters; if a selected letter cannot be rendered
+  unambiguously as a single character; or if the selected alphabet has more
+  letters than the number of colours in :any:`Dot.colors`.
+
+.. note::
+  This function does not run *s*.
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import InversePresentation, Stephen, stephen
+   >>> p = InversePresentation("abcABC").inverses("ABCabc")
+   >>> s = Stephen(p).set_word("aBbcaABAabCc")
+   >>> s.run()
+   >>> graph = stephen.dot(s, alphabet="abc", radius=2)
+   >>> graph.node("3").attrs["label"]
+   '"ab⁻¹"'
+   >>> graph = stephen.dot(
+   ...     s, alphabet="abc", radius=2, use_inverse_literals=False
+   ... )
+   >>> graph.node("3").attrs["label"]
+   '"aB"'
+
+Calling ``view`` without any options displays the complete current graph:
+
+.. code-block:: python
+
+   stephen.dot(s).view()
+
+.. figure:: ../../../pictures/stephen-inverse-word-graph-default.svg
+   :alt: The complete inverse Stephen word graph displayed by view.
+   :align: center
+   :width: 420px
+
+   The output of ``stephen.dot(s).view()`` for the presentation and word above.
+
+The following example stops Stephen's procedure after the word graph reaches
+at least 1024 nodes, and displays the part within distance 3 of the initial
+state.
+
+.. doctest::
+
+   >>> p = InversePresentation("abcABC").inverses("ABCabc")
+   >>> p.contains_empty_word(True)
+   <monoid presentation with 6 letters, 0 rules, and length 0>
+   >>> p.rules = ["acb", "", "aCb", ""]
+   >>> s = Stephen(p).set_word("")
+   >>> s.run_until(lambda: s.word_graph().number_of_nodes() >= 1024)
+   >>> graph = stephen.dot(s, radius=3)
+   >>> len(graph.nodes()), len(graph.edges())
+   (11, 17)
+
+The final call produces the following graph:
+
+.. figure:: ../../../pictures/stephen-inverse-word-graph.svg
+   :alt: An inverse Stephen word graph with inverse literals in its node labels.
+   :align: center
+   :width: 340px
+
+   The radius-3 inverse Stephen word graph from the example above.
 )pbdoc");
+      } else {
+        m.def(
+            "stephen_dot",
+            [](Stephen_&                              s,
+               std::optional<native_word_type> const& alphabet,
+               int_or_constant<size_t>                radius) {
+              if (alphabet.has_value()) {
+                return stephen::dot(s, *alphabet, to_int<size_t>(radius));
+              }
+              return stephen::dot(s, to_int<size_t>(radius));
+            },
+            py::arg("s"),
+            py::kw_only(),
+            py::arg("alphabet") = std::nullopt,
+            py::arg("radius")   = POSITIVE_INFINITY,
+            R"pbdoc(
+:sig=(s: Stephen, *, alphabet: str | list[int] | None = None, radius: int | PositiveInfinity = POSITIVE_INFINITY) -> Dot:
+:only-document-once:
+
+Returns a :any:`Dot` object representing a :any:`Stephen` word graph.
+
+This function returns a :any:`Dot` object representing the word graph of the
+:any:`Stephen` instance *s* in its current state. The returned graph contains
+the nodes reachable from the initial state by a path of length at most
+*radius*. If *alphabet* is ``None``, edges labelled by every letter in the
+alphabet of the presentation are included. Otherwise, only edges labelled by
+letters in *alphabet* are included.
+
+:param s: the :any:`Stephen` instance.
+:type s: Stephen
+
+:param alphabet:
+  the letters labelling edges in the returned graph, or ``None`` to use the
+  presentation's alphabet. This is a keyword-only argument.
+:type alphabet: str | list[int] | None
+
+:param radius:
+  the maximum distance from the initial state of a node in the returned graph
+  (default: :any:`POSITIVE_INFINITY`). This is a keyword-only argument.
+:type radius: int | PositiveInfinity
+
+:returns: A :any:`Dot` object representing the word graph of *s*.
+:rtype: Dot
+
+:raises LibsemigroupsError:
+  if no presentation or word has been set in *s*; if *alphabet* contains
+  duplicate or invalid letters; if a selected letter cannot be rendered
+  unambiguously as a single character; or if the selected alphabet has more
+  letters than the number of colours in :any:`Dot.colors`.
+
+.. note::
+  This function does not run *s*.
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import Presentation, Stephen, stephen
+   >>> p = Presentation("ab")
+   >>> s = Stephen(p).set_word("abba")
+   >>> graph = stephen.dot(s, alphabet="a", radius=1)
+   >>> len(graph.nodes()), len(graph.edges())
+   (4, 2)
+)pbdoc");
+      }
 
       m.def("stephen_is_left_factor",
             &stephen::is_left_factor<PresentationType>,
@@ -359,7 +529,7 @@ left factor of :any:`Stephen.word` in the semigroup defined by
 :any:`Stephen.presentation`. A word is a left factor of :any:`Stephen.word` if
 it labels a path in :any:`Stephen.word_graph` with source ``0``.
 
-:param s: the Stephen instance.
+:param s: the :any:`Stephen` instance.
 :type s: Stephen
 
 :param w: the input word.
@@ -374,7 +544,7 @@ it labels a path in :any:`Stephen.word_graph` with source ``0``.
   :any:`Stephen.set_word`.
 
 .. warning::
-    Termination of the Stephen algorithm is undecidable in general, and
+    Termination of Stephen's procedure is undecidable in general, and
     this function may never terminate.
 )pbdoc");
 
@@ -394,7 +564,7 @@ that are left factors of :any:`Stephen.word`.
 This function triggers the algorithm implemented in this class (if it hasn't
 been triggered already).
 
-:param s: the Stephen instance.
+:param s: the :any:`Stephen` instance.
 :type s: Stephen
 
 :returns: A :any:`Paths` object containing all the words (in short-lex order)
@@ -407,7 +577,7 @@ been triggered already).
   was set with :any:`Stephen.set_word`.
 
 .. warning::
-    Termination of the Stephen algorithm is undecidable in general, and
+    Termination of Stephen's procedure is undecidable in general, and
     this function may never terminate.
 )pbdoc");
 
@@ -430,7 +600,7 @@ the number of paths in :any:`Stephen.word_graph` (if the inherited
 :any:`Runner.run` method of *s* has been called) with source ``0`` and length
 in the range *min* to *max*.
 
-:param s: the Stephen instance.
+:param s: the :any:`Stephen` instance.
 :type s: Stephen
 
 :param min: the minimum length of a word (default: 0).
@@ -450,7 +620,7 @@ in the range *min* to *max*.
   was set with :any:`Stephen.set_word`.
 
 .. warning::
-  Termination of the Stephen algorithm is undecidable in general, and
+  Termination of Stephen's procedure is undecidable in general, and
   this function may never terminate.
 )pbdoc");
 
@@ -483,7 +653,7 @@ equivalent to :math:`u` in the semigroup defined by
 :any:`Stephen.presentation`, where :math:`u` is the value of
 :any:`Stephen.word`.
 
-:param s: the Stephen instance.
+:param s: the :any:`Stephen` instance.
 :type s: Stephen
 
 :param min: the minimum length of a word (default: ``0``).
@@ -503,7 +673,7 @@ equivalent to :math:`u` in the semigroup defined by
   :any:`Stephen.set_word`.
 
 .. warning::
-  Termination of the Stephen algorithm is undecidable in general, and
+  Termination of Stephen's procedure is undecidable in general, and
   this function may never terminate.
 )pbdoc");
 
@@ -524,7 +694,7 @@ Returns a :any:`Paths` object containing all words accepted by a
 This function triggers the algorithm implemented in this class (if it hasn't
 been triggered already).
 
-:param s: the Stephen instance.
+:param s: the :any:`Stephen` instance.
 :type s: Stephen
 
 :returns: A :any:`Paths` object containing all words equivalent to
@@ -537,7 +707,7 @@ been triggered already).
   was set with :any:`Stephen.set_word`.
 
 .. warning::
-  Termination of the Stephen algorithm is undecidable in general, and
+  Termination of Stephen's procedure is undecidable in general, and
   this function may never terminate.
 )pbdoc");
     }
