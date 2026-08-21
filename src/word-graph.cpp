@@ -1172,23 +1172,33 @@ position in the word reached.
 
     m.def(
         "word_graph_nodes_reachable_from",
-        [](WordGraph_ const& wg, node_type source) {
-          return word_graph::nodes_reachable_from(wg, source);
+        [](WordGraph_ const&       wg,
+           node_type               source,
+           int_or_constant<size_t> max_depth) {
+          return v4::word_graph::nodes_reachable_from(
+              wg, source, to_int<size_t>(max_depth));
         },
         py::arg("wg"),
         py::arg("source"),
+        py::kw_only(),
+        py::arg("max_depth") = POSITIVE_INFINITY,
         R"pbdoc(
-:sig=(wg: WordGraph, source: int) -> set[int]:
+:sig=(wg: WordGraph, source: int, *, max_depth: int | PositiveInfinity = POSITIVE_INFINITY) -> set[int]:
 Returns the set of nodes reachable from a given node in a word graph.
 
 This function returns a set consisting of all the nodes in the word graph
-*wg* that are reachable from *source*.
+*wg* that are reachable from *source* by a path of length at most *max_depth*.
 
 :param wg: the word graph.
 :type wg: WordGraph
 
 :param source: the source node.
 :type source: int
+
+:param max_depth:
+  the maximum distance from *source* (default: :any:`POSITIVE_INFINITY`). This
+  is a keyword-only argument.
+:type max_depth: int | PositiveInfinity
 
 :returns:
   A set consisting of all the nodes in the word graph
@@ -1197,27 +1207,45 @@ This function returns a set consisting of all the nodes in the word graph
 
 :raises LibsemigroupsError:
   if *source* is out of bounds (greater than or equal to
-  :any:`WordGraph.number_of_nodes`).)pbdoc");
+  :any:`WordGraph.number_of_nodes`).
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import WordGraph, word_graph
+   >>> wg = WordGraph(5, [[1], [2], [3], [4], [0]])
+   >>> sorted(word_graph.nodes_reachable_from(wg, 0, max_depth=2))
+   [0, 1, 2]
+)pbdoc");
 
     m.def(
         "word_graph_number_of_nodes_reachable_from",
-        [](WordGraph_ const& wg, node_type source) {
-          return word_graph::number_of_nodes_reachable_from(wg, source);
+        [](WordGraph_ const&       wg,
+           node_type               source,
+           int_or_constant<size_t> max_depth) {
+          return v4::word_graph::number_of_nodes_reachable_from(
+              wg, source, to_int<size_t>(max_depth));
         },
         py::arg("wg"),
         py::arg("source"),
+        py::kw_only(),
+        py::arg("max_depth") = POSITIVE_INFINITY,
         R"pbdoc(
-:sig=(wg: WordGraph, source: int) -> int:
+:sig=(wg: WordGraph, source: int, *, max_depth: int | PositiveInfinity = POSITIVE_INFINITY) -> int:
 Returns the number of nodes reachable from a given node in a word graph.
 
 This function returns the number of nodes in the word graph *wg* that are
-reachable from *source*.
+reachable from *source* by a path of length at most *max_depth*.
 
 :param wg: the word graph.
 :type wg: WordGraph
 
 :param source: the source node.
 :type source: int
+
+:param max_depth:
+  the maximum distance from *source* (default: :any:`POSITIVE_INFINITY`). This
+  is a keyword-only argument.
+:type max_depth: int | PositiveInfinity
 
 :returns:
   The number of nodes in the word graph *wg* that are reachable from
@@ -1226,7 +1254,15 @@ reachable from *source*.
 
 :raises LibsemigroupsError:
   if *source* is out of bounds (greater than or equal to
-  :any:`WordGraph.number_of_nodes`).)pbdoc");
+  :any:`WordGraph.number_of_nodes`).
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import WordGraph, word_graph
+   >>> wg = WordGraph(5, [[1], [2], [3], [4], [0]])
+   >>> word_graph.number_of_nodes_reachable_from(wg, 0, max_depth=2)
+   3
+)pbdoc");
 
     m.def(
         "word_graph_random_acyclic",
