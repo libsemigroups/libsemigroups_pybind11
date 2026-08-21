@@ -32,6 +32,7 @@ from _libsemigroups_pybind11 import (
     presentation_greedy_reduce_length as _greedy_reduce_length,
     presentation_greedy_reduce_length_and_number_of_gens as _greedy_reduce_length_and_num_of_gens,
     presentation_index_rule as _index_rule,
+    presentation_inverse_alphabet as _inverse_alphabet,
     presentation_is_normalized as _is_normalized,
     presentation_is_rule as _is_rule,
     presentation_is_strongly_compressible as _is_strongly_compressible,
@@ -249,6 +250,7 @@ contains_rule = _wrap_cxx_free_fn(_contains_rule)
 first_unused_letter = _wrap_cxx_free_fn(_first_unused_letter)
 greedy_reduce_length = _wrap_cxx_free_fn(_greedy_reduce_length)
 greedy_reduce_length_and_number_of_gens = _wrap_cxx_free_fn(_greedy_reduce_length_and_num_of_gens)
+inverse_alphabet = _wrap_cxx_free_fn(_inverse_alphabet)
 is_strongly_compressible = _wrap_cxx_free_fn(_is_strongly_compressible)
 length = _wrap_cxx_free_fn(_length)
 longest_rule = _wrap_cxx_free_fn(_longest_rule)
@@ -299,6 +301,7 @@ __all__ = [
     "first_unused_letter",
     "greedy_reduce_length",
     "greedy_reduce_length_and_number_of_gens",
+    "inverse_alphabet",
     "is_strongly_compressible",
     "length",
     "longest_rule",
