@@ -1432,7 +1432,36 @@ def test_inverses_039():
     check_inverses(to_word)
 
 
-def test_remove_generator_040():
+def test_inverse_alphabet_040():
+    p = InversePresentation([0, 1, 2, 3])
+    p.inverses([2, 3, 0, 1])
+    assert presentation.inverse_alphabet(p) == [0, 1]
+
+    p.alphabet([0, 2, 1, 3])
+    p.inverses([2, 0, 3, 1])
+    assert presentation.inverse_alphabet(p) == [0, 1]
+
+    p.alphabet([0, 2, 1, 3])
+    p.inverses([2, 0, 1, 3])
+    assert presentation.inverse_alphabet(p) == [0, 1, 3]
+
+    p.rules = [[4], [0]]
+    with pytest.raises(LibsemigroupsError):
+        presentation.inverse_alphabet(p)
+
+    p = InversePresentation("abAB")
+    p.inverses("ABab")
+    assert presentation.inverse_alphabet(p) == "ab"
+
+    p.alphabet("aAbB")
+    p.inverses("AaBb")
+    assert presentation.inverse_alphabet(p) == "ab"
+
+    p.inverses("AabB")
+    assert presentation.inverse_alphabet(p) == "abB"
+
+
+def test_remove_generator_041():
     check_remove_generator(to_string)
     check_remove_generator(to_word)
 

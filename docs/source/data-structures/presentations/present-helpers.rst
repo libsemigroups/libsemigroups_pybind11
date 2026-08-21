@@ -53,6 +53,7 @@ Contents
     greedy_reduce_length
     greedy_reduce_length_and_number_of_gens
     index_rule
+    inverse_alphabet
     is_normalized
     is_rule
     is_strongly_compressible
