@@ -1096,6 +1096,24 @@ def test_helpers_reduce_complements_017():
     p.throw_if_bad_alphabet_or_rules()
 
 
+def test_helpers_normalize_inverse_alphabet():
+    p = InversePresentation([5, 7, 3, 9]).inverses([7, 5, 9, 3])
+    p.rules = [[5, 3, 7], [9, 5]]
+    presentation.normalize_alphabet(p)
+    assert p.alphabet() == [0, 1, 2, 3]
+    assert p.rules == [[0, 2, 1], [3, 0]]
+    assert p.inverses() == [1, 0, 3, 2]
+    p.throw_if_bad_alphabet_rules_or_inverses()
+
+    p = InversePresentation("xXyY").inverses("XxYy")
+    p.rules = ["xyX", "Yx"]
+    presentation.normalize_alphabet(p)
+    assert p.alphabet() == "abcd"
+    assert p.rules == ["acb", "da"]
+    assert p.inverses() == "badc"
+    p.throw_if_bad_alphabet_rules_or_inverses()
+
+
 def test_helpers_sort_each_rule_018():
     check_sort_each_rule(to_word)
     check_sort_each_rule(to_string)

@@ -1249,23 +1249,35 @@ defined by an inverse presentation. More specifically, for every letter
    'abc'
 )pbdoc");
       m.def("presentation_normalize_alphabet",
-            &presentation::normalize_alphabet<Word>,
+            py::overload_cast<Presentation_&>(
+                &presentation::normalize_alphabet<Word>),
             py::arg("p"),
             R"pbdoc(
-:sig=(p: Presentation) -> None:
+:sig=(p: Presentation | InversePresentation) -> None:
 :only-document-once:
 Normalize the alphabet to :math:`\{0, \ldots, n - 1\}`.
 
 Modify the presentation in-place so that the alphabet is :math:`\{0, \ldots,
-n - 1\}` (or equivalent) and rewrites the rules to use this alphabet. If the
-alphabet is already normalized, then no changes are made to the presentation.
+n - 1\}` (or equivalent) and rewrites the rules to use this alphabet. For an
+:any:`InversePresentation`, the inverses are also rewritten. If the alphabet is
+already normalized, then no changes are made to the presentation.
 
 :param p: the presentation.
-:type p: Presentation
+:type p: Presentation | InversePresentation
 
 :raises LibsemigroupsError:
-  if :any:`Presentation.throw_if_bad_alphabet_or_rules` raises an exception on
-  the initial presentation.)pbdoc");
+  if the relevant presentation validity check raises an exception on the
+  initial presentation.
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import InversePresentation, presentation
+   >>> p = InversePresentation("xXyY").inverses("XxYy")
+   >>> p.rules = ["xyX", "Yx"]
+   >>> presentation.normalize_alphabet(p)
+   >>> p.alphabet(), p.rules, p.inverses()
+   ('abcd', ['acb', 'da'], 'badc')
+)pbdoc");
       m.def("presentation_reduce_complements",
             &presentation::reduce_complements<Word>,
             py::arg("p"),
@@ -2133,6 +2145,11 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
       * :any:`Presentation.throw_if_bad_alphabet_or_rules`
       * :any:`presentation.throw_if_bad_inverses`
 )pbdoc");
+      m.def("presentation_normalize_alphabet",
+            py::overload_cast<InversePresentation_&>(
+                &presentation::normalize_alphabet<Word>),
+            py::arg("p"),
+            py::prepend());
     }  // bind_inverse_present
   }    // namespace
 
