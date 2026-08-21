@@ -370,6 +370,35 @@ the represented graph and ``False`` otherwise.
 :returns: Whether or not *name* is the name of a node.
 :rtype: bool
 )pbdoc");
+
+    dot.def(
+        "rm_node",
+        [](Dot& self, std::string const& name) { self.rm_node(name); },
+        py::arg("name"),
+        R"pbdoc(
+:sig=(self: Dot, name: str) -> None:
+
+Remove a node from the represented graph.
+
+This function removes the node named *name*.
+
+:param name: the name of the node to remove.
+:type name: str
+
+:raises LibsemigroupsError: if there is no node named *name*.
+
+.. doctest::
+
+   >>> from libsemigroups_pybind11 import Dot
+   >>> graph = Dot()
+   >>> node = graph.add_node("a")
+   >>> graph.is_node("a")
+   True
+   >>> graph.rm_node("a")
+   >>> graph.is_node("a")
+   False
+)pbdoc");
+
     dot.def("kind",
             py::overload_cast<Dot::Kind>(&Dot::kind),
             py::arg("val"),

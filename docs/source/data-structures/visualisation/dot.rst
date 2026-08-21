@@ -34,6 +34,7 @@ Contents
     Dot.name
     Dot.node
     Dot.nodes
+    Dot.rm_node
     Dot.subgraphs
     Dot.to_string
 
