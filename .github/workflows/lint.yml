@@ -44,11 +44,11 @@ jobs:
       - name: "Find the names of the Python files that will be linted"
         run: echo "PYTHON_FILES=$(uv run ruff check --show-files | grep '\.py$' |  tr -s '\n' ' ')" >> $GITHUB_ENV
 
-      # Lint with ruff and cpplint
+      # Fast static checks
       - name: "Lint with ruff . . ."
         run: uv run ruff check
-      - name: "Check ruff formatting . . ."
-        run: uv run ruff format --diff
+      - name: "Check Ruff formatting . . ."
+        run: uv run ruff format --check --diff
       - name: "Lint with cpplint . . ."
         run: uv run cpplint src/*.hpp src/*.cpp
 
@@ -72,7 +72,7 @@ jobs:
       - name: "Install libsemigroups_pybind11 . . ."
         run: uv sync --verbose --locked --all-extras --no-dev --group lint
 
-      # Lint with ruff and cpplint
+      # Pylint requires the built extension
       - name: "Lint with pylint . . ."
         run: uv run pylint $PYTHON_FILES
   clang-format:

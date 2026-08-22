@@ -30,7 +30,27 @@ where [package_manager] is your favourite conda-like package manager, such as
 conda or mamba. The default value is mamba. Note that this DOES NOT *yet* work
 with micromamba.
 
-To build libsemigroups (with the above environment active):
+Git hooks
+---------
+
+Install the repository's commit and push hooks after creating the development
+environment:
+
+.. code-block:: console
+
+    pre-commit install
+
+Ruff linting and formatting then run when committing, while Pylint and cpplint
+run before a push. To check every tracked file without making a commit or push,
+run:
+
+.. code-block:: console
+
+    pre-commit run --all-files
+    pre-commit run --all-files --hook-stage pre-push
+
+Building libsemigroups
+----------------------
 
 First, clone and prepare the libsemigroups repository:
 

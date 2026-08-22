@@ -1,7 +1,5 @@
 # TODO:
-#  * Use ruff
 #  * Decide on good configurations for tools
-#  * Use pre-commit
 #  * Use MyPy
 [build-system]
 build-backend = "setuptools.build_meta"
@@ -80,8 +78,14 @@ test = ["pytest>=8.4.2"]
 [dependency-groups]
 # This list should contain any package used in the development of
 # libsemigroups_pybind11.
-dev  = ["ipython>=9.6.0", { include-group = "lint" }]
-lint = ["codespell>=2.4.1", "cpplint>=2.0.2", "pylint>=4.0.2", "ruff>=0.14.2"]
+dev = ["ipython>=9.6.0", { include-group = "lint" }]
+lint = [
+    "codespell>=2.4.1",
+    "cpplint>=2.0.2",
+    "pre-commit>=4.3.0",
+    "pylint>=4.0.2",
+    "ruff>=0.14.2",
+]
 
 ###################################################################
 # Tools
