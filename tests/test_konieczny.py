@@ -6,7 +6,6 @@
 
 """This module contains some tests for the Konieczny class."""
 
-
 # pylint: disable=missing-function-docstring, invalid-name
 
 from datetime import timedelta

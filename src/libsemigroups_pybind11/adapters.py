@@ -106,9 +106,7 @@ class ImageRightAction(_ImageAction):
 
 _copy_cxx_mem_fns(_ImageRightActionPPerm1PPerm1, ImageRightAction)
 
-for _type in (
-    ImageRightAction._py_template_params_to_cxx_type.values()  # pylint:disable=protected-access
-):
+for _type in ImageRightAction._py_template_params_to_cxx_type.values():  # pylint:disable=protected-access
     _register_cxx_wrapped_type(_type, ImageRightAction)
 
 

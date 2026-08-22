@@ -10,6 +10,9 @@ exit_code=0
 echo "Linting with ruff . . ."
 ruff check || ((exit_code = 1))
 
+echo "Checking formatting with ruff . . ."
+ruff format --check || ((exit_code = 1))
+
 echo "Linting with pylint . . ."
 pylint $(ruff check --show-files | grep "\.py$") || ((exit_code = 1))
 
