@@ -260,14 +260,7 @@ The valid values are:
     def_init_kind_presentation(thing, "ToddCoxeterImpl_");
     def_number_of_classes(thing, "ToddCoxeter");
     def_copy(thing, "ToddCoxeterImpl_");
-    def_add_generating_pair(thing, "ToddCoxeterImpl_");
-    def_currently_contains(thing, "ToddCoxeterImpl_");
-    def_contains(thing, "ToddCoxeterImpl_");
-    def_reduce_no_run(thing, "ToddCoxeterImpl_", doc{.detail = R"pbdoc(
-If the :any:`ToddCoxeter` instance is not :any:`Runner.finished`,
-then it might be that equivalent input words produce different output
-words. This function triggers no congruence enumeration.)pbdoc"sv});
-    def_reduce(thing, "ToddCoxeterImpl_");
+
     // There's no generating_pairs for ToddCoxeterImpl_ only
     // internal_generating_pairs
 

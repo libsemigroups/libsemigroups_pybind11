@@ -593,8 +593,6 @@ This function adds a generating pair to the congruence represented by a
   template void def_add_generating_pair<A, B>( \
       py::class_<A, B>&, std::string_view, doc)
 
-  DEF_ADD_GENERATING_PAIR(detail::ToddCoxeterImpl, detail::CongruenceCommon);
-
   DEF_ADD_GENERATING_PAIR(ToddCoxeter<word_type>, detail::ToddCoxeterImpl);
   DEF_ADD_GENERATING_PAIR(ToddCoxeter<std::string>, detail::ToddCoxeterImpl);
 
@@ -602,11 +600,6 @@ This function adds a generating pair to the congruence represented by a
   DEF_ADD_GENERATING_PAIR(Kambites<MultiView<std::string>>,
                           detail::CongruenceCommon);
   DEF_ADD_GENERATING_PAIR(Kambites<std::string>, detail::CongruenceCommon);
-
-  DEF_ADD_GENERATING_PAIR(detail::KnuthBendixImpl<LenLexTrie>,
-                          detail::CongruenceCommon);
-  DEF_ADD_GENERATING_PAIR(detail::KnuthBendixImpl<LenLexSet>,
-                          detail::CongruenceCommon);
 
   DEF_ADD_GENERATING_PAIR(KnuthBendixStringLenLexTrie,
                           detail::KnuthBendixImpl<LenLexTrie>);
@@ -616,11 +609,6 @@ This function adds a generating pair to the congruence represented by a
                           detail::KnuthBendixImpl<LenLexTrie>);
   DEF_ADD_GENERATING_PAIR(KnuthBendixWordLenLexSet,
                           detail::KnuthBendixImpl<LenLexSet>);
-
-  DEF_ADD_GENERATING_PAIR(detail::KnuthBendixImpl<RevRPOTrie>,
-                          detail::CongruenceCommon);
-  DEF_ADD_GENERATING_PAIR(detail::KnuthBendixImpl<RevRPOSet>,
-                          detail::CongruenceCommon);
 
   DEF_ADD_GENERATING_PAIR(KnuthBendixStringRevRPOTrie,
                           detail::KnuthBendixImpl<RevRPOTrie>);
@@ -690,8 +678,6 @@ contained in the congruence, but that this is not currently known.
   template void def_currently_contains<A, B>( \
       py::class_<A, B>&, std::string_view, doc)
 
-  DEF_CURRENTLY_CONTAINS(detail::ToddCoxeterImpl, detail::CongruenceCommon);
-
   DEF_CURRENTLY_CONTAINS(ToddCoxeter<word_type>, detail::ToddCoxeterImpl);
   DEF_CURRENTLY_CONTAINS(ToddCoxeter<std::string>, detail::ToddCoxeterImpl);
 
@@ -699,11 +685,6 @@ contained in the congruence, but that this is not currently known.
   DEF_CURRENTLY_CONTAINS(Kambites<MultiView<std::string>>,
                          detail::CongruenceCommon);
   DEF_CURRENTLY_CONTAINS(Kambites<std::string>, detail::CongruenceCommon);
-
-  DEF_CURRENTLY_CONTAINS(detail::KnuthBendixImpl<LenLexTrie>,
-                         detail::CongruenceCommon);
-  DEF_CURRENTLY_CONTAINS(detail::KnuthBendixImpl<LenLexSet>,
-                         detail::CongruenceCommon);
 
   DEF_CURRENTLY_CONTAINS(KnuthBendixStringLenLexTrie,
                          detail::KnuthBendixImpl<LenLexTrie>);
@@ -713,11 +694,6 @@ contained in the congruence, but that this is not currently known.
                          detail::KnuthBendixImpl<LenLexTrie>);
   DEF_CURRENTLY_CONTAINS(KnuthBendixWordLenLexSet,
                          detail::KnuthBendixImpl<LenLexSet>);
-
-  DEF_CURRENTLY_CONTAINS(detail::KnuthBendixImpl<RevRPOTrie>,
-                         detail::CongruenceCommon);
-  DEF_CURRENTLY_CONTAINS(detail::KnuthBendixImpl<RevRPOSet>,
-                         detail::CongruenceCommon);
 
   DEF_CURRENTLY_CONTAINS(KnuthBendixStringRevRPOTrie,
                          detail::KnuthBendixImpl<RevRPOTrie>);
@@ -781,8 +757,6 @@ congruence represented by a :py:class:`{name}` instance.
 #define DEF_CONTAINS(A, B) \
   template void def_contains<A, B>(py::class_<A, B>&, std::string_view, doc)
 
-  DEF_CONTAINS(detail::ToddCoxeterImpl, detail::CongruenceCommon);
-
   DEF_CONTAINS(ToddCoxeter<word_type>, detail::ToddCoxeterImpl);
   DEF_CONTAINS(ToddCoxeter<std::string>, detail::ToddCoxeterImpl);
 
@@ -790,17 +764,11 @@ congruence represented by a :py:class:`{name}` instance.
   DEF_CONTAINS(Kambites<MultiView<std::string>>, detail::CongruenceCommon);
   DEF_CONTAINS(Kambites<std::string>, detail::CongruenceCommon);
 
-  DEF_CONTAINS(detail::KnuthBendixImpl<LenLexTrie>, detail::CongruenceCommon);
-  DEF_CONTAINS(detail::KnuthBendixImpl<LenLexSet>, detail::CongruenceCommon);
-
   DEF_CONTAINS(KnuthBendixStringLenLexTrie,
                detail::KnuthBendixImpl<LenLexTrie>);
   DEF_CONTAINS(KnuthBendixStringLenLexSet, detail::KnuthBendixImpl<LenLexSet>);
   DEF_CONTAINS(KnuthBendixWordLenLexTrie, detail::KnuthBendixImpl<LenLexTrie>);
   DEF_CONTAINS(KnuthBendixWordLenLexSet, detail::KnuthBendixImpl<LenLexSet>);
-
-  DEF_CONTAINS(detail::KnuthBendixImpl<RevRPOTrie>, detail::CongruenceCommon);
-  DEF_CONTAINS(detail::KnuthBendixImpl<RevRPOSet>, detail::CongruenceCommon);
 
   DEF_CONTAINS(KnuthBendixStringRevRPOTrie,
                detail::KnuthBendixImpl<RevRPOTrie>);
@@ -858,19 +826,12 @@ normal form for the input word *w*.
   template void def_reduce_no_run<A, B>( \
       py::class_<A, B>&, std::string_view, doc)
 
-  DEF_REDUCE_NO_RUN(detail::ToddCoxeterImpl, detail::CongruenceCommon);
-
   DEF_REDUCE_NO_RUN(ToddCoxeter<word_type>, detail::ToddCoxeterImpl);
   DEF_REDUCE_NO_RUN(ToddCoxeter<std::string>, detail::ToddCoxeterImpl);
 
   DEF_REDUCE_NO_RUN(Kambites<word_type>, detail::CongruenceCommon);
   DEF_REDUCE_NO_RUN(Kambites<MultiView<std::string>>, detail::CongruenceCommon);
   DEF_REDUCE_NO_RUN(Kambites<std::string>, detail::CongruenceCommon);
-
-  DEF_REDUCE_NO_RUN(detail::KnuthBendixImpl<LenLexTrie>,
-                    detail::CongruenceCommon);
-  DEF_REDUCE_NO_RUN(detail::KnuthBendixImpl<LenLexSet>,
-                    detail::CongruenceCommon);
 
   DEF_REDUCE_NO_RUN(KnuthBendixStringLenLexTrie,
                     detail::KnuthBendixImpl<LenLexTrie>);
@@ -880,11 +841,6 @@ normal form for the input word *w*.
                     detail::KnuthBendixImpl<LenLexTrie>);
   DEF_REDUCE_NO_RUN(KnuthBendixWordLenLexSet,
                     detail::KnuthBendixImpl<LenLexSet>);
-
-  DEF_REDUCE_NO_RUN(detail::KnuthBendixImpl<RevRPOTrie>,
-                    detail::CongruenceCommon);
-  DEF_REDUCE_NO_RUN(detail::KnuthBendixImpl<RevRPOSet>,
-                    detail::CongruenceCommon);
 
   DEF_REDUCE_NO_RUN(KnuthBendixStringRevRPOTrie,
                     detail::KnuthBendixImpl<RevRPOTrie>);
@@ -946,8 +902,6 @@ input word.
 #define DEF_REDUCE(A, B) \
   template void def_reduce<A, B>(py::class_<A, B>&, std::string_view, doc)
 
-  DEF_REDUCE(detail::ToddCoxeterImpl, detail::CongruenceCommon);
-
   DEF_REDUCE(ToddCoxeter<word_type>, detail::ToddCoxeterImpl);
   DEF_REDUCE(ToddCoxeter<std::string>, detail::ToddCoxeterImpl);
 
@@ -955,16 +909,10 @@ input word.
   DEF_REDUCE(Kambites<MultiView<std::string>>, detail::CongruenceCommon);
   DEF_REDUCE(Kambites<std::string>, detail::CongruenceCommon);
 
-  DEF_REDUCE(detail::KnuthBendixImpl<LenLexTrie>, detail::CongruenceCommon);
-  DEF_REDUCE(detail::KnuthBendixImpl<LenLexSet>, detail::CongruenceCommon);
-
   DEF_REDUCE(KnuthBendixStringLenLexTrie, detail::KnuthBendixImpl<LenLexTrie>);
   DEF_REDUCE(KnuthBendixStringLenLexSet, detail::KnuthBendixImpl<LenLexSet>);
   DEF_REDUCE(KnuthBendixWordLenLexTrie, detail::KnuthBendixImpl<LenLexTrie>);
   DEF_REDUCE(KnuthBendixWordLenLexSet, detail::KnuthBendixImpl<LenLexSet>);
-
-  DEF_REDUCE(detail::KnuthBendixImpl<RevRPOTrie>, detail::CongruenceCommon);
-  DEF_REDUCE(detail::KnuthBendixImpl<RevRPOSet>, detail::CongruenceCommon);
 
   DEF_REDUCE(KnuthBendixStringRevRPOTrie, detail::KnuthBendixImpl<RevRPOTrie>);
   DEF_REDUCE(KnuthBendixStringRevRPOSet, detail::KnuthBendixImpl<RevRPOSet>);
