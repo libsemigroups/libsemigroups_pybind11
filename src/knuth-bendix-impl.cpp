@@ -118,11 +118,6 @@ The valid values are:
       def_copy(thing, "KnuthBendix");
       // The next function has a reference hence the different "KnuthBendix".
       def_number_of_classes(thing, "KnuthBendix");
-      def_add_generating_pair(thing, "KnuthBendix");
-      def_contains(thing, "KnuthBendix");
-      def_currently_contains(thing, "KnuthBendix");
-      def_reduce_no_run(thing, "KnuthBendix");
-      def_reduce(thing, "KnuthBendix");
 
       // Not exposed in the doc
       thing.def("internal_presentation",
