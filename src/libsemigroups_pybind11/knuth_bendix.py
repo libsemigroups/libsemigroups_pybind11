@@ -136,6 +136,16 @@ _register_cxx_wrapped_type(_KnuthBendixWordLenLexTrie, KnuthBendix)
 _register_cxx_wrapped_type(_KnuthBendixStringLenLexSet, KnuthBendix)
 _register_cxx_wrapped_type(_KnuthBendixWordLenLexSet, KnuthBendix)
 
+_register_cxx_wrapped_type(_KnuthBendixStringRPOTrie, KnuthBendix)
+_register_cxx_wrapped_type(_KnuthBendixWordRPOTrie, KnuthBendix)
+_register_cxx_wrapped_type(_KnuthBendixStringRPOSet, KnuthBendix)
+_register_cxx_wrapped_type(_KnuthBendixWordRPOSet, KnuthBendix)
+
+_register_cxx_wrapped_type(_KnuthBendixStringRevRPOTrie, KnuthBendix)
+_register_cxx_wrapped_type(_KnuthBendixWordRevRPOTrie, KnuthBendix)
+_register_cxx_wrapped_type(_KnuthBendixStringRevRPOSet, KnuthBendix)
+_register_cxx_wrapped_type(_KnuthBendixWordRevRPOSet, KnuthBendix)
+
 ########################################################################
 # Helpers
 ########################################################################
