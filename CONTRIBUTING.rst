@@ -435,6 +435,39 @@ Then run
 
 and ensure everything passes.
 
+pre-commit hooks
+----------------
+
+To perform a small number of checks before committing and pushing, install
+`pre-commit <https://pre-commit.com/>`_ and run:
+
+.. code-block:: console
+
+    pre-commit install
+
+The following checks are performed before every commit:
+
+  - Ruff check
+  - Ruff lint
+  - clang-format
+
+The following checks are performed before every push:
+
+  - All of the pre-commit checks
+  - cpplint
+  - codespell
+  - pylint
+
+To check every tracked file without making a commit or push, run:
+
+.. code-block:: console
+
+    pre-commit run --all-files
+    pre-commit run --all-files --hook-stage pre-push
+
+If you want to commit something without running the pre-commit hooks, use the
+`--no-verify` flag with `git commit`.
+
 File overview
 -------------
 

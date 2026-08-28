@@ -15,6 +15,7 @@ dependencies:
   - pip
   - pip-tools
   - pkgconfig
+  - pre-commit
   - pybind11
   - pylint
   - pytest
