@@ -17,10 +17,14 @@ from _libsemigroups_pybind11 import (
     FroidurePinKBEStringLenLexTrie,
     FroidurePinKBEStringRevRPOSet,
     FroidurePinKBEStringRevRPOTrie,
+    FroidurePinKBEStringRPOSet,
+    FroidurePinKBEStringRPOTrie,
     FroidurePinKBEWordLenLexSet,
     FroidurePinKBEWordLenLexTrie,
     FroidurePinKBEWordRevRPOSet,
     FroidurePinKBEWordRevRPOTrie,
+    FroidurePinKBEWordRPOSet,
+    FroidurePinKBEWordRPOTrie,
     FroidurePinKEMultiViewString,
     FroidurePinKEString,
     FroidurePinKEWord,
@@ -236,6 +240,9 @@ def test_to_FroidurePin_000():
     assert isinstance(to_cxx(fp), FroidurePinKBEStringLenLexSet)
 
     fp = check_cong_to_froidure_pin(KnuthBendix, str, rewriting_system="Set", order=Order.rpo)
+    assert isinstance(to_cxx(fp), FroidurePinKBEStringRPOSet)
+
+    fp = check_cong_to_froidure_pin(KnuthBendix, str, rewriting_system="Set", order=Order.rev_rpo)
     assert isinstance(to_cxx(fp), FroidurePinKBEStringRevRPOSet)
 
 
@@ -244,6 +251,9 @@ def test_to_FroidurePin_001():
     assert isinstance(to_cxx(fp), FroidurePinKBEStringLenLexTrie)
 
     fp = check_cong_to_froidure_pin(KnuthBendix, str, rewriting_system="Trie", order=Order.rpo)
+    assert isinstance(to_cxx(fp), FroidurePinKBEStringRPOTrie)
+
+    fp = check_cong_to_froidure_pin(KnuthBendix, str, rewriting_system="Trie", order=Order.rev_rpo)
     assert isinstance(to_cxx(fp), FroidurePinKBEStringRevRPOTrie)
 
 
@@ -252,6 +262,9 @@ def test_to_FroidurePin_002():
     assert isinstance(to_cxx(fp), FroidurePinKBEWordLenLexSet)
 
     fp = check_cong_to_froidure_pin(KnuthBendix, int, rewriting_system="Set", order=Order.rpo)
+    assert isinstance(to_cxx(fp), FroidurePinKBEWordRPOSet)
+
+    fp = check_cong_to_froidure_pin(KnuthBendix, int, rewriting_system="Set", order=Order.rev_rpo)
     assert isinstance(to_cxx(fp), FroidurePinKBEWordRevRPOSet)
 
 
@@ -260,6 +273,9 @@ def test_to_FroidurePin_003():
     assert isinstance(to_cxx(fp), FroidurePinKBEWordLenLexTrie)
 
     fp = check_cong_to_froidure_pin(KnuthBendix, int, rewriting_system="Trie", order=Order.rpo)
+    assert isinstance(to_cxx(fp), FroidurePinKBEWordRPOTrie)
+
+    fp = check_cong_to_froidure_pin(KnuthBendix, int, rewriting_system="Trie", order=Order.rev_rpo)
     assert isinstance(to_cxx(fp), FroidurePinKBEWordRevRPOTrie)
 
 
@@ -379,6 +395,10 @@ def test_to_ToddCoxeter_014():
     assert isinstance(tc, ToddCoxeter)
     assert tc.py_template_params == (str,)
 
+    tc = check_cong_to_todd_coxeter(KnuthBendix, str, rewriting_system="Set", order=Order.rev_rpo)
+    assert isinstance(tc, ToddCoxeter)
+    assert tc.py_template_params == (str,)
+
 
 def test_to_ToddCoxeter_015():
     tc = check_cong_to_todd_coxeter(KnuthBendix, str, rewriting_system="Trie", order=Order.lenlex)
@@ -386,6 +406,10 @@ def test_to_ToddCoxeter_015():
     assert tc.py_template_params == (str,)
 
     tc = check_cong_to_todd_coxeter(KnuthBendix, str, rewriting_system="Trie", order=Order.rpo)
+    assert isinstance(tc, ToddCoxeter)
+    assert tc.py_template_params == (str,)
+
+    tc = check_cong_to_todd_coxeter(KnuthBendix, str, rewriting_system="Trie", order=Order.rev_rpo)
     assert isinstance(tc, ToddCoxeter)
     assert tc.py_template_params == (str,)
 
@@ -399,6 +423,10 @@ def test_to_ToddCoxeter_016():
     assert isinstance(tc, ToddCoxeter)
     assert tc.py_template_params == (list[int],)
 
+    tc = check_cong_to_todd_coxeter(KnuthBendix, int, rewriting_system="Set", order=Order.rev_rpo)
+    assert isinstance(tc, ToddCoxeter)
+    assert tc.py_template_params == (list[int],)
+
 
 def test_to_ToddCoxeter_017():
     tc = check_cong_to_todd_coxeter(KnuthBendix, int, rewriting_system="Trie", order=Order.lenlex)
@@ -406,6 +434,10 @@ def test_to_ToddCoxeter_017():
     assert tc.py_template_params == (list[int],)
 
     tc = check_cong_to_todd_coxeter(KnuthBendix, int, rewriting_system="Trie", order=Order.rpo)
+    assert isinstance(tc, ToddCoxeter)
+    assert tc.py_template_params == (list[int],)
+
+    tc = check_cong_to_todd_coxeter(KnuthBendix, int, rewriting_system="Trie", order=Order.rev_rpo)
     assert isinstance(tc, ToddCoxeter)
     assert tc.py_template_params == (list[int],)
 
@@ -675,6 +707,8 @@ def test_to_Presentation_024():
     check_knuth_bendix_to_pres(str, list[int], "Set", Order.lenlex)
     check_knuth_bendix_to_pres(str, str, "Set", Order.rpo)
     check_knuth_bendix_to_pres(str, list[int], "Set", Order.rpo)
+    check_knuth_bendix_to_pres(str, str, "Set", Order.rev_rpo)
+    check_knuth_bendix_to_pres(str, list[int], "Set", Order.rev_rpo)
 
 
 def test_to_Presentation_025():
@@ -682,6 +716,8 @@ def test_to_Presentation_025():
     check_knuth_bendix_to_pres(str, list[int], "Trie", Order.lenlex)
     check_knuth_bendix_to_pres(str, str, "Trie", Order.rpo)
     check_knuth_bendix_to_pres(str, list[int], "Trie", Order.rpo)
+    check_knuth_bendix_to_pres(str, str, "Trie", Order.rev_rpo)
+    check_knuth_bendix_to_pres(str, list[int], "Trie", Order.rev_rpo)
 
 
 def test_to_Presentation_026():
@@ -689,6 +725,8 @@ def test_to_Presentation_026():
     check_knuth_bendix_to_pres(list[int], list[int], "Set", Order.lenlex)
     check_knuth_bendix_to_pres(list[int], str, "Set", Order.rpo)
     check_knuth_bendix_to_pres(list[int], list[int], "Set", Order.rpo)
+    check_knuth_bendix_to_pres(list[int], str, "Set", Order.rev_rpo)
+    check_knuth_bendix_to_pres(list[int], list[int], "Set", Order.rev_rpo)
 
 
 def test_to_Presentation_027():
@@ -696,6 +734,8 @@ def test_to_Presentation_027():
     check_knuth_bendix_to_pres(list[int], list[int], "Trie", Order.lenlex)
     check_knuth_bendix_to_pres(list[int], str, "Trie", Order.rpo)
     check_knuth_bendix_to_pres(list[int], list[int], "Trie", Order.rpo)
+    check_knuth_bendix_to_pres(list[int], str, "Trie", Order.rev_rpo)
+    check_knuth_bendix_to_pres(list[int], list[int], "Trie", Order.rev_rpo)
 
 
 # From FroidurePin
@@ -884,6 +924,10 @@ def test_to_KnuthBendix_049():
     assert isinstance(kb, KnuthBendix)
     assert kb.py_template_params == (str, "Set", Order.rpo)
 
+    kb = check_froidure_pin_to_knuth_bendix(str, "Set", Order.rev_rpo)
+    assert isinstance(kb, KnuthBendix)
+    assert kb.py_template_params == (str, "Set", Order.rev_rpo)
+
 
 def test_to_KnuthBendix_050():
     kb = check_froidure_pin_to_knuth_bendix(str, "Trie", Order.lenlex)
@@ -892,6 +936,10 @@ def test_to_KnuthBendix_050():
     kb = check_froidure_pin_to_knuth_bendix(str, "Trie", Order.rpo)
     assert isinstance(kb, KnuthBendix)
     assert kb.py_template_params == (str, "Trie", Order.rpo)
+
+    kb = check_froidure_pin_to_knuth_bendix(str, "Trie", Order.rev_rpo)
+    assert isinstance(kb, KnuthBendix)
+    assert kb.py_template_params == (str, "Trie", Order.rev_rpo)
 
 
 def test_to_KnuthBendix_051():
@@ -902,6 +950,10 @@ def test_to_KnuthBendix_051():
     assert isinstance(kb, KnuthBendix)
     assert kb.py_template_params == (list[int], "Set", Order.rpo)
 
+    kb = check_froidure_pin_to_knuth_bendix(list[int], "Set", Order.rev_rpo)
+    assert isinstance(kb, KnuthBendix)
+    assert kb.py_template_params == (list[int], "Set", Order.rev_rpo)
+
 
 def test_to_KnuthBendix_052():
     kb = check_froidure_pin_to_knuth_bendix(list[int], "Trie", Order.lenlex)
@@ -910,6 +962,10 @@ def test_to_KnuthBendix_052():
     kb = check_froidure_pin_to_knuth_bendix(list[int], "Trie", Order.rpo)
     assert isinstance(kb, KnuthBendix)
     assert kb.py_template_params == (list[int], "Trie", Order.rpo)
+
+    kb = check_froidure_pin_to_knuth_bendix(list[int], "Trie", Order.rev_rpo)
+    assert isinstance(kb, KnuthBendix)
+    assert kb.py_template_params == (list[int], "Trie", Order.rev_rpo)
 
 
 # From ToddCoxeter + Rewriter
@@ -922,12 +978,18 @@ def test_to_KnuthBendix_053():
     kb = check_todd_coxeter_to_knuth_bendix(str, "Set", Order.rpo)
     assert isinstance(kb, KnuthBendix)
 
+    kb = check_todd_coxeter_to_knuth_bendix(str, "Set", Order.rev_rpo)
+    assert isinstance(kb, KnuthBendix)
+
 
 def test_to_KnuthBendix_054():
     kb = check_todd_coxeter_to_knuth_bendix(str, "Trie", Order.lenlex)
     assert isinstance(kb, KnuthBendix)
 
     kb = check_todd_coxeter_to_knuth_bendix(str, "Trie", Order.rpo)
+    assert isinstance(kb, KnuthBendix)
+
+    kb = check_todd_coxeter_to_knuth_bendix(str, "Trie", Order.rev_rpo)
     assert isinstance(kb, KnuthBendix)
 
 
@@ -938,12 +1000,18 @@ def test_to_KnuthBendix_055():
     kb = check_todd_coxeter_to_knuth_bendix(list[int], "Set", Order.rpo)
     assert isinstance(kb, KnuthBendix)
 
+    kb = check_todd_coxeter_to_knuth_bendix(list[int], "Set", Order.rev_rpo)
+    assert isinstance(kb, KnuthBendix)
+
 
 def test_to_KnuthBendix_056():
     kb = check_todd_coxeter_to_knuth_bendix(list[int], "Trie", Order.lenlex)
     assert isinstance(kb, KnuthBendix)
 
     kb = check_todd_coxeter_to_knuth_bendix(list[int], "Trie", Order.rpo)
+    assert isinstance(kb, KnuthBendix)
+
+    kb = check_todd_coxeter_to_knuth_bendix(list[int], "Trie", Order.rev_rpo)
     assert isinstance(kb, KnuthBendix)
 
 

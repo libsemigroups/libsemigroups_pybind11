@@ -1274,6 +1274,8 @@ This function returns the element of *fp* obtained by evaluating *w*.
   void init_froidure_pin(py::module& m) {
     using LenLexTrie = detail::RewritingSystemTrie<LenLexCmp>;
     using LenLexSet  = detail::RewritingSystemSet<LenLexCmp>;
+    using RPOTrie    = detail::RewritingSystemTrie<RPOCmp>;
+    using RPOSet     = detail::RewritingSystemSet<RPOCmp>;
     using RevRPOTrie = detail::RewritingSystemTrie<RevRPOCmp>;
     using RevRPOSet  = detail::RewritingSystemSet<RevRPOCmp>;
 
@@ -1315,6 +1317,15 @@ This function returns the element of *fp* obtained by evaluating *w*.
         m, "KBEWordLenLexSet");
     bind_froidure_pin_stateful<detail::KBE<KnuthBendix<word_type, LenLexTrie>>>(
         m, "KBEWordLenLexTrie");
+
+    bind_froidure_pin_stateful<detail::KBE<KnuthBendix<std::string, RPOSet>>>(
+        m, "KBEStringRPOSet");
+    bind_froidure_pin_stateful<detail::KBE<KnuthBendix<std::string, RPOTrie>>>(
+        m, "KBEStringRPOTrie");
+    bind_froidure_pin_stateful<detail::KBE<KnuthBendix<word_type, RPOSet>>>(
+        m, "KBEWordRPOSet");
+    bind_froidure_pin_stateful<detail::KBE<KnuthBendix<word_type, RPOTrie>>>(
+        m, "KBEWordRPOTrie");
 
     bind_froidure_pin_stateful<
         detail::KBE<KnuthBendix<std::string, RevRPOSet>>>(m,

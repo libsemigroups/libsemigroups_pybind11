@@ -54,6 +54,8 @@ namespace libsemigroups {
   void init_to_froidure_pin(py::module& m) {
     using LenLexTrie = detail::RewritingSystemTrie<LenLexCmp>;
     using LenLexSet  = detail::RewritingSystemSet<LenLexCmp>;
+    using RPOTrie    = detail::RewritingSystemTrie<RPOCmp>;
+    using RPOSet     = detail::RewritingSystemSet<RPOCmp>;
     using RevRPOTrie = detail::RewritingSystemTrie<RevRPOCmp>;
     using RevRPOSet  = detail::RewritingSystemSet<RevRPOCmp>;
 
@@ -71,6 +73,11 @@ namespace libsemigroups {
     bind_to_froidure_pin<KnuthBendix<std::string, LenLexTrie>>(m);
     bind_to_froidure_pin<KnuthBendix<word_type, LenLexSet>>(m);
     bind_to_froidure_pin<KnuthBendix<word_type, LenLexTrie>>(m);
+
+    bind_to_froidure_pin<KnuthBendix<std::string, RPOSet>>(m);
+    bind_to_froidure_pin<KnuthBendix<std::string, RPOTrie>>(m);
+    bind_to_froidure_pin<KnuthBendix<word_type, RPOSet>>(m);
+    bind_to_froidure_pin<KnuthBendix<word_type, RPOTrie>>(m);
 
     bind_to_froidure_pin<KnuthBendix<std::string, RevRPOSet>>(m);
     bind_to_froidure_pin<KnuthBendix<std::string, RevRPOTrie>>(m);

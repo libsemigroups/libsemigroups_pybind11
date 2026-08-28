@@ -377,7 +377,7 @@ def test_rpo_without_alphabet():
     cmp = RPOCmp()
     assert cmp("a", "b")
     assert cmp([0], [1])
-    assert not cmp("ab", "ba")
+    assert not cmp("ba", "ab")
 
 
 def test_rpo_with_alphabet():
@@ -436,7 +436,7 @@ def test_rev_rpo_without_alphabet():
     cmp = RevRPOCmp()
     assert cmp("a", "b")
     assert cmp([0], [1])
-    assert not cmp("ba", "ab")
+    assert not cmp("ab", "ba")
 
 
 def test_rev_rpo_with_alphabet():

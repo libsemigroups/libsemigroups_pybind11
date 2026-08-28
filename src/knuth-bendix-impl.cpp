@@ -503,6 +503,8 @@ infinite; ``False`` is returned if it is not.
   void init_detail_knuth_bendix_impl(py::module& m) {
     using LenLexTrie = detail::RewritingSystemTrie<LenLexCmp>;
     using LenLexSet  = detail::RewritingSystemSet<LenLexCmp>;
+    using RPOTrie    = detail::RewritingSystemTrie<RPOCmp>;
+    using RPOSet     = detail::RewritingSystemSet<RPOCmp>;
     using RevRPOTrie = detail::RewritingSystemTrie<RevRPOCmp>;
     using RevRPOSet  = detail::RewritingSystemSet<RevRPOCmp>;
 
@@ -510,6 +512,9 @@ infinite; ``False`` is returned if it is not.
         m, "KnuthBendixImplLenLexSet");
     detail::bind_detail_knuth_bendix_impl<LenLexTrie>(
         m, "KnuthBendixImplLenLexTrie");
+
+    detail::bind_detail_knuth_bendix_impl<RPOSet>(m, "KnuthBendixImplRPOSet");
+    detail::bind_detail_knuth_bendix_impl<RPOTrie>(m, "KnuthBendixImplRPOTrie");
 
     detail::bind_detail_knuth_bendix_impl<RevRPOSet>(
         m, "KnuthBendixImplRevRPOSet");

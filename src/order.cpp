@@ -855,16 +855,27 @@ read from right to left.
 :only-document-once:
 Compare two words using recursive-path ordering.
 
+This function compares two objects using the recursive-path comparison, based on
+the description in :cite:`Jantzen2012aa` (Definition 1.2.14, page 24) and
+:cite:`Dershowitz1982aa` (Definition 5, page 289). The following definition is
+used in ``libsemigroups_pybind11``.
+
+If :math:`u, v\ in X ^ {*}`, then :math:`u < v` if and only if one of the
+following conditions holds:
+
+1. :math:`u` is empty and :math:`v` is not empty; or
+2. :math:`u = au'` and :math:`v = bv'` for some :math:`a,b \in X`, :math:`u',v'\in X ^ {*}` and:
+
+  1. :math:`a = b` and :math:`u' < v'`; or
+  2. :math:`a < b` and :math:`u' < v`; or
+  3. :math:`a > b` and :math:`u  \leq v'`.
+
 :param x: the first word.
 :type x: str | list[int]
 :param y: the second word.
 :type y: str | list[int]
 :returns: Whether *x* is less than *y*.
 :rtype: bool
-
-.. warning::
-   This function has significantly worse performance than :any:`lenlex_cmp`
-   and :any:`lex_cmp`.
 
 .. seealso:: :any:`RPOCmp` for a reusable recursive-path comparison object.
 
@@ -903,10 +914,6 @@ Letters are compared by their positions in *alphabet*.
 :raises LibsemigroupsError: if either word contains a letter that does not
   belong to *alphabet*.
 
-.. warning::
-   This function has significantly worse performance than :any:`lenlex_cmp`
-   and :any:`lex_cmp`.
-
 .. doctest:: python
 
   >>> from libsemigroups_pybind11 import Alphabet, rpo_cmp
@@ -925,8 +932,7 @@ Letters are compared by their positions in *alphabet*.
 :only-document-once:
 Compare two words using reversed recursive-path ordering.
 
-This is recursive-path ordering applied after reading both words from right to
-left.
+This function applies :any:`rpo_cmp` to the *x* and *y* read from right to left.
 
 :param x: the first word.
 :type x: str | list[int]
@@ -934,10 +940,6 @@ left.
 :type y: str | list[int]
 :returns: Whether *x* is less than *y*.
 :rtype: bool
-
-.. warning::
-   This function has significantly worse performance than :any:`lenlex_cmp`
-   and :any:`lex_cmp`.
 
 .. seealso::
    :any:`RevRPOCmp` for a reusable reversed recursive-path comparison object.
@@ -964,8 +966,8 @@ left.
 :only-document-once:
 Compare two words using reversed recursive-path ordering and an alphabet.
 
-This is recursive-path ordering applied after reading both words from right to
-left, with letters compared by their positions in *alphabet*.
+This function applies :any:`rpo_cmp` to the *x* and *y* read from right to left,
+with letters compared by their positions in *alphabet*.
 
 :param alphabet: the alphabet that determines the ordering of letters.
 :type alphabet: Alphabet
@@ -977,10 +979,6 @@ left, with letters compared by their positions in *alphabet*.
 :rtype: bool
 :raises LibsemigroupsError: if either word contains a letter that does not
   belong to *alphabet*.
-
-.. warning::
-   This function has significantly worse performance than :any:`lenlex_cmp`
-   and :any:`lex_cmp`.
 
 .. seealso::
    :any:`RevRPOCmp` for a reusable reversed recursive-path comparison object.
@@ -2049,10 +2047,6 @@ the positions of their letters in *alphabet*. The latter form copies
   ``RPOCmp(alphabet).init(new_alphabet)`` requires *new_alphabet* to have the
   same word type as *alphabet*.
 
-.. warning::
-  This comparison has significantly worse performance than :any:`LenLexCmp`
-  and :any:`LexCmp`.
-
 .. seealso::
 
   :any:`Alphabet`
@@ -2190,10 +2184,6 @@ their positions in the alphabet.
   if *self* is alphabet-aware and either word contains a letter that does not
   belong to its alphabet.
 
-.. warning::
-  This comparison has significantly worse performance than :any:`LenLexCmp`
-  and :any:`LexCmp`.
-
 .. doctest:: python
 
   >>> from libsemigroups_pybind11 import RPOCmp
@@ -2239,7 +2229,7 @@ Return the alphabet used to compare letters.
       py::class_<RevRPOCmp_> thing(m, name, R"pbdoc(
 Compare words using reversed recursive-path ordering.
 
-This is recursive-path ordering applied after reading both words from right to
+This is recursive-path ordering applied to words that are read from right to
 left. Use ``RevRPOCmp()`` to compare either ``str`` or ``list[int]`` words
 using the natural order of their letters. Use ``RevRPOCmp(alphabet)`` to
 compare words by the positions of their letters in *alphabet*. The latter form
@@ -2253,10 +2243,6 @@ copies *alphabet* and only accepts words with the same type as *alphabet*.
   ``RevRPOCmp(alphabet).init(new_alphabet)`` requires *new_alphabet* to have
   the same word type as *alphabet*.
 
-.. warning::
-  This comparison has significantly worse performance than :any:`LenLexCmp`
-  and :any:`LexCmp`.
-
 .. seealso::
 
   :any:`Alphabet`
@@ -2264,9 +2250,9 @@ copies *alphabet* and only accepts words with the same type as *alphabet*.
 .. doctest:: python
 
   >>> from libsemigroups_pybind11 import Alphabet, RevRPOCmp
-  >>> RevRPOCmp()("ab", "ba")
+  >>> RevRPOCmp()("ba", "ab")
   True
-  >>> RevRPOCmp()([0, 1], [1, 0])
+  >>> RevRPOCmp()([1, 0], [0, 1])
   True
   >>> RevRPOCmp(Alphabet("ba"))("b", "a")
   True
@@ -2376,8 +2362,8 @@ had it been newly constructed from *alphabet*.
 :sig=(self: RevRPOCmp, x: str | list[int], y: str | list[int]) -> bool:
 Compare two words using reversed recursive-path ordering.
 
-This is recursive-path ordering applied after reading both words from right to
-left. If *self* was constructed as ``RevRPOCmp()``, then *x* and *y* must
+This is recursive-path ordering applied to *x* and *y* read from right to left.
+If *self* was constructed as ``RevRPOCmp()``, then *x* and *y* must
 either both be strings or both be lists of integers, and letters are compared
 using their natural order. If *self* was constructed using an :any:`Alphabet`,
 then *x* and *y* must have the same type of words as *alphabet*, and letters are
@@ -2397,16 +2383,12 @@ compared by their positions in the alphabet.
   if *self* is alphabet-aware and either word contains a letter that does not
   belong to its alphabet.
 
-.. warning::
-  This comparison has significantly worse performance than :any:`LenLexCmp`
-  and :any:`LexCmp`.
-
 .. doctest:: python
 
   >>> from libsemigroups_pybind11 import RevRPOCmp
-  >>> RevRPOCmp()("ab", "ba")
+  >>> RevRPOCmp()("ba", "ab")
   True
-  >>> RevRPOCmp()([0, 1], [1, 0])
+  >>> RevRPOCmp()([1, 0], [0, 1])
   True
 )pbdoc");
 
@@ -2895,10 +2877,10 @@ respectively, in new code.
 .. py:attribute:: Order.recursive
   :value: <Order.rev_rpo: 4>
 
-    The recursive-path ordering, as described in :cite:`Jantzen2012aa`
-    (Definition 1.2.14, page 24).
+    The reversed recursive-path ordering, based on the description in
+    :cite:`Jantzen2012aa` (Definition 1.2.14, page 24).
 
-    This is deprecated; use :any:`Order.rpo` instead.
+    This is deprecated; use :any:`Order.rev_rpo` instead.
 
 .. doctest:: python
 

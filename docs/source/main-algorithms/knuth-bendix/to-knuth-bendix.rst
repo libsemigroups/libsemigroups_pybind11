@@ -110,6 +110,8 @@ and the third item one of:
       with short-lex reduction ordering.
     - :any:`Order.rpo` for constructing a :any:`KnuthBendix`
       with recursive-path reduction ordering.
+    - :any:`Order.rev_rpo` for constructing a :any:`KnuthBendix`
+      with reverse recursive-path reduction ordering.
 
 This function converts a :any:`ToddCoxeter` object *tc* to a :any:`KnuthBendix`
 object with the rewriter as specified above, using
@@ -186,6 +188,18 @@ Additionally, specify one of the following for *rtype*:
     - ``(KnuthBendix, list[int], 'Set', Order.rpo)`` for constructing a
       :any:`KnuthBendix` on words with type ``list[int]`` using a set based
       rewriting system and short-lex reduction ordering.
+    - ``(KnuthBendix, str, 'Trie', Order.rev_rpo)`` for constructing a
+      :any:`KnuthBendix` on words with type ``str`` using the
+      trie based rewriting system and reverse recursive-path reduction ordering.
+    - ``(KnuthBendix, list[int], 'Trie', Order.rev_rpo)`` for constructing a
+      :any:`KnuthBendix` on words with type ``list[int]`` using the
+      trie based rewriting system and reverse recursive-path reduction ordering.
+    - ``(KnuthBendix, str, 'Set', Order.rev_rpo)`` for constructing a
+      :any:`KnuthBendix` on words with type ``str`` using a set based rewriting
+      system and reverse recursive-path reduction ordering.
+    - ``(KnuthBendix, list[int], 'Set', Order.rev_rpo)`` for constructing a
+      :any:`KnuthBendix` on words with type ``list[int]`` using a set based
+      rewriting system and reverse recursive-path reduction.
 
 This function converts a :any:`FroidurePin` object *fpb* to a :any:`KnuthBendix`
 object with the word type and rewriter as specified above. This is done using

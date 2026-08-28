@@ -90,7 +90,7 @@ nested class :any:`KnuthBendix.options`.
           doc{.extra_kwargs     = ", rewriting_system: str, order: Order",
               .extra_kwargs_doc = R"pbdoc(
     * **rewriting_system** (*str*) -- the type of rewriting system to use, must be either ``"Trie"`` or ``"Set"``.
-    * **order** (*Order*) -- the reduction ordering to use, must be either :any:`Order.lenlex` or :any:`Order.rpo`.)pbdoc"sv});
+    * **order** (*Order*) -- the reduction ordering to use, must be either :any:`Order.lenlex`, :any:`Order.rpo` or :any:`Order.rev_rpo`.)pbdoc"sv});
 
       def_init_default(thing, "KnuthBendix");
       def_construct_kind_presentation(thing, "KnuthBendix");
@@ -451,6 +451,8 @@ redundant in this way, then ``None`` is returned.
   void init_knuth_bendix(py::module& m) {
     using LenLexTrie = detail::RewritingSystemTrie<LenLexCmp>;
     using LenLexSet  = detail::RewritingSystemSet<LenLexCmp>;
+    using RPOTrie    = detail::RewritingSystemTrie<RPOCmp>;
+    using RPOSet     = detail::RewritingSystemSet<RPOCmp>;
     using RevRPOTrie = detail::RewritingSystemTrie<RevRPOCmp>;
     using RevRPOSet  = detail::RewritingSystemSet<RevRPOCmp>;
 
@@ -459,6 +461,11 @@ redundant in this way, then ``None`` is returned.
     bind_knuth_bendix<std::string, LenLexTrie>(m,
                                                "KnuthBendixStringLenLexTrie");
     bind_knuth_bendix<std::string, LenLexSet>(m, "KnuthBendixStringLenLexSet");
+
+    bind_knuth_bendix<word_type, RPOTrie>(m, "KnuthBendixWordRPOTrie");
+    bind_knuth_bendix<word_type, RPOSet>(m, "KnuthBendixWordRPOSet");
+    bind_knuth_bendix<std::string, RPOTrie>(m, "KnuthBendixStringRPOTrie");
+    bind_knuth_bendix<std::string, RPOSet>(m, "KnuthBendixStringRPOSet");
 
     bind_knuth_bendix<word_type, RevRPOTrie>(m, "KnuthBendixWordRevRPOTrie");
     bind_knuth_bendix<word_type, RevRPOSet>(m, "KnuthBendixWordRevRPOSet");
@@ -474,6 +481,15 @@ redundant in this way, then ``None`` is returned.
         m, "KnuthBendixNormalFormRangeStringLenLexTrie");
     bind_normal_form_range<std::string, LenLexSet>(
         m, "KnuthBendixNormalFormRangeStringLenLexSet");
+
+    bind_normal_form_range<word_type, RPOTrie>(
+        m, "KnuthBendixNormalFormRangeWordRPOTrie");
+    bind_normal_form_range<word_type, RPOSet>(
+        m, "KnuthBendixNormalFormRangeWordRPOSet");
+    bind_normal_form_range<std::string, RPOTrie>(
+        m, "KnuthBendixNormalFormRangeStringRPOTrie");
+    bind_normal_form_range<std::string, RPOSet>(
+        m, "KnuthBendixNormalFormRangeStringRPOSet");
 
     bind_normal_form_range<word_type, RevRPOTrie>(
         m, "KnuthBendixNormalFormRangeWordRevRPOTrie");
