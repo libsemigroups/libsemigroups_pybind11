@@ -75,6 +75,8 @@ namespace libsemigroups {
   void init_kbe(py::module& m) {
     using LenLexTrie = detail::RewritingSystemTrie<LenLexCmp>;
     using LenLexSet  = detail::RewritingSystemSet<LenLexCmp>;
+    using RPOTrie    = detail::RewritingSystemTrie<RPOCmp>;
+    using RPOSet     = detail::RewritingSystemSet<RPOCmp>;
     using RevRPOTrie = detail::RewritingSystemTrie<RevRPOCmp>;
     using RevRPOSet  = detail::RewritingSystemSet<RevRPOCmp>;
 
@@ -91,6 +93,17 @@ namespace libsemigroups {
     bind_kbe<KBEWordLenLexSet>(m, "KBEWordLenLexSet");
 
     // RPO
+    using KBEStringRPOTrie = detail::KBE<KnuthBendix<std::string, RPOTrie>>;
+    using KBEWordRPOTrie   = detail::KBE<KnuthBendix<word_type, RPOTrie>>;
+    using KBEStringRPOSet  = detail::KBE<KnuthBendix<std::string, RPOSet>>;
+    using KBEWordRPOSet    = detail::KBE<KnuthBendix<word_type, RPOSet>>;
+
+    bind_kbe<KBEStringRPOTrie>(m, "KBEStringRPOTrie");
+    bind_kbe<KBEWordRPOTrie>(m, "KBEWordRPOTrie");
+    bind_kbe<KBEStringRPOSet>(m, "KBEStringRPOSet");
+    bind_kbe<KBEWordRPOSet>(m, "KBEWordRPOSet");
+
+    // RevRPO
     using KBEStringRevRPOTrie
         = detail::KBE<KnuthBendix<std::string, RevRPOTrie>>;
     using KBEWordRevRPOTrie  = detail::KBE<KnuthBendix<word_type, RevRPOTrie>>;
