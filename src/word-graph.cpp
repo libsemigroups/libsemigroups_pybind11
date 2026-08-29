@@ -1175,7 +1175,7 @@ position in the word reached.
         [](WordGraph_ const&       wg,
            node_type               source,
            int_or_constant<size_t> max_depth) {
-          return v4::word_graph::nodes_reachable_from(
+          return word_graph::nodes_reachable_from(
               wg, source, to_int<size_t>(max_depth));
         },
         py::arg("wg"),
@@ -1222,7 +1222,7 @@ This function returns a set consisting of all the nodes in the word graph
         [](WordGraph_ const&       wg,
            node_type               source,
            int_or_constant<size_t> max_depth) {
-          return v4::word_graph::number_of_nodes_reachable_from(
+          return word_graph::number_of_nodes_reachable_from(
               wg, source, to_int<size_t>(max_depth));
         },
         py::arg("wg"),
@@ -1299,8 +1299,7 @@ algorithm given in :cite:`Carnino2011`.
         [](WordGraph_ const&       wg,
            node_type               root,
            int_or_constant<size_t> max_depth) {
-          return v4::word_graph::spanning_tree(
-              wg, root, to_int<size_t>(max_depth));
+          return word_graph::spanning_tree(wg, root, to_int<size_t>(max_depth));
         },
         py::arg("wg"),
         py::arg("root"),
@@ -1348,7 +1347,7 @@ nodes reachable from *root* in the word graph *wg* by a path of length at most
            node_type               root,
            Forest&                 f,
            int_or_constant<size_t> max_depth) {
-          return v4::word_graph::spanning_tree(
+          return word_graph::spanning_tree(
               wg, root, f, to_int<size_t>(max_depth));
         },
         py::arg("wg"),
