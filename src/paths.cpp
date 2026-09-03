@@ -24,6 +24,7 @@
 #include <libsemigroups/constants.hpp>   // for operator!=, operator==
 #include <libsemigroups/order.hpp>       // for order
 #include <libsemigroups/paths.hpp>       // for Paths
+#include <libsemigroups/to-word.hpp>     // for ToString
 #include <libsemigroups/word-graph.hpp>  // for WordGraph, word_graph
 
 // pybind11....
