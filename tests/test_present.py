@@ -1440,6 +1440,15 @@ def test_inverse_presentation_constructors_037():
     check_constructors(ip)
 
 
+@pytest.mark.parametrize("word, empty", [(str, ""), (list[int], [])])
+def test_inverse_presentation_keyword_constructor(word, empty):
+    p = InversePresentation(word=word)
+    assert p.alphabet() == empty
+    assert p.inverses() == empty
+    assert p.rules == []
+    assert p.py_template_params == (word,)
+
+
 def test_inverse_constructors_038():
     check_inverse_constructors(to_string)
     check_inverse_constructors(to_word)

@@ -216,7 +216,7 @@ class InversePresentation(Presentation):
         :param p: the :any:`Presentation` to construct from.
         :type p: Presentation
         """
-        super().__init__(*args, *kwargs)
+        super().__init__(*args, **kwargs)
         if _to_cxx(self) is not None:
             return
         assert isinstance(args[0], Presentation)
