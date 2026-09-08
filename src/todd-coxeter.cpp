@@ -483,10 +483,10 @@ Neumann for the trivial group:
   tc = ToddCoxeter(congruence_kind.twosided, p)
 
 Then running *tc* will simply grow the underlying word graph until
-your computer runs out of memory. The authors of ``libsemigroups`` were
+your computer runs out of memory. The authors of libsemigroups_ were
 not able to find any combination of the many settings for
 :any:`ToddCoxeter` where running *tc* returned an answer. We also tried
-with GAP and ACE but neither of these seemed able to return an answer
+with GAP_ and ACE_ but neither of these seemed able to return an answer
 either. But doing the following:
 
 .. code-block:: python
@@ -953,10 +953,10 @@ Neumann for the trivial group:
   tc = ToddCoxeter(congruence_kind.twosided, p)
 
 Then running *tc* will simply grow the underlying word graph until
-your computer runs out of memory. The authors of ``libsemigroups`` were
+your computer runs out of memory. The authors of libsemigroups_ were
 not able to find any combination of the many settings for
 :any:`ToddCoxeter` where running *tc* returned an answer. We also tried
-with GAP and ACE but neither of these seemed able to return an answer
+with GAP_ and ACE_ but neither of these seemed able to return an answer
 either. But doing the following:
 
 .. code-block:: python
