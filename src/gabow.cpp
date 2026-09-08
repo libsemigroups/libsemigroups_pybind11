@@ -23,6 +23,7 @@
 #include <cstddef>           // for uint32_t
 #include <cstdint>           // for uint64_t
 #include <initializer_list>  // for initializer_list
+#include <memory>            // for make_unique
 #include <string>            // for to_string, basic_string
 #include <vector>            // for vector
 
@@ -69,11 +70,12 @@ at most :math:`O(mn)` where ``m`` is :any:`WordGraph.number_of_nodes()` and
     thing.def("__repr__",
               [](Gabow_ const& g) { return to_human_readable_repr(g); });
 
-    thing.def("__copy__", [](Gabow_ const& g) { return Gabow_(g); });
+    thing.def("__copy__",
+              [](Gabow_ const& g) { return std::make_unique<Gabow_>(g); });
 
     thing.def(
         "copy",
-        [](Gabow_ const& self) { return Gabow_(self); },
+        [](Gabow_ const& self) { return std::make_unique<Gabow_>(self); },
         R"pbdoc(
 :sig=(self: Gabow) -> Gabow:
 

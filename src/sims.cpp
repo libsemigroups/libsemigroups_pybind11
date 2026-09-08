@@ -17,6 +17,7 @@
 //
 
 // C++ stl headers....
+#include <memory>  // for make_unique
 #include <pybind11/detail/common.h>
 #include <vector>  // for vector
 
@@ -657,11 +658,12 @@ search conducted by an object of this type.
                           doc_type)
                   .c_str());
 
-    thing.def("__copy__", [](Thing const& self) { return Thing(self); });
+    thing.def("__copy__",
+              [](Thing const& self) { return std::make_unique<Thing>(self); });
 
     thing.def(
         "copy",
-        [](Thing const& self) { return Thing(self); },
+        [](Thing const& self) { return std::make_unique<Thing>(self); },
         fmt::format(R"pbdoc(
 Copy a :any:`{0}` object.
 
@@ -1020,10 +1022,12 @@ Default constructor.
 Constructs a :any:`SimsStats` object with all statistics set to zero.
 )pbdoc");
 
-    st.def("__copy__", [](SimsStats const& self) { return SimsStats(self); });
+    st.def("__copy__", [](SimsStats const& self) {
+      return std::make_unique<SimsStats>(self);
+    });
     st.def(
         "copy",
-        [](SimsStats const& self) { return SimsStats(self); },
+        [](SimsStats const& self) { return std::make_unique<SimsStats>(self); },
         R"pbdoc(
 Copy a :any:`SimsStats` object.
 

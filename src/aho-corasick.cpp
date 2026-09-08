@@ -17,6 +17,7 @@
 //
 
 // C++ stl headers....
+#include <memory>  // for make_unique
 #include <string>  // for string
 
 // libsemigroups....
@@ -73,7 +74,9 @@ the empty word :math:`\varepsilon`.)pbdoc");
 
     thing.def(
         "copy",
-        [](AhoCorasick const& self) { return AhoCorasick(self); },
+        [](AhoCorasick const& self) {
+          return std::make_unique<AhoCorasick>(self);
+        },
         R"pbdoc(
 :sig=(self: AhoCorasick) -> AhoCorasick:
 
@@ -81,8 +84,9 @@ Copy a :any:`AhoCorasick` object.
 
 :returns: A copy.
 :rtype: AhoCorasick)pbdoc");
-    thing.def("__copy__",
-              [](AhoCorasick const& self) { return AhoCorasick(self); });
+    thing.def("__copy__", [](AhoCorasick const& self) {
+      return std::make_unique<AhoCorasick>(self);
+    });
 
     thing.def(
         "child",

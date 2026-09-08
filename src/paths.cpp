@@ -19,6 +19,7 @@
 // C++ stl headers....
 #include <cstddef>  // for uint32_t
 #include <cstdint>  // for uint64_t
+#include <memory>   // for make_unique
 
 // libsemigroups....
 #include <libsemigroups/constants.hpp>   // for operator!=, operator==
@@ -63,10 +64,11 @@ paths in a :any:`WordGraph` from a given :any:`source` (to a possible
 )pbdoc");
     thing1.def("__repr__",
                [](Paths_ const& p) { return to_human_readable_repr(p); });
-    thing1.def("__copy__", [](Paths_ const& p) { return Paths_(p); });
+    thing1.def("__copy__",
+               [](Paths_ const& p) { return std::make_unique<Paths_>(p); });
     thing1.def(
         "copy",
-        [](Paths_ const& self) { return Paths_(self); },
+        [](Paths_ const& self) { return std::make_unique<Paths_>(self); },
         R"pbdoc(
 :sig=(self: Paths) -> Paths:
 

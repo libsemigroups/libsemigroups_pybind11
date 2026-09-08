@@ -23,6 +23,7 @@
 // TODO Left/RightActionPerm
 
 // C++ stl headers....
+#include <memory>       // for make_unique
 #include <string_view>  // for string_view
 
 // libsemigroups headers
@@ -115,10 +116,12 @@ In this documentation we refer to:
       // Action code.
       thing.def(py::init<>());
 
-      thing.def("__copy__", [](Action_ const& self) { return Action_(self); });
+      thing.def("__copy__", [](Action_ const& self) {
+        return std::make_unique<Action_>(self);
+      });
       thing.def(
           "copy",
-          [](Action_ const& self) { return Action_(self); },
+          [](Action_ const& self) { return std::make_unique<Action_>(self); },
           R"pbdoc(
 :sig=(self: Action) -> Action:
 

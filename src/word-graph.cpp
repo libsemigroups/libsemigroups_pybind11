@@ -18,6 +18,7 @@
 
 // C++ stl headers....
 #include <cstddef>  // for uint32_t
+#include <memory>   // for make_unique
 #include <vector>   // for vector
 
 // libsemigroups....
@@ -75,10 +76,12 @@ the *out-degree* of the word graph, or any of its nodes.)pbdoc");
     thing.def(py::self >= py::self);
 
     thing.def("__hash__", &WordGraph_::hash_value);
-    thing.def("__copy__", [](WordGraph_ const& wg) { return WordGraph_(wg); });
+    thing.def("__copy__", [](WordGraph_ const& wg) {
+      return std::make_unique<WordGraph_>(wg);
+    });
     thing.def(
         "copy",
-        [](WordGraph_ const& wg) { return WordGraph_(wg); },
+        [](WordGraph_ const& wg) { return std::make_unique<WordGraph_>(wg); },
         R"pbdoc(
 Copy a :any:`WordGraph` object.
 
@@ -1521,10 +1524,11 @@ automata. The input word graphs need not be complete, and the root nodes can
 also be specified.)pbdoc");
     meeter.def("__repr__",
                [](Meeter const& x) { return to_human_readable_repr(x); });
-    meeter.def("__copy__", [](Meeter const& wg) { return Meeter(wg); });
+    meeter.def("__copy__",
+               [](Meeter const& wg) { return std::make_unique<Meeter>(wg); });
     meeter.def(
         "copy",
-        [](Meeter const& wg) { return Meeter(wg); },
+        [](Meeter const& wg) { return std::make_unique<Meeter>(wg); },
         R"pbdoc(
 Copy a :any:`Meeter` object.
 
@@ -1764,10 +1768,11 @@ also be specified.)pbdoc");
     });
     joiner.def(py::init<>(), R"pbdoc(
 Default constructor.)pbdoc");
-    joiner.def("__copy__", [](Joiner const& wg) { return Joiner(wg); });
+    joiner.def("__copy__",
+               [](Joiner const& wg) { return std::make_unique<Joiner>(wg); });
     joiner.def(
         "copy",
-        [](Joiner const& wg) { return Joiner(wg); },
+        [](Joiner const& wg) { return std::make_unique<Joiner>(wg); },
         R"pbdoc(
 Copy a :any:`Joiner` object.
 

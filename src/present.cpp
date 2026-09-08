@@ -20,6 +20,7 @@
 #include <cstddef>  // for size_t
 
 // C++ stl headers....
+#include <memory>  // for make_unique
 #include <string>  // for string, basic_string, oper...
 
 // libsemigroups....
@@ -85,7 +86,9 @@ Default constructor.
 Constructs an empty presentation with no rules and no alphabet.)pbdoc");
       thing.def(
           "copy",
-          [](Presentation_ const& self) { return Presentation_(self); },
+          [](Presentation_ const& self) {
+            return std::make_unique<Presentation_>(self);
+          },
           R"pbdoc(
 :sig=(self: Presentation) -> Presentation:
 
@@ -94,8 +97,9 @@ Copy a :any:`Presentation` object.
 :returns: A copy.
 :rtype: Presentation
 )pbdoc");
-      thing.def("__copy__",
-                [](Presentation_ const& that) { return Presentation_(that); });
+      thing.def("__copy__", [](Presentation_ const& that) {
+        return std::make_unique<Presentation_>(that);
+      });
       thing.def(
           "alphabet",
           [](Presentation_ const& self) { return self.alphabet(); },
@@ -2045,7 +2049,7 @@ no inverses.)pbdoc");
       thing.def(
           "copy",
           [](InversePresentation_ const& self) {
-            return InversePresentation_(self);
+            return std::make_unique<InversePresentation_>(self);
           },
           R"pbdoc(
 :sig=(self: InversePresentation) -> InversePresentation:
@@ -2056,7 +2060,7 @@ Copy a :any:`InversePresentation` object.
 :rtype: InversePresentation
 )pbdoc");
       thing.def("__copy__", [](InversePresentation_ const& that) {
-        return InversePresentation_(that);
+        return std::make_unique<InversePresentation_>(that);
       });
 
       thing.def("inverse",

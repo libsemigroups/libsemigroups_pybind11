@@ -18,6 +18,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+// C++ stl headers....
+#include <memory>  // for make_unique
+
 // libsemigroups headers
 #include <libsemigroups/dot.hpp>
 
@@ -226,10 +229,10 @@ A list of default HTML/hex colours.
 Default constructor that constructs an empty :any:`Dot` object with no nodes,
 edges, attributes, or subgraphs.
 )pbdoc");
-    dot.def("__copy__", [](Dot const& d) { return Dot(d); });
+    dot.def("__copy__", [](Dot const& d) { return std::make_unique<Dot>(d); });
     dot.def(
         "copy",
-        [](Dot const& d) { return Dot(d); },
+        [](Dot const& d) { return std::make_unique<Dot>(d); },
         R"pbdoc(
 :sig=(self: Dot) -> Dot:
 

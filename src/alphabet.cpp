@@ -16,6 +16,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+// C++ stl headers....
+#include <memory>  // for make_unique
+
 // libsemigroups headers
 #include <libsemigroups/alphabet.hpp>
 
@@ -73,8 +76,9 @@ letters is significant: it is the order used by :any:`letter` and
 
       thing.def("__len__", &Alphabet_::size);
 
-      thing.def("__copy__",
-                [](Alphabet_ const& self) { return Alphabet(self); });
+      thing.def("__copy__", [](Alphabet_ const& self) {
+        return std::make_unique<Alphabet_>(self);
+      });
 
       thing.def(
           "__iter__",
@@ -250,7 +254,9 @@ This function replaces the alphabet by the first *n* human-readable letters.
 
       thing.def(
           "copy",
-          [](Alphabet_ const& self) { return Alphabet(self); },
+          [](Alphabet_ const& self) {
+            return std::make_unique<Alphabet_>(self);
+          },
           R"pbdoc(
 :sig=(self: Alphabet) -> Alphabet:
 

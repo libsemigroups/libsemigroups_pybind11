@@ -16,6 +16,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+// C++ stl headers....
+#include <memory>  // for make_unique
+
 // C++ headers
 #include <type_traits>  // for std::is_same_v
 
@@ -160,7 +163,7 @@ Default construct a :any:`Reporter` object such that the following hold:
 )pbdoc");
     thing.def(
         "copy",
-        [](Reporter const& self) { return Reporter(self); },
+        [](Reporter const& self) { return std::make_unique<Reporter>(self); },
         R"pbdoc(
 :sig=(self: Reporter) -> Reporter:
 
@@ -169,7 +172,9 @@ Copy a :any:`Reporter` object.
 :returns: A copy.
 :rtype: Reporter
 )pbdoc");
-    thing.def("__copy__", [](Reporter const& self) { return Reporter(self); });
+    thing.def("__copy__", [](Reporter const& self) {
+      return std::make_unique<Reporter>(self);
+    });
     thing.def(
         "init",
         [](Reporter& r) -> Reporter& { return r.init(); },

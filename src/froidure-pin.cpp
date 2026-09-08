@@ -16,6 +16,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+// C++ stl headers....
+#include <memory>  // for make_unique
 #include <string>
 
 // libsemigroups headers
@@ -52,8 +54,9 @@ namespace libsemigroups {
         return to_human_readable_repr(x);
       });
 
-      thing.def("__copy__",
-                [](FroidurePin_ const& self) { return FroidurePin_(self); });
+      thing.def("__copy__", [](FroidurePin_ const& self) {
+        return std::make_unique<FroidurePin_>(self);
+      });
 
       thing.def(
           "init",
@@ -72,7 +75,9 @@ the same state as if it had just been default constructed.
 
       thing.def(
           "copy",
-          [](FroidurePin_ const& self) { return FroidurePin_(self); },
+          [](FroidurePin_ const& self) {
+            return std::make_unique<FroidurePin_>(self);
+          },
           R"pbdoc(
 :sig=(self: FroidurePin) -> FroidurePin:
 

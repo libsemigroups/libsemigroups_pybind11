@@ -16,6 +16,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+// C++ stl headers....
+#include <memory>  // for make_unique
+
 // libsemigroups headers
 #include <libsemigroups/bipart.hpp>
 
@@ -52,12 +55,14 @@ See also :any:`Bipartition` for more details and context.
     thing.def(py::self < py::self);
     thing.def(py::self == py::self);
 
-    thing.def("__copy__", [](Blocks const& self) { return Blocks(self); });
+    thing.def("__copy__", [](Blocks const& self) {
+      return std::make_unique<Blocks>(self);
+    });
     thing.def("__hash__", &Blocks::hash_value, py::is_operator());
 
     thing.def(
         "copy",
-        [](Blocks const& self) { return Blocks(self); },
+        [](Blocks const& self) { return std::make_unique<Blocks>(self); },
         R"pbdoc(
 Copy a Blocks object.
 
@@ -258,8 +263,9 @@ for more details.
     thing.def("__repr__", [](Bipartition const& self) {
       return to_human_readable_repr(self, "[]");
     });
-    thing.def("__copy__",
-              [](Bipartition const& self) { return Bipartition(self); });
+    thing.def("__copy__", [](Bipartition const& self) {
+      return std::make_unique<Bipartition>(self);
+    });
     thing.def("__hash__", &Bipartition::hash_value, py::is_operator());
     thing.def(
         "__getitem__",
@@ -271,7 +277,9 @@ for more details.
 
     thing.def(
         "copy",
-        [](Bipartition const& self) { return Bipartition(self); },
+        [](Bipartition const& self) {
+          return std::make_unique<Bipartition>(self);
+        },
         R"pbdoc(
 Copy a Bipartition object.
 

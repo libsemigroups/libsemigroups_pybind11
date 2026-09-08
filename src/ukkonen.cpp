@@ -17,6 +17,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+// C++ stl headers....
+#include <memory>  // for make_unique
+
 // libsemigroups headers
 #include <libsemigroups/types.hpp>  // for word_type
 #include <libsemigroups/ukkonen.hpp>
@@ -622,7 +625,9 @@ Construct from index and position.
 )pbdoc");
     state.def(
         "copy",
-        [](Ukkonen::State const& self) { return Ukkonen::State(self); },
+        [](Ukkonen::State const& self) {
+          return std::make_unique<Ukkonen::State>(self);
+        },
         R"pbdoc(
 :sig=(self: Ukkonen.State) -> Ukkonen.State:
 
@@ -631,8 +636,9 @@ Copy a :any:`Ukkonen.State` object.
 :returns: A copy.
 :rtype: Ukkonen.State
 )pbdoc");
-    state.def("__copy__",
-              [](Ukkonen::State const& that) { return Ukkonen::State(that); });
+    state.def("__copy__", [](Ukkonen::State const& that) {
+      return std::make_unique<Ukkonen::State>(that);
+    });
     state.def(py::self == py::self, py::arg("that"));
 
     ////////////////////////////////////////////////////////////////////////
@@ -695,11 +701,14 @@ Construct a node from leftmost index, one-past-rightmost index, and parent.
   :any:`UNDEFINED`).
 :type parent: int | Undefined
 )pbdoc");
-    node.def("__copy__",
-             [](Ukkonen::Node const& that) { return Ukkonen::Node(that); });
+    node.def("__copy__", [](Ukkonen::Node const& that) {
+      return std::make_unique<Ukkonen::Node>(that);
+    });
     node.def(
         "copy",
-        [](Ukkonen::Node const& self) { return Ukkonen::Node(self); },
+        [](Ukkonen::Node const& self) {
+          return std::make_unique<Ukkonen::Node>(self);
+        },
         R"pbdoc(
 :sig=(self: Ukkonen.Node) -> Ukkonen.Node:
 
@@ -767,7 +776,7 @@ Constructs an empty generalised suffix tree.
 )pbdoc");
     thing.def(
         "copy",
-        [](Ukkonen const& self) { return Ukkonen(self); },
+        [](Ukkonen const& self) { return std::make_unique<Ukkonen>(self); },
         R"pbdoc(
 :sig=(self: Ukkonen) -> Ukkonen:
 
@@ -776,7 +785,9 @@ Copy a :any:`Ukkonen` object.
 :returns: A copy.
 :rtype: Ukkonen
 )pbdoc");
-    thing.def("__copy__", [](Ukkonen const& self) { return Ukkonen(self); });
+    thing.def("__copy__", [](Ukkonen const& self) {
+      return std::make_unique<Ukkonen>(self);
+    });
     thing.def("__iter__", [](Ukkonen const& self) {
       return py::make_iterator(self.begin(), self.end());
     });

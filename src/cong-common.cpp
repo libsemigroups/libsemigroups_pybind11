@@ -18,6 +18,8 @@
 
 #include "cong-common.hpp"  // for doc
 
+// C++ stl headers....
+#include <memory>  // for make_unique
 #include <string_view>
 
 // libsemigroups headers
@@ -482,7 +484,7 @@ had been newly constructed from *knd* and *p*.
                 doc                           extra_doc) {
     thing.def(
         "copy",
-        [](Thing const& self) { return Thing(self); },
+        [](Thing const& self) { return std::make_unique<Thing>(self); },
         make_doc(R"pbdoc(
 :sig=(self: {name}) -> {name}:
 {only_document_once}
@@ -496,7 +498,8 @@ Copy a :any:`{name}` object.
                  name,
                  extra_doc));
 
-    thing.def("__copy__", [](Thing const& self) { return Thing(self); });
+    thing.def("__copy__",
+              [](Thing const& self) { return std::make_unique<Thing>(self); });
   }
 
   ////////////////////////////////////////////////////////////////////////

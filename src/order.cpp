@@ -17,6 +17,7 @@
 //
 
 // C++ stl headers....
+#include <memory>  // for make_unique
 #include <string>  // for string
 #include <vector>  // for vector
 
@@ -1274,9 +1275,11 @@ Constructs an object whose call operator compares either ``str`` or
       thing.def("__repr__",
                 [](Cmp const& self) { return to_human_readable_repr(self); });
 
-      thing.def("__copy__", [](Cmp const& self) { return Cmp(self); });
+      thing.def("__copy__",
+                [](Cmp const& self) { return std::make_unique<Cmp>(self); });
 
-      thing.def("copy", [](Cmp const& self) { return Cmp(self); });
+      thing.def("copy",
+                [](Cmp const& self) { return std::make_unique<Cmp>(self); });
 
       thing.def(
           "__call__",
@@ -1338,8 +1341,10 @@ Construct a comparison object for ``str`` or ``list[int]`` words.
                     .c_str());
       thing.def("__repr__",
                 [](Cmp const& self) { return to_human_readable_repr(self); });
-      thing.def("__copy__", [](Cmp const& self) { return Cmp(self); });
-      thing.def("copy", [](Cmp const& self) { return Cmp(self); });
+      thing.def("__copy__",
+                [](Cmp const& self) { return std::make_unique<Cmp>(self); });
+      thing.def("copy",
+                [](Cmp const& self) { return std::make_unique<Cmp>(self); });
       thing.def(
           "init",
           [](Cmp& self, std::vector<size_t> const& values) -> Cmp& {
@@ -1472,10 +1477,11 @@ The two arguments must have the same size.
                     .c_str());
       thing.def("__repr__",
                 [](Cmp const& self) { return to_human_readable_repr(self); });
-      thing.def("__copy__", [](Cmp const& self) { return Cmp(self); });
+      thing.def("__copy__",
+                [](Cmp const& self) { return std::make_unique<Cmp>(self); });
       thing.def(
           "copy",
-          [](Cmp const& self) { return Cmp(self); },
+          [](Cmp const& self) { return std::make_unique<Cmp>(self); },
           fmt::format(R"pbdoc(
 :sig=(self: {0}) -> {0}:
 Copy a comparison object.
@@ -1696,11 +1702,13 @@ for the call operator.
         return to_human_readable_repr(self);
       });
 
-      thing.def("__copy__", [](LexCmp_ const& self) { return LexCmp_(self); });
+      thing.def("__copy__", [](LexCmp_ const& self) {
+        return std::make_unique<LexCmp_>(self);
+      });
 
       thing.def(
           "copy",
-          [](LexCmp_ const& self) { return LexCmp_(self); },
+          [](LexCmp_ const& self) { return std::make_unique<LexCmp_>(self); },
           R"pbdoc(
 :sig=(self: LexCmp) -> LexCmp:
 Copy a comparison object.
@@ -1892,12 +1900,15 @@ type for the call operator.
         return to_human_readable_repr(self);
       });
 
-      thing.def("__copy__",
-                [](LenLexCmp_ const& self) { return LenLexCmp_(self); });
+      thing.def("__copy__", [](LenLexCmp_ const& self) {
+        return std::make_unique<LenLexCmp_>(self);
+      });
 
       thing.def(
           "copy",
-          [](LenLexCmp_ const& self) { return LenLexCmp_(self); },
+          [](LenLexCmp_ const& self) {
+            return std::make_unique<LenLexCmp_>(self);
+          },
           R"pbdoc(
 :sig=(self: LenLexCmp) -> LenLexCmp:
 Copy a comparison object.
@@ -2089,11 +2100,13 @@ letters in *alphabet* also fixes the accepted word type for the call operator.
         return to_human_readable_repr(self);
       });
 
-      thing.def("__copy__", [](RPOCmp_ const& self) { return RPOCmp_(self); });
+      thing.def("__copy__", [](RPOCmp_ const& self) {
+        return std::make_unique<RPOCmp_>(self);
+      });
 
       thing.def(
           "copy",
-          [](RPOCmp_ const& self) { return RPOCmp_(self); },
+          [](RPOCmp_ const& self) { return std::make_unique<RPOCmp_>(self); },
           R"pbdoc(
 :sig=(self: RPOCmp) -> RPOCmp:
 Copy a comparison object.
@@ -2286,12 +2299,15 @@ call operator.
         return to_human_readable_repr(self);
       });
 
-      thing.def("__copy__",
-                [](RevRPOCmp_ const& self) { return RevRPOCmp_(self); });
+      thing.def("__copy__", [](RevRPOCmp_ const& self) {
+        return std::make_unique<RevRPOCmp_>(self);
+      });
 
       thing.def(
           "copy",
-          [](RevRPOCmp_ const& self) { return RevRPOCmp_(self); },
+          [](RevRPOCmp_ const& self) {
+            return std::make_unique<RevRPOCmp_>(self);
+          },
           R"pbdoc(
 :sig=(self: RevRPOCmp) -> RevRPOCmp:
 Copy a comparison object.
@@ -2486,12 +2502,15 @@ for the call operator.
         return to_human_readable_repr(self);
       });
 
-      thing.def("__copy__",
-                [](RevLexCmp_ const& self) { return RevLexCmp_(self); });
+      thing.def("__copy__", [](RevLexCmp_ const& self) {
+        return std::make_unique<RevLexCmp_>(self);
+      });
 
       thing.def(
           "copy",
-          [](RevLexCmp_ const& self) { return RevLexCmp_(self); },
+          [](RevLexCmp_ const& self) {
+            return std::make_unique<RevLexCmp_>(self);
+          },
           R"pbdoc(
 :sig=(self: RevLexCmp) -> RevLexCmp:
 Copy a comparison object.
@@ -2687,12 +2706,15 @@ accepted word type for the call operator.
         return to_human_readable_repr(self);
       });
 
-      thing.def("__copy__",
-                [](RevLenLexCmp_ const& self) { return RevLenLexCmp_(self); });
+      thing.def("__copy__", [](RevLenLexCmp_ const& self) {
+        return std::make_unique<RevLenLexCmp_>(self);
+      });
 
       thing.def(
           "copy",
-          [](RevLenLexCmp_ const& self) { return RevLenLexCmp_(self); },
+          [](RevLenLexCmp_ const& self) {
+            return std::make_unique<RevLenLexCmp_>(self);
+          },
           R"pbdoc(
 :sig=(self: RevLenLexCmp) -> RevLenLexCmp:
 Copy a comparison object.
