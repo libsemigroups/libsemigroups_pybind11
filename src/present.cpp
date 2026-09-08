@@ -1640,19 +1640,19 @@ modified version.
 :sig=(p: Presentation, var_name: str) -> str:
 :only-document-once:
 
-Return the code that would create *p* in GAP.
+Return the code that would create *p* in GAP_.
 
-This function returns the string of GAP code that could be used to create an
-object with the same alphabet and rules as *p* in GAP. Presentations in GAP
+This function returns the string of GAP_ code that could be used to create an
+object with the same alphabet and rules as *p* in GAP_. Presentations in GAP_
 are created by taking quotients of free semigroups or monoids.
 
 :param p: the presentation.
 :type p: Presentation
 
-:param var_name: the name of the variable to be used in GAP (defaults to ``"S"``).
+:param var_name: the name of the variable to be used in GAP_ (defaults to ``"S"``).
 :type var_name: str
 
-:returns: The GAP string.
+:returns: The GAP_ string.
 :rtype: str
 
 .. doctest::
@@ -1676,15 +1676,15 @@ are created by taking quotients of free semigroups or monoids.
           R"pbdoc(
 :sig=(p: Presentation) -> str:
 :only-document-once:
-Returns a string containing the content of an ACE input file.
+Returns a string containing the content of an ACE_ input file.
 
-This function returns the string of ACE :cite:`Havas1999iy` input that could be
+This function returns the string of ACE_ :cite:`Havas1999iy` input that could be
 used to create an object with the same alphabet and rules as *p*.
 
 :param p: the presentation.
 :type p: Presentation
 
-:returns: The ACE string.
+:returns: The ACE_ string.
 :rtype: str
 
 :raises LibsemigroupsError: if ``p.alphabet()`` contains any duplicate letters.
@@ -1694,11 +1694,11 @@ used to create an object with the same alphabet and rules as *p*.
 
 .. note::
 
-  ACE assumes that presentations are group presentations, where the the alphabet
+  ACE_ assumes that presentations are group presentations, where the the alphabet
   consists of lowercase letters, and inverses correspond to the equivalent
-  uppercase letters. Therefore, a valid ACE presentation may not be a valid
+  uppercase letters. Therefore, a valid ACE_ presentation may not be a valid
   ``libsemigroups_pybdind11`` :any:`Presentation`; for example, it is possible
-  for relations in an ACE presentation to contain uppercase letters that are not
+  for relations in an ACE_ presentation to contain uppercase letters that are not
   explicitly named as generators, as long as their lowercase counterparts are
   listed as generators.
 )pbdoc");

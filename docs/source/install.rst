@@ -11,7 +11,7 @@ Installation
 Installing with pip
 -------------------
 
-It's possible to install ``libsemigroups_pybind11`` using ``pip`` by doing one
+It's possible to install ``libsemigroups_pybind11`` using pip_ by doing one
 of the following (depending on your system and setup):
 
 .. highlight:: console
@@ -33,7 +33,7 @@ of the following (depending on your system and setup):
 Installing with mamba
 ---------------------
 
-This installation method assumes that you have anaconda or miniconda installed.
+This installation method assumes that you have Anaconda_ or Miniconda_ installed.
 See the `getting started`_ and `miniconda download page`_ on the conda_ website.
 
 .. _conda: https://conda.io/
@@ -42,8 +42,8 @@ See the `getting started`_ and `miniconda download page`_ on the conda_ website.
 
 .. _miniconda download page: https://conda.io/miniconda.html
 
-It might be a good idea to create and activate a conda/mamba environment to contain
-the installation of the ``libsemigroups_pybind11``:
+It might be a good idea to create and activate a conda_ or mamba_ environment to
+contain the installation of the ``libsemigroups_pybind11``:
 
 ::
 
@@ -70,12 +70,12 @@ From the sources
 ----------------
 
 Before installing ``libsemigroups_pybind11`` from its sources, you should first
-perform a system install of the C++ library ``libsemigroups``. For information
+perform a system install of the C++ library libsemigroups_. For information
 about how to do this, see the `libsemigroups installation guide
 <https://libsemigroups.github.io/libsemigroups/md_install.html>`_.
 
-Assuming that you have ``libsemigroups`` installed, you can install
-``libsemigroups_pybind11`` with ``pip``:
+Assuming that you have libsemigroups_ installed, you can install
+``libsemigroups_pybind11`` with pip_:
 
 ::
 
@@ -83,7 +83,7 @@ Assuming that you have ``libsemigroups`` installed, you can install
     $ cd libsemigroups_pybind11
     $ pip install .
 
-or with the ``uv`` pip-compatible interface
+or with the uv_ pip-compatible interface
 
 ::
 

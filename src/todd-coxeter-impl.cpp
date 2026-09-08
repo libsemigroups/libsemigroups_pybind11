@@ -69,32 +69,32 @@ The valid values are:
 .. py:attribute:: strategy.hlt
   :value: <strategy.hlt: 0>
 
-  This value indicates that the HLT (Hazelgrove-Leech-Trotter) strategy should be used. This is analogous to ACE's R-style.
+  This value indicates that the HLT (Hazelgrove-Leech-Trotter) strategy should be used. This is analogous to the R-style of ACE_.
 
 .. py:attribute:: strategy.felsch
   :value: <strategy.felsch: 1>
 
-  This value indicates that the Felsch strategy should be used. This is analogous to ACE's C-style.
+  This value indicates that the Felsch strategy should be used. This is analogous to the C-style of ACE_.
 
 .. py:attribute:: strategy.CR
   :value: <strategy.CR: 2>
 
-  This strategy is meant to mimic the ACE strategy of the same name. The Felsch strategy is run until at least :any:`f_defs` nodes are defined, then the HLT strategy is run until at least :any:`hlt_defs` divided by :math:`N` nodes have been defined, where :math:`N` is the sum of the lengths of the words in the presentation and generating pairs. These steps are repeated until the enumeration terminates.
+  This strategy is meant to mimic the ACE_ strategy of the same name. The Felsch strategy is run until at least :any:`f_defs` nodes are defined, then the HLT strategy is run until at least :any:`hlt_defs` divided by :math:`N` nodes have been defined, where :math:`N` is the sum of the lengths of the words in the presentation and generating pairs. These steps are repeated until the enumeration terminates.
 
 .. py:attribute:: strategy.R_over_C
   :value: <strategy.R_over_C: 3>
 
-  This strategy is meant to mimic the ACE strategy R/C. The HLT strategy is run until the first lookahead is triggered (when the number of nodes active is at least :any:`lookahead_next`). A full lookahead is then performed, and then the CR strategy is used.
+  This strategy is meant to mimic the ACE_ strategy R/C. The HLT strategy is run until the first lookahead is triggered (when the number of nodes active is at least :any:`lookahead_next`). A full lookahead is then performed, and then the CR strategy is used.
 
 .. py:attribute:: strategy.Cr
   :value: <strategy.Cr: 4>
 
-  This strategy is meant to mimic the ACE strategy Cr. The Felsch strategy is run until at least :any:`f_defs` new nodes have been defined, then the HLT strategy is run until at least :any:`hlt_defs` divided by :math:`N` nodes have been defined, where :math:`N` is the sum of the lengths of the words in the presentation and generating pairs. Then the Felsch strategy is run.
+  This strategy is meant to mimic the ACE_ strategy Cr. The Felsch strategy is run until at least :any:`f_defs` new nodes have been defined, then the HLT strategy is run until at least :any:`hlt_defs` divided by :math:`N` nodes have been defined, where :math:`N` is the sum of the lengths of the words in the presentation and generating pairs. Then the Felsch strategy is run.
 
 .. py:attribute:: strategy.Rc
   :value: <strategy.Rc: 5>
 
-  This strategy is meant to mimic the ACE strategy Rc. The HLT strategy is run until at least :any:`hlt_defs` divided by :math:`N` new nodes have been defined (where :math:`N` is the sum of the lengths of the words in the presentation and generating pairs). The Felsch strategy is then run until at least :any:`f_defs` new nodes are defined, and then the HLT strategy is run.
+  This strategy is meant to mimic the ACE_ strategy Rc. The HLT strategy is run until at least :any:`hlt_defs` divided by :math:`N` new nodes have been defined (where :math:`N` is the sum of the lengths of the words in the presentation and generating pairs). The Felsch strategy is then run until at least :any:`f_defs` new nodes are defined, and then the HLT strategy is run.
 
 
 
@@ -504,9 +504,9 @@ The default value of this setting is :any:`def_version.two`.
         R"pbdoc(
 :sig=(self: ToddCoxeter) -> int:
 
-Get the number of Felsch style definitions in ACE strategies. This
+Get the number of Felsch style definitions in ACE_ strategies. This
 function returns the approximate number of Felsch style definitions in each
-phase of the `ACE <https://staff.itee.uq.edu.au/havas/>`_ style
+phase of the ACE_ style
 strategies:
 
 - :any:`strategy.CR`;
@@ -534,10 +534,10 @@ The default value of this setting is ``10 ** 5``.
         R"pbdoc(
 :sig=(self: ToddCoxeter, val: int) -> ToddCoxeter:
 
-Set the number of Felsch style definitions in ACE strategies.
+Set the number of Felsch style definitions in ACE_ strategies.
 
 This function can be used to set the approximate number of Felsch style definitions
-in each phase of the `ACE <https://staff.itee.uq.edu.au/havas/>`_
+in each phase of the ACE_
 style strategies:
 
 * :any:`strategy.CR`;
@@ -565,9 +565,9 @@ The default value of this setting is ``10 ** 5``.
         R"pbdoc(
 :sig=(self: ToddCoxeter) -> int:
 
-Get the number of HLT style definitions in ACE strategies. This function
+Get the number of HLT style definitions in ACE_ strategies. This function
 returns the approximate number of HLT style definitions in each phase of
-the `ACE <https://staff.itee.uq.edu.au/havas/>`_ style strategies:
+the ACE_ style strategies:
 
 -  :any:`strategy.CR`;
 -  :any:`strategy.R_over_C`;
@@ -594,10 +594,10 @@ The default value of this setting is ``10 ** 5``.
         R"pbdoc(
 :sig=(self: ToddCoxeter, val: int) -> ToddCoxeter:
 
-Set the number of HLT style definitions in ACE strategies.
+Set the number of HLT style definitions in ACE_ strategies.
 
 This function can be used to set the approximate number of HLT style
-definitions in each phase of the `ACE <https://staff.itee.uq.edu.au/havas/>`_
+definitions in each phase of the ACE_
 style strategies:
 
 *  :any:`strategy.CR`;

@@ -4,7 +4,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 
-"""This page contains the documentation for the HPCombi functionality exposed
+"""This page contains the documentation for the HPCombi_ functionality exposed
 in ``libsemigroups_pybind11``.
 """
 

@@ -687,7 +687,7 @@ Returns the adjacency matrix of a word graph.
 
 This function returns the adjacency matrix of the word graph *wg*. The
 type of the returned matrix depends on whether or not libsemigroups_ is
-compiled with `eigen <http://eigen.tuxfamily.org/>`_ enabled. The returned
+compiled with Eigen_ enabled. The returned
 matrix has the number of edges with source ``s`` and target ``t`` in the
 ``(s, t)``-entry.
 

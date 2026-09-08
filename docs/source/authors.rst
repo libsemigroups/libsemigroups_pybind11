@@ -29,7 +29,7 @@ Contributors
 
 - `Nicolas Thiery`_ helped the authors understand the ecosystem for integrating
   C++ code into python, and to some preliminary versions of the python bindings
-  for libsemigroups_ using cython, and cppyy.
+  for libsemigroups_ using Cython_, and cppyy_.
 - Chinmaya Nagpal (chinmaya1011@gmail.com) resolved a great many issues with the
   packaging.
 - James Swent (jws20@st-andrews.ac.uk) contributed several implementations for
