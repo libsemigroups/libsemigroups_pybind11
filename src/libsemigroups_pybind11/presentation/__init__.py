@@ -125,7 +125,7 @@ class Presentation(_CxxWrapper):
         """
         # super().__init__ checks if there are unexpected kwargs,
         # and sets _cxx_obj if the unique argument is a cxx_obj of type in _all_wrapped_cxx_types
-        super().__init__(*args, optional_kwargs="word")
+        super().__init__(*args, optional_kwargs=("word",), **kwargs)
         if _to_cxx(self) is not None:
             return
 

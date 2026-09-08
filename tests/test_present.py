@@ -872,6 +872,29 @@ def test_constructors_000():
     check_constructors(p)
 
 
+@pytest.mark.parametrize("presentation_type", [Presentation, InversePresentation])
+@pytest.mark.parametrize("word", [str, list[int]])
+@pytest.mark.parametrize("keyword", ["typo", "w", "or"])
+def test_presentation_constructor_rejects_unexpected_keyword(presentation_type, word, keyword):
+    with pytest.raises(TypeError):
+        presentation_type(word=word, **{keyword: True})
+
+
+@pytest.mark.parametrize("presentation_type", [Presentation, InversePresentation])
+@pytest.mark.parametrize("keyword", ["typo", "w", "or"])
+def test_presentation_constructor_rejects_unknown_keyword_name(presentation_type, keyword):
+    with pytest.raises(TypeError, match="unexpected keyword argument"):
+        presentation_type(**{keyword: str})
+
+
+@pytest.mark.parametrize("presentation_type", [Presentation, InversePresentation])
+@pytest.mark.parametrize("word, empty", [(str, ""), (list[int], [])])
+def test_presentation_constructor_accepts_word_keyword(presentation_type, word, empty):
+    p = presentation_type(word=word)
+    assert p.alphabet() == empty
+    assert p.py_template_params == (word,)
+
+
 def test_strings_001():
     p = Presentation("abc")
     assert p.alphabet() == "abc"
