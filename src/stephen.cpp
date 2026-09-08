@@ -17,6 +17,7 @@
 //
 
 // C++ stl headers....
+#include <memory>    // for make_unique
 #include <optional>  // for optional, nullopt
 
 // libsemigroups headers
@@ -77,8 +78,9 @@ originates in :cite:`Stephen1987aa`.
       thing.def("__repr__", [](Stephen_ const& stephen) {
         return to_human_readable_repr(stephen);
       });
-      thing.def("__copy__",
-                [](Stephen_ const& self) { return Stephen_(self); });
+      thing.def("__copy__", [](Stephen_ const& self) {
+        return std::make_unique<Stephen_>(self);
+      });
       // Not directly usable so not included
       //       thing.def(py::init<>(), R"pbdoc(
       // This function default constructs an empty instance of :any:`Stephen`.
@@ -96,7 +98,7 @@ This function constructs :any:`Stephen` from a presentation.
 )pbdoc");
       thing.def(
           "copy",
-          [](Stephen_ const& self) { return Stephen_(self); },
+          [](Stephen_ const& self) { return std::make_unique<Stephen_>(self); },
           R"pbdoc(
 :sig=(self: Stephen) -> Stephen:
 

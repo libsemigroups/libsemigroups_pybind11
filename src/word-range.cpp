@@ -22,6 +22,7 @@
 // C++ stl headers....
 #include <initializer_list>  // for initializer_list
 #include <iosfwd>            // for string
+#include <memory>            // for make_unique
 #include <vector>            // for vector
 
 // libsemigroups....
@@ -96,11 +97,12 @@ Example
 )pbdoc");
     thing1.def("__repr__",
                [](WordRange const& wr) { return to_human_readable_repr(wr); });
-    thing1.def("__copy__",
-               [](WordRange const& self) { return WordRange(self); });
+    thing1.def("__copy__", [](WordRange const& self) {
+      return std::make_unique<WordRange>(self);
+    });
     thing1.def(
         "copy",
-        [](WordRange const& self) { return WordRange(self); },
+        [](WordRange const& self) { return std::make_unique<WordRange>(self); },
         R"pbdoc(
 :sig=(self: WordRange) -> WordRange:
 
@@ -500,11 +502,14 @@ Example
     thing2.def("__repr__", [](StringRange const& sr) {
       return to_human_readable_repr(sr);
     });
-    thing2.def("__copy__",
-               [](StringRange const& self) { return StringRange(self); });
+    thing2.def("__copy__", [](StringRange const& self) {
+      return std::make_unique<StringRange>(self);
+    });
     thing2.def(
         "copy",
-        [](StringRange const& self) { return StringRange(self); },
+        [](StringRange const& self) {
+          return std::make_unique<StringRange>(self);
+        },
         R"pbdoc(
 :sig=(self: StringRange) -> StringRange:
 
@@ -903,7 +908,7 @@ Construct a :any:`ToWord` object with the given alphabet.
 )pbdoc");
     thing3.def(
         "copy",
-        [](ToWord const& self) { return ToWord(self); },
+        [](ToWord const& self) { return std::make_unique<ToWord>(self); },
         R"pbdoc(
 :sig=(self: ToWord) -> ToWord:
 
@@ -912,7 +917,9 @@ Copy a :any:`ToWord` object.
 :returns: A copy.
 :rtype: ToWord
 )pbdoc");
-    thing3.def("__copy__", [](ToWord const& self) { return ToWord(self); });
+    thing3.def("__copy__", [](ToWord const& self) {
+      return std::make_unique<ToWord>(self);
+    });
     thing3.def("empty",
                &ToWord::empty,
                R"pbdoc(
@@ -1072,7 +1079,7 @@ Construct a :any:`ToString` object with the given alphabet.
 )pbdoc");
     thing4.def(
         "copy",
-        [](ToString const& self) { return ToString(self); },
+        [](ToString const& self) { return std::make_unique<ToString>(self); },
         R"pbdoc(
 :sig=(self: ToString) -> ToString:
 
@@ -1081,7 +1088,9 @@ Copy a :any:`ToString` object.
 :returns: A copy.
 :rtype: ToString
 )pbdoc");
-    thing4.def("__copy__", [](ToString const& self) { return ToString(self); });
+    thing4.def("__copy__", [](ToString const& self) {
+      return std::make_unique<ToString>(self);
+    });
     thing4.def("alphabet",
                &ToString::alphabet,
                R"pbdoc(

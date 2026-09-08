@@ -20,6 +20,9 @@
 // TODO
 // * iwyu
 
+// C++ stl headers....
+#include <memory>  // for make_unique
+
 // libsemigroups headers
 #include <libsemigroups/bmat8.hpp>
 
@@ -208,14 +211,15 @@ This function always returns ``8``.
 
     thing.def(
         "copy",
-        [](BMat8 const& self) { return BMat8(self); },
+        [](BMat8 const& self) { return std::make_unique<BMat8>(self); },
         R"pbdoc(
 Copy a BMat8.
 
 :returns: A copy of the argument.
 :rtype: BMat8
 )pbdoc");
-    thing.def("__copy__", [](BMat8 const& self) { return BMat8(self); });
+    thing.def("__copy__",
+              [](BMat8 const& self) { return std::make_unique<BMat8>(self); });
 
     thing.def("to_int",
               &BMat8::to_int,

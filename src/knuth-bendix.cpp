@@ -16,6 +16,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+// C++ stl headers....
+#include <memory>  // for make_unique
+
 // libsemigroups headers
 #include <libsemigroups/knuth-bendix-helpers.hpp>
 #include <libsemigroups/knuth-bendix.hpp>
@@ -340,11 +343,13 @@ Check if all rules are reduced with respect to each other.
       });
 
       thing.def("__copy__", [](NormalFormRange const& self) {
-        return NormalFormRange(self);
+        return std::make_unique<NormalFormRange>(self);
       });
       thing.def(
           "copy",
-          [](NormalFormRange const& self) { return NormalFormRange(self); },
+          [](NormalFormRange const& self) {
+            return std::make_unique<NormalFormRange>(self);
+          },
           R"pbdoc(
 :sig=(self: NormalFormRange) -> NormalFormRange:
 

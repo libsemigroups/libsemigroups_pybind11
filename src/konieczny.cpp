@@ -17,6 +17,9 @@
 // along with this program.  If not, see <http://www. gnu. org/licenses/>.
 //
 
+// C++ stl headers....
+#include <memory>  // for make_unique
+
 // libsemigroups headers
 #include <libsemigroups/bmat-adapters.hpp>
 #include <libsemigroups/bmat8.hpp>
@@ -73,11 +76,14 @@ Currently :any:`Konieczny` supports the following element types:
       thing.def("__repr__", [](Konieczny_ const& self) {
         return to_human_readable_repr(self);
       });
-      thing.def("__copy__",
-                [](Konieczny_ const& self) { return Konieczny_(self); });
+      thing.def("__copy__", [](Konieczny_ const& self) {
+        return std::make_unique<Konieczny_>(self);
+      });
       thing.def(
           "copy",
-          [](Konieczny_ const& self) { return Konieczny_(self); },
+          [](Konieczny_ const& self) {
+            return std::make_unique<Konieczny_>(self);
+          },
           R"pbdoc(
 :sig=(self: Konieczny) -> Konieczny:
 Copy a Konieczny.

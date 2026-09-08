@@ -16,6 +16,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+// C++ stl headers....
+#include <memory>  // for make_unique
+
 // libsemigroups headers
 #include <libsemigroups/hpcombi.hpp>
 
@@ -93,7 +96,8 @@ The functionality described on this page is only available if
 
       thing.def("__len__", [](Vect16 const&) { return Vect16::size(); });
 
-      thing.def("__copy__", [](Vect16 const& v) { return Vect16(v); });
+      thing.def("__copy__",
+                [](Vect16 const& v) { return std::make_unique<Vect16>(v); });
 
       thing.def("__hash__",
                 [](Vect16 const& v) { return std::hash<Vect16>{}(v); });
@@ -179,7 +183,7 @@ is padded with ``0`` values at the end.
 
       thing.def(
           "copy",
-          [](Vect16 const& v) { return Vect16(v); },
+          [](Vect16 const& v) { return std::make_unique<Vect16>(v); },
           R"pbdoc(
 :sig=(self: Vect16) -> Vect16:
 
@@ -576,7 +580,9 @@ The functionality described on this page is only available if
           [](PTransf16 const& x, PTransf16 const& y) { return y * x; },
           py::is_operator());
 
-      thing.def("__copy__", [](PTransf16 const& v) { return PTransf16(v); });
+      thing.def("__copy__", [](PTransf16 const& v) {
+        return std::make_unique<PTransf16>(v);
+      });
 
       ////////////////////////////////////////////////////////////////////////
       // Constructors
@@ -677,7 +683,7 @@ This function returns the identity :any:`PTransf16` which fixes every value in
 
       thing.def(
           "copy",
-          [](PTransf16 const& v) { return PTransf16(v); },
+          [](PTransf16 const& v) { return std::make_unique<PTransf16>(v); },
           R"pbdoc(
 :sig=(self: PTransf16) -> PTransf16:
 
@@ -1226,7 +1232,9 @@ The functionality described on this page is only available if
       thing.def("__int__",
                 [](Transf16 const& x) { return static_cast<uint64_t>(x); });
 
-      thing.def("__copy__", [](Transf16 const& v) { return Transf16(v); });
+      thing.def("__copy__", [](Transf16 const& v) {
+        return std::make_unique<Transf16>(v);
+      });
 
       thing.def(
           "__mul__",
@@ -1309,7 +1317,7 @@ This function constructs a :any:`Transf16` from its integer representation *n*.
 
       thing.def(
           "copy",
-          [](Transf16 const& v) { return Transf16(v); },
+          [](Transf16 const& v) { return std::make_unique<Transf16>(v); },
           R"pbdoc(
 :sig=(self: Transf16) -> Transf16:
 
@@ -1409,7 +1417,9 @@ The functionality described on this page is only available if
       // Special methods
       ////////////////////////////////////////////////////////////////////////
 
-      thing.def("__copy__", [](Perm16 const& self) { return Perm16(self); });
+      thing.def("__copy__", [](Perm16 const& self) {
+        return std::make_unique<Perm16>(self);
+      });
 
       thing.def("__int__",
                 [](Perm16 const& x) { return static_cast<uint64_t>(x); });
@@ -1610,7 +1620,7 @@ This function constructs a :any:`Perm16` from its integer representation *n*.
 
       thing.def(
           "copy",
-          [](Perm16 const& v) { return Perm16(v); },
+          [](Perm16 const& v) { return std::make_unique<Perm16>(v); },
           R"pbdoc(
 :sig=(self: Perm16) -> Perm16:
 
@@ -2164,7 +2174,9 @@ The functionality described on this page is only available if
       // Special methods
       ////////////////////////////////////////////////////////////////////////
 
-      thing.def("__copy__", [](PPerm16 const& self) { return PPerm16(self); });
+      thing.def("__copy__", [](PPerm16 const& self) {
+        return std::make_unique<PPerm16>(self);
+      });
 
       thing.def("__repr__",
                 [](PPerm16 const& self) { return repr(self, "PPerm16"); });
@@ -2294,7 +2306,7 @@ is padded with fixed points at the end.
 
       thing.def(
           "copy",
-          [](PPerm16 const& v) { return PPerm16(v); },
+          [](PPerm16 const& v) { return std::make_unique<PPerm16>(v); },
           R"pbdoc(
 :sig=(self: PPerm16) -> PPerm16:
 

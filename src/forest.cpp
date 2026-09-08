@@ -21,6 +21,7 @@
 
 // C++ stl headers....
 #include <initializer_list>  // for initializer_list
+#include <memory>            // for make_unique
 
 // libsemigroups....
 #include <libsemigroups/forest.hpp>  // for Forest
@@ -49,10 +50,11 @@ connected components of a word graph.
 
       thing.def("__repr__",
                 [](Forest const& f) { return to_human_readable_repr(f); });
-      thing.def("__copy__", [](Forest const& f) { return Forest(f); });
+      thing.def("__copy__",
+                [](Forest const& f) { return std::make_unique<Forest>(f); });
       thing.def(
           "copy",
-          [](Forest const& f) { return Forest(f); },
+          [](Forest const& f) { return std::make_unique<Forest>(f); },
           R"pbdoc(
 Copy a :any:`Forest` object.
 
@@ -617,7 +619,7 @@ breadth-first traversal).)pbdoc");
       });
 
       thing.def("__copy__", [](forest::PathsToRoots const& pfr) {
-        return forest::PathsToRoots(pfr);
+        return std::make_unique<forest::PathsToRoots>(pfr);
       });
 
       thing.def(py::init<Forest const&>(),
@@ -662,7 +664,7 @@ would have been in if it had been newly constructed from *f*.
       thing.def(
           "copy",
           [](forest::PathsToRoots const& pfr) {
-            return forest::PathsToRoots(pfr);
+            return std::make_unique<forest::PathsToRoots>(pfr);
           },
           R"pbdoc(
 :sig=(self: PathsToRoots) -> PathsToRoots:
@@ -759,7 +761,7 @@ breadth-first traversal).)pbdoc");
       });
 
       thing.def("__copy__", [](forest::PathsFromRoots const& pfr) {
-        return forest::PathsFromRoots(pfr);
+        return std::make_unique<forest::PathsFromRoots>(pfr);
       });
 
       thing.def(py::init<Forest const&>(),
@@ -804,7 +806,7 @@ would have been in if it had been newly constructed from *f*.
       thing.def(
           "copy",
           [](forest::PathsFromRoots const& pfr) {
-            return forest::PathsFromRoots(pfr);
+            return std::make_unique<forest::PathsFromRoots>(pfr);
           },
           R"pbdoc(
 :sig=(self: PathsFromRoots) -> PathsFromRoots:

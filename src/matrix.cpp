@@ -303,7 +303,8 @@ submodule :any:`libsemigroups_pybind11.matrix`.
 
       thing.def("__repr__", repr);
       thing.def("__hash__", &Mat::hash_value);
-      thing.def("__copy__", [](Mat const& x) { return Mat(x); });
+      thing.def("__copy__",
+                [](Mat const& x) { return std::make_unique<Mat>(x); });
       thing.def(
           "__getitem__",
           [](Mat const& mat, py::tuple xy) {
@@ -494,7 +495,9 @@ submodule :any:`libsemigroups_pybind11.matrix`.
       thing.def("__pow__", &matrix::pow<Mat>);
 
       thing.def(
-          "copy", [](Mat const& x) { return Mat(x); }, R"pbdoc(
+          "copy",
+          [](Mat const& x) { return std::make_unique<Mat>(x); },
+          R"pbdoc(
 :sig=(self: Matrix) -> Matrix:
 Copy a :any:`Matrix` object.
 

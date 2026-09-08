@@ -16,6 +16,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+// C++ stl headers....
+#include <memory>  // for make_unique
 #include <stdexcept>
 
 // libsemigroups headers
@@ -101,7 +103,7 @@ the image of the point ``i`` under the {0} is ``imgs[i]``.
       ////////////////////////////////////////////////////////////////////////
 
       thing.def("__copy__", [](PTransfSubclass const& self) {
-        return PTransfSubclass(self);
+        return std::make_unique<PTransfSubclass>(self);
       });
 
       thing.def(
@@ -137,7 +139,9 @@ the image of the point ``i`` under the {0} is ``imgs[i]``.
 
       thing.def(
           "copy",
-          [](PTransfSubclass const& self) { return PTransfSubclass(self); },
+          [](PTransfSubclass const& self) {
+            return std::make_unique<PTransfSubclass>(self);
+          },
           fmt::format(
               R"pbdoc(
 :sig=(self: {1}) -> {1}:

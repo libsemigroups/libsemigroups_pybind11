@@ -330,6 +330,23 @@ def test_copy(word_graphs):
     assert copy.copy(wg2) is not wg2
 
 
+@pytest.mark.parametrize("copy_function", [copy.copy, WordGraph.copy])
+def test_copy_independence(copy_function):
+    original = WordGraph(2, 1)
+    original.target(0, 0, 1)
+    duplicate = copy_function(original)
+
+    assert duplicate == original
+    assert duplicate is not original
+    duplicate.target(1, 0, 0)
+    assert original.number_of_edges() == 1
+    assert duplicate.number_of_edges() == 2
+
+    del original
+    assert duplicate.target(0, 0) == 1
+    assert duplicate.target(1, 0) == 0
+
+
 def test_random():
     w = WordGraph.random(5, 5)
     assert w.out_degree() == 5

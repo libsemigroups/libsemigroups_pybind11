@@ -16,6 +16,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+// C++ stl headers....
+#include <memory>  // for make_unique
+
 // libsemigroups headers
 #include <libsemigroups/exception.hpp>
 #include <libsemigroups/pbr.hpp>
@@ -165,7 +168,8 @@ Returns a newly constructed PBR equal to the product of *self* and
     thing.def("__gt__", [](PBR const& a, PBR const& b) { return a > b; });
     thing.def("__le__", [](PBR const& a, PBR const& b) { return a <= b; });
     thing.def("__ne__", [](PBR const& a, PBR const& b) { return a != b; });
-    thing.def("__copy__", [](PBR const& self) { return PBR(self); });
+    thing.def("__copy__",
+              [](PBR const& self) { return std::make_unique<PBR>(self); });
     thing.def("__hash__", &PBR::hash_value, py::is_operator());
     thing.def(
         "__getitem__",
@@ -235,7 +239,7 @@ then bad things will happen.
 )pbdoc");
     thing.def(
         "copy",
-        [](PBR const& self) { return PBR(self); },
+        [](PBR const& self) { return std::make_unique<PBR>(self); },
         R"pbdoc(
 Copy a :any:`PBR` object.
 
