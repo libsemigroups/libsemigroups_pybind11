@@ -8,7 +8,7 @@
 |libsemigroups_pybind11| objects from one type to another.
 """
 
-from typing import _GenericAlias
+from typing import get_origin as _get_origin
 
 from _libsemigroups_pybind11 import (
     Order as _Order,
@@ -56,7 +56,6 @@ from .presentation import InversePresentation as _InversePresentation, Presentat
 from .todd_coxeter import ToddCoxeter as _ToddCoxeter
 
 
-# FIXME this function converts list[int] -> list, but shouldn't
 def _nice_name(type_list):
     """Convert an iterable of type-like things into a string"""
     single_element = False
@@ -67,7 +66,7 @@ def _nice_name(type_list):
     for t in type_list:
         if isinstance(t, str):
             out.append(t)
-        elif isinstance(t, _GenericAlias):
+        elif _get_origin(t) is not None:
             out.append(str(t))
         elif hasattr(t, "__name__"):
             out.append(t.__name__)
