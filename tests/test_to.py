@@ -1082,13 +1082,13 @@ def test_to_Congruence_010():
         (list, "list"),
         (str, "str"),
         (Presentation, "Presentation"),
-        ("Set", "Set"),
+        ("Set", '"Set"'),
         (Order.lenlex, "Order.lenlex"),
         ((Presentation,), "(Presentation)"),
         ((Presentation, list[int]), "(Presentation, list[int])"),
         (
             (KnuthBendix, list[int], "Trie", Order.lenlex),
-            "(KnuthBendix, list[int], Trie, Order.lenlex)",
+            '(KnuthBendix, list[int], "Trie", Order.lenlex)',
         ),
     ],
 )
@@ -1102,7 +1102,7 @@ def test_to_invalid_word_type():
 
     message = str(exc_info.value)
     assert "\n    * (Presentation, list[int])\n" in message
-    assert "\n    * (KnuthBendix, list[int], Trie, Order.lenlex)\n" in message
+    assert '\n    * (KnuthBendix, list[int], "Trie", Order.lenlex)\n' in message
     assert message.endswith("but found: (Presentation, list[str])")
 
 

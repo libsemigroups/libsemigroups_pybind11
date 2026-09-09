@@ -65,7 +65,7 @@ def _nice_name(type_list):
     out = []
     for t in type_list:
         if isinstance(t, str):
-            out.append(t)
+            out.append(f'"{t}"')
         elif _get_origin(t) is not None:
             out.append(str(t))
         elif hasattr(t, "__name__"):
