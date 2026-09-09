@@ -12,7 +12,10 @@ from collections.abc import Iterator as _Iterator
 from typing import Any as _Any, get_origin as _get_origin
 
 from _libsemigroups_pybind11 import (
+    FroidurePinBase as _FroidurePinBase,
     Order as _Order,
+    WordGraph as _WordGraph,
+    congruence_kind as _congruence_kind,
     to_alphabet_string as _to_alphabet_string,
     to_alphabet_word as _to_alphabet_word,
     to_congruence_string as _to_congruence_string,
@@ -178,6 +181,17 @@ def to(*args, rtype: tuple):
             "expected the first keyword argument to be one of:"
             f"{_VALID_TYPES_STRING}"
             f"but found: {_nice_name(rtype)}"
+        )
+    if (
+        rtype == (_ToddCoxeter,)
+        and len(cxx_args) == 3
+        and isinstance(cxx_args[0], _congruence_kind)
+        and isinstance(cxx_args[1], _FroidurePinBase)
+        and isinstance(cxx_args[2], _WordGraph)
+    ):
+        raise TypeError(
+            "converting a FroidurePin and WordGraph to ToddCoxeter requires a word type; "
+            "use rtype=(ToddCoxeter, str) or rtype=(ToddCoxeter, list[int])"
         )
     constructor = rtype[0]
     return constructor(_RETURN_TYPE_TO_CONVERTER_FUNCTION[rtype](*cxx_args))

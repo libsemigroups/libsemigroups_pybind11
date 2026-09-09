@@ -448,18 +448,40 @@ def test_to_ToddCoxeter_017():
 # From FroidurePin
 
 
-def test_to_ToddCoxeter_018():
+@pytest.mark.parametrize("kind", [congruence_kind.onesided, congruence_kind.twosided])
+def test_to_ToddCoxeter_018(kind):
     S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
-    tc = to(congruence_kind.twosided, S, S.right_cayley_graph(), rtype=(ToddCoxeter, str))
+    tc = to(kind, S, S.right_cayley_graph(), rtype=(ToddCoxeter, str))
     assert tc.current_word_graph().number_of_nodes() == S.size() + 1
     assert isinstance(tc, ToddCoxeter)
+    assert tc.py_template_params == (str,)
+    assert tc.number_of_classes() == S.size()
 
 
-def test_to_ToddCoxeter_019():
+@pytest.mark.parametrize("kind", [congruence_kind.onesided, congruence_kind.twosided])
+def test_to_ToddCoxeter_019(kind):
     S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
-    tc = to(congruence_kind.twosided, S, S.right_cayley_graph(), rtype=(ToddCoxeter, list[int]))
+    tc = to(kind, S, S.right_cayley_graph(), rtype=(ToddCoxeter, list[int]))
     assert tc.current_word_graph().number_of_nodes() == S.size() + 1
     assert isinstance(tc, ToddCoxeter)
+    assert tc.py_template_params == (list[int],)
+    assert tc.number_of_classes() == S.size()
+
+
+@pytest.mark.parametrize("kind", [congruence_kind.onesided, congruence_kind.twosided])
+@pytest.mark.parametrize("unwrap", [False, True])
+def test_to_todd_coxeter_missing_word_type(kind, unwrap):
+    # https://github.com/libsemigroups/libsemigroups_pybind11/issues/461
+    S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
+    wg = S.right_cayley_graph()
+    if unwrap:
+        S = to_cxx(S)
+    with pytest.raises(
+        TypeError,
+        match=r"requires a word type; use rtype=\(ToddCoxeter, str\) "
+        r"or rtype=\(ToddCoxeter, list\[int\]\)",
+    ):
+        to(kind, S, wg, rtype=(ToddCoxeter,))
 
 
 ###############################################################################
