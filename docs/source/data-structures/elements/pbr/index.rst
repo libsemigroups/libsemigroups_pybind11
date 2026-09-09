@@ -9,7 +9,7 @@ Partitioned binary relations (PBRs)
 ===================================
 
 This page describes the functionality for partitioned binary relations (PBRs) in
-``libsemigroups_pybind11``.
+|libsemigroups_pybind11|.
 
 .. toctree::
     :maxdepth: 1

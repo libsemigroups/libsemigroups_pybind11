@@ -10,7 +10,7 @@ Schreier-Sims
 
 This page describes the functionality related to the Schreier-Sims algorithm for
 computing a stabilizer chain of a permutation group in
-``libsemigroups_pybind11``.
+|libsemigroups_pybind11|.
 
 .. toctree::
     :maxdepth: 1

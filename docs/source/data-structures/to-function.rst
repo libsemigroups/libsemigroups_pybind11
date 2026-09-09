@@ -15,14 +15,14 @@ The ``to`` function
 ===================
 
 This page contains links to the documentation of the uses of the function
-:any:`to` for converting from one type of object in ``libsemigroups_pybind11``
+:any:`to` for converting from one type of object in |libsemigroups_pybind11|
 to another type. These mostly only apply to the types implementing the main
-algorithms in ``libsemigroups_pybind11``.
+algorithms in |libsemigroups_pybind11|.
 
 For example, to convert a :any:`ToddCoxeter` object ``tc`` to a
 :any:`FroidurePin` object, you can simply do ``to(tc, rtype=(FroidurePin,))``.
 
-A summary of the possible conversions available in ``libsemigroups_pybind11`` of
+A summary of the possible conversions available in |libsemigroups_pybind11| of
 ``to(FromType, rtype=(ToType,))`` are given below, where the rows correspond to
 ``ToType`` and the columns to ``FromType``:
 

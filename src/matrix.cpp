@@ -168,7 +168,7 @@ namespace libsemigroups {
                             py_type.c_str(),
                             R"pbdoc(
 This page contains the documentation for functionality in
-``libsemigroups_pybind11`` for matrices.
+|libsemigroups_pybind11| for matrices.
 
 Matrices over various semirings can be constructed using the class
 :py:class:`Matrix`. These internal types are optimised in
@@ -179,7 +179,7 @@ submodule :any:`libsemigroups_pybind11.matrix`.
 
 .. warning::
 
-    The entries in a ``libsemigroups_pybind11`` matrix are stored internally as
+    The entries in a |libsemigroups_pybind11| matrix are stored internally as
     64-bit signed integers, and there are no checks that the multiplication does
     not overflow.
 

@@ -11,7 +11,7 @@ The MatrixKind enum
 ===================
 
 This page describes the enum class :any:`MatrixKind` in
-``libsemigroups_pybind11`` for representing the semiring of elements in a
+|libsemigroups_pybind11| for representing the semiring of elements in a
 matrix.
 
 .. seealso::

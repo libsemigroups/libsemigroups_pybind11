@@ -11,7 +11,7 @@ Matrix
 ======
 
 This page describes the functionality for matrices over various semirings in
-``libsemigroups_pybind11``.
+|libsemigroups_pybind11|.
 
 .. toctree::
     :maxdepth: 1

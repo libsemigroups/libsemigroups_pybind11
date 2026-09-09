@@ -10,7 +10,7 @@
 The Order enum
 ===============
 
-This page describes the enum class :any:`Order` in ``libsemigroups_pybind11``
+This page describes the enum class :any:`Order` in |libsemigroups_pybind11|
 for representing the order of words.
 
 Full API

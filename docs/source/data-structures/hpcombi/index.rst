@@ -11,12 +11,12 @@ HPCombi
 =======
 
 This page describes the functionality from `HPCombi`_ available in
-``libsemigroups_pybind11``. This functionality is only available if
+|libsemigroups_pybind11|. This functionality is only available if
 :any:`LIBSEMIGROUPS_HPCOMBI_ENABLED` is ``True``. `HPCombi`_ provides high
 performance (SIMD accelerated) partial transformations, transformations,
 permutations, and partial permutations on up to ``16`` points. The classes
 implementing these element types belong to the ``hpcombi`` subpackage of
-``libsemigroups_pybind11``, and can be used with the ``libsemigroups_pybind11``
+|libsemigroups_pybind11|, and can be used with the |libsemigroups_pybind11|
 classes:
 
 * :any:`FroidurePin`
@@ -29,8 +29,8 @@ Variables
 .. py:attribute:: LIBSEMIGROUPS_HPCOMBI_ENABLED
    :type: bool
 
-   This variable indicates whether or not the version of ``libsemigroups``
-   being used by ``libsemigroups_pybind11`` was compiled with `HPCombi`_
+   This variable indicates whether or not the version of libsemigroups_
+   being used by |libsemigroups_pybind11| was compiled with `HPCombi`_
    enabled.
 
 Classes
@@ -44,6 +44,3 @@ Classes
     ptransf16
     transf16
     vect16
-
-
-.. _HPCombi: https://libsemigroups.github.io/HPCombi/

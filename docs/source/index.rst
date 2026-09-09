@@ -10,7 +10,7 @@
 What is libsemigroups_?
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Before explaining what ``libsemigroups_pybind11`` is, it is first necessary to
+Before explaining what |libsemigroups_pybind11| is, it is first necessary to
 explain `libsemigroups`_. `libsemigroups`_ is a C++17 library containing
 implementations of several algorithms for computing finite, and finitely
 presented, semigroups and monoids. The main algorithms implemented in
@@ -67,33 +67,33 @@ presented, semigroups and monoids. The main algorithms implemented in
 .. _Semigroupe 2.01: https://www.irif.fr/~jep/Logiciels/Semigroupe2.0/semigroupe2.html
 .. _Jean-Eric Pin: https://www.irif.fr/~jep/
 
-What is ``libsemigroups_pybind11``?
+What is |libsemigroups_pybind11|?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``libsemigroups_pybind11`` is a package for Python 3.9+ exposing much
+|libsemigroups_pybind11| is a package for Python 3.9+ exposing much
 (but not all) of the functionality of libsemigroups_. It is built with the help
 of the excellent library pybind11_, for which we are very grateful. A more
 detailed description of the structure of this package, along with some
 associated quirks, is described on the
 :doc:`exceptions page<libsemigroups-error>`.
 
-The development version of ``libsemigroups_pybind11`` is available on github_,
+The development version of |libsemigroups_pybind11| is available on github_,
 and some related projects are here_.
 
 
 .. _github: https://github.com/libsemigroups/libsemigroups_pybind11
 .. _here: https://github.com/libsemigroups
 
-How to install ``libsemigroups_pybind11``
+How to install |libsemigroups_pybind11|
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To see the different ways ``libsemigroups_pybind11`` can be installed, see the
+To see the different ways |libsemigroups_pybind11| can be installed, see the
 :doc:`installation page<install>`.
 
 Issues
 ~~~~~~
 
-If you find any problems with ``libsemigroups_pybind11``, or have any
+If you find any problems with |libsemigroups_pybind11|, or have any
 suggestions for features that you'd like to see, please use the
 `issue tracker`_.
 
@@ -101,7 +101,7 @@ Acknowledgements
 ~~~~~~~~~~~~~~~~
 
 In addition to `libsemigroups`_, there are several excellent projects that are
-utilised in the development of ``libsemigroups_pybind11``, specifically:
+utilised in the development of |libsemigroups_pybind11|, specifically:
 
 * `codespell`_, `cpplint`_, `Pylint`_ and `Ruff`_ for code quality;
 * `Graphviz`_ for graph visualisation;

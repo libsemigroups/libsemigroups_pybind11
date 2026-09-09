@@ -859,7 +859,7 @@ Compare two words using recursive-path ordering.
 This function compares two objects using the recursive-path comparison, based on
 the description in :cite:`Jantzen2012aa` (Definition 1.2.14, page 24) and
 :cite:`Dershowitz1982aa` (Definition 5, page 289). The following definition is
-used in ``libsemigroups_pybind11``.
+used in |libsemigroups_pybind11|.
 
 If :math:`u, v\ in X ^ {*}`, then :math:`u < v` if and only if one of the
 following conditions holds:

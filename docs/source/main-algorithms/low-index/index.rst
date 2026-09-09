@@ -10,7 +10,7 @@
 Low-index congruences
 =====================
 
-This page contains links to the functionality in ``libsemigroups_pybind11``
+This page contains links to the functionality in |libsemigroups_pybind11|
 related to the low-index congruences algorithm from
 :cite:`Anagnostopoulou-Merkouri2023aa` for finitely presented semigroups.
 

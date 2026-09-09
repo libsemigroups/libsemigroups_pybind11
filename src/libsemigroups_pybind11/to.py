@@ -5,7 +5,7 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 """Subpackage containing the :any:`to` function for converting
-``libsemigroups_pybind11`` objects from one type to another.
+|libsemigroups_pybind11| objects from one type to another.
 """
 
 from typing import _GenericAlias
@@ -119,7 +119,7 @@ _VALID_TYPES_STRING = "\n    * " + "\n    * ".join(_VALID_TYPES) + "\n"
 
 
 def to(*args, rtype: tuple):
-    """Convert from one type of ``libsemigroups_pybind11`` object to another.
+    """Convert from one type of |libsemigroups_pybind11| object to another.
 
     This function converts the the arguments specified in *args* to object of
     type *rtype*.

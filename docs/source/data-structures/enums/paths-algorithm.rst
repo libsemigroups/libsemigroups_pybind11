@@ -10,7 +10,7 @@
 The paths.algorithm enum
 ========================
 
-This page describes the enum class :any:`paths.algorithm` in ``libsemigroups_pybind11``.
+This page describes the enum class :any:`paths.algorithm` in |libsemigroups_pybind11|.
 
 Full API
 --------

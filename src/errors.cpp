@@ -81,8 +81,8 @@ namespace libsemigroups {
           R"pbdoc(
 Return whether :any:`LibsemigroupsError` messages have a C++ prefix.
 
-Since ``libsemigroups_pybind11`` is built on top of the C++ library
-libsemigroups_, many of the errors thrown in ``libsemigroups_pybind11``
+Since |libsemigroups_pybind11| is built on top of the C++ library
+libsemigroups_, many of the errors thrown in |libsemigroups_pybind11|
 emanate from C++. This function returns whether :any:`LibsemigroupsError`
 messages contain a prefix that indicates which C++ function raised the
 exception.
@@ -97,8 +97,8 @@ exception.
           R"pbdoc(
 Specify whether :any:`LibsemigroupsError` messages have a C++ prefix.
 
-Since ``libsemigroups_pybind11`` is built on top of the C++ library
-libsemigroups_, many of the errors thrown in ``libsemigroups_pybind11``
+Since |libsemigroups_pybind11| is built on top of the C++ library
+libsemigroups_, many of the errors thrown in |libsemigroups_pybind11|
 emanate from C++. This function specifies whether :any:`LibsemigroupsError`
 messages should contain a prefix that indicates which C++ function raised the
 exception. By default, this information is not included.

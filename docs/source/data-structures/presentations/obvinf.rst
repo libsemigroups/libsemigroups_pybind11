@@ -11,7 +11,7 @@ Obviously infinite
 ==================
 
 This page collects the documentation for the functionality in
-``libsemigroups_pybind11`` for checking if a finitely presented semigroup or
+|libsemigroups_pybind11| for checking if a finitely presented semigroup or
 monoid is obviously infinite.
 
 The functions below implement a number of checks for whether or not a finitely

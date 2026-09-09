@@ -56,7 +56,7 @@ namespace HPCombi {
 Vector of ``16`` bytes, with some SIMD optimized methods, superclass of
 :any:`hpcombi.Transf16`. Entries in :any:`Vect16` must be integers in the range :math:`[0, 256)`.
 
-This class belongs to the ``hpcombi`` subpackage of ``libsemigroups_pybind11``.
+This class belongs to the ``hpcombi`` subpackage of |libsemigroups_pybind11|.
 
 The functionality described on this page is only available if
 :any:`LIBSEMIGROUPS_HPCOMBI_ENABLED` is ``True``.
@@ -557,7 +557,7 @@ SIMD accelerated class :any:`PTransf16` representing partial transformations on
 up to ``16`` points. Partial means it might not be defined everywhere.
 Undefined images are encoded as ``255``.
 
-This class belongs to the ``hpcombi`` subpackage of ``libsemigroups_pybind11``.
+This class belongs to the ``hpcombi`` subpackage of |libsemigroups_pybind11|.
 
 The functionality described on this page is only available if
 :any:`LIBSEMIGROUPS_HPCOMBI_ENABLED` is ``True``.
@@ -722,7 +722,7 @@ transformation (i.e. no image value is larger than ``15``) on the values
 
 .. note::
   It should not be possible to create an invalid :any:`PTransf16` in
-  ``libsemigroups_pybind11``, and this function is only included for
+  |libsemigroups_pybind11|, and this function is only included for
   completeness.
 
 .. doctest::
@@ -1214,7 +1214,7 @@ Class representing transformations.
 SIMD accelerated class :any:`Transf16` representing transformations on
 up to ``16`` points.
 
-This class belongs to the ``hpcombi`` subpackage of ``libsemigroups_pybind11``.
+This class belongs to the ``hpcombi`` subpackage of |libsemigroups_pybind11|.
 
 The functionality described on this page is only available if
 :any:`LIBSEMIGROUPS_HPCOMBI_ENABLED` is ``True``.
@@ -1356,7 +1356,7 @@ transformation (i.e. no image value is larger than ``15``) on the values
 
 .. note::
   It should not be possible to create an invalid :any:`Transf16` in
-  ``libsemigroups_pybind11``, and this function is only included for
+  |libsemigroups_pybind11|, and this function is only included for
   completeness.
 
 .. doctest::
@@ -1405,7 +1405,7 @@ Class representing permutations.
 SIMD accelerated class :any:`Perm16` representing permutations on
 up to ``16`` points.
 
-This class belongs to the ``hpcombi`` subpackage of ``libsemigroups_pybind11``.
+This class belongs to the ``hpcombi`` subpackage of |libsemigroups_pybind11|.
 
 The functionality described on this page is only available if
 :any:`LIBSEMIGROUPS_HPCOMBI_ENABLED` is ``True``.
@@ -2162,7 +2162,7 @@ SIMD accelerated class :any:`PPerm16` representing partial permutations on
 up to ``16`` points (i.e. bijections between subsets of :math:`\{0\dots 15\}`).
 Undefined images are encoded as ``255``.
 
-This class belongs to the ``hpcombi`` subpackage of ``libsemigroups_pybind11``.
+This class belongs to the ``hpcombi`` subpackage of |libsemigroups_pybind11|.
 
 The functionality described on this page is only available if
 :any:`LIBSEMIGROUPS_HPCOMBI_ENABLED` is ``True``.

@@ -11,7 +11,7 @@ Installation
 Installing with pip
 -------------------
 
-It's possible to install ``libsemigroups_pybind11`` using pip_ by doing one
+It's possible to install |libsemigroups_pybind11| using pip_ by doing one
 of the following (depending on your system and setup):
 
 .. highlight:: console
@@ -33,17 +33,21 @@ of the following (depending on your system and setup):
 Installing with mamba
 ---------------------
 
-This installation method assumes that you have Anaconda_ or Miniconda_ installed.
-See the `getting started`_ and `miniconda download page`_ on the conda_ website.
+This installation method assumes that you have Mamba_, Micromamba_, Anaconda_,
+or Miniconda_ installed. See the `getting started`_ and `miniconda download
+page`_ on the conda_ website.
+
+
+.. _Micromamba: https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html
 
 .. _conda: https://conda.io/
 
-.. _getting started: http://bit.ly/33B0Vfs
+.. _getting started: https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html
 
-.. _miniconda download page: https://conda.io/miniconda.html
+.. _miniconda download page: https://www.anaconda.com/docs/getting-started/miniconda/install/
 
 It might be a good idea to create and activate a conda_ or mamba_ environment to
-contain the installation of the ``libsemigroups_pybind11``:
+contain the installation of the |libsemigroups_pybind11|:
 
 ::
 
@@ -69,13 +73,13 @@ For more information, see uv's guide on `managing dependencies`_.
 From the sources
 ----------------
 
-Before installing ``libsemigroups_pybind11`` from its sources, you should first
+Before installing |libsemigroups_pybind11| from its sources, you should first
 perform a system install of the C++ library libsemigroups_. For information
 about how to do this, see the `libsemigroups installation guide
 <https://libsemigroups.github.io/libsemigroups/md_install.html>`_.
 
 Assuming that you have libsemigroups_ installed, you can install
-``libsemigroups_pybind11`` with pip_:
+|libsemigroups_pybind11| with pip_:
 
 ::
 
@@ -94,7 +98,7 @@ or with the uv_ pip-compatible interface
 From a release archive
 ~~~~~~~~~~~~~~~~~~~~~~
 
-To build ``libsemigroups_pybind11`` from a release archive:
+To build |libsemigroups_pybind11| from a release archive:
 
 .. Unfortunately, text replacement doesn't work inside of code blocks, so it is
    necessary to update the version number below manually.
@@ -124,6 +128,6 @@ instead of running ``make doc`` (which is precisely what ``make doc`` does).
 Issues
 ------
 
-If you find any problems with ``libsemigroups_pybind11``, or have any
+If you find any problems with |libsemigroups_pybind11|, or have any
 suggestions for features that you'd like to see, please use the
 `issue tracker`_.

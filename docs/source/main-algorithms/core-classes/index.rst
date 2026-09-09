@@ -8,7 +8,7 @@
 Core classes
 ============
 
-Many of the classes in ``libsemigroups_pybind11`` implement algorithms, and
+Many of the classes in |libsemigroups_pybind11| implement algorithms, and
 hence are runnable. During the running of these algorithms, it is often
 desirable to report the state of the algorithm. Therefore, the classes
 :any:`Runner` and :any:`Reporter` exist to provide common functions to many

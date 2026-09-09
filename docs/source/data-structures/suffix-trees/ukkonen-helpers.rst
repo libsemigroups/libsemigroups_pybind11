@@ -14,7 +14,7 @@ manipulating :any:`Ukkonen` objects.
 Contents
 --------
 
-In ``libsemigroups_pybind11``:
+In |libsemigroups_pybind11|:
 
 .. currentmodule:: libsemigroups_pybind11.ukkonen
 

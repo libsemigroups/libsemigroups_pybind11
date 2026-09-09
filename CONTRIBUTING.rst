@@ -4,19 +4,19 @@ Information for developers
 How to compile
 --------------
 
-To build ``libsemigroups_pybind11``, it is first required to have a system
-install of ``libsemigroups``. This is explained in full detail in the
-``libsemigroups``
+To build libsemigroups_pybind11_, it is first required to have a system
+install of libsemigroups_. This is explained in full detail in the
+libsemigroups_
 `documentation <https://libsemigroups.github.io/libsemigroups/md_install.html>`_.
 
-If you only intend to contribute to ``libsemigroups_pybind11``, and not 
-``libsemigroups``, it is sufficient to have the conda version of
-``libsemigroups``.
+If you only intend to contribute to libsemigroups_pybind11_, and not 
+libsemigroups_, it is sufficient to have the conda version of
+libsemigroups_.
 
-If you intend to develop both ``libsemigroups`` and ``libsemigroups_pybind11``,
-it is recommended to build ``libsemigroups`` from the sources. Furthermore, it is
-recommended to install ``libsemigroups`` without ``hpcombi``. Then, with
-``libsemigroups`` installed, the Python bindings can be ``pip`` installed. This
+If you intend to develop both libsemigroups_ and libsemigroups_pybind11_,
+it is recommended to build libsemigroups_ from the sources. Furthermore, it is
+recommended to install libsemigroups_ without ``hpcombi``. Then, with
+libsemigroups_ installed, the Python bindings can be ``pip`` installed. This
 may require the environment variable ``$PKG_CONFIG_PATH`` to be edited.
 
 To create an environment with, ``pip``, correct environment variables, and some
@@ -63,7 +63,7 @@ For a system-wide installation (requires sudo):
 In both cases, ``-j8`` instructs the compiler to use 8 threads (adjust based on your
 system).
 
-To build the Python bindings (with CCache) inside the ``libsemigroups_pybind11``
+To build the Python bindings (with CCache) inside the libsemigroups_pybind11_
 directory:
 
 .. code-block:: console
@@ -73,10 +73,10 @@ directory:
 Building the skeleton of a class
 --------------------------------
 
-If you are adding the bindings for a ``libsemigroups`` class that does not yet
-exist in ``libsemigroups_pybind11``, please consider running the script
+If you are adding the bindings for a libsemigroups_ class that does not yet
+exist in libsemigroups_pybind11_, please consider running the script
 ``generate_pybind11.py`` found in the ``etc/`` directory of
-``libsemigroups``.
+libsemigroups_.
 
 For example:
 
@@ -105,7 +105,7 @@ ________________________________
 A basic guide on how to create bindings for a simple function can be found
 `here <https://pybind11.readthedocs.io/en/stable/basics.html#creating-bindings-for-a-simple-function>`__.
 
-In the ``libsemigroups`` context, to bind the function ``bar`` from the class
+In the libsemigroups_ context, to bind the function ``bar`` from the class
 ``foo`` to the module ``m``:
 
 .. code-block:: cpp
@@ -235,13 +235,13 @@ the code for the bindings of the ``Runner`` class will start with:
   pybind11::class_<Runner, Reporter> runner(m, "Runner");
                            ^^^^^^^^
 
-Making your functions available in ``libsemigroups_pybind11``
+Making your functions available in libsemigroups_pybind11_
 -------------------------------------------------------------
 
 If you followed the instructions in the ``generate_pybind11.py`` script from the
-``libsemigroups`` project, the class you have added bindings for should now be
+libsemigroups_ project, the class you have added bindings for should now be
 available in ``_libsemigroups_pybind11`` (note the leading underscore). How to
-make this available in ``libsemigroups_pybind11`` depends on several factors.
+make this available in libsemigroups_pybind11_ depends on several factors.
 
 A class with no helpers or templates
 ____________________________________
@@ -366,7 +366,7 @@ A sample ``index.rst`` file may look like this:
   =====
 
     This page describes the functionality for the class in
-    ``libsemigroups_pybind11``.
+    libsemigroups_pybind11_.
 
 
   .. toctree::
@@ -413,7 +413,7 @@ _______________________________
 Inside `<docs/source/index.rst>`__, you will find the table of contents tree
 (toctree) for this project. Within that, you will find the names of files
 (without the ``.rst`` extension) of different classifications of structures that
-``libsemigroups_pybind11`` implements, such as congruences, digraphs, semigroups
+libsemigroups_pybind11_ implements, such as congruences, digraphs, semigroups
 and words. Within each of these files, there is another toctree containing
 the paths to the docs of various classes.
 
@@ -497,3 +497,5 @@ whilst contributing are::
   ├── tests/
   │   └── test_class_name.py
   └── CONTRIBUTING.rst (this file!)
+
+.. _libsemigroups_pybind11: https://libsemigroups.github.io/libsemigroups_pybind11/

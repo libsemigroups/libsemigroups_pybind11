@@ -59,7 +59,7 @@ Presentations for semigroups and monoids.
 
 This class can be used to construct presentations for semigroups or monoids
 and is intended to be used as the input to other algorithms in
-``libsemigroups_pybind11``. The idea is to provide a shallow wrapper around a
+|libsemigroups_pybind11|. The idea is to provide a shallow wrapper around a
 collection of words of type :ref:`Word<pseudo_word_type_class>`. We refer to
 this list of words as the *rules* of the presentation. The :any:`Presentation`
 class also provides some checks that the rules really define a presentation,
@@ -2024,7 +2024,7 @@ An implementation of inverse presentations for semigroups or monoids.
 
 This class can be used to construct inverse presentations for semigroups or
 monoids and is intended to be used as the input to other algorithms in
-``libsemigroups_pybind11``.
+|libsemigroups_pybind11|.
 
 This class inherits from :any:`Presentation`.)pbdoc");
       thing.def("__repr__", [](InversePresentation_ const& p) -> std::string {

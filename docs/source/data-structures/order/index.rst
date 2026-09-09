@@ -40,7 +40,7 @@ Additionally:
     - :any:`Order`
     - :any:`Alphabet`
 
-The classes and functions in ``libsemigroups_pybind11`` for comparing words
+The classes and functions in |libsemigroups_pybind11| for comparing words
 are described on the following pages:
 
 .. toctree::

@@ -37,7 +37,7 @@ namespace libsemigroups {
 The type of :any:`UNDEFINED`.
 
 This class is the type of the constant value :any:`UNDEFINED`, and appears as
-such in type annotations in ``libsemigroups_pybind11``.
+such in type annotations in |libsemigroups_pybind11|.
 )pbdoc")
         .def("__repr__",
              [](Undefined const& val) -> std::string { return "UNDEFINED"; })
@@ -65,7 +65,7 @@ such in type annotations in ``libsemigroups_pybind11``.
 The type of :any:`POSITIVE_INFINITY`.
 
 This class is the type of the constant value :any:`POSITIVE_INFINITY`, and appears as
-such in type annotations in ``libsemigroups_pybind11``.
+such in type annotations in |libsemigroups_pybind11|.
 )pbdoc")
         .def("__repr__",
              [](PositiveInfinity const& val) -> std::string {
@@ -105,7 +105,7 @@ such in type annotations in ``libsemigroups_pybind11``.
 The type of :any:`NEGATIVE_INFINITY`.
 
 This class is the type of the constant value :any:`NEGATIVE_INFINITY`, and appears as
-such in type annotations in ``libsemigroups_pybind11``.
+such in type annotations in |libsemigroups_pybind11|.
 )pbdoc")
         .def("__repr__",
              [](NegativeInfinity const& val) -> std::string {
@@ -136,7 +136,7 @@ such in type annotations in ``libsemigroups_pybind11``.
 The type of :any:`LIMIT_MAX`.
 
 This class is the type of the constant value :any:`LIMIT_MAX`, and appears as
-such in type annotations in ``libsemigroups_pybind11``.
+such in type annotations in |libsemigroups_pybind11|.
 )pbdoc")
         .def("__repr__",
              [](LimitMax const& val) -> std::string { return "LIMIT_MAX"; })

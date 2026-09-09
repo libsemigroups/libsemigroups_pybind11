@@ -11,7 +11,7 @@ Word Graphs
 ===========
 
 This page contains links to the documentation for the parts of
-``libsemigroups_pybind11`` for word graphs.
+|libsemigroups_pybind11| for word graphs.
 
 .. toctree::
     :maxdepth: 1

@@ -8,7 +8,7 @@
 Froidure-Pin
 ============
 
-The functionality in ``libsemigroups_pybind11`` related to the Froidure-Pin
+The functionality in |libsemigroups_pybind11| related to the Froidure-Pin
 algorithm :cite:`Froidure1997aa` is contained in the class and the helper
 functions below.
 

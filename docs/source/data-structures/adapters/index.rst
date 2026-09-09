@@ -10,7 +10,7 @@
 Adapters
 ========
 
-This page describes some of the adapters used in ``libsemigroups_pybind11``.
+This page describes some of the adapters used in |libsemigroups_pybind11|.
 These are classes that permit the generic classes in libsemigroups_ to be
 used with arbitrary types, provided that the adapters are implemented for these
 types.

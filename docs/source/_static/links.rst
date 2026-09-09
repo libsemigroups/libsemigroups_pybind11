@@ -11,5 +11,7 @@
 .. _Eigen: https://libeigen.gitlab.io/
 .. _pip: https://pip.pypa.io/en/stable/
 .. _mamba: https://mamba.readthedocs.io/en/latest/
-.. _Anaconda: https://www.anaconda.com/docs/getting-started/concepts/anaconda-or-miniconda
-.. _Miniconda: https://www.anaconda.com/docs/getting-started/concepts/anaconda-or-miniconda
+.. _Anaconda: https://www.anaconda.com/docs/main
+.. _Miniconda: https://continuumio-docs.readthedocs-hosted.com/miniconda/
+
+.. |libsemigroups_pybind11| replace:: :doc:`libsemigroups_pybind11 </index>`
