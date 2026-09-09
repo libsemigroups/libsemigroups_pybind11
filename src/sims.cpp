@@ -698,8 +698,11 @@ constructed from the presentation *p*.
                     doc_type)
             .c_str());
 
+    // Worker threads may call Python predicates or pruners. Release the GIL
+    // while waiting for them; pybind11's std::function wrapper reacquires it.
     thing.def("number_of_congruences",
               &Thing::number_of_congruences,
+              py::call_guard<py::gil_scoped_release>(),
               py::arg("n"),
               fmt::format(R"pbdoc(
 :sig=(self: {0}, n: int) -> int:
@@ -732,6 +735,7 @@ This function exists to:
 
     thing.def("for_each",
               &Thing::for_each,
+              py::call_guard<py::gil_scoped_release>(),
               py::arg("n"),
               py::arg("pred"),
               fmt::format(R"pbdoc(
@@ -767,6 +771,7 @@ most *n* classes. This function exists to:
 
     thing.def("find_if",
               &Thing::find_if,
+              py::call_guard<py::gil_scoped_release>(),
               py::arg("n"),
               py::arg("pred"),
               fmt::format(R"pbdoc(
