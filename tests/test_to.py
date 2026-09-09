@@ -8,6 +8,8 @@
 
 """This module contains some tests for the to function."""
 
+from typing import Literal
+
 import pytest
 
 # TODO(1) be good to remove the imports from _libsemigroups_pybind11, but
@@ -50,6 +52,7 @@ from libsemigroups_pybind11 import (
     to,
 )
 from libsemigroups_pybind11.detail.cxx_wrapper import to_cxx
+from libsemigroups_pybind11.to import _nice_name
 
 ###############################################################################
 # Helper functions
@@ -1066,6 +1069,41 @@ def test_to_Congruence_010():
 ###############################################################################
 # Exceptions
 ###############################################################################
+
+
+@pytest.mark.parametrize(
+    "value, expected",
+    [
+        (list[int], "list[int]"),
+        (list[str], "list[str]"),
+        (dict[str, list[int]], "dict[str, list[int]]"),
+        (tuple[int, ...], "tuple[int, ...]"),
+        (Literal[1, 2], "typing.Literal[1, 2]"),
+        (list, "list"),
+        (str, "str"),
+        (Presentation, "Presentation"),
+        ("Set", "Set"),
+        (Order.lenlex, "Order.lenlex"),
+        ((Presentation,), "(Presentation)"),
+        ((Presentation, list[int]), "(Presentation, list[int])"),
+        (
+            (KnuthBendix, list[int], "Trie", Order.lenlex),
+            "(KnuthBendix, list[int], Trie, Order.lenlex)",
+        ),
+    ],
+)
+def test_nice_name(value, expected):
+    assert _nice_name(value) == expected
+
+
+def test_to_invalid_word_type():
+    with pytest.raises(TypeError) as exc_info:
+        to(sample_froidure_pin(), rtype=(Presentation, list[str]))
+
+    message = str(exc_info.value)
+    assert "\n    * (Presentation, list[int])\n" in message
+    assert "\n    * (KnuthBendix, list[int], Trie, Order.lenlex)\n" in message
+    assert message.endswith("but found: (Presentation, list[str])")
 
 
 def test_to_999():
