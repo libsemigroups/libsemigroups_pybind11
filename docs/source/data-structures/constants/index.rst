@@ -10,7 +10,7 @@
 Constants
 =========
 
-This page describes some of the constants used in ``libsemigroups_pybind11``.
+This page describes some of the constants used in |libsemigroups_pybind11|.
 
 Constant types
 --------------

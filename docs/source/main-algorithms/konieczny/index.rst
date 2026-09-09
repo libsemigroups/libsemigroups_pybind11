@@ -9,7 +9,7 @@ Konieczny
 =========
 
 This page describes the functionality for Konieczny's algorithm in
-``libsemigroups_pybind11``.
+|libsemigroups_pybind11|.
 
 .. toctree::
     :maxdepth: 1

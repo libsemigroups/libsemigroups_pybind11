@@ -10,7 +10,7 @@
 Words
 =====
 
-This pages contains links to documentation in ``libsemigroups_pybind11`` for:
+This pages contains links to documentation in |libsemigroups_pybind11| for:
 
 - generating words and strings in a given range and in a certain order:
 

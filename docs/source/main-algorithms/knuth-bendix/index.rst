@@ -9,7 +9,7 @@ Knuth-Bendix
 ============
 
 This page describes the functionality for the Knuth-Bendix procedure in
-``libsemigroups_pybind11``.
+|libsemigroups_pybind11|.
 
 .. toctree::
     :maxdepth: 1

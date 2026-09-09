@@ -59,9 +59,9 @@ namespace libsemigroups {
 Class for determining the action of a semigroup or monoid on a set.
 
 This page contains details of the :any:`Action` class in
-``libsemigroups_pybind11`` for finding actions of semigroups, monoids, or
+|libsemigroups_pybind11| for finding actions of semigroups, monoids, or
 groups, on sets.  The notion of an "action" in the context of
-``libsemigroups_pybind11`` is analogous to the notion of an orbit of a group.
+|libsemigroups_pybind11| is analogous to the notion of an orbit of a group.
 
 You are unlikely to want to use :any:`Action` directly, but rather via the more
 convenient aliases :any:`RightAction` and :any:`LeftAction`.

@@ -11,7 +11,7 @@ The tril enum
 =============
 
 This page describes the enum class :py:class:`tril` in
-``libsemigroups_pybind11`` for representing values that can either be true,
+|libsemigroups_pybind11| for representing values that can either be true,
 false, or not currently known.
 
 Full API

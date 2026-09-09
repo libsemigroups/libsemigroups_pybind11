@@ -12,7 +12,7 @@ Classes for low-index congruences
 
 On this page we describe the functionality relating to the Sims's low-index
 congruence algorithm for semigroups and monoids that is available in
-``libsemigroups_pybind11``.
+|libsemigroups_pybind11|.
 
 .. doctest::
 

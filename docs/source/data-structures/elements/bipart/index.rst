@@ -9,7 +9,7 @@ Bipartitions and blocks
 =======================
 
 This page describes the functionality for bipartitions and blocks in
-``libsemigroups_pybind11``.
+|libsemigroups_pybind11|.
 
 .. toctree::
     :maxdepth: 1

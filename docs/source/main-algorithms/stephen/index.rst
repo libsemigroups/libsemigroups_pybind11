@@ -8,7 +8,7 @@
 Stephen
 =======
 
-This page contains links to the functionality in ``libsemigroups_pybind11``
+This page contains links to the functionality in |libsemigroups_pybind11|
 related to Stephen's procedure :cite:`Stephen1987aa` for finitely presented
 semigroups.
 

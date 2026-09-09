@@ -1409,7 +1409,7 @@ expression, and has the following behaviour:
   ''
 
 .. deprecated:: 1.5
-  This will be removed from ``libsemigroups_pybind11`` in v2. Instead, use
+  This will be removed from |libsemigroups_pybind11| in v2. Instead, use
   :any:`words.parse`.
 )pbdoc");
 

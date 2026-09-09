@@ -9,8 +9,8 @@ Visualisation
 =============
 
 This page contains links to the classes and functions in
-``libsemigroups_pybind11`` for visualising instances of some of the other
-objects implemented in ``libsemigroups_pybind11``.
+|libsemigroups_pybind11| for visualising instances of some of the other
+objects implemented in |libsemigroups_pybind11|.
 
 The class :any:`Dot` facilitates the creation and rendering of graph
 descriptions in the DOT_ language of Graphviz_ graph drawing software.

@@ -9,7 +9,7 @@ Suffix Trees
 ============
 
 This page describes the functionality related to Ukkonen's algorithm and
-generalised suffix trees in ``libsemigroups_pybind11``.
+generalised suffix trees in |libsemigroups_pybind11|.
 
 .. toctree::
     :maxdepth: 1

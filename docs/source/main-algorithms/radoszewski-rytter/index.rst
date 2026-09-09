@@ -10,7 +10,7 @@
 Radoszewski-Rytter
 ==================
 
-``libsemigroups_pybind11`` contains an implementation of the Radoszewski-Rytter
+|libsemigroups_pybind11| contains an implementation of the Radoszewski-Rytter
 Algorithm :cite:`Radoszewski2010aa` for testing equivalence of words in free
 bands.
 

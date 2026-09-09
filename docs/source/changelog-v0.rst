@@ -11,13 +11,13 @@ Changelog - version 0
 v0.10.1 (released 29/03/2023)
 -----------------------------
 
-This release increases the required version of ``libsemigroups`` to v2.7.1,
+This release increases the required version of libsemigroups_ to v2.7.1,
 which contains some bug fixes.
 
 v0.10.0 (released 23/03/2023)
 -----------------------------
 
-This is a minor release adding some new functionality from ``libsemigroups``:
+This is a minor release adding some new functionality from libsemigroups_:
 
 - ukkonen: add support for ``Ukkonen`` + helpers by @james-d-mitchell in
   https://github.com/libsemigroups/libsemigroups_pybind11/pull/132
@@ -70,26 +70,26 @@ v0.7.3 (released 07/02/2023)
 ----------------------------
 
 This is a minor version with some improvements and adjustments for forthcoming
-changes in ``libsemigroups``.
+changes in libsemigroups_.
 
 v0.7.2 (released 12/01/2023)
 ----------------------------
 
-This is a minor change related to some forthcoming changes in ``libsemigroups``.
+This is a minor change related to some forthcoming changes in libsemigroups_.
 
 v0.7.1 (released 11/01/2023)
 ----------------------------
 
 This is a very minor release updating the required versions of some dependencies
-to permit the ``libsemigroups_pybind11`` wheel to be built with python 3.11, and
-to adapt for some recent changes in ``libsemigroups``.
+to permit the |libsemigroups_pybind11| wheel to be built with python 3.11, and
+to adapt for some recent changes in libsemigroups_.
 
 v0.7.0 (released 15/12/2022)
 ----------------------------
 
 This release contains a number of improvements and fixes, and adds support for
-the library of finite semigroup and monoid presentations in ``libsemigroups``
-and the ``Stephen`` class from ``libsemigroups``.
+the library of finite semigroup and monoid presentations in libsemigroups_
+and the ``Stephen`` class from libsemigroups_.
 
 - Add functionality for the presentation helper ``replace_word`` by @MTWhyte in
   https://github.com/libsemigroups/libsemigroups_pybind11/pull/84
@@ -104,7 +104,7 @@ v0.6.0 (released 02/12/2022)
 ----------------------------
 
 This release contains a number of improvements and fixes, and adds support for
-the ``Konieczny`` class from ``libsemigroups``.
+the ``Konieczny`` class from libsemigroups_.
 
 - Add missing header include in cong.cpp by @james-d-mitchell in
   https://github.com/libsemigroups/libsemigroups_pybind11/pull/77
@@ -112,7 +112,7 @@ the ``Konieczny`` class from ``libsemigroups``.
   https://github.com/libsemigroups/libsemigroups_pybind11/pull/79
 - Fix string encoding in ``KnuthBendix`` by @james-d-mitchell in
   https://github.com/libsemigroups/libsemigroups_pybind11/pull/82
-- Add support for ``Konieczny`` from ``libsemigroups`` by @james-d-mitchell in
+- Add support for ``Konieczny`` from libsemigroups_ by @james-d-mitchell in
   https://github.com/libsemigroups/libsemigroups_pybind11/pull/80
 - Better ``__repr__`` for ``KnuthBendix`` by @james-d-mitchell in
   https://github.com/libsemigroups/libsemigroups_pybind11/pull/86
@@ -120,7 +120,7 @@ the ``Konieczny`` class from ``libsemigroups``.
 v0.5.0 (released 16/11/2022)
 ----------------------------
 
-This is a minor release adding support for the ``libsemigroups`` class
+This is a minor release adding support for the libsemigroups_ class
 ``Kambites`` for computing small overlap monoids.
 
 v0.4.3 (released 09/11/2022)
@@ -133,12 +133,12 @@ package.
 v0.4.2 (released 28/10/2022)
 ----------------------------
 
-Update for version 2.3.2 of ``libsemigroups`` which contains some bugfixes.
+Update for version 2.3.2 of libsemigroups_ which contains some bugfixes.
 
 v0.4.1 (released 11/10/2022)
 ----------------------------
 
-Update for version 2.3.1 of ``libsemigroups`` which contains some bugfixes in
+Update for version 2.3.1 of libsemigroups_ which contains some bugfixes in
 the ``Sims1`` class, the ``Presentation`` class and its helper functions.
 
 v0.4.0 (released 04/10/2022)
@@ -146,7 +146,7 @@ v0.4.0 (released 04/10/2022)
 
 This is a minor release with a couple of new features added:
 
-- ``libsemigroups`` constants ``POSITIVE_INFINITY``, ``NEGATIVE_INFINITY``, and
+- libsemigroups_ constants ``POSITIVE_INFINITY``, ``NEGATIVE_INFINITY``, and
   ``UNDEFINED`` are properly supported;
 - ``libsemigroups::matrix_helper::pow`` is added as a method for ``__pow__`` for
   some types of matrices (those not defined over a runtime semiring);
@@ -156,7 +156,7 @@ and some minor improvements (the tests now use ``pytest`` exclusively).
 v0.3.0 (released 29/09/2022)
 ----------------------------
 
-This is a minor release adding support for the ``libsemigroups`` class ``Sims1``
+This is a minor release adding support for the libsemigroups_ class ``Sims1``
 for computing low index congruences, and some further minor changes to the
 ``Presentation`` class.
 
@@ -164,7 +164,7 @@ v0.2.2 (released 16/09/2022)
 ----------------------------
 
 A very minor release to futureproof some tests against new versions of
-``libsemigroups``.
+libsemigroups_.
 
 v0.2.1 (released 12/09/2022)
 ----------------------------
@@ -174,7 +174,7 @@ A very minor release trying to fix an issue in the release process.
 v0.2.0 (released 10/09/2022)
 ----------------------------
 
-This is a minor release adding support for the ``libsemigroups`` class template
+This is a minor release adding support for the libsemigroups_ class template
 ``Presentation`` by @MTWhyte and @james-d-mitchell in:
 
 https://github.com/libsemigroups/libsemigroups_pybind11/pull/49
@@ -211,13 +211,13 @@ v0.1.4 (released 12/11/2021)
 ----------------------------
 
 Yet another minor release updating the C++ code for some forthcoming changes in
-``libsemigroups``.
+libsemigroups_.
 
 v0.1.3 (released 11/11/2021)
 ----------------------------
 
 A minor release updating the C++ code for some forthcoming changes in
-``libsemigroups``.
+libsemigroups_.
 
 v0.1.2 (released 11/11/2021)
 ----------------------------
@@ -238,5 +238,5 @@ Some minor issues were resolved and the function ``follow_path`` was added for
 v0.0.0 (released 24/09/2021)
 ----------------------------
 
-First release of the package, some functionality of ``libsemigroups`` is not yet
+First release of the package, some functionality of libsemigroups_ is not yet
 available.

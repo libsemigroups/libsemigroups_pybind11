@@ -11,13 +11,13 @@ Converting to a FroidurePin
 ===========================
 
 This page contains documentation relating to converting
-``libsemigroups_pybind11`` objects into :any:`FroidurePin` instances using the
+|libsemigroups_pybind11| objects into :any:`FroidurePin` instances using the
 :any:`to` function.
 
 .. seealso::
 
     :doc:`/data-structures/to-function` for an overview of possible conversions
-    between ``libsemigroups_pybind11`` types.
+    between |libsemigroups_pybind11| types.
 
 Various uses
 ------------
