@@ -73,7 +73,7 @@ docs = [
 # This list should contain any package used to test the package.
 # These should not be aggressively pinned to allow the package to be tested
 # on as many different systems as possible.
-test = ["pytest>=8.4.2"]
+test = ["pytest>=9.1.1"]
 
 [dependency-groups]
 # This list should contain any package used in the development of
