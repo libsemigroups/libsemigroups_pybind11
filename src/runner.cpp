@@ -363,8 +363,12 @@ run at the outermost level.
   }  // init_reporter
 
   void init_runner(py::module& m) {
+    // Runner is polymorphic, but Reporter is not, so the Reporter base can
+    // have a nonzero offset. Force pybind11 to adjust base pointers so that
+    // inherited Reporter methods access the correct memory.
     py::class_<Runner, Reporter> thing(m,
                                        "Runner",
+                                       py::multiple_inheritance(),
                                        R"pbdoc(
 Abstract class for derived [#sortof]_ classes that run an algorithm.
 
