@@ -8,7 +8,8 @@
 |libsemigroups_pybind11| objects from one type to another.
 """
 
-from typing import get_origin as _get_origin
+from collections.abc import Iterator as _Iterator
+from typing import Any as _Any, get_origin as _get_origin
 
 from _libsemigroups_pybind11 import (
     Order as _Order,
@@ -56,14 +57,14 @@ from .presentation import InversePresentation as _InversePresentation, Presentat
 from .todd_coxeter import ToddCoxeter as _ToddCoxeter
 
 
-def _nice_name(type_list):
-    """Convert an iterable of type-like things into a string"""
-    single_element = False
-    if not isinstance(type_list, tuple):
-        single_element = True
-        type_list = [type_list]
+def _nice_name(types: _Iterator[_Any]) -> str:
+    """Convert an iterable of things into a string"""
+    not_tuple = False
+    if not isinstance(types, tuple):
+        not_tuple = True
+        types = (types,)
     out = []
-    for t in type_list:
+    for t in types:
         if isinstance(t, str):
             out.append(f'"{t}"')
         elif _get_origin(t) is not None:
@@ -72,8 +73,10 @@ def _nice_name(type_list):
             out.append(t.__name__)
         else:
             out.append(str(t))
-    if single_element:
+    if not_tuple:
         return out[0]
+    if len(types) == 1:
+        out[0] += ","
     return f"({', '.join(out)})"
 
 
