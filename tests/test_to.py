@@ -1084,7 +1084,7 @@ def test_to_Congruence_010():
         (Presentation, "Presentation"),
         ("Set", '"Set"'),
         (Order.lenlex, "Order.lenlex"),
-        ((Presentation,), "(Presentation)"),
+        ((Presentation,), "(Presentation,)"),
         ((Presentation, list[int]), "(Presentation, list[int])"),
         (
             (KnuthBendix, list[int], "Trie", Order.lenlex),
