@@ -123,8 +123,12 @@ _VALID_TYPES_STRING = "\n    * " + "\n    * ".join(_VALID_TYPES) + "\n"
 def to(*args, rtype: tuple):
     """Convert from one type of |libsemigroups_pybind11| object to another.
 
-    This function converts the the arguments specified in *args* to object of
+    This function converts the arguments specified in *args* to an object of
     type *rtype*.
+
+    If a converter raises :any:`TypeError`, the error message lists the possible
+    values of *rtype* for the requested output class. Which values can be used
+    depends on *args*. The original exception is retained as the cause.
 
     :param args: the objects to convert.
     :param rtype: the type of object to convert to.
@@ -180,7 +184,21 @@ def to(*args, rtype: tuple):
             f"but found: {_nice_name(rtype)}"
         )
     constructor = rtype[0]
-    return constructor(_RETURN_TYPE_TO_CONVERTER_FUNCTION[rtype](*cxx_args))
+    try:
+        result = _RETURN_TYPE_TO_CONVERTER_FUNCTION[rtype](*cxx_args)
+    except TypeError as error:
+        possible_rtypes = (
+            _nice_name(types)
+            for types in _RETURN_TYPE_TO_CONVERTER_FUNCTION
+            if types[0] is constructor
+        )
+        message = (
+            f"could not convert the arguments with rtype={_nice_name(rtype)}; "
+            f"possible values of rtype for {_nice_name(constructor)} are:"
+            "\n    * " + "\n    * ".join(possible_rtypes) + "\n"
+        )
+        raise TypeError(message) from error
+    return constructor(result)
 
 
 __all__ = ["to"]

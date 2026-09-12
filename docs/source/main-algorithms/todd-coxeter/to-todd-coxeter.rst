@@ -51,6 +51,10 @@ Additionally, specify one of the following for *rtype*:
     - ``(ToddCoxeter, list[int])`` for constructing a :any:`ToddCoxeter` on
       words with type ``list[int]``.
 
+The word type must be specified explicitly for this conversion. Using
+``rtype=(ToddCoxeter,)`` raises a :any:`TypeError`, since the word type cannot
+be inferred from *fpb* and *wg*.
+
 This function converts the :any:`FroidurePin` object *fpb* into a
 :any:`ToddCoxeter` object using the :any:`WordGraph` *wg* (which should be
 either the :any:`FroidurePin.left_cayley_graph` or the
@@ -106,6 +110,8 @@ following values for *args*:
 Additionally, specify the following for *rtype*:
 
     - ``(ToddCoxeter,)`` for constructing a :any:`ToddCoxeter`.
+
+The word type is inferred from *kb*.
 
 This function converts the :any:`KnuthBendix` object *kb* into a
 :any:`ToddCoxeter` object using the right Cayley graph of the semigroup

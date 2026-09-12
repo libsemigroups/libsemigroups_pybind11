@@ -35,12 +35,14 @@ from _libsemigroups_pybind11 import (
     PresentationWord,
 )
 from libsemigroups_pybind11 import (
+    Alphabet,
     Bipartition,
     Congruence,
     FroidurePin,
     InversePresentation,
     Kambites,
     KnuthBendix,
+    LibsemigroupsError,
     Order,
     Presentation,
     Stephen,
@@ -448,18 +450,40 @@ def test_to_ToddCoxeter_017():
 # From FroidurePin
 
 
-def test_to_ToddCoxeter_018():
+@pytest.mark.parametrize("kind", [congruence_kind.onesided, congruence_kind.twosided])
+def test_to_ToddCoxeter_018(kind):
     S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
-    tc = to(congruence_kind.twosided, S, S.right_cayley_graph(), rtype=(ToddCoxeter, str))
+    tc = to(kind, S, S.right_cayley_graph(), rtype=(ToddCoxeter, str))
     assert tc.current_word_graph().number_of_nodes() == S.size() + 1
     assert isinstance(tc, ToddCoxeter)
+    assert tc.py_template_params == (str,)
+    assert tc.number_of_classes() == S.size()
 
 
-def test_to_ToddCoxeter_019():
+@pytest.mark.parametrize("kind", [congruence_kind.onesided, congruence_kind.twosided])
+def test_to_ToddCoxeter_019(kind):
     S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
-    tc = to(congruence_kind.twosided, S, S.right_cayley_graph(), rtype=(ToddCoxeter, list[int]))
+    tc = to(kind, S, S.right_cayley_graph(), rtype=(ToddCoxeter, list[int]))
     assert tc.current_word_graph().number_of_nodes() == S.size() + 1
     assert isinstance(tc, ToddCoxeter)
+    assert tc.py_template_params == (list[int],)
+    assert tc.number_of_classes() == S.size()
+
+
+@pytest.mark.parametrize("kind", [congruence_kind.onesided, congruence_kind.twosided])
+@pytest.mark.parametrize("unwrap", [False, True])
+def test_to_todd_coxeter_missing_word_type(kind, unwrap):
+    # https://github.com/libsemigroups/libsemigroups_pybind11/issues/461
+    S = FroidurePin(Transf([1, 3, 4, 2, 3]), Transf([3, 2, 1, 3, 3]))
+    wg = S.right_cayley_graph()
+    if unwrap:
+        S = to_cxx(S)
+    with pytest.raises(TypeError, match="possible values of rtype for ToddCoxeter") as exc:
+        to(kind, S, wg, rtype=(ToddCoxeter,))
+    assert "(ToddCoxeter, str)" in str(exc.value)
+    assert "(ToddCoxeter, list[int])" in str(exc.value)
+    assert isinstance(exc.value.__cause__, TypeError)
+    assert "to_todd_coxeter(): incompatible function arguments" in str(exc.value.__cause__)
 
 
 ###############################################################################
@@ -1104,6 +1128,61 @@ def test_to_invalid_word_type():
     assert "\n    * (Presentation, list[int])\n" in message
     assert '\n    * (KnuthBendix, list[int], "Trie", Order.lenlex)\n' in message
     assert message.endswith("but found: (Presentation, list[str])")
+
+
+@pytest.mark.parametrize(
+    "rtype",
+    [
+        (Alphabet, str),
+        (Congruence, str),
+        (FroidurePin,),
+        (InversePresentation,),
+        (KnuthBendix,),
+        (Presentation,),
+        (ToddCoxeter,),
+    ],
+)
+def test_to_conversion_error_suggests_rtypes(rtype):
+    with pytest.raises(TypeError, match="possible values of rtype") as exc:
+        to(object(), rtype=rtype)
+
+    name = rtype[0].__name__
+    message = str(exc.value)
+    assert f"possible values of rtype for {name}" in message
+    suggestions = [line for line in message.splitlines() if line.startswith("    * ")]
+    assert suggestions
+    assert all(line.startswith(f"    * ({name}") for line in suggestions)
+    assert isinstance(exc.value.__cause__, TypeError)
+    assert "incompatible function arguments" in str(exc.value.__cause__)
+
+
+def test_to_presentation_error_suggests_word_types():
+    S = FroidurePin(Transf([1, 0]))
+    with pytest.raises(TypeError, match="possible values of rtype for Presentation") as exc:
+        to(S, rtype=(Presentation,))
+    assert "(Presentation, str)" in str(exc.value)
+    assert "(Presentation, list[int])" in str(exc.value)
+    for word_type in (str, list[int]):
+        assert len(to(S, rtype=(Presentation, word_type)).alphabet()) == 1
+
+
+def test_to_conversion_error_preserves_callback_cause():
+    error = TypeError("invalid letter mapping")
+
+    def bad_mapping(_):
+        raise error
+
+    with pytest.raises(TypeError, match="possible values of rtype for Presentation") as exc:
+        to(Presentation("ab"), bad_mapping, rtype=(Presentation, list[int]))
+    assert exc.value.__cause__ is error
+
+
+@pytest.mark.parametrize("word_type", [str, list[int]])
+def test_to_conversion_error_preserves_libsemigroups_error(word_type):
+    S = FroidurePin(Transf([1, 0]))
+    with pytest.raises(LibsemigroupsError, match="expected the 3rd argument") as exc:
+        to(congruence_kind.twosided, S, WordGraph(0, 0), rtype=(ToddCoxeter, word_type))
+    assert exc.value.__cause__ is None
 
 
 def test_to_999():
