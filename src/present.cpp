@@ -20,7 +20,8 @@
 #include <cstddef>  // for size_t
 
 // C++ stl headers....
-#include <algorithm>  // for clamp, count, find
+#include <algorithm>  // for clamp, count, find, reverse
+#include <limits>     // for numeric_limits
 #include <memory>     // for make_unique
 #include <stdexcept>  // for invalid_argument
 #include <string>     // for string, basic_string, oper...
@@ -132,6 +133,24 @@ namespace libsemigroups {
         return true;
       };
 
+      auto compare = [](View const& self, py::object other, int op) {
+        if (py::isinstance<RulesView<word_type>>(other)) {
+          other = py::cast(other.cast<RulesView<word_type> const&>().vector());
+        } else if (py::isinstance<RulesView<std::string>>(other)) {
+          other
+              = py::cast(other.cast<RulesView<std::string> const&>().vector());
+        }
+        if (!py::isinstance<py::list>(other)) {
+          return py::reinterpret_borrow<py::object>(Py_NotImplemented);
+        }
+        auto  lhs    = py::cast(self.vector());
+        auto* result = PyObject_RichCompare(lhs.ptr(), other.ptr(), op);
+        if (result == nullptr) {
+          throw py::error_already_set();
+        }
+        return py::reinterpret_steal<py::object>(result);
+      };
+
       py::class_<View>(m, name.c_str())
           .def("__len__", [](View const& self) { return self.vector().size(); })
           .def("__bool__",
@@ -144,6 +163,22 @@ namespace libsemigroups {
           .def("__ne__",
                [equals](View const& self, py::object other) {
                  return !equals(self, other);
+               })
+          .def("__lt__",
+               [compare](View const& self, py::object other) {
+                 return compare(self, other, Py_LT);
+               })
+          .def("__le__",
+               [compare](View const& self, py::object other) {
+                 return compare(self, other, Py_LE);
+               })
+          .def("__gt__",
+               [compare](View const& self, py::object other) {
+                 return compare(self, other, Py_GT);
+               })
+          .def("__ge__",
+               [compare](View const& self, py::object other) {
+                 return compare(self, other, Py_GE);
                })
           .def("__getitem__",
                [wrap_index](View const& self, Index i) -> Word {
@@ -270,6 +305,42 @@ namespace libsemigroups {
               },
               py::arg("i") = -1)
           .def("clear", [](View& self) { self.vector().clear(); })
+          .def("copy", [](View const& self) { return py::cast(self.vector()); })
+          .def(
+              "index",
+              [](View const& self,
+                 py::object  value,
+                 py::object  start,
+                 py::object  stop) {
+                return py::cast(self.vector())
+                    .attr("index")(value, start, stop);
+              },
+              py::arg("value"),
+              py::arg("start") = 0,
+              py::arg("stop")  = std::numeric_limits<Index>::max(),
+              py::pos_only())
+          .def("reverse",
+               [](View& self) {
+                 auto& rules = self.vector();
+                 std::reverse(rules.begin(), rules.end());
+               })
+          .def(
+              "sort",
+              [](View& self, py::object key, py::object reverse) {
+                // Python's sort handles stability and arbitrary key objects.
+                // Do not overwrite changes made by a key callback.
+                auto const original = self.vector();
+                auto       sorted   = py::cast(original);
+                sorted.attr("sort")(py::arg("key")     = key,
+                                    py::arg("reverse") = reverse);
+                if (self.vector() != original) {
+                  throw py::value_error("list modified during sort");
+                }
+                self.vector() = sorted.template cast<Vector>();
+              },
+              py::kw_only(),
+              py::arg("key")     = py::none(),
+              py::arg("reverse") = false)
           .def(
               "count",
               [](View const& self, Word const& word) {
@@ -296,14 +367,39 @@ namespace libsemigroups {
                        != rules.end();
               },
               py::arg("x"))
-          .def("__add__", [](View const& self, py::object other) {
-            if (!py::isinstance<py::sequence>(other)) {
-              throw py::type_error("unsupported operand type(s) for +");
-            }
-            Vector result(self.vector());
-            auto   other_words = copy_words<Word>(other.cast<py::iterable>());
-            result.insert(result.end(), other_words.begin(), other_words.end());
-            return result;
+          .def("__add__",
+               [](View const& self, py::object other) {
+                 if (!py::isinstance<py::sequence>(other)) {
+                   throw py::type_error("unsupported operand type(s) for +");
+                 }
+                 Vector result(self.vector());
+                 auto   other_words
+                     = copy_words<Word>(other.cast<py::iterable>());
+                 result.insert(
+                     result.end(), other_words.begin(), other_words.end());
+                 return result;
+               })
+          .def("__iadd__",
+               [](py::object self, py::iterable other) {
+                 auto  words = copy_words<Word>(other);
+                 auto& rules = self.cast<View&>().vector();
+                 rules.insert(rules.end(), words.begin(), words.end());
+                 return self;
+               })
+          .def("__mul__",
+               [](View const& self, py::object n) {
+                 return py::cast(self.vector()) * n;
+               })
+          .def("__rmul__",
+               [](View const& self, py::object n) {
+                 return n * py::cast(self.vector());
+               })
+          .def("__imul__", [](py::object self, py::object n) {
+            auto& rules  = self.cast<View&>().vector();
+            auto  result = py::cast(rules);
+            result *= n;
+            rules = result.template cast<Vector>();
+            return self;
           });
     }
 
@@ -345,12 +441,15 @@ available in the module :any:`libsemigroups_pybind11.presentation`.)pbdoc");
           R"pbdoc(
 The rules of the presentation.
 
-For technical reasons, the object contained in this property is not really a
-Python list, but some effort has been put into making it behave exactly like a
-Python list in many cases.
+For technical reasons, this property is not really a Python list, but some
+effort has been put into making it behave exactly like a Python list in
+many cases.
 
-Use ``list(p.rules)`` to copy the rules. Slices and concatenations also return
-ordinary Python lists. Individual words in ``p.rules`` are returned as
+Use ``list(p.rules)`` or ``p.rules.copy()`` to copy the rules. Slices,
+concatenations, and repetition with ``*`` also return ordinary Python lists.
+The ``+=`` and ``*=`` operators modify the rules in the presentation.
+
+Individual words in ``p.rules`` are returned as
 Python strings or lists; if the type of words in the presentation is
 ``list[int]``, then changing an integer inside an individual word in
 ``p.rules`` does not change the rules in the presentation. Assign a whole
@@ -386,6 +485,25 @@ The presentation can be checked for validity using
    >>> rules[1:1] = ["aa", "a"]
    >>> p.rules
    ['ab', 'aa', 'a', 'bb']
+   >>> rules.index("aa")
+   1
+   >>> copied = rules.copy()
+   >>> rules.reverse()
+   >>> p.rules
+   ['bb', 'a', 'aa', 'ab']
+   >>> rules.sort(key=len)
+   >>> p.rules
+   ['a', 'bb', 'aa', 'ab']
+   >>> rules *= 2
+   >>> len(p.rules)
+   8
+   >>> rules += ["b"]
+   >>> p.rules[-1]
+   'b'
+   >>> copied
+   ['ab', 'aa', 'a', 'bb']
+   >>> rules[:1] * 2
+   ['a', 'a']
 )pbdoc");
 
       thing.def(py::init<>(), R"pbdoc(
