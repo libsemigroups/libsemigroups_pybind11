@@ -10,6 +10,7 @@
 """Mutable presentation rules and their interaction with ordinary vector bindings."""
 
 import gc
+import operator
 import sys
 
 import pytest
@@ -25,6 +26,16 @@ from libsemigroups_pybind11 import (
 )
 
 pytestmark = pytest.mark.quick
+
+
+class _Index:  # pylint: disable=too-few-public-methods
+    """Exercise the integer index protocol without inheriting from int."""
+
+    def __init__(self, value):
+        self.value = value
+
+    def __index__(self):
+        return self.value
 
 
 @pytest.fixture(name="presentation_type", params=[Presentation, InversePresentation])
@@ -157,6 +168,218 @@ def test_rules_copies_and_slices_are_lists(p, words):
     assert rules[1::2] == words[1::2]
     assert rules[::-1] == words[::-1]
     assert rules[1:1] == []
+
+
+def test_rules_copy_and_reverse(p, words):
+    rules = p.rules
+    copied = rules.copy()
+    assert isinstance(copied, list)
+    assert copied == words
+    assert rules.reverse() is None
+    assert p.rules == words[::-1]
+    assert copied == words
+    copied.clear()
+    assert p.rules == words[::-1]
+    rules.clear()
+    assert rules.reverse() is None
+    assert rules.sort() is None
+    assert rules.copy() == []
+
+
+@pytest.mark.parametrize(
+    "bounds",
+    [
+        (),
+        (1,),
+        (-3,),
+        (0, 0),
+        (1, 3),
+        (2, 5),
+        (-100, 100),
+        (100,),
+        (10**100,),
+        (-(10**100), 10**100),
+        (_Index(2), _Index(8)),
+        (None,),
+        (1.5,),
+        (0, None),
+    ],
+)
+def test_rules_index_matches_lists(p, words, bounds):
+    expected = words * 2
+    p.rules = expected
+    try:
+        result = expected.index(words[1], *bounds)
+    except (ValueError, TypeError) as error:
+        with pytest.raises(type(error)):
+            p.rules.index(words[1], *bounds)
+    else:
+        assert p.rules.index(words[1], *bounds) == result
+    assert p.rules == expected
+
+
+def test_rules_index_missing_value_and_keywords(p):
+    with pytest.raises(ValueError):
+        p.rules.index(object())
+    with pytest.raises(TypeError):
+        p.rules.index(value=p.rules[0])
+    with pytest.raises(TypeError):
+        p.rules.index(p.rules[0], start=0)
+
+
+@pytest.mark.parametrize("key", [None, len])
+@pytest.mark.parametrize("reverse", [False, True])
+def test_rules_sort_matches_lists(p, words, key, reverse):
+    expected = words * 2
+    p.rules = expected
+    rules = p.rules
+    expected.sort(key=key, reverse=reverse)
+    assert rules.sort(key=key, reverse=reverse) is None
+    assert rules == expected
+    assert p.rules == expected
+
+
+def test_rules_sort_calls_key_once_per_word(p, words):
+    seen = []
+
+    def key(word):
+        seen.append(word)
+        return len(word)
+
+    p.rules.sort(key=key)
+    assert seen == words
+    assert p.rules == sorted(words, key=len)
+
+
+def test_rules_sort_errors(p, words):
+    def fail(_):
+        raise RuntimeError("key failed")
+
+    with pytest.raises(RuntimeError, match="key failed"):
+        p.rules.sort(key=fail)
+    with pytest.raises(TypeError):
+        p.rules.sort(key=lambda _: object())
+    with pytest.raises(TypeError):
+        p.rules.sort(len)
+    assert p.rules == words
+
+
+def test_rules_sort_detects_callback_mutation(p, words):
+    def key(word):
+        if len(p.rules) == len(words):
+            p.rules.append(words[0])
+        return len(word)
+
+    with pytest.raises(ValueError, match="modified during sort"):
+        p.rules.sort(key=key)
+    assert p.rules == words + words[:1]
+
+
+@pytest.mark.parametrize("compare", [operator.lt, operator.le, operator.gt, operator.ge])
+@pytest.mark.parametrize("selection", [slice(None), slice(1), slice(None, None, -1)])
+def test_rules_ordering_matches_lists(p, words, presentation_type, compare, selection):
+    other = words[selection]
+    assert compare(p.rules, other) == compare(words, other)
+    assert compare(other, p.rules) == compare(other, words)
+    q = presentation_type(p.alphabet())
+    q.rules = other
+    assert compare(p.rules, q.rules) == compare(words, other)
+    assert compare(q.rules, p.rules) == compare(other, words)
+    assert compare(p.rules, p.rules) == compare(words, words)
+    with pytest.raises(TypeError):
+        compare(p.rules, tuple(other))
+    with pytest.raises(TypeError):
+        compare(tuple(other), p.rules)
+
+
+@pytest.mark.parametrize("compare", [operator.lt, operator.le, operator.gt, operator.ge])
+def test_rules_ordering_incompatible_words(presentation_type, compare):
+    strings = presentation_type("ab")
+    strings.rules = ["a"]
+    integers = presentation_type([0, 1])
+    integers.rules = [[0]]
+    with pytest.raises(TypeError):
+        compare(strings.rules, integers.rules)
+    with pytest.raises(TypeError):
+        compare(integers.rules, strings.rules)
+    strings.rules.clear()
+    assert compare(strings.rules, integers.rules) == compare([], [[0]])
+
+
+def test_rules_inplace_add_keeps_the_view(p, words):
+    rules = p.rules
+    original = rules
+    other_view = p.rules
+    rules += rules
+    assert rules is original
+    assert other_view == words * 2
+    rules += iter(other_view)
+    assert rules is original
+    assert p.rules == words * 4
+    p.rules += tuple(words)
+    assert other_view == words * 5
+    with pytest.raises(RuntimeError):
+        rules += [words[0], object()]
+    assert p.rules == words * 5
+
+
+@pytest.mark.parametrize("count", [-3, 0, 1, 2, False, True, _Index(3)])
+@pytest.mark.parametrize("initially_empty", [False, True])
+def test_rules_repetition_matches_lists(p, words, count, initially_empty):
+    expected = [] if initially_empty else list(words)
+    p.rules = expected
+    rules = p.rules
+    original = rules
+    for result in (rules * count, count * rules):
+        assert isinstance(result, list)
+        assert result == expected * count
+        result.append(words[0])
+        assert p.rules == expected
+    rules *= count
+    assert rules is original
+    assert p.rules == expected * count
+    p.rules *= 2
+    assert rules == expected * count * 2
+
+
+@pytest.mark.parametrize(
+    "count, error_type",
+    [
+        (1.5, TypeError),
+        (None, TypeError),
+        (10**100, OverflowError),
+        (-(10**100), OverflowError),
+        (sys.maxsize, MemoryError),
+    ],
+)
+def test_rules_repetition_errors(p, words, count, error_type):
+    rules = p.rules
+    with pytest.raises(error_type):
+        _ = rules * count
+    with pytest.raises(error_type):
+        _ = count * rules
+    with pytest.raises(error_type):
+        rules *= count
+    assert p.rules == words
+
+
+def test_rules_inplace_operations_keep_presentation_alive(presentation_type, words):
+    p = presentation_type("ab" if isinstance(words[0], str) else [0, 1])
+    p.rules = words
+    rules = p.rules
+    del p
+    gc.collect()
+    rules += rules
+    rules *= 2
+    assert rules == words * 4
+    rules.reverse()
+    rules.sort()
+    assert rules == sorted(words * 4)
+
+
+def test_rules_provide_all_named_list_methods(p):
+    methods = {name for name in dir(list) if not name.startswith("_")}
+    assert methods <= set(dir(p.rules))
 
 
 def test_rules_cannot_be_constructed_independently(p, words):
