@@ -20,9 +20,9 @@
 #include <cstddef>  // for size_t
 
 // C++ stl headers....
-#include <algorithm>  // for count, find
+#include <algorithm>  // for clamp, count, find
 #include <memory>     // for make_unique
-#include <stdexcept>  // for runtime_error
+#include <stdexcept>  // for invalid_argument
 #include <string>     // for string, basic_string, oper...
 #include <utility>    // for move
 #include <vector>     // for vector
@@ -53,9 +53,17 @@ namespace libsemigroups {
 
   namespace {
     // Only Presentation.rules creates these non-owning views. The property
-    // getter keeps the presentation alive; independent results are Python
-    // lists. AI assistance: OpenAI Codex helped implement and test these
-    // bindings.
+    // getter keeps the presentation alive. The reason that we use RulesView
+    // and RulesSlice instead of making std::vector<std:vector<std::string>> or
+    // std::vector<std::vector<word_type>> pybind11 opaque types is the
+    // following. If declaring e.g. std::vector<std:vector<std::string>> opaque,
+    // then it has to be opaque in every translation unit, which we don't want
+    // (this is apparently a pybind11 requirement). So, instead we use these
+    // RulesView and RulesSlice structs. This means that other functions that
+    // return std::vector are copied and converted to python lists on every call
+    // to that function.
+    //
+    // AI assistance: OpenAI Codex helped implement and test these bindings.
     template <typename Word>
     class RulesView {
       std::vector<Word>* _rules;
@@ -99,7 +107,7 @@ namespace libsemigroups {
           i += static_cast<Index>(size);
         }
         if (i < 0 || static_cast<size_t>(i) >= size) {
-          throw py::index_error();
+          throw py::index_error("list index out of range");
         }
         return i;
       };
@@ -112,10 +120,14 @@ namespace libsemigroups {
         if (sequence.size() != self.vector().size()) {
           return false;
         }
-        for (size_t i = 0; i < sequence.size(); ++i) {
-          if (self.vector()[i] != sequence[i].cast<Word>()) {
-            return false;
+        try {
+          for (size_t i = 0; i < sequence.size(); ++i) {
+            if (self.vector()[i] != sequence[i].cast<Word>()) {
+              return false;
+            }
           }
+        } catch (py::cast_error const&) {
+          return false;
         }
         return true;
       };
@@ -167,13 +179,25 @@ namespace libsemigroups {
                })
           .def("__setitem__",
                [](View& self, py::slice const& slice, Vector const& words) {
-                 RulesSlice indices(slice, self.vector().size());
+                 auto&      rules = self.vector();
+                 RulesSlice indices(slice, rules.size());
                  if (static_cast<size_t>(indices.length) != words.size()) {
-                   throw std::runtime_error("Left and right hand size of slice "
-                                            "assignment have different sizes!");
+                   if (indices.step == 1) {
+                     // An empty slice can have stop < start, so use length.
+                     auto first = rules.erase(rules.begin() + indices.start,
+                                              rules.begin() + indices.start
+                                                  + indices.length);
+                     rules.insert(first, words.begin(), words.end());
+                     return;
+                   }
+                   throw std::invalid_argument(
+                       fmt::format("attempt to assign sequence of size {} to "
+                                   "extended slice of size {}",
+                                   words.size(),
+                                   indices.length));
                  }
                  for (Index i = 0; i < indices.length; ++i) {
-                   self.vector()[indices.start + i * indices.step] = words[i];
+                   rules[indices.start + i * indices.step] = words[i];
                  }
                })
           .def("__delitem__",
@@ -185,11 +209,8 @@ namespace libsemigroups {
                [](View& self, py::slice const& slice) {
                  auto&      rules = self.vector();
                  RulesSlice indices(slice, rules.size());
+                 // Normalizing an empty reverse slice can overflow the index.
                  if (indices.length == 0) {
-                   return;
-                 }
-                 if (indices.length == 1) {
-                   rules.erase(rules.begin() + indices.start);
                    return;
                  }
                  if (indices.step < 0) {
@@ -202,6 +223,7 @@ namespace libsemigroups {
                  } else {
                    // Delete in descending index order so remaining indices stay
                    // valid.
+                   // TODO use remove_if
                    for (Index i = indices.length; i > 0; --i) {
                      rules.erase(rules.begin() + indices.start
                                  + (i - 1) * indices.step);
@@ -227,13 +249,12 @@ namespace libsemigroups {
           .def(
               "insert",
               [](View& self, Index i, Word const& word) {
-                auto& rules = self.vector();
+                auto&      rules = self.vector();
+                auto const size  = static_cast<Index>(rules.size());
                 if (i < 0) {
-                  i += static_cast<Index>(rules.size());
+                  i += size;
                 }
-                if (i < 0 || static_cast<size_t>(i) > rules.size()) {
-                  throw py::index_error();
-                }
+                i = std::clamp(i, Index{0}, size);
                 rules.insert(rules.begin() + i, word);
               },
               py::arg("i"),
@@ -262,7 +283,7 @@ namespace libsemigroups {
                 auto& rules = self.vector();
                 auto  it    = std::find(rules.begin(), rules.end(), word);
                 if (it == rules.end()) {
-                  throw py::value_error();
+                  throw py::value_error("list.remove(x): x not in list");
                 }
                 rules.erase(it);
               },
@@ -322,23 +343,24 @@ available in the module :any:`libsemigroups_pybind11.presentation`.)pbdoc");
             self.rules = std::move(rules);
           },
           R"pbdoc(
-Mutable view of the rules of the presentation.
+The rules of the presentation.
 
-The view supports indexing, slicing, iteration, comparison, and the methods
-``append``, ``extend``, ``insert``, ``pop``, ``clear``, ``count``, and ``remove``.
-Changes to the view change the presentation. Assigning an iterable to this
-property replaces the rules, and existing views see the replacement. The view
-keeps the presentation alive.
+For technical reasons, the object contained in this property is not really a
+Python list, but some effort has been put into making it behave exactly like a
+Python list in many cases.
 
 Use ``list(p.rules)`` to copy the rules. Slices and concatenations also return
-ordinary Python lists. Views cannot be constructed independently of a
-presentation. Individual words are returned as Python strings or lists;
-changing an integer inside a returned list does not change the presentation.
-Assign a whole word to change a rule.
+ordinary Python lists. Individual words in ``p.rules`` are returned as
+Python strings or lists; if the type of words in the presentation is
+``list[int]``, then changing an integer inside an individual word in
+``p.rules`` does not change the rules in the presentation. Assign a whole
+word to change a rule.
 
 Slice assignment accepts Python lists and other sequences of words. The
-replacement must have the same length as the slice. The view does not provide
-every Python ``list`` method.
+replacement can have a different length when the slice step is ``1`` (the
+default), growing or shrinking the rules as needed. For any other step, the
+replacement must have the same length as the slice. Assigning to an empty slice
+with step ``1`` inserts words at the start of the slice.
 
 The presentation can be checked for validity using
 :any:`throw_if_bad_alphabet_or_rules`.
@@ -355,6 +377,15 @@ The presentation can be checked for validity using
    >>> rules.append("bb")
    >>> p.rules
    ['ab', 'a', 'bb']
+   >>> rules[1:2] = ["a", "ba", "b"]
+   >>> p.rules
+   ['ab', 'a', 'ba', 'b', 'bb']
+   >>> rules[1:4] = []
+   >>> p.rules
+   ['ab', 'bb']
+   >>> rules[1:1] = ["aa", "a"]
+   >>> p.rules
+   ['ab', 'aa', 'a', 'bb']
 )pbdoc");
 
       thing.def(py::init<>(), R"pbdoc(
@@ -2436,7 +2467,7 @@ defined in the alphabet, and that the inverses act as semigroup inverses.
             py::arg("p"),
             py::prepend());
     }  // bind_inverse_present
-  }    // namespace
+  }  // namespace
 
   void init_present(py::module& m) {
     bind_rules_view<word_type>(m, "RulesWord");
