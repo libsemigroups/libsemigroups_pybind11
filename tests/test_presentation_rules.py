@@ -10,6 +10,7 @@
 """Mutable presentation rules and their interaction with ordinary vector bindings."""
 
 import gc
+import sys
 
 import pytest
 
@@ -65,6 +66,28 @@ def test_rules_access_and_comparison(p, words):
     assert repr(rules) == repr(words)
 
 
+@pytest.mark.parametrize("other_word", ["a", [0, 1], None, object(), 0, [object()]])
+def test_rules_comparison_with_incompatible_elements(p, words, other_word):
+    p.rules = words[:1]
+    other = [other_word]
+    assert (p.rules == other) == (words[:1] == other)
+    assert (other == p.rules) == (other == words[:1])
+    assert (p.rules != other) == (words[:1] != other)
+    assert (other != p.rules) == (other != words[:1])
+    assert p.rules == words[:1]
+
+
+def test_rules_comparison_with_incompatible_views(presentation_type):
+    strings = presentation_type("ab")
+    strings.rules = ["a"]
+    integers = presentation_type([0, 1])
+    integers.rules = [[0, 1]]
+    assert not strings.rules == integers.rules  # noqa: SIM201 - exercise __eq__
+    assert not integers.rules == strings.rules  # noqa: SIM201 - exercise __eq__
+    assert strings.rules != integers.rules
+    assert integers.rules != strings.rules
+
+
 def test_rules_mutation(p, words):
     rules = p.rules
     rules[0] = words[1]
@@ -97,6 +120,20 @@ def test_rules_mutation(p, words):
     rules.clear()
     assert not rules
     assert p.rules == []
+
+
+@pytest.mark.parametrize(
+    "index", [-sys.maxsize - 1, -100, -5, -4, -1, 0, 1, 4, 5, 100, sys.maxsize]
+)
+@pytest.mark.parametrize("initially_empty", [False, True])
+def test_rules_insert_matches_lists(p, words, index, initially_empty):
+    expected = [] if initially_empty else list(words)
+    p.rules = expected
+    rules = p.rules
+    expected.insert(index, words[2])
+    assert rules.insert(index, words[2]) is None
+    assert rules == expected
+    assert p.rules == expected
 
 
 def test_rules_extend(p, words):
@@ -135,8 +172,8 @@ def test_rules_slice_assignment_and_deletion(p, words):
     assert p.rules == [words[0], words[0], words[1], words[3]]
     rules[::-2] = (words[2], words[3])
     assert p.rules == [words[0], words[3], words[1], words[2]]
-    with pytest.raises(RuntimeError, match="different sizes"):
-        rules[1:2] = []
+    with pytest.raises(ValueError, match="sequence of size 0 to extended slice of size 2"):
+        rules[1::2] = []
     with pytest.raises(TypeError):
         rules[1:2] = [object()]
     del rules[1::2]
@@ -154,6 +191,64 @@ def test_rules_slice_assignment_from_an_alias(p, words):
     "selection",
     [
         slice(None),
+        slice(1, 3),
+        slice(1, 3, 1),
+        slice(2, 2),
+        slice(3, 1),
+        slice(-3, -1),
+        slice(-100, 100),
+        slice(100, 200),
+        slice(-100, -50),
+    ],
+)
+@pytest.mark.parametrize("replacement_size", [0, 1, 6])
+@pytest.mark.parametrize("initially_empty", [False, True])
+def test_rules_slice_assignment_resizes_like_lists(
+    p, words, selection, replacement_size, initially_empty
+):
+    expected = [] if initially_empty else list(words)
+    p.rules = expected
+    rules = p.rules
+    replacement = (words * 2)[:replacement_size]
+    expected[selection] = replacement
+    rules[selection] = replacement
+    assert rules == expected
+    assert p.rules == expected
+
+
+@pytest.mark.parametrize("selection", [slice(1, 2), slice(2, 2), slice(3, 1)])
+@pytest.mark.parametrize("replacement_type", [list, tuple])
+def test_rules_slice_assignment_resizes_from_a_sequence(p, words, selection, replacement_type):
+    expected = list(words)
+    expected[selection] = expected
+    rules = p.rules
+    rules[selection] = replacement_type(p.rules)
+    assert rules == expected
+    assert p.rules == expected
+
+
+def test_rules_slice_assignment_resizes_from_a_view(p, words):
+    expected = list(words)
+    expected[1:2] = expected
+    p.rules[1:2] = p.rules
+    assert p.rules == expected
+
+
+@pytest.mark.parametrize("selection", [slice(None, None, 2), slice(None, None, -1), slice(2, 2, 2)])
+def test_rules_extended_slice_assignment_rejects_size_mismatch(p, words, selection):
+    expected = list(words)
+    with pytest.raises(ValueError) as list_error:
+        expected[selection] = words[:1]
+    with pytest.raises(ValueError) as rules_error:
+        p.rules[selection] = words[:1]
+    assert str(rules_error.value) == str(list_error.value)
+    assert p.rules == expected
+
+
+@pytest.mark.parametrize(
+    "selection",
+    [
+        slice(None),
         slice(None, None, -1),
         slice(1, None, 2),
         slice(None, None, -2),
@@ -164,6 +259,7 @@ def test_rules_slice_assignment_from_an_alias(p, words):
         slice(100, -100, -3),
         slice(None, None, 10**100),
         slice(None, None, -(10**100)),
+        slice(3, 3, -(10**100)),
     ],
 )
 def test_rules_slices_match_lists(p, words, selection):
@@ -264,13 +360,18 @@ def test_rules_invalid_values(p, words):
         p.rules = [object()]
     with pytest.raises(TypeError):
         rules[:2] = [words[1], object()]
+    with pytest.raises(TypeError):
+        rules[:1] = [words[1], object()]
     with pytest.raises(RuntimeError):
         rules.extend([words[0], object()])
     assert p.rules == words
-    with pytest.raises(IndexError):
-        rules.insert(5, words[0])
+    with pytest.raises(TypeError):
+        rules.insert(5, object())
     with pytest.raises(ValueError):
         _ = rules[::0]
+    with pytest.raises(ValueError):
+        rules[::0] = words
+    assert p.rules == words
     rules.clear()
     with pytest.raises(IndexError):
         rules.pop()
