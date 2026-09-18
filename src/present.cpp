@@ -20,7 +20,7 @@
 #include <cstddef>  // for size_t
 
 // C++ stl headers....
-#include <algorithm>  // for clamp, count, find, reverse
+#include <algorithm>  // for clamp, count, find, remove_if, reverse
 #include <limits>     // for numeric_limits
 #include <memory>     // for make_unique
 #include <stdexcept>  // for invalid_argument
@@ -256,13 +256,18 @@ namespace libsemigroups {
                    rules.erase(rules.begin() + indices.start,
                                rules.begin() + indices.start + indices.length);
                  } else {
-                   // Delete in descending index order so remaining indices stay
-                   // valid.
-                   // TODO use remove_if
-                   for (Index i = indices.length; i > 0; --i) {
-                     rules.erase(rules.begin() + indices.start
-                                 + (i - 1) * indices.step);
-                   }
+                   // Compact the sliced range once, then erase the gap and
+                   // shift the suffix.
+                   auto const first = rules.begin() + indices.start;
+                   auto const last
+                       = first + (indices.length - 1) * indices.step + 1;
+                   Index i = 0;
+                   rules.erase(std::remove_if(first,
+                                              last,
+                                              [&](Word const&) {
+                                                return i++ % indices.step == 0;
+                                              }),
+                               last);
                  }
                })
           .def(
