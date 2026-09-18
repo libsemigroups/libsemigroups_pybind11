@@ -497,6 +497,31 @@ def test_rules_slices_match_lists(p, words, selection):
     assert p.rules == expected
 
 
+@pytest.mark.parametrize(
+    "selection",
+    [
+        slice(None, None, 2),
+        slice(None, None, -2),
+        slice(2, 13, 3),
+        slice(13, 2, -3),
+        slice(3, 12, 2),
+        slice(11, 2, -2),
+        slice(-2, None, -3),
+        slice(2, 3, 5),
+        slice(2, None, 10**100),
+        slice(17, None, -(10**100)),
+    ],
+)
+def test_rules_stepped_deletion_preserves_prefix_and_suffix(p, words, selection):
+    expected = [words[0] * i for i in range(20)]
+    p.rules = expected
+    rules = p.rules
+    del expected[selection]
+    del rules[selection]
+    assert rules == expected
+    assert p.rules == expected
+
+
 def test_rules_concatenation(p, words):
     rules = p.rules
     for other in (words, tuple(words), p.rules):
