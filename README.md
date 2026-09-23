@@ -199,7 +199,3 @@ We would like to thank the authors and contributors of these projects!
 [issue tracker]: https://github.com/libsemigroups/libsemigroups_pybind11/issues
 [Graphviz]: https://www.graphviz.org
 [pybind11]: https://pybind11.readthedocs.io/en/stable/#
-
-```
-
-```
