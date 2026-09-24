@@ -91,6 +91,89 @@ the output. If you followed the guidance output by the script, the class will
 now be accessible in ``_libsemigroups_pybind11``. You must now check the
 contents of that file adheres to the styles set out in this guide.
 
+Generating type stubs
+---------------------
+
+``etc/generate-stubs.py`` generates draft ``.pyi`` files from the importable
+package. Use an environment containing the built extension and its Python
+dependencies. The module argument is required, and the stub is printed to
+standard output by default. For example, to generate the ``action`` module stub::
+
+    uv run --no-sync --with pybind11-stubgen==2.5.5 python etc/generate-stubs.py libsemigroups_pybind11.action
+
+Use ``--output-dir`` to write files under a directory. Package targets include
+discovered submodules and require directory output when producing multiple stubs::
+
+    uv run --no-sync --with pybind11-stubgen==2.5.5 python etc/generate-stubs.py libsemigroups_pybind11.action --output-dir _generate/stubs
+    uv run --no-sync --with pybind11-stubgen==2.5.5 python etc/generate-stubs.py libsemigroups_pybind11 --output-dir _generate/stubs
+
+Diagnostics and generation summaries go to standard error, leaving standard
+output suitable for redirection or piping. A failed generation emits no stub
+text. Targets producing multiple stubs are rejected when using standard output;
+select an individual module or use ``--output-dir`` instead. ``--stdout`` can
+explicitly select the default behavior and cannot be combined with
+``--output-dir``. ``--force`` requires ``--output-dir``.
+
+Classes defined directly in the compiled extension, such as ``BMat8``, require
+the extension module as the target. This target defaults to ``--public-only``,
+which generates a smaller stub covering the public native classes::
+
+    uv run --no-sync --with pybind11-stubgen==2.5.5 python etc/generate-stubs.py _libsemigroups_pybind11
+
+Add ``--output-dir _generate/stubs`` to save this as
+``_generate/stubs/_libsemigroups_pybind11.pyi``. Selection follows
+``__all__`` in ``libsemigroups_pybind11`` and its publicly exported submodules
+(or non-private names for modules without ``__all__``). Classes are matched by
+object identity, so native classes exported under aliases are included. The
+selection adapts to newly exported classes and the active build's optional
+features, without maintaining a separate list of class names.
+
+Only selected classes and their typing dependencies are inspected. Required
+base classes and types referenced in their signatures are included automatically
+and reported. Python wrappers such as ``Alphabet`` still need their own module
+stubs; their internal specializations, such as ``AlphabetWord``, are omitted
+unless a retained signature requires them.
+
+This mode does not generate standalone helper functions or constants except
+where needed as dependencies. It marks the extension stub as partial with a
+module-level ``__getattr__`` returning ``_typeshed.Incomplete``, so omitted names
+remain untyped. Use the full-extension mode when those declarations are needed::
+
+    uv run --no-sync --with pybind11-stubgen==2.5.5 python etc/generate-stubs.py _libsemigroups_pybind11 --no-public-only --output-dir _generate/stubs
+
+Both extension modes use the same filename with directory output; ``--force``
+is required to replace a previous output. Other module targets retain their
+normal discovery behavior; ``--public-only`` requires the extension target.
+The ``libsemigroups_pybind11.bmat8`` target generates the helper module instead.
+Invalid C++ base-class names are reported
+and replaced by ``typing.Any`` in drafts. Parameters named after Python keywords
+are renamed and marked positional-only; ``--strict`` rejects these cases.
+
+Generation happens in a temporary directory first, so failures during discovery
+or parsing do not overwrite existing stubs. To run without uv, install
+``pybind11-stubgen==2.5.5`` in your development environment and invoke the script
+with that environment's Python interpreter.
+
+Shell redirection can also save a single stub to a chosen filename::
+
+    uv run --no-sync --with pybind11-stubgen==2.5.5 python etc/generate-stubs.py libsemigroups_pybind11.action > action.pyi
+
+The generator combines pybind11-stubgen's runtime discovery with source
+annotations, generic bases, and the project's ``:sig=...:`` docstrings. It also
+accounts for the positional arguments accepted by dynamically copied methods.
+The output needs review: missing annotations, unsupported type spellings, and
+dynamic dispatch can still produce incomplete or inaccurate types. Inherited
+untyped wrappers also limit static checking. Optional build features, such as
+HPCombi, can cause discovery diagnostics. Use ``--strict`` to stop on those
+diagnostics instead of emitting drafts.
+
+No ``py.typed`` marker is added, and existing source stubs are not replaced by
+the default command. Run the generator tests with::
+
+    uv run --no-sync --with pybind11-stubgen==2.5.5 --with mypy==2.3.1 pytest tests/test_generate_stubs.py
+
+AI assistance: OpenAI Codex helped implement, document, and test this generator.
+
 The bindings
 ------------
 

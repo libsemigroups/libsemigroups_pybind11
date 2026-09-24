@@ -9,7 +9,7 @@ contains helper functions for the :any:`Action` class.
 """
 
 from collections.abc import Iterator
-from typing import TypeVar as _TypeVar
+from typing import Generic as _Generic, TypeVar as _TypeVar
 
 from typing_extensions import Self as _Self
 
@@ -56,7 +56,11 @@ from .detail.decorators import copydoc as _copydoc
 ########################################################################
 
 
-class Action(_CxxWrapper):
+_Element = _TypeVar("_Element")
+_Point = _TypeVar("_Point")
+
+
+class Action(_CxxWrapper, _Generic[_Element, _Point]):
     __doc__ = _RightActionPPerm1List.__doc__
 
     Element = _TypeVar("Element")
@@ -159,13 +163,13 @@ class Action(_CxxWrapper):
         for x in seeds:
             self.add_seed(x)
 
-    def __getitem__(self: _Self, i: int) -> Point:
+    def __getitem__(self: _Self, i: int) -> _Point:
         return _to_py(_to_cxx(self)[i])
 
     def __len__(self: _Self) -> int:
         return _to_cxx(self).size()
 
-    def __contains__(self: _Self, pt: Point) -> bool:
+    def __contains__(self: _Self, pt: _Point) -> bool:
         return self.position(pt) != _UNDEFINED
 
     ########################################################################
@@ -173,7 +177,7 @@ class Action(_CxxWrapper):
     ########################################################################
 
     @_copydoc(_RightActionPPerm1PPerm1.generators)
-    def generators(self: _Self) -> Iterator[Element]:
+    def generators(self: _Self) -> Iterator[_Element]:
         # pylint: disable=missing-function-docstring
         return (_to_py(x) for x in _to_cxx(self).generators())
 
@@ -194,7 +198,7 @@ for _type in (
 ########################################################################
 
 
-class RightAction(Action):
+class RightAction(Action[_Element, _Point]):
     """Class representing a right action of a semigroup or monoid on a set.
 
     This page contains the documentation for the class :any:`RightAction`,
@@ -235,7 +239,7 @@ class RightAction(Action):
 ########################################################################
 
 
-class LeftAction(Action):
+class LeftAction(Action[_Element, _Point]):
     """Class representing a left action of a semigroup or monoid on a set.
 
     This page contains the documentation for the class ``LeftAction``, which
