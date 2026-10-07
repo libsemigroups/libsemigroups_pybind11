@@ -243,7 +243,7 @@ partition* of a :any:`Blocks` object *x* is the partition of a subset
    list[list[int]]
 
 :complexity:
-   :math:`O(n)` where :math:`n` is the ``x.degree()``.
+   :math:`O(n)` where :math:`n` is the :any:`Blocks.degree`.
 )pbdoc");
   }  // init_blocks
 
@@ -588,7 +588,7 @@ partition* of a bipartition *f* is the partition of a subset :math:`P` of
    list[list[int]]
 
 :complexity:
-   :math:`O(n)` where :math:`n` is the degree().
+   :math:`O(n)` where :math:`n` is the :any:`Bipartition.degree`.
 )pbdoc");
 
     m.def(
