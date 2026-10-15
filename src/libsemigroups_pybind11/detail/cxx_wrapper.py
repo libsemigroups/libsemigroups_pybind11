@@ -203,7 +203,7 @@ def wrap_cxx_free_fn(cxx_free_fn: Pybind11Type) -> Callable:
     return cxx_free_fn_wrapper
 
 
-def copy_cxx_mem_fns(cxx_class: Pybind11Type, py_class: CxxWrapper) -> None:
+def copy_cxx_mem_fns(cxx_class: Pybind11Type, py_class: type[CxxWrapper]) -> None:
     """Copy all the non-special methods of *cxx_class* into methods of *py_class*
     that call the cxx member function on the _cxx_obj.
     """
