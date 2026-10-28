@@ -94,7 +94,7 @@ lint = ["codespell>=2.4.1", "cpplint>=2.0.2", "pylint>=4.0.2", "ruff>=0.14.2"]
 [tool.cibuildwheel]
 build-frontend  = "build[uv]"
 build-verbosity = 1
-skip            = "cp314t*"
+skip            = "cp314t* cp315*"
 test-command    = "pytest {project}/tests"
 test-extras     = ["test"]
 

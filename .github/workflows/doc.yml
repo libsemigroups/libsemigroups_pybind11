@@ -30,9 +30,9 @@ jobs:
       LD_LIBRARY_PATH: "/usr/local/lib"
     steps:
       # Setup environment
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Set up Python . . .
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version-file: "pyproject.toml"
       - name: Install uv . . .
