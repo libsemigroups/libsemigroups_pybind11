@@ -46,7 +46,7 @@ packaging==25.0
     #   sphinx
 pkgconfig==1.5.5
     # via libsemigroups_pybind11 (pyproject.toml::build-system.requires)
-pluggy==1.6.0
+pluggy==1.7.0
     # via pytest
 pybind11==3.0.1
     # via libsemigroups_pybind11 (pyproject.toml::build-system.requires)
