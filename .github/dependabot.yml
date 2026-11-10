@@ -17,3 +17,8 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    ignore:
+      # sphinx 8.2.3 requires docutils<0.22; remove this once sphinx is
+      # bumped to a version that supports newer docutils.
+      - dependency-name: "docutils"
+        versions: [">=0.22"]
