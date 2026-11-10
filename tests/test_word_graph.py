@@ -75,12 +75,14 @@ def test_002():
         w.targets(9000)
     assert next(w.nodes()) == 0
     assert w.next_label_and_target(0, 0) == (0, 1)
+    assert w.number_of_nodes() == 330
+    assert w.number_of_edges() == 330
     w.reserve(400, 400)
     assert w.number_of_nodes() == 330
-    assert w.number_of_edges() == 659
+    assert w.number_of_edges() == 330
     assert w.out_degree() == 1
     assert list(w.nodes()) == list(range(330))
-    assert w.number_of_edges() == 659
+    assert w.number_of_edges() == 330
 
 
 def test_adjacency_matrix(word_graphs):
