@@ -53,6 +53,15 @@ jobs:
           ./autogen.sh && ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" && sudo make install -j4
           ccache -s
 
+      # requirements.txt is used by the downstream job in libsemigroups' CI,
+      # and Dependabot can update its pins without checking they are
+      # mutually compatible, so check that it can still be installed. This
+      # uses a separate venv so the rest of this job is unaffected.
+      - name: "Check requirements.txt can be installed . . ."
+        run: |
+          python -m venv "$RUNNER_TEMP/requirements-venv"
+          "$RUNNER_TEMP/requirements-venv/bin/python" -m pip install -r requirements.txt
+
       # Build libsemigroups_pybind11
       - name: "Install libsemigroups_pybind11 . . ."
         run: pip install ".[test,docs]"
