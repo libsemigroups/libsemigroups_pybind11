@@ -1446,6 +1446,31 @@ expression, and has the following behaviour:
 
 )pbdoc");
 
+    m.def("words_compress", 
+        &words::compress,
+        py::arg("w"),
+        R"pbdoc(
+Non-literal version of operator""_c.
+
+:param w: the string to compress. 
+:type w: str
+This function returns the same value as operator""_c and is included to allow things like:
+
+.. code-block::
+
+ #include  <cassert>
+ #include  <string>
+
+ :any:`str`  w  =  "baabababababa" ;
+ :any:`str`  compressed  =  :any:`compress` (w);
+ assert(compressed  ==  "ba(ab)^5a" );
+
+
+:returns:  the compressed string.
+
+:rtype: str
+)pbdoc");
+
     m.def("words_human_readable_index",
           &words::human_readable_index,
           py::arg("c"),

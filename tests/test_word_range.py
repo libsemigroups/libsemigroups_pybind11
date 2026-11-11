@@ -22,7 +22,7 @@ from libsemigroups_pybind11 import (
     random_strings,
     random_word,
 )
-from libsemigroups_pybind11.words import human_readable_index, human_readable_letter, parse
+from libsemigroups_pybind11.words import human_readable_index, human_readable_letter, parse, compress
 
 
 def test_number_of_words():
@@ -244,6 +244,25 @@ def test_parse():
 
     assert parse("           ") == ""
 
+def test_compress():
+    assert compress("") == ""
+    assert compress("a") == "a"
+    assert compress("bbbbbbbbbb") == "b^10"
+    assert compress("abcabbca") == "abcab^2ca"
+    assert compress("banana") == "b(an)^2a"
+    assert compress("cdababef") == "cd(ab)^2ef"
+
+    assert compress("abc") == "abc"
+    assert compress("baabababababa") == "ba(ab)^5a"
+    assert compress("xxyxyxyzz") == "x(xy)^3z^2"
+    assert compress("cdababababababababefef") == "cd(ab)^8(ef)^2"
+    assert compress("aaaaaaaaaaaaaaaacddddddddddababababababababefef") == "a^16cd^10(ab)^8(ef)^2"
+    assert compress("baXaXaXx") == "b(aX)^3x"
+
+    assert compress("abbyabby") == "(ab^2y)^2"
+    assert compress("cabbaabbaccabbaabbac") == "(c(ab^2a)^2c)^2"
+
+    assert compress("abaababaabaababaababaabaababaaba") == "((aba^2b)^2a^2b)^2(aba)^2"
 
 def test_ToWord_1():
     to_word = ToWord()
