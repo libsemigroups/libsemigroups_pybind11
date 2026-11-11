@@ -42,6 +42,7 @@ clean-doc:
 clean: clean-doc
 	find . -type d -name __pycache__ -prune -exec rm -rf {} \;
 	rm -rf libsemigroups_pybind11.egg-info
+	rm -f src/_libsemigroups_pybind11.*.so
 	rm -f *.whl
 	rm -rf build/
 
