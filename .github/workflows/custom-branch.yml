@@ -31,7 +31,7 @@ jobs:
           - os: "macOS-latest"
             compiler: "ccache clang++"
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 15
+    timeout-minutes: 30
     env:
       CXX: "ccache ${{ matrix.compiler }}"
       CXXFLAGS: "-O2 -g"

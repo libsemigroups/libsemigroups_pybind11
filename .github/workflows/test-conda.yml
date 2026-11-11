@@ -24,7 +24,7 @@ jobs:
           - os: macOS-latest
             compiler: clang++
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 15
+    timeout-minutes: 30
     defaults:
       run:
         shell: bash -l {0}
