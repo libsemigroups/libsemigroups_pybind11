@@ -1446,10 +1446,10 @@ expression, and has the following behaviour:
 
 )pbdoc");
 
-    m.def("words_compress", 
-        &words::compress,
-        py::arg("w"),
-        R"pbdoc(
+    m.def("words_compress",
+          &words::compress,
+          py::arg("w"),
+          R"pbdoc(
 Non-literal version of operator""_c.
 
 :param w: the string to compress. 
