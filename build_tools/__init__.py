@@ -12,4 +12,4 @@ def minimum_libsemigroups_version():
     libsemigroups_pybind11.
     """
     # TODO update to 3.7
-    return "3.6.1"
+    return "3.6.2"
