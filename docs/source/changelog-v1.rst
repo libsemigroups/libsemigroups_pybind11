@@ -8,6 +8,12 @@
 Changelog - version 1
 =====================
 
+v1.4.5 (released 12/11/2026)
+----------------------------
+
+This release contains a small number of improvements and bugfixes, including
+bumping the required version of libsemigroups_ to the latest release (v3.6.2).
+
 v1.4.4 (released 08/05/2026)
 ----------------------------
 
