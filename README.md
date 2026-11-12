@@ -150,10 +150,10 @@ uv pip install .
 To build `libsemigroups_pybind11` from a release archive:
 
 ```console
-curl -L -O https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-1.4.4.tar.gz
-tar -xf libsemigroups_pybind11-1.4.4.tar.gz
-rm -f libsemigroups_pybind11-1.4.4.tar.gz
-cd libsemigroups_pybind11-1.4.4
+curl -L -O https://github.com/libsemigroups/libsemigroups_pybind11/releases/latest/download/libsemigroups_pybind11-1.4.5.tar.gz
+tar -xf libsemigroups_pybind11-1.4.5.tar.gz
+rm -f libsemigroups_pybind11-1.4.5.tar.gz
+cd libsemigroups_pybind11-1.4.5
 pip install .
 ```
 
