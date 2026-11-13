@@ -1,11 +1,20 @@
 name: Run tests (pip)
-on: [pull_request, workflow_dispatch]
+on:
+  # This workflow is called by ci.yml and custom-branch.yml, which specify the
+  # branch of libsemigroups to build against.
+  workflow_call:
+    inputs:
+      libsemigroups-branch:
+        description: "The branch (or tag) of libsemigroups to build against"
+        required: true
+        type: string
+      libsemigroups-repo:
+        description: "The GitHub repository (owner/name) to clone libsemigroups from"
+        required: false
+        type: string
+        default: libsemigroups/libsemigroups
 permissions:
   contents: read
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   run-tests:
@@ -47,8 +56,11 @@ jobs:
           update_packager_index: false
           install_ccache: true
       - name: "Install libsemigroups . . ."
+        env:
+          LIBSEMIGROUPS_BRANCH: ${{ inputs.libsemigroups-branch }}
+          LIBSEMIGROUPS_REPO: ${{ inputs.libsemigroups-repo }}
         run: |
-          git clone --depth 1 --branch main https://github.com/libsemigroups/libsemigroups.git
+          git clone --depth 1 --branch "$LIBSEMIGROUPS_BRANCH" "https://github.com/$LIBSEMIGROUPS_REPO.git" libsemigroups
           cd libsemigroups
           ./autogen.sh && ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" && sudo make install -j4
           ccache -s

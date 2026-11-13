@@ -1,0 +1,40 @@
+name: CI
+on: [pull_request, workflow_dispatch]
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: Run tests (GitHub libsemigroups)
+    uses: ./.github/workflows/tests.yml
+    # The libsemigroups branch that this branch of libsemigroups_pybind11 is
+    # built and tested against, used by every job below via the YAML anchor.
+    # On main this is libsemigroups' main; on a stable-X.Y branch it is the
+    # corresponding stable branch of libsemigroups (for example, stable-1.4 of
+    # libsemigroups_pybind11 uses stable-3.6 of libsemigroups).
+    with: &libsemigroups
+      libsemigroups-branch: main
+
+  pip:
+    name: Run tests (pip)
+    uses: ./.github/workflows/pip.yml
+    with: *libsemigroups
+
+  config-options:
+    name: Config options
+    uses: ./.github/workflows/config-options.yml
+    with: *libsemigroups
+
+  doc:
+    name: Check documentation builds
+    uses: ./.github/workflows/doc.yml
+    with: *libsemigroups
+
+  lint:
+    name: Lint
+    uses: ./.github/workflows/lint.yml
+    with: *libsemigroups
