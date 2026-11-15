@@ -16,8 +16,12 @@ libsemigroups_.
 If you intend to develop both libsemigroups_ and libsemigroups_pybind11_,
 it is recommended to build libsemigroups_ from the sources. Furthermore, it is
 recommended to install libsemigroups_ without ``hpcombi``. Then, with
-libsemigroups_ installed, the Python bindings can be ``pip`` installed. This
-may require the environment variable ``$PKG_CONFIG_PATH`` to be edited.
+libsemigroups_ installed, the Python bindings can be installed using either
+``pip`` or ``uv``. This may require the environment variable
+``$PKG_CONFIG_PATH`` or ``$LD_LIBRARY_PATH`` to be edited.
+
+Building with ``pip``
+~~~~~~~~~~~~~~~~~~~~~
 
 To create an environment with, ``pip``, correct environment variables, and some
 other helpful tools:
@@ -69,6 +73,34 @@ directory:
 .. code-block:: console
 
     CC="ccache gcc" CXX="ccache g++"  pip install .
+
+Building with ``uv``
+~~~~~~~~~~~~~~~~~~~~
+
+With a version of libsemigroups_ installed as explained above, a development
+environment can be created with ``uv`` with the following command:
+
+.. code-block:: console
+
+    uv sync --all-extras
+
+This creates a virtual environment that contains an editable install of
+libsemigroups_pybind11_, all of the packages required by
+libsemigroups_pybind11_, the packages needed to build the docs, run the
+tests, lint the project, and some other useful packages for developers. With
+this, tools can be used either through ``uv``'s interface:
+
+.. code-block:: console
+
+    uv run pytest
+
+or by activating the virtual environment and running the tools natively:
+
+.. code-block:: console
+
+    source .venv/bin/activate
+    pytest
+
 
 Building the skeleton of a class
 --------------------------------

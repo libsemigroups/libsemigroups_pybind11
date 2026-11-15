@@ -25,12 +25,12 @@ authors = [
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
     "Intended Audience :: Science/Research",
     "Topic :: Scientific/Engineering :: Mathematics",
     "Natural Language :: English",
@@ -94,7 +94,8 @@ lint = ["codespell>=2.4.1", "cpplint>=2.0.2", "pylint>=4.0.2", "ruff>=0.14.2"]
 [tool.cibuildwheel]
 build-frontend  = "build[uv]"
 build-verbosity = 1
-skip            = "cp314t*"
+# Disable free-threading builds on all platforms
+skip = "cp3??t-*"
 test-command    = "pytest {project}/tests"
 test-extras     = ["test"]
 
