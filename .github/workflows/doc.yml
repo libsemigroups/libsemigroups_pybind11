@@ -1,7 +1,7 @@
 name: Check documentation builds
 on:
-  # This workflow is called by ci.yml and custom-branch.yml, which specify the
-  # branch of libsemigroups to build against.
+  # This workflow is called by ci.yml which specifies the branch of
+  # libsemigroups to build against.
   workflow_call:
     inputs:
       libsemigroups-branch:
