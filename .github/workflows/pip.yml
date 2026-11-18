@@ -57,11 +57,8 @@ jobs:
           update_packager_index: false
           install_ccache: true
       - name: "Install libsemigroups . . ."
-        env:
-          LIBSEMIGROUPS_BRANCH: ${{ inputs.libsemigroups-branch }}
-          LIBSEMIGROUPS_REPO: ${{ inputs.libsemigroups-repo }}
         run: |
-          git clone --depth 1 --branch "$LIBSEMIGROUPS_BRANCH" "https://github.com/$LIBSEMIGROUPS_REPO.git" libsemigroups
+          git clone --depth 1 --branch "${{ inputs.libsemigroups-branch }}" "https://github.com/${{ inputs.libsemigroups-repo }}.git" libsemigroups
           cd libsemigroups
           ./autogen.sh && ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" && sudo make install -j4
           ccache -s
