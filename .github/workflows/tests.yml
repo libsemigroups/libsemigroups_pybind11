@@ -1,12 +1,13 @@
 name: Run tests (GitHub libsemigroups)
 on:
   # This workflow is called by ci.yml, which specify the branch of libsemigroups to build against.
-  workflow_call: 
+  workflow_call:
     inputs: &inputs
       libsemigroups-branch:
         description: "The branch (or tag) of libsemigroups to build against"
-        required: true
+        required: false
         type: string
+        default: main
       libsemigroups-repo:
         description: "The GitHub repository (owner/name) to clone libsemigroups from"
         required: false

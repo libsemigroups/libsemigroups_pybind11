@@ -6,8 +6,9 @@ on:
     inputs:
       libsemigroups-branch:
         description: "The branch (or tag) of libsemigroups to build against"
-        required: true
+        required: false
         type: string
+        default: main
       libsemigroups-repo:
         description: "The GitHub repository (owner/name) to clone libsemigroups from"
         required: false
