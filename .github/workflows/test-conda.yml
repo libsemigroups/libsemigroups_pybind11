@@ -39,8 +39,9 @@ jobs:
         with:
           environment-name: libsemigroups
           cache-environment: false
+          # Keep the Python version in sync with .python-version
           create-args: >-
-            python
+            python=3.14
             libsemigroups
       - name: Install uv . . .
         uses: astral-sh/setup-uv@v7
@@ -55,6 +56,9 @@ jobs:
         run: |
           echo "PKG_CONFIG_PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/lib/pkgconfig:$MAMBA_ROOT_PREFIX/envs/libsemigroups/share/pkgconfig:/usr/local/lib/pkgconfig" >> $GITHUB_ENV
           echo "PATH=$MAMBA_ROOT_PREFIX/envs/libsemigroups/bin:$PATH" >> $GITHUB_ENV
+          # Make uv use the conda Python, which can find the conda libsemigroups
+          # at runtime, rather than any other Python on the runner.
+          echo "UV_PYTHON=$MAMBA_ROOT_PREFIX/envs/libsemigroups/bin/python" >> $GITHUB_ENV
       - name: Check Python version . . .
         run: python --version
 
