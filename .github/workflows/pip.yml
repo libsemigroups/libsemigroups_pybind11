@@ -1,9 +1,21 @@
 name: Run tests (pip)
-on: [pull_request, workflow_dispatch]
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+on:
+  # This workflow is called by ci.yml which specifies the branch of
+  # libsemigroups to build against.
+  workflow_call:
+    inputs:
+      libsemigroups-branch:
+        description: "The branch (or tag) of libsemigroups to build against"
+        required: false
+        type: string
+        default: main
+      libsemigroups-repo:
+        description: "The GitHub repository (owner/name) to clone libsemigroups from"
+        required: false
+        type: string
+        default: libsemigroups/libsemigroups
+permissions:
+  contents: read
 
 jobs:
   run-tests:
@@ -18,7 +30,7 @@ jobs:
           - os: macOS-latest
             compiler: clang++
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 15
+    timeout-minutes: 30
     defaults:
       run:
         shell: bash -l {0}
@@ -46,10 +58,19 @@ jobs:
           install_ccache: true
       - name: "Install libsemigroups . . ."
         run: |
-          git clone --depth 1 --branch main https://github.com/libsemigroups/libsemigroups.git
+          git clone --depth 1 --branch "${{ inputs.libsemigroups-branch }}" "https://github.com/${{ inputs.libsemigroups-repo }}.git" libsemigroups
           cd libsemigroups
           ./autogen.sh && ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" && sudo make install -j4
           ccache -s
+
+      # requirements.txt is used by the downstream job in libsemigroups' CI,
+      # and Dependabot can update its pins without checking they are
+      # mutually compatible, so check that it can still be installed. This
+      # uses a separate venv so the rest of this job is unaffected.
+      - name: "Check requirements.txt can be installed . . ."
+        run: |
+          python -m venv "$RUNNER_TEMP/requirements-venv"
+          "$RUNNER_TEMP/requirements-venv/bin/python" -m pip install -r requirements.txt
 
       # Build libsemigroups_pybind11
       - name: "Install libsemigroups_pybind11 . . ."

@@ -1,9 +1,21 @@
 name: Lint
-on: [pull_request, workflow_dispatch]
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+on:
+  # This workflow is called by ci.yml which specifies the branch of
+  # libsemigroups to build against.
+  workflow_call:
+    inputs:
+      libsemigroups-branch:
+        description: "The branch (or tag) of libsemigroups to build against"
+        required: false
+        type: string
+        default: main
+      libsemigroups-repo:
+        description: "The GitHub repository (owner/name) to clone libsemigroups from"
+        required: false
+        type: string
+        default: libsemigroups/libsemigroups
+permissions:
+  contents: read
 
 jobs:
   lint:
@@ -17,7 +29,7 @@ jobs:
           - os: macOS-latest
             compiler: clang++
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 15
+    timeout-minutes: 30
     defaults:
       run:
         shell: bash -l {0}
@@ -45,8 +57,8 @@ jobs:
       # Lint with ruff and cpplint
       - name: "Lint with ruff . . ."
         run: uv run ruff check
-      - name: "Check ruff formatting . . ."
-        run: uv run ruff format --diff
+      - name: "Check Ruff formatting . . ."
+        run: uv run ruff format --check --diff
       - name: "Lint with cpplint . . ."
         run: uv run cpplint src/*.hpp src/*.cpp
 
@@ -61,7 +73,7 @@ jobs:
           install_ccache: true
       - name: "Install libsemigroups . . ."
         run: |
-          git clone --depth 1 --branch main https://github.com/libsemigroups/libsemigroups.git
+          git clone --depth 1 --branch "${{ inputs.libsemigroups-branch }}" "https://github.com/${{ inputs.libsemigroups-repo }}.git" libsemigroups
           cd libsemigroups
           ./autogen.sh && ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" && sudo make install -j4
           ccache -s
@@ -70,7 +82,7 @@ jobs:
       - name: "Install libsemigroups_pybind11 . . ."
         run: uv sync --verbose --locked --all-extras --no-dev --group lint
 
-      # Lint with ruff and cpplint
+      # Pylint requires the built extension
       - name: "Lint with pylint . . ."
         run: uv run pylint $PYTHON_FILES
   clang-format:
