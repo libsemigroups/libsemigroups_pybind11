@@ -1,11 +1,21 @@
 name: Check documentation builds
-on: [pull_request, workflow_dispatch]
+on:
+  # This workflow is called by ci.yml which specifies the branch of
+  # libsemigroups to build against.
+  workflow_call:
+    inputs:
+      libsemigroups-branch:
+        description: "The branch (or tag) of libsemigroups to build against"
+        required: false
+        type: string
+        default: main
+      libsemigroups-repo:
+        description: "The GitHub repository (owner/name) to clone libsemigroups from"
+        required: false
+        type: string
+        default: libsemigroups/libsemigroups
 permissions:
   contents: read
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   check-doc:
@@ -51,7 +61,7 @@ jobs:
           install_ccache: true
       - name: "Install libsemigroups . . ."
         run: |
-          git clone --depth 1 --branch main https://github.com/libsemigroups/libsemigroups.git
+          git clone --depth 1 --branch "${{ inputs.libsemigroups-branch }}" "https://github.com/${{ inputs.libsemigroups-repo }}.git" libsemigroups
           cd libsemigroups
           ./autogen.sh && ./configure CXX="$CXX" CXXFLAGS="$CXXFLAGS" && sudo make install -j4
           ccache -s
