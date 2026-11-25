@@ -8,27 +8,61 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  libsemigroups-branch:
+    name: Compute minimum libsemigroups version
+    runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.minimum-version.outputs.branch }}
+    steps:
+      - uses: actions/checkout@v6
+      - id: minimum-version
+        name: Extracting minimum version . . .
+        run: |
+          if [[ "${{ github.event_name != 'workflow_dispatch' && startsWith(github.head_ref, 'rc-v') }}" = "true" ]]; then
+            # This is not technically a branch, rather a tag, but git can still
+            # clone libsemigroups as if it were a branch. For example
+            # git clone --branch v3.6.3 ...
+            # works
+            branch="v$(python3 -c 'from build_tools import minimum_libsemigroups_version; print(minimum_libsemigroups_version())')"
+          else
+            branch="main"
+          fi
+          echo "branch=$branch" >> "$GITHUB_OUTPUT"
+
   tests:
     name: Run tests (GitHub libsemigroups)
     uses: ./.github/workflows/tests.yml
+    needs: libsemigroups-branch
+    with:
+      libsemigroups-branch: ${{ needs.libsemigroups-branch.outputs.branch }}
     # The libsemigroups branch that this branch of libsemigroups_pybind11 is
-    # built and tested against, used by every job below via the YAML anchor.
-    # On main this is libsemigroups' main; on a stable-X.Y branch it is the
-    # corresponding stable branch of libsemigroups (for example, stable-1.4 of
-    # libsemigroups_pybind11 uses stable-3.6 of libsemigroups).
+    # built and tested against. For rc-* PRs, use the stable branch derived
+    # from the minimum required version; otherwise use the default main branch.
 
   pip:
     name: Run tests (pip)
     uses: ./.github/workflows/pip.yml
+    needs: libsemigroups-branch
+    with:
+      libsemigroups-branch: ${{ needs.libsemigroups-branch.outputs.branch }}
 
   config-options:
     name: Config options
     uses: ./.github/workflows/config-options.yml
+    needs: libsemigroups-branch
+    with:
+      libsemigroups-branch: ${{ needs.libsemigroups-branch.outputs.branch }}
 
   doc:
     name: Check documentation builds
     uses: ./.github/workflows/doc.yml
+    needs: libsemigroups-branch
+    with:
+      libsemigroups-branch: ${{ needs.libsemigroups-branch.outputs.branch }}
 
   lint:
     name: Lint
     uses: ./.github/workflows/lint.yml
+    needs: libsemigroups-branch
+    with:
+      libsemigroups-branch: ${{ needs.libsemigroups-branch.outputs.branch }}
