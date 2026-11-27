@@ -14,6 +14,7 @@ from _libsemigroups_pybind11 import (  # pylint: disable=redefined-builtin
     words_human_readable_letter as human_readable_letter,
     words_parse as parse,
     words_parse_relations as parse_relations,
+    words_compress as compress,
     words_pow as pow,
     words_prod as prod,
 )
@@ -23,6 +24,7 @@ __all__ = [
     "human_readable_letter",
     "parse",
     "parse_relations",
+    "compress",
     "pow",
     "prod",
 ]
