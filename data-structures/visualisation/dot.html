@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Dot class &mdash; libsemigroups_pybind11 1.4.4.dev12+g6a3bd3842 documentation</title>
+  <title>The Dot class &mdash; libsemigroups_pybind11 1.4.5.dev142+g98a0270ff documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=c94ecf42"></script>
+      <script src="../../_static/documentation_options.js?v=126b1dcf"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -148,7 +148,7 @@ file and render it with the <a class="reference external" href="https://www.grap
 <td><p>This function adds a node with name <em>name</em>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Dot.add_subgraph" title="libsemigroups_pybind11.Dot.add_subgraph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dot.add_subgraph</span></code></a>(…)</p></td>
-<td><p>This functions adds the <a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object <em>subgraph</em> as a subgraph of <em>self</em>.</p></td>
+<td><p>This function adds the <a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object <em>subgraph</em> as a subgraph of <em>self</em>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#libsemigroups_pybind11.Dot.attrs" title="libsemigroups_pybind11.Dot.attrs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dot.attrs</span></code></a>(…)</p></td>
 <td><p>Returns a read-only dictionary of the current attributes of the represented graph.</p></td>
@@ -196,9 +196,24 @@ file and render it with the <a class="reference external" href="https://www.grap
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">Dot</span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot" title="Link to this definition"></a></dt>
 <dd><dl class="py function">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Dot.Dot.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.Dot.__init__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.Dot.__init__" title="Link to this definition"></a></dt>
 <dd><p>Default constructor that constructs an empty <a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object with no nodes,
 edges, attributes, or subgraphs.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Dot.Attr">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Attr</span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.Attr" title="Link to this definition"></a></dt>
+<dd><dl class="py function">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Dot.Attr.Dot.Attr.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot.Attr" title="libsemigroups_pybind11.Dot.Attr"><span class="pre">Dot.Attr</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.SupportsInt" title="(in Python v3.15)"><span class="pre">SupportsInt</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.SupportsIndex" title="(in Python v3.15)"><span class="pre">SupportsIndex</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.Attr.Dot.Attr.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Dot.Attr.name">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.Attr.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py method">
@@ -207,15 +222,16 @@ edges, attributes, or subgraphs.</p>
 <dd><p>Overloaded function.</p>
 <dl class="py method">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">add_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></span></dt>
+<span class="sig-name descname"><span class="pre">add_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot.Attr" title="libsemigroups_pybind11.Dot.Attr"><span class="pre">Dot.Attr</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Dot.Attr.string</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></span></dt>
 <dd><p>Add an attribute to a <a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object.</p>
 <p>This function adds a new attribute, or replaces the value of an existing
 attribute of an <a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – the name of the attribute.</p></li>
-<li><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – the value of the attribute.</p></li>
+<li><p><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – the name of the attribute.</p></li>
+<li><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – the value of the attribute.</p></li>
+<li><p><strong>kind</strong> (<a class="reference internal" href="#libsemigroups_pybind11.Dot.Attr" title="libsemigroups_pybind11.Dot.Attr"><em>Dot.Attr</em></a>) – whether to add quotes to <em>val</em> or not.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -229,13 +245,13 @@ attribute of an <a class="reference internal" href="#libsemigroups_pybind11.Dot"
 
 <dl class="py method">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">add_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></span></dt>
+<span class="sig-name descname"><span class="pre">add_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></span></dt>
 <dd><p>Add an attribute to a <a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object.</p>
 <p>This function adds a new attribute, or replaces the value of an existing
 attribute of an <a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – the name of the attribute.</p>
+<dd class="field-odd"><p><strong>key</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – the name of the attribute.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><em>self</em></p>
@@ -250,17 +266,17 @@ attribute of an <a class="reference internal" href="#libsemigroups_pybind11.Dot"
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Dot.add_edge">
-<span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">head</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tail</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="dot.edge.html#libsemigroups_pybind11.Dot.Edge" title="libsemigroups_pybind11.Dot.Edge"><span class="pre">Dot.Edge</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.add_edge" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">head</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tail</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="dot.edge.html#libsemigroups_pybind11.Dot.Edge" title="libsemigroups_pybind11.Dot.Edge"><span class="pre">Dot.Edge</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.add_edge" title="Link to this definition"></a></dt>
 <dd><p>This function adds an edge from the node named <em>head</em> to the node named <em>tail</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>head</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – the name of the node at the head of the edge.</p></li>
-<li><p><strong>tail</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – the name of the node at the tail of the edge.</p></li>
+<li><p><strong>head</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – the name of the node at the head of the edge.</p></li>
+<li><p><strong>tail</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – the name of the node at the tail of the edge.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>a newly created <a class="reference internal" href="dot.edge.html#libsemigroups_pybind11.Dot.Edge" title="libsemigroups_pybind11.Dot.Edge"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot.Edge</span></code></a> object.</p>
+<dd class="field-even"><p>A newly created <a class="reference internal" href="dot.edge.html#libsemigroups_pybind11.Dot.Edge" title="libsemigroups_pybind11.Dot.Edge"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot.Edge</span></code></a> object.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="dot.edge.html#libsemigroups_pybind11.Dot.Edge" title="libsemigroups_pybind11.Dot.Edge">Dot.Edge</a></p>
@@ -273,14 +289,14 @@ attribute of an <a class="reference internal" href="#libsemigroups_pybind11.Dot"
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Dot.add_node">
-<span class="sig-name descname"><span class="pre">add_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="dot.node.html#libsemigroups_pybind11.Dot.Node" title="libsemigroups_pybind11.Dot.Node"><span class="pre">Dot.Node</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.add_node" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="dot.node.html#libsemigroups_pybind11.Dot.Node" title="libsemigroups_pybind11.Dot.Node"><span class="pre">Dot.Node</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.add_node" title="Link to this definition"></a></dt>
 <dd><p>This function adds a node with name <em>name</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – the name of the node to add.</p>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – the name of the node to add.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>a newly created <a class="reference internal" href="dot.node.html#libsemigroups_pybind11.Dot.Node" title="libsemigroups_pybind11.Dot.Node"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot.Node</span></code></a> object with name <em>name</em>.</p>
+<dd class="field-even"><p>A newly created <a class="reference internal" href="dot.node.html#libsemigroups_pybind11.Dot.Node" title="libsemigroups_pybind11.Dot.Node"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot.Node</span></code></a> object with name <em>name</em>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="dot.node.html#libsemigroups_pybind11.Dot.Node" title="libsemigroups_pybind11.Dot.Node">Dot.Node</a></p>
@@ -294,7 +310,7 @@ attribute of an <a class="reference internal" href="#libsemigroups_pybind11.Dot"
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Dot.add_subgraph">
 <span class="sig-name descname"><span class="pre">add_subgraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">subgraph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.add_subgraph" title="Link to this definition"></a></dt>
-<dd><p>This functions adds the <a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object <em>subgraph</em> as a subgraph of <em>self</em>.
+<dd><p>This function adds the <a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object <em>subgraph</em> as a subgraph of <em>self</em>.
 The following transformations are performed</p>
 <ul class="simple">
 <li><p>the <code class="docutils literal notranslate"><span class="pre">label</span></code> attribute of the added subgraph is the <a class="reference internal" href="#libsemigroups_pybind11.Dot.name" title="libsemigroups_pybind11.Dot.name"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Dot.name</span></code></a> of
@@ -324,7 +340,7 @@ names;</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Dot.attrs">
-<span class="sig-name descname"><span class="pre">attrs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.attrs" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">attrs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.attrs" title="Link to this definition"></a></dt>
 <dd><p>Returns a read-only dictionary of the current attributes of the
 represented graph.</p>
 <dl class="field-list simple">
@@ -332,7 +348,7 @@ represented graph.</p>
 <dd class="field-odd"><p>A dictionary.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)">dict</a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -359,13 +375,13 @@ represented graph.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Dot.edge">
-<span class="sig-name descname"><span class="pre">edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">head</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tail</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="dot.edge.html#libsemigroups_pybind11.Dot.Edge" title="libsemigroups_pybind11.Dot.Edge"><span class="pre">Dot.Edge</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.edge" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">head</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tail</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="dot.edge.html#libsemigroups_pybind11.Dot.Edge" title="libsemigroups_pybind11.Dot.Edge"><span class="pre">Dot.Edge</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.edge" title="Link to this definition"></a></dt>
 <dd><p>Returns the edge object with head named <em>head</em> and tail named <em>tail</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>head</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – the name of the head node of the edge (node where the edge starts).</p></li>
-<li><p><strong>tail</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – the name of the tail node of the edge (node where the edge ends).</p></li>
+<li><p><strong>head</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – the name of the head node of the edge (node where the edge starts).</p></li>
+<li><p><strong>tail</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – the name of the tail node of the edge (node where the edge ends).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -385,7 +401,7 @@ represented graph.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Dot.edges">
-<span class="sig-name descname"><span class="pre">edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="dot.edge.html#libsemigroups_pybind11.Dot.Edge" title="libsemigroups_pybind11.Dot.Edge"><span class="pre">Dot.Edge</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.edges" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="dot.edge.html#libsemigroups_pybind11.Dot.Edge" title="libsemigroups_pybind11.Dot.Edge"><span class="pre">Dot.Edge</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.edges" title="Link to this definition"></a></dt>
 <dd><p>Returns a copy of the list of the current edges (<a class="reference internal" href="dot.edge.html#libsemigroups_pybind11.Dot.Edge" title="libsemigroups_pybind11.Dot.Edge"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Edge</span></code></a> objects) in the
 represented graph.</p>
 <dl class="field-list simple">
@@ -393,26 +409,26 @@ represented graph.</p>
 <dd class="field-odd"><p>The list of current edges.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference internal" href="dot.edge.html#libsemigroups_pybind11.Dot.Edge" title="libsemigroups_pybind11.Dot.Edge">Dot.Edge</a>]</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)">list</a>[<a class="reference internal" href="dot.edge.html#libsemigroups_pybind11.Dot.Edge" title="libsemigroups_pybind11.Dot.Edge">Dot.Edge</a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Dot.is_node">
-<span class="sig-name descname"><span class="pre">is_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.is_node" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">is_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.is_node" title="Link to this definition"></a></dt>
 <dd><p>Check if there is a node with a given name.</p>
 <p>This function returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <em>name</em> is currently the name of a node in
 the represented graph and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – the name of the node.</p>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – the name of the node.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>whether or not <em>name</em> is the name of a node.</p>
+<dd class="field-even"><p>Whether or not <em>name</em> is the name of a node.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -460,25 +476,25 @@ the represented graph and <code class="docutils literal notranslate"><span class
 <dd><p>Overloaded function.</p>
 <dl class="py method">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></span></dt>
 <dd><p>Get the current name of the represented graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The current name of the represented graph.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></span></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></span></dt>
 <dd><p>Set the name of the represented graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – the name.</p>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – the name.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><em>self</em>.</p>
@@ -493,11 +509,11 @@ the represented graph and <code class="docutils literal notranslate"><span class
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Dot.node">
-<span class="sig-name descname"><span class="pre">node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="dot.node.html#libsemigroups_pybind11.Dot.Node" title="libsemigroups_pybind11.Dot.Node"><span class="pre">Dot.Node</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.node" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="dot.node.html#libsemigroups_pybind11.Dot.Node" title="libsemigroups_pybind11.Dot.Node"><span class="pre">Dot.Node</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.node" title="Link to this definition"></a></dt>
 <dd><p>Returns the node object with name <em>name</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – the name of the node.</p>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – the name of the node.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The node named <em>name</em>.</p>
@@ -513,7 +529,7 @@ the represented graph and <code class="docutils literal notranslate"><span class
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Dot.nodes">
-<span class="sig-name descname"><span class="pre">nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="dot.node.html#libsemigroups_pybind11.Dot.Node" title="libsemigroups_pybind11.Dot.Node"><span class="pre">Dot.Node</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.nodes" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="dot.node.html#libsemigroups_pybind11.Dot.Node" title="libsemigroups_pybind11.Dot.Node"><span class="pre">Dot.Node</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.nodes" title="Link to this definition"></a></dt>
 <dd><p>Returns a copy of the list of the current nodes in the represented
 graph.</p>
 <dl class="field-list simple">
@@ -521,14 +537,39 @@ graph.</p>
 <dd class="field-odd"><p>The list of current nodes.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference internal" href="dot.node.html#libsemigroups_pybind11.Dot.Node" title="libsemigroups_pybind11.Dot.Node">Dot.Node</a>]</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)">list</a>[<a class="reference internal" href="dot.node.html#libsemigroups_pybind11.Dot.Node" title="libsemigroups_pybind11.Dot.Node">Dot.Node</a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Dot.rm_node">
+<span class="sig-name descname"><span class="pre">rm_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.rm_node" title="Link to this definition"></a></dt>
+<dd><p>Remove a node from the represented graph.</p>
+<p>This function removes the node named <em>name</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – the name of the node to remove.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../libsemigroups-error.html#libsemigroups_pybind11.LibsemigroupsError" title="libsemigroups_pybind11.LibsemigroupsError"><strong>LibsemigroupsError</strong></a> – if there is no node named <em>name</em>.</p>
+</dd>
+</dl>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dot</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">graph</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">node</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">graph</span><span class="o">.</span><span class="n">is_node</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">graph</span><span class="o">.</span><span class="n">rm_node</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">graph</span><span class="o">.</span><span class="n">is_node</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Dot.subgraphs">
-<span class="sig-name descname"><span class="pre">subgraphs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.subgraphs" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">subgraphs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.subgraphs" title="Link to this definition"></a></dt>
 <dd><p>Returns a copy of the list of the current subgraphs (<a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> objects) in the
 represented graph.</p>
 <dl class="field-list simple">
@@ -536,14 +577,14 @@ represented graph.</p>
 <dd class="field-odd"><p>The list of current subgraphs.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot">Dot</a>]</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)">list</a>[<a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot">Dot</a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Dot.to_string">
-<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.to_string" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><span class="pre">Dot</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#libsemigroups_pybind11.Dot.to_string" title="Link to this definition"></a></dt>
 <dd><p>Convert a <a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object to a string. This function returns the string
 representation of the <a class="reference internal" href="#libsemigroups_pybind11.Dot" title="libsemigroups_pybind11.Dot"><code class="xref any py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a> object. This string contains a
 representation of the graph in the <a class="reference external" href="https://www.graphviz.org/doc/info/lang.html">DOT</a> language for <a class="reference external" href="https://www.graphviz.org">Graphviz</a>.</p>
@@ -552,7 +593,7 @@ representation of the graph in the <a class="reference external" href="https://w
 <dd class="field-odd"><p>The string representation of <em>self</em>.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a></p>
 </dd>
 </dl>
 </dd></dl>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PBR helpers &mdash; libsemigroups_pybind11 1.4.4.dev12+g6a3bd3842 documentation</title>
+  <title>PBR helpers &mdash; libsemigroups_pybind11 1.4.5.dev142+g98a0270ff documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=c94ecf42"></script>
+      <script src="../../../_static/documentation_options.js?v=126b1dcf"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -141,11 +141,11 @@ contains helper functions for the <a class="reference internal" href="class.html
 <dd><p>Returns the identity PBR with degree <code class="docutils literal notranslate"><span class="pre">x.degree()</span></code>.</p>
 <p>This member function returns a new <a class="reference internal" href="class.html#libsemigroups_pybind11.PBR" title="libsemigroups_pybind11.PBR"><code class="xref any py py-class docutils literal notranslate"><span class="pre">PBR</span></code></a> with degree equal to the <a class="reference internal" href="class.html#libsemigroups_pybind11.PBR.degree" title="libsemigroups_pybind11.PBR.degree"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">PBR.degree</span></code></a> of
 <em>x</em>, where every value is adjacent to its negative. Equivalently, <code class="docutils literal notranslate"><span class="pre">i</span></code> is
-adjacent <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">+</span> <span class="pre">n</span></code> and vice versa for every <code class="docutils literal notranslate"><span class="pre">i</span></code> less than the degree
+adjacent to <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">+</span> <span class="pre">n</span></code> and vice versa for every <code class="docutils literal notranslate"><span class="pre">i</span></code> less than the degree
 <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="class.html#libsemigroups_pybind11.PBR" title="libsemigroups_pybind11.PBR"><em>PBR</em></a>) – A PBR.</p>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="class.html#libsemigroups_pybind11.PBR" title="libsemigroups_pybind11.PBR"><em>PBR</em></a>) – a PBR.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The identity.</p>
@@ -158,14 +158,14 @@ adjacent <code class="docutils literal notranslate"><span class="pre">i</span> <
 
 <dl class="py function">
 <dt class="sig sig-object py">
-<span class="sig-prename descclassname"><span class="pre">pbr.</span></span><span class="sig-name descname"><span class="pre">one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="class.html#libsemigroups_pybind11.PBR" title="libsemigroups_pybind11.PBR"><span class="pre">PBR</span></a></span></span></dt>
+<span class="sig-prename descclassname"><span class="pre">pbr.</span></span><span class="sig-name descname"><span class="pre">one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="class.html#libsemigroups_pybind11.PBR" title="libsemigroups_pybind11.PBR"><span class="pre">PBR</span></a></span></span></dt>
 <dd><p>Returns the identity PBR with specified degree.</p>
 <p>This function returns a new <a class="reference internal" href="class.html#libsemigroups_pybind11.PBR" title="libsemigroups_pybind11.PBR"><code class="xref any py py-class docutils literal notranslate"><span class="pre">PBR</span></code></a> with degree equal to <em>n</em> where every
-value is adjacent to its negative. Equivalently, <code class="docutils literal notranslate"><span class="pre">i</span></code> is adjacent
+value is adjacent to its negative. Equivalently, <code class="docutils literal notranslate"><span class="pre">i</span></code> is adjacent to
 <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">+</span> <span class="pre">n</span></code> and vice versa for every <code class="docutils literal notranslate"><span class="pre">i</span></code> less than the degree <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – the degree.</p>
+<dd class="field-odd"><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – the degree.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The identity.</p>

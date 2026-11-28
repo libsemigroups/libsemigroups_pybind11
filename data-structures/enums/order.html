@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Order enum &mdash; libsemigroups_pybind11 1.4.4.dev12+g6a3bd3842 documentation</title>
+  <title>The Order enum &mdash; libsemigroups_pybind11 1.4.5.dev142+g98a0270ff documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../_static/libsemigroups_pybind11_logo.svg"/>
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=c94ecf42"></script>
+      <script src="../../_static/documentation_options.js?v=126b1dcf"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -131,39 +131,84 @@ for representing the order of words.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Order">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre"></span></span><span class="sig-name descname"><span class="pre">Order</span></span><a class="headerlink" href="#libsemigroups_pybind11.Order" title="Link to this definition"></a></dt>
-<dd><p>An enum class for the possible orderings of words and strings.</p>
+<dd><p>An enum class for the possible orderings of lists of integers and strings.</p>
 <p>The values in this enum can be used as the arguments for functions such as
 <a class="reference internal" href="../../main-algorithms/todd-coxeter/class/modifiers.html#libsemigroups_pybind11.ToddCoxeter.standardize" title="libsemigroups_pybind11.ToddCoxeter.standardize"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">ToddCoxeter.standardize</span></code></a> or <a class="reference internal" href="../words/word-range.html#libsemigroups_pybind11.WordRange.order" title="libsemigroups_pybind11.WordRange.order"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">WordRange.order</span></code></a> to specify which
-ordering should be used. The normal forms for congruence classes are given with
-respect to one of the orders specified by the values in this enum.</p>
-<p>The valid values are:</p>
+ordering should be used.</p>
+<p>The values <a class="reference internal" href="#libsemigroups_pybind11.Order.shortlex" title="libsemigroups_pybind11.Order.shortlex"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">Order.shortlex</span></code></a> and <a class="reference internal" href="#libsemigroups_pybind11.Order.recursive" title="libsemigroups_pybind11.Order.recursive"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">Order.recursive</span></code></a> are retained for
+backwards compatibility; use <a class="reference internal" href="#libsemigroups_pybind11.Order.lenlex" title="libsemigroups_pybind11.Order.lenlex"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">Order.lenlex</span></code></a> and <a class="reference internal" href="#libsemigroups_pybind11.Order.rev_rpo" title="libsemigroups_pybind11.Order.rev_rpo"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">Order.rev_rpo</span></code></a>,
+respectively, in new code.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Order.none">
 <span class="sig-name descname"><span class="pre">none</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Order.none:</span> <span class="pre">0&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.Order.none" title="Link to this definition"></a></dt>
-<dd><p>No ordering</p>
+<dd><blockquote>
+<div><p>No ordering</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Order.lenlex">
+<span class="sig-name descname"><span class="pre">lenlex</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Order.lenlex:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.Order.lenlex" title="Link to this definition"></a></dt>
+<dd><blockquote>
+<div><p>The lenlex ordering. Words are first ordered by length, and then
+lexicographically.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Order.shortlex">
-<span class="sig-name descname"><span class="pre">shortlex</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Order.shortlex:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.Order.shortlex" title="Link to this definition"></a></dt>
-<dd><p>The short-lex ordering. Word are first ordered by length, and then
+<span class="sig-name descname"><span class="pre">shortlex</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Order.lenlex:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.Order.shortlex" title="Link to this definition"></a></dt>
+<dd><blockquote>
+<div><p>The short-lex ordering. Words are first ordered by length, and then
 lexicographically.</p>
+<p>This is deprecated; use <a class="reference internal" href="#libsemigroups_pybind11.Order.lenlex" title="libsemigroups_pybind11.Order.lenlex"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">Order.lenlex</span></code></a> instead.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Order.lex">
 <span class="sig-name descname"><span class="pre">lex</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Order.lex:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.Order.lex" title="Link to this definition"></a></dt>
-<dd><p>The lexicographic ordering. Note that this is not a well-order, so there may
-not be a lexicographically least word in a given congruence class of words.</p>
+<dd><blockquote>
+<div><p>The lexicographic ordering. Note that this is not a well-order, so there
+may not be a lexicographically least word in a given congruence class of
+words.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Order.rpo">
+<span class="sig-name descname"><span class="pre">rpo</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Order.rpo:</span> <span class="pre">3&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.Order.rpo" title="Link to this definition"></a></dt>
+<dd><blockquote>
+<div><p>The recursive-path ordering, as described in <span id="id1">[<a class="reference internal" href="../../biblio.html#id40" title="Matthias Jantzen. Confluent string rewriting. Volume 14. Springer Science &amp; Business Media, 2012.">Jan12</a>]</span>
+(Definition 1.2.14, page 24).</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="libsemigroups_pybind11.Order.rev_rpo">
+<span class="sig-name descname"><span class="pre">rev_rpo</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Order.rev_rpo:</span> <span class="pre">4&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.Order.rev_rpo" title="Link to this definition"></a></dt>
+<dd><blockquote>
+<div><p>The reversed recursive-path ordering, based on the description in
+<span id="id2">[<a class="reference internal" href="../../biblio.html#id40" title="Matthias Jantzen. Confluent string rewriting. Volume 14. Springer Science &amp; Business Media, 2012.">Jan12</a>]</span> (Definition 1.2.14, page 24), where words are read
+right-to-left before ordering.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="libsemigroups_pybind11.Order.recursive">
-<span class="sig-name descname"><span class="pre">recursive</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Order.recursive:</span> <span class="pre">3&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.Order.recursive" title="Link to this definition"></a></dt>
-<dd><p>The recursive-path ordering, as described in <span id="id1">[<a class="reference internal" href="../../biblio.html#id40" title="Matthias Jantzen. Confluent string rewriting. Volume 14. Springer Science &amp; Business Media, 2012.">Jan12</a>]</span> (Definition
-1.2.14, page 24).</p>
+<span class="sig-name descname"><span class="pre">recursive</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Order.rev_rpo:</span> <span class="pre">4&gt;</span></em><a class="headerlink" href="#libsemigroups_pybind11.Order.recursive" title="Link to this definition"></a></dt>
+<dd><blockquote>
+<div><p>The reversed recursive-path ordering, based on the description in
+<span id="id3">[<a class="reference internal" href="../../biblio.html#id40" title="Matthias Jantzen. Confluent string rewriting. Volume 14. Springer Science &amp; Business Media, 2012.">Jan12</a>]</span> (Definition 1.2.14, page 24).</p>
+<p>This is deprecated; use <a class="reference internal" href="#libsemigroups_pybind11.Order.rev_rpo" title="libsemigroups_pybind11.Order.rev_rpo"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">Order.rev_rpo</span></code></a> instead.</p>
+</div></blockquote>
 </dd></dl>
 
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">libsemigroups_pybind11</span><span class="w"> </span><span class="kn">import</span> <span class="n">Order</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Order</span><span class="o">.</span><span class="n">lenlex</span>
+<span class="go">&lt;Order.lenlex: 1&gt;</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </section>
